@@ -130,6 +130,81 @@ def test_feedback_validation_returns_422(tmp_path, monkeypatch, payload):
     assert response.status_code == 422
 
 
+def test_admin_feedback_note_is_limited_to_2000_characters(tmp_path, monkeypatch):
+    user_id = _auth_db(tmp_path / "auth.db")
+    monkeypatch.setenv("AUTH_DB_PATH", str(tmp_path / "auth.db"))
+    with TestClient(_app({"id": user_id, "role": "admin", "is_active": 1})) as client:
+        created = client.post(
+            "/api/helpdesk/feedback", json={"type": "bug", "message": "Issue"}
+        )
+        response = client.patch(
+            f"/api/helpdesk/admin/feedback/{created.json()['id']}",
+            json={"admin_note": "n" * 2001},
+        )
+    assert response.status_code == 422
+
+
+def test_feedback_rate_limit_is_per_submitter(tmp_path, monkeypatch):
+    db_path = tmp_path / "auth.db"
+    user_id = _auth_db(db_path)
+    with sqlite3.connect(db_path) as connection:
+        cursor = connection.execute(
+            "INSERT INTO users (email, username, password_hash, role, is_active) "
+            "VALUES (?, ?, ?, ?, 1)",
+            ("second@example.test", "second-user", "hash", "Team Lead"),
+        )
+        other_user_id = int(cursor.lastrowid)
+        connection.commit()
+    monkeypatch.setenv("AUTH_DB_PATH", str(db_path))
+    user = {"id": user_id, "role": "SOC Analyst Tier 1-2", "is_active": 1}
+    with TestClient(_app(user)) as client:
+        accepted = [
+            client.post(
+                "/api/helpdesk/feedback", json={"type": "bug", "message": f"Issue {i}"}
+            )
+            for i in range(20)
+        ]
+        limited = client.post(
+            "/api/helpdesk/feedback", json={"type": "bug", "message": "Too many"}
+        )
+        user["id"] = other_user_id
+        other_user = client.post(
+            "/api/helpdesk/feedback", json={"type": "bug", "message": "Other user"}
+        )
+    assert all(response.status_code == 201 for response in accepted)
+    assert limited.status_code == 429
+    assert "20 submissions per hour" in limited.json()["detail"]
+    assert other_user.status_code == 201
+
+
+def test_admin_feedback_is_newest_first_paginated_and_exposes_only_username(
+    tmp_path, monkeypatch
+):
+    db_path = tmp_path / "auth.db"
+    user_id = _auth_db(db_path)
+    _migration("015_add_helpdesk.py").migrate(str(db_path))
+    with sqlite3.connect(db_path) as connection:
+        ids = []
+        for message in ("First", "Second", "Third"):
+            cursor = connection.execute(
+                "INSERT INTO helpdesk_feedback (submitter_id, type, message, created_at) "
+                "VALUES (?, 'bug', ?, '2026-01-01 12:00:00')",
+                (user_id, message),
+            )
+            ids.append(int(cursor.lastrowid))
+        connection.commit()
+    monkeypatch.setenv("AUTH_DB_PATH", str(db_path))
+    with TestClient(_app({"id": user_id, "role": "admin", "is_active": 1})) as client:
+        full = client.get("/api/helpdesk/admin/feedback")
+        page = client.get("/api/helpdesk/admin/feedback?limit=1&offset=1")
+    items = full.json()["items"]
+    assert [item["id"] for item in items] == list(reversed(ids))
+    assert items[0]["submitter_username"] == "helpdesk"
+    assert "email" not in items[0]
+    assert "password_hash" not in items[0]
+    assert [item["id"] for item in page.json()["items"]] == [ids[-2]]
+
+
 def test_cookie_posts_require_matching_csrf_token(tmp_path, monkeypatch):
     db_path = tmp_path / "auth.db"
     user_id = _auth_db(db_path)

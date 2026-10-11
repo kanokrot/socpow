@@ -8,7 +8,7 @@ import sqlite3
 from pathlib import Path
 from typing import Literal
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from ..auth import get_current_user, require_role
@@ -59,7 +59,7 @@ class FeedbackCreate(BaseModel):
 
 class FeedbackUpdate(BaseModel):
     status: Literal["new", "reviewed", "resolved"] | None = None
-    admin_note: str | None = None
+    admin_note: str | None = Field(default=None, max_length=2000)
 
     model_config = ConfigDict(extra="forbid")
 
@@ -93,6 +93,18 @@ def submit_feedback(
 ) -> dict:
     with _connect() as connection:
         _upgrade(connection)
+        connection.execute("BEGIN IMMEDIATE")
+        recent_count = connection.execute(
+            "SELECT COUNT(*) FROM helpdesk_feedback "
+            "WHERE submitter_id = ? AND created_at >= "
+            "strftime('%Y-%m-%d %H:%M:%S', 'now', '-1 hour')",
+            (int(current_user["id"]),),
+        ).fetchone()[0]
+        if recent_count >= 20:
+            raise HTTPException(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                detail="Feedback limit reached: maximum 20 submissions per hour.",
+            )
         cursor = connection.execute(
             "INSERT INTO helpdesk_feedback (submitter_id, type, reference, message) "
             "VALUES (?, ?, ?, ?)",
@@ -126,6 +138,8 @@ def list_published_faq(
 @router.get("/admin/feedback")
 def list_feedback(
     status: str | None = None,
+    limit: int = Query(default=100, ge=1, le=200),
+    offset: int = Query(default=0, ge=0),
     _admin: dict = Depends(require_role("admin")),
 ) -> dict:
     if status is not None and status not in {
@@ -133,14 +147,18 @@ def list_feedback(
     }:
         raise HTTPException(status_code=422, detail="Invalid feedback status")
     query = (
-        "SELECT id, submitter_id, type, reference, message, status, admin_note, "
-        "created_at, updated_at FROM helpdesk_feedback"
+        "SELECT feedback.id, feedback.submitter_id, submitter.username AS submitter_username, "
+        "feedback.type, feedback.reference, feedback.message, feedback.status, "
+        "feedback.admin_note, feedback.created_at, feedback.updated_at "
+        "FROM helpdesk_feedback AS feedback "
+        "LEFT JOIN users AS submitter ON submitter.id = feedback.submitter_id"
     )
     values: tuple = ()
     if status is not None:
         query += " WHERE status = ?"
         values = (status,)
-    query += " ORDER BY created_at ASC, id ASC"
+    query += " ORDER BY feedback.created_at DESC, feedback.id DESC LIMIT ? OFFSET ?"
+    values += (limit, offset)
     with _connect() as connection:
         _upgrade(connection)
         items = _rows(connection, query, values)
