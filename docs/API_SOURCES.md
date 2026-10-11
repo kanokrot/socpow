@@ -35,10 +35,8 @@ More generally, any source not in `NON_API_SCORING_SOURCES` is excluded from
 the production score. `GROUP_A_EVAL_SOURCES` is evaluation configuration,
 not the production scoring admission list.
 
-The historical `Weight in Scoring` descriptions below are legacy documentation
-for the former API-inclusive scorer. They must not be interpreted as current
-production weights. An unavailable or stale source is not treated as a clean
-result. There is no unknown-source fallback multiplier.
+An unavailable or stale source is not treated as a clean result. There is no
+unknown-source fallback multiplier.
 
 ---
 
@@ -129,7 +127,7 @@ implementation inventory and must not be used to infer scoring admission.
 **Type:** Multi-engine antivirus scanning
 **IOC Types:** IP, Domain, URL, Hash
 **Free Tier:** 500 requests/day
-**Weight in Scoring:** 25/100
+**Production IOC scoring:** Report-only
 
 **What it provides:**
 - Antivirus detection results (70+ engines)
@@ -154,7 +152,7 @@ api_keys:
 **Type:** IP reputation database
 **IOC Types:** IP only
 **Free Tier:** 1,000 requests/day
-**Weight in Scoring:** 20/100
+**Production IOC scoring:** Report-only
 
 **What it provides:**
 - Abuse confidence score (0-100%)
@@ -179,7 +177,7 @@ api_keys:
 **Type:** Internet scanning/OSINT
 **IOC Types:** IP, Domain
 **Free Tier:** 100 queries/month
-**Weight in Scoring:** 15/100
+**Production IOC scoring:** Report-only
 
 **What it provides:**
 - Open ports
@@ -205,7 +203,7 @@ api_keys:
 **Type:** Open threat exchange
 **IOC Types:** IP, Domain, URL, Hash
 **Free Tier:** Unlimited
-**Weight in Scoring:** 15/100
+**Production IOC scoring:** Report-only
 
 **What it provides:**
 - Pulse (threat report) count
@@ -230,7 +228,7 @@ api_keys:
 **Type:** Internet scanner detection
 **IOC Types:** IP only
 **Free Tier:** 50 queries/day
-**Weight in Scoring:** 10/100
+**Production IOC scoring:** Report-only
 
 **What it provides:**
 - Is this IP scanning the internet?
@@ -255,7 +253,7 @@ api_keys:
 **Type:** Fraud/abuse detection
 **IOC Types:** IP, Email, Domain
 **Free Tier:** 5,000 requests/month
-**Weight in Scoring:** 15/100
+**Production IOC scoring:** Report-only
 
 **What it provides:**
 - Fraud score (0-100)
@@ -280,7 +278,7 @@ api_keys:
 **Type:** Malware sandbox
 **IOC Types:** Hash, URL
 **Free Tier:** 100 searches/month
-**Weight in Scoring:** 20/100
+**Production IOC scoring:** Not applicable; separate sandbox path, not part of the IOC scoring formula
 
 **What it provides:**
 - Sandbox analysis results
@@ -305,7 +303,7 @@ api_keys:
 **Type:** Malware sandbox
 **IOC Types:** Hash
 **Free Tier:** Limited
-**Weight in Scoring:** 15/100
+**Production IOC scoring:** Not applicable; separate sandbox path, not part of the IOC scoring formula
 
 **What it provides:**
 - Detailed sandbox analysis
@@ -325,23 +323,24 @@ api_keys:
 
 ---
 
-### 🆓 Community Sources
+### Implemented Feed Integrations
 
 These sources have community/free access characteristics; authentication
 requirements still vary by source:
 
 | Source | Type | IOC Types | Data |
 |--------|------|-----------|------|
-| **URLhaus** | Malicious URLs | URL, Domain | Malware distribution URLs |
-| **ThreatFox** | IOC Database | IP, Domain, URL, Hash | Recent IOCs; free Auth-Key required |
-| **MalwareBazaar** | Malware samples | Hash | Sample metadata |
-| **OpenPhish** | Phishing | URL, Domain | Phishing URLs |
+| **URLhaus** | Malicious URLs | URL | Malware distribution URLs; report-only |
+| **ThreatFox** | IOC Database | IP, Domain, URL, Hash | Auth-Key required; admitted to IOC scoring |
+| **MalwareBazaar** | Malware samples | Hash | Sample metadata; report-only |
+
+OpenPhish is not currently dispatched by the IOC integration code.
 
 ---
 
-## Configuration Example
+## Example API-Key Configuration
 
-Complete `config.yaml` with all sources:
+Illustrative API-key settings; this is not a complete integration inventory.
 
 ```yaml
 api_keys:
@@ -360,7 +359,6 @@ api_keys:
   triage: "your-triage-key"
   censys: "<api-key>"
   threatfox: "<api-key>"
-  hybrid_analysis: "<api-key>"
   anyrun: "<api-key-if-required>"
   joe_sandbox: "<api-key>"
 ```
@@ -397,30 +395,6 @@ VirusTotal remains report-only. The application currently defines a local
 limit of 4 requests/minute. Provider plan limits and daily quotas must be
 verified against current provider documentation. Its AHP multiplier is
 retained for auditability only and is not used in production scoring.
-
-The legacy distribution illustration below is historical context only and does
-not represent the active scoring policy.
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                        SOURCE WEIGHT DISTRIBUTION                            │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  VirusTotal       ████████████████████████████  25%   (most reliable)       │
-│  AbuseIPDB        ████████████████████  20%                                 │
-│  Hybrid Analysis  ████████████████████  20%                                 │
-│  MalwareBazaar    ███████████████  15%                                      │
-│  AlienVault OTX   ███████████████  15%                                      │
-│  Shodan           ███████████████  15%                                      │
-│  IPQualityScore   ███████████████  15%                                      │
-│  GreyNoise        ██████████  10%                                           │
-│  Others           ██████████  10%  (each)                                   │
-│                                                                             │
-│  Note: Weights are normalized. A single source cannot exceed 100.           │
-│        Multiple sources flagging = higher confidence.                       │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
 
 ---
 
