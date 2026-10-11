@@ -103,25 +103,39 @@ python -m src.soc_agent ioc 185.199.108.153 --report ip_investigation.html
 
 ### Understanding Results
 
+The example below is schematic. The production IOC score uses these six
+sources: FeodoTracker, SSL Blacklist, Spamhaus, Tor Exit Nodes, C2 Trackers,
+and ThreatFox. VirusTotal, AbuseIPDB, Shodan, and AlienVault OTX may appear
+as optional cross-checks, but they do not affect score, verdict, or coverage.
+
 ```
 ═══════════════════════════════════════════════════════════════════════════════
-                    BLUE TEAM ASSISTANT - IOC INVESTIGATION
+                         SOCPOW - IOC INVESTIGATION
 ═══════════════════════════════════════════════════════════════════════════════
 
  IOC: 185.199.108.153
  Type: IPv4                          ← Automatically detected type
  Verdict: SUSPICIOUS (Score: 45/100) ← Overall verdict with score
 
-┌─ THREAT INTELLIGENCE RESULTS       ← Individual source results
+┌─ IOC SCORING SOURCES               ← Sources admitted to the score
 │
-│  VirusTotal      : 3/94 detections ← X engines flagged / total checked
-│  AbuseIPDB       : Confidence 25%  ← Abuse confidence percentage
-│  Shodan          : Open ports: 80, 443
-│  GreyNoise       : Not seen scanning
-│  AlienVault OTX  : 2 pulses        ← Number of threat intel reports
+│  FeodoTracker    : <result or status>
+│  SSL Blacklist   : <result or status>
+│  Spamhaus        : <result or status>
+│  Tor Exit Nodes  : <result or status>
+│  C2 Trackers     : <result or status>
+│  ThreatFox       : <result or unavailable>
 │
-│  Sources Checked: <count>          ← Sources attempted for this IOC
-│  Sources Flagged: <count>          ← Sources reporting a positive finding
+│  Source coverage: <covered>/<eligible>
+│  Score is a formula output, not a probability.
+└─────────────────────────────────────────────────────────────────────────────
+
+┌─ OPTIONAL, NON-SCORING CROSS-CHECKS
+│
+│  VirusTotal      : <detections, when configured>
+│  AbuseIPDB       : <confidence, when configured>
+│  Shodan          : <enrichment, when configured>
+│  AlienVault OTX  : <reports, when configured>
 └─────────────────────────────────────────────────────────────────────────────
 
 ┌─ DETECTION RULES                    ← Auto-generated rules
