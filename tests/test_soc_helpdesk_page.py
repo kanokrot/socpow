@@ -62,10 +62,14 @@ def test_template_keeps_canvas_and_required_room_elements():
     assert 'id="soc-status-badge"' in template
     assert 'class="soc-monitor-card"' in template
     assert 'class="soc-operations-page" data-brand="{{ BRAND_NAME }}"' in template
+    assert 'id="soc-fullscreen"' in template
 
 
 def test_template_replaces_demo_controls_and_activity_panel():
     template = TEMPLATE.read_text(encoding="utf-8")
+    assert "LIVE: COMING LATER" not in template
+    assert "HELP DESK" in template
+    assert 'class="soc-live-pill"' in template
     assert "Ask the SOC Room" in template
     assert "Frequently asked questions" in template
     assert "Report a finding" in template

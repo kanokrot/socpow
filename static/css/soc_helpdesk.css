@@ -193,11 +193,12 @@
 
 .soc-room-shell {
     min-width: 0;
+    place-items: start center;
+    align-content: start;
 }
 
-#soc-office-canvas {
-    aspect-ratio: 832 / 512;
-    height: auto;
+.soc-office-header > .soc-helpdesk-button {
+    flex: 0 0 auto;
 }
 
 @media (max-width: 1050px) {
