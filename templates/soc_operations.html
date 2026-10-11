@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}SOC Operations - {{ BRAND_NAME }}{% endblock %}
+{% block title %}Ask the SOC Room - {{ BRAND_NAME }}{% endblock %}
 {% block page_title %}{% endblock %}
 {% block page_subtitle %}{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="/static/css/soc_operations.css">
 <link rel="stylesheet" href="/static/css/soc_operations_advanced.css">
+<link rel="stylesheet" href="/static/css/soc_helpdesk.css">
 <style>
     .soc-operations-page { padding-top: 56px; }
     body:has(.soc-operations-page) .sub-header {
@@ -26,26 +27,13 @@
     <section class="soc-office-panel" aria-labelledby="soc-office-title">
         <header class="soc-office-header">
             <div>
-                <div class="soc-office-kicker">{{ BRAND_NAME|upper }} VISUALIZATION</div>
-                <h2 id="soc-office-title" class="soc-office-title">SOC Analyst Pixel Office</h2>
-                <p class="soc-office-subtitle">Hermes-style Canvas renderer · Frontend-only Demo Mode</p>
+                <div class="soc-office-kicker">{{ BRAND_NAME|upper }} HELP DESK</div>
+                <h2 id="soc-office-title" class="soc-office-title">Ask the SOC Room</h2>
+                <p class="soc-office-subtitle">Browse the FAQ or report a finding to help improve the room.</p>
             </div>
-
-            <div class="soc-office-actions" aria-label="SOC demo controls">
-            <span class="soc-mode-pill">DEMO MODE</span>
-            <select id="soc-scenario" class="soc-control" aria-label="Demo scenario">
-            <option value="malicious">Malicious C2 IP</option>
-            <option value="suspicious">Suspicious Domain</option>
-            <option value="clean">Clean IP</option>
-            </select>
-             <button id="soc-start" class="soc-control soc-control-primary" type="button">Start Demo</button>
-             <button id="soc-pause" class="soc-control" type="button" disabled>Pause</button>
-             <button id="soc-reset" class="soc-control" type="button">Reset</button>
-             <button id="soc-fullscreen" class="soc-control" type="button">Fullscreen</button>
-             </div>
         </header>
 
-        <div class="soc-office-grid">
+        <div class="soc-office-grid soc-helpdesk-grid">
             <div id="soc-room-shell" class="soc-room-shell">
                 <canvas
                     id="soc-office-canvas"
@@ -73,29 +61,47 @@
                 </div>
             </div>
 
-            <aside class="soc-activity-panel" aria-label="Demo activity">
-                <div class="soc-activity-heading">
-                    <span class="soc-activity-dot"></span>
-                    ACTIVITY FEED
-                </div>
-                <div class="soc-case-card">
-                    <span>DEMO CASE</span>
-                    <strong id="soc-case-id">CASE-1024</strong>
-                    <code id="soc-case-ioc">IOC: 44.238.29.244</code>
-                </div>
-                <ol id="soc-event-log" class="soc-event-log"></ol>
+            <aside class="soc-helpdesk-panel" aria-label="SOC Room help desk">
+                <section class="soc-helpdesk-section" aria-labelledby="soc-faq-title">
+                    <div class="soc-helpdesk-section-heading">
+                        <p class="soc-helpdesk-eyebrow">QUICK ANSWERS</p>
+                        <h3 id="soc-faq-title">Frequently asked questions</h3>
+                    </div>
+                    <p id="soc-faq-status" class="soc-helpdesk-status" role="status" aria-live="polite">Loading FAQ…</p>
+                    <div id="soc-faq-list" class="soc-faq-list"></div>
+                </section>
+
+                <section class="soc-helpdesk-section soc-report-section" aria-labelledby="soc-report-title">
+                    <div class="soc-helpdesk-section-heading">
+                        <p class="soc-helpdesk-eyebrow">HELP US IMPROVE</p>
+                        <h3 id="soc-report-title">Report a finding</h3>
+                        <p>Share an issue, a wrong verdict, or an idea for the SOC Room.</p>
+                    </div>
+                    <form id="soc-feedback-form" class="soc-feedback-form">
+                        <div class="soc-field">
+                            <label for="soc-feedback-type">What would you like to report?</label>
+                            <select id="soc-feedback-type" name="type" required>
+                                <option value="wrong_verdict">Wrong verdict</option>
+                                <option value="bug">Bug</option>
+                                <option value="suggestion">Suggestion</option>
+                            </select>
+                        </div>
+                        <div class="soc-field">
+                            <label for="soc-feedback-reference">Reference <span>(optional)</span></label>
+                            <input id="soc-feedback-reference" name="reference" type="text" maxlength="200" autocomplete="off" aria-describedby="soc-reference-hint">
+                            <small id="soc-reference-hint">Analysis ID or page, up to 200 characters.</small>
+                        </div>
+                        <div class="soc-field">
+                            <label for="soc-feedback-message">Message</label>
+                            <textarea id="soc-feedback-message" name="message" rows="5" maxlength="2000" required aria-describedby="soc-message-count"></textarea>
+                            <small id="soc-message-count" aria-live="polite">0 / 2000</small>
+                        </div>
+                        <p id="soc-feedback-result" class="soc-helpdesk-status" role="status" aria-live="polite"></p>
+                        <button id="soc-feedback-submit" class="soc-helpdesk-button" type="submit">Send report</button>
+                    </form>
+                </section>
             </aside>
         </div>
-
-        <footer class="soc-stage-footer">
-            <div class="soc-current-activity">
-                <span>Current activity</span>
-                <strong id="soc-activity">Waiting for demo</strong>
-            </div>
-            <div id="soc-stage-track" class="soc-stage-track" aria-label="Demo progress"></div>
-        </footer>
-
-        <p class="soc-demo-note">Demo Mode only — no Case, IOC, database, or analysis data is modified.</p>
     </section>
 </div>
 </div>
@@ -103,5 +109,5 @@
 
 {% block scripts %}
 <script src="/static/js/soc_operations.js" defer></script>
-<script src="/static/js/soc_operations_advanced.js" defer></script>
+<script src="/static/js/soc_helpdesk.js" defer></script>
 {% endblock %}

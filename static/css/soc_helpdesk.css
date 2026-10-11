@@ -1,0 +1,234 @@
+.soc-helpdesk-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr);
+    min-height: 0;
+}
+
+.soc-helpdesk-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
+    max-height: min(72vh, 720px);
+    overflow: auto;
+    background: rgba(10, 15, 24, .86);
+}
+
+.soc-helpdesk-section {
+    padding: 20px;
+}
+
+.soc-helpdesk-section + .soc-helpdesk-section {
+    border-top: 1px solid var(--soc-border);
+}
+
+.soc-helpdesk-section-heading {
+    margin-bottom: 16px;
+}
+
+.soc-helpdesk-eyebrow {
+    margin: 0 0 5px;
+    color: var(--soc-cyan);
+    font: 700 10px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: .14em;
+}
+
+.soc-helpdesk-section h3 {
+    margin: 0;
+    color: var(--soc-text);
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.soc-helpdesk-section-heading > p:last-child:not(.soc-helpdesk-eyebrow) {
+    margin: 7px 0 0;
+    color: var(--soc-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.soc-helpdesk-status {
+    margin: 10px 0;
+    color: var(--soc-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.soc-helpdesk-status:empty {
+    display: none;
+}
+
+.soc-faq-list {
+    display: grid;
+    gap: 9px;
+}
+
+.soc-faq-item {
+    overflow: hidden;
+    border: 1px solid var(--soc-border);
+    border-radius: 8px;
+    background: rgba(17, 24, 39, .72);
+}
+
+.soc-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 13px;
+    border: 0;
+    background: transparent;
+    color: var(--soc-text);
+    text-align: left;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.soc-faq-question::after {
+    content: "+";
+    flex: 0 0 auto;
+    color: var(--soc-cyan);
+    font-size: 19px;
+    line-height: 1;
+}
+
+.soc-faq-question[aria-expanded="true"]::after {
+    content: "−";
+}
+
+.soc-faq-answer {
+    padding: 0 13px 14px;
+    color: var(--soc-muted);
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.soc-feedback-form,
+.soc-field {
+    display: grid;
+    gap: 8px;
+}
+
+.soc-feedback-form {
+    gap: 15px;
+}
+
+.soc-field label {
+    color: var(--soc-text);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.soc-field label span,
+.soc-field small {
+    color: var(--soc-muted);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.soc-field input,
+.soc-field select,
+.soc-field textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 11px;
+    border: 1px solid #3a4961;
+    border-radius: 7px;
+    background: #080d16;
+    color: var(--soc-text);
+    font: inherit;
+    font-size: 14px;
+}
+
+.soc-field textarea {
+    min-height: 132px;
+    resize: vertical;
+}
+
+.soc-field input:focus-visible,
+.soc-field select:focus-visible,
+.soc-field textarea:focus-visible,
+.soc-faq-question:focus-visible,
+.soc-helpdesk-button:focus-visible,
+.soc-faq-retry:focus-visible {
+    outline: 3px solid #67e8f9;
+    outline-offset: 3px;
+}
+
+.soc-helpdesk-button,
+.soc-faq-retry {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 10px 15px;
+    border: 1px solid #22d3ee;
+    border-radius: 7px;
+    background: #0b2632;
+    color: #e6fbff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.soc-helpdesk-button:hover:not(:disabled),
+.soc-faq-retry:hover {
+    background: #123c4b;
+}
+
+.soc-helpdesk-button:disabled {
+    cursor: wait;
+    opacity: .65;
+}
+
+.soc-faq-retry {
+    margin-top: 4px;
+}
+
+.soc-room-shell {
+    min-width: 0;
+}
+
+#soc-office-canvas {
+    aspect-ratio: 832 / 512;
+    height: auto;
+}
+
+@media (max-width: 1050px) {
+    .soc-helpdesk-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr);
+    }
+
+    .soc-room-shell {
+        border-right: 1px solid var(--soc-border);
+        border-bottom: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .soc-helpdesk-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .soc-room-shell {
+        border-right: 0;
+        border-bottom: 1px solid var(--soc-border);
+    }
+
+    .soc-helpdesk-panel {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+@media (max-width: 600px) {
+    .soc-helpdesk-section {
+        padding: 16px;
+    }
+}
