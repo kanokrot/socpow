@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Help Desk Admin - {{ BRAND_NAME }}{% endblock %}
+{% block page_title %}{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="/static/css/helpdesk_admin.css">
+{% endblock %}
+
+{% block content %}
+<div class="helpdesk-admin-page" aria-labelledby="helpdesk-admin-title">
+    <header class="helpdesk-admin-header">
+        <div>
+            <p class="helpdesk-admin-eyebrow">SOC ROOM</p>
+            <h1 id="helpdesk-admin-title">Help Desk Admin</h1>
+            <p>Review feedback and maintain the published FAQ.</p>
+        </div>
+        <a class="helpdesk-admin-back" href="/soc-operations">Back to Ask the SOC Room</a>
+    </header>
+
+    <div class="helpdesk-admin-tabs" role="tablist" aria-label="Help Desk administration">
+        <button id="helpdesk-tab-inbox" type="button" role="tab" aria-selected="true" aria-controls="helpdesk-panel-inbox" tabindex="0">Inbox</button>
+        <button id="helpdesk-tab-faq" type="button" role="tab" aria-selected="false" aria-controls="helpdesk-panel-faq" tabindex="-1">FAQ editor</button>
+    </div>
+
+    <section id="helpdesk-panel-inbox" class="helpdesk-admin-panel" role="tabpanel" aria-labelledby="helpdesk-tab-inbox" tabindex="0">
+        <div class="helpdesk-admin-toolbar">
+            <h2>Feedback inbox</h2>
+            <label for="helpdesk-feedback-filter">Status
+                <select id="helpdesk-feedback-filter">
+                    <option value="all">All statuses</option>
+                    <option value="new">New</option>
+                    <option value="reviewed">Reviewed</option>
+                    <option value="resolved">Resolved</option>
+                </select>
+            </label>
+        </div>
+        <div id="helpdesk-feedback-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
+        <div id="helpdesk-feedback-list" class="helpdesk-feedback-list"></div>
+    </section>
+
+    <section id="helpdesk-panel-faq" class="helpdesk-admin-panel" role="tabpanel" aria-labelledby="helpdesk-tab-faq" tabindex="0" hidden>
+        <h2>FAQ editor</h2>
+        <div id="helpdesk-faq-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
+        <div id="helpdesk-faq-list" class="helpdesk-faq-list"></div>
+
+        <form id="helpdesk-faq-create" class="helpdesk-admin-card helpdesk-faq-create">
+            <h3>Create FAQ entry</h3>
+            <label for="helpdesk-faq-new-question">Question</label>
+            <textarea id="helpdesk-faq-new-question" name="question" rows="2" maxlength="300" required></textarea>
+            <p id="helpdesk-faq-new-question-count" class="helpdesk-admin-counter" aria-live="polite">0 / 300</p>
+            <label for="helpdesk-faq-new-answer">Answer</label>
+            <textarea id="helpdesk-faq-new-answer" name="answer" rows="5" maxlength="4000" required></textarea>
+            <p id="helpdesk-faq-new-answer-count" class="helpdesk-admin-counter" aria-live="polite">0 / 4000</p>
+            <label for="helpdesk-faq-new-sort">Sort order</label>
+            <input id="helpdesk-faq-new-sort" name="sort_order" type="number" value="0">
+            <label class="helpdesk-admin-checkbox" for="helpdesk-faq-new-published">
+                <input id="helpdesk-faq-new-published" name="is_published" type="checkbox" checked>
+                Published
+            </label>
+            <div id="helpdesk-faq-create-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
+            <button class="helpdesk-admin-button" type="submit">Create FAQ</button>
+        </form>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/helpdesk_admin.js" defer></script>
+{% endblock %}

@@ -698,6 +698,13 @@ def _register_page_routes(app: FastAPI) -> None:
     async def soc_operations_page(request: Request):
         return templates.TemplateResponse(request, 'soc_operations.html', {})
 
+    @app.get('/admin/helpdesk', response_class=HTMLResponse, include_in_schema=False)
+    async def helpdesk_admin_page(
+        request: Request,
+        _current_user: dict = Depends(require_role("admin")),
+    ):
+        return templates.TemplateResponse(request, 'helpdesk_admin.html', {})
+
     @app.get('/analysis/ioc', response_class=HTMLResponse, include_in_schema=False)
     async def ioc_page(request: Request):
         return templates.TemplateResponse(request, 'analysis_ioc.html', {})

@@ -37,6 +37,7 @@ PAGE_ROLE_REQUIREMENTS = {
     "/analysis/ioc": frozenset({"SOC Analyst Tier 1-2", "admin"}),
     "/analysis/file": frozenset({"SOC Analyst Tier 1-2", "admin"}),
     "/analysis/email": frozenset({"SOC Analyst Tier 1-2", "admin"}),
+    "/admin/helpdesk": frozenset({"admin"}),
     "/settings": frozenset({"admin"}),
 }
 
