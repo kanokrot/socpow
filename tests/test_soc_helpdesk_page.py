@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "templates" / "soc_operations.html"
 CANVAS_SCRIPT = ROOT / "static" / "js" / "soc_operations.js"
 HELPDESK_SCRIPT = ROOT / "static" / "js" / "soc_helpdesk.js"
+HELPDESK_CSS = ROOT / "static" / "css" / "soc_helpdesk.css"
 MIGRATIONS = ROOT / "src" / "db" / "migrations"
 
 
@@ -110,6 +111,11 @@ def test_protected_canvas_script_anchors_remain_present():
         "function frame(",
     ):
         assert anchor in script
+
+
+def test_helpdesk_live_chip_has_high_contrast_text_override():
+    stylesheet = HELPDESK_CSS.read_text(encoding="utf-8")
+    assert ".soc-live-pill {\n    color: #f1f5f9;\n}" in stylesheet
 
 
 def test_soc_operations_page_requires_auth_and_renders_for_authenticated_user(

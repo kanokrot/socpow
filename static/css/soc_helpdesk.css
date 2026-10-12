@@ -213,6 +213,10 @@
 }
 
 @media (max-width: 992px) {
+.soc-live-pill {
+    color: #f1f5f9;
+}
+
     .soc-helpdesk-grid {
         grid-template-columns: minmax(0, 1fr);
     }
