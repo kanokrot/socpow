@@ -1,7 +1,7 @@
 # Protocol: Independent URL Holdout (CABTA Flow A) — Draft v4
 
 สถานะ: **DRAFT v4 — ห้ามดึงข้อมูลจนกว่าจะกรอกช่อง [TBD] ที่เหลือและ commit ไฟล์นี้ รวมถึง scripts และ .gitignore exception ตาม checklist ในหัวข้อ 3**
-เขียนเมื่อ: 2026-10-11
+เขียนเมื่อ: 2026-10-12
 ผู้รับผิดชอบ: Babe Ruth
 
 ## 1. เป้าหมาย
@@ -27,10 +27,10 @@
 
 - ที่มา: [VERIFIED — `scripts/benchmark/build_clean_ioc_additions.py:23-24`; metadata ของ Tranco list ID `8P4GV` ที่ผู้ใช้ให้จาก https://tranco-list.eu/list/8P4GV] ใช้ Tranco list ID `8P4GV`, สร้างครั้งแรก 21 September 2026; รวม Crux, Farsight, Majestic, Radar และ Umbrella ในช่วง 23 August 2026–21 September 2026 (30 วัน), Dowdall rule, pay-level domains only, ใช้ full list. Clean-additions เดิมใช้รุ่นเดียวกัน
 - Rank range: **1,000–50,000 (ข้อเสนอใหม่สำหรับ holdout นี้ ไม่ใช่การต่อเนื่องจากชุดเดิม)**; [VERIFIED — ranks parsed from the existing clean-additions file; `build_clean_ioc_additions.py:77-114`] ข้อมูล clean-additions เดิมมี rank 98–406 และไม่มี rank filter
-- จำนวนเป้าหมาย clean: **200 URLs**; เก็บ candidate ไว้ประมาณ **300 URLs** ก่อน VT screening เผื่อ no-report/AMBIGUOUS attrition; [VERIFIED — `holdout_labeled_221.json`, batch counts parsed] holdout เดิม batch1 คงไว้ 91/100 เป็น CLEAN หรือ MALICIOUS (ตัด AMBIGUOUS ออก) และ batch2 ได้ CLEAN 88/100
+- จำนวน clean **เป้าที่ประกาศไว้เดิม**: **200 URLs**; จำนวน candidates **เป้าที่ประกาศไว้เดิม**: ประมาณ **300 URLs** ก่อน VT screening เผื่อ no-report/AMBIGUOUS attrition. [VERIFIED — `evidence/independent_url_holdout_2026-10-11/build_tranco_manifest.json` (`counts_by_stage`)] รอบแรกสุ่ม 400 domains และได้ 170 candidates; [VERIFIED — `evidence/independent_url_holdout_2026-10-11/label_clean_urls_vt_manifest.json` (`counts_by_stage`)] VT ให้ CLEAN 30, AMBIGUOUS 1, MALICIOUS 0, NO_REPORT (`http_404`) 139 และ SOURCE_ERROR 0. รอบสอง candidates [กรอกหลังดึง], CLEAN [กรอกหลัง label]. เป้าหมาย clean รวมประมาณ 60 เป็นเพียงเป้า; clean arm สุดท้ายคือ CLEAN รอบแรก 30 + CLEAN รอบสองเท่าที่ได้จริง
 - เกณฑ์กรองด้วย VirusTotal (ใช้เป็น label เท่านั้น ไม่เข้า scoring): `0` non-excluded malicious engines = CLEAN; `1–2` = AMBIGUOUS และ drop; `>=3` = MALICIOUS และ drop จาก clean side; ไม่มี VT report/ไม่มี `last_analysis_results` = drop
 - [VERIFIED — คำนวณซ้ำจาก raw reports และ candidate manifests: `scripts/adhoc/vt_holdout_batch1_candidates_2026-09-24.json`, `vt_holdout_batch2_candidates_2026-09-24.json`, `vt_holdout_batch3_candidates_2026-09-24.json`, `vt_holdout_batch3_topup_candidates_2026-09-24.json` และ matching pull files; relabel rule ที่ `scripts/adhoc/vt_holdout_merge_relabel.py:19-24`] เมื่อนับ MALICIOUS engines ทั้งหมดเทียบกับการตัด MalwareURL, Hunt.io Intelligence และ Criminal IP ออก พบ labels เปลี่ยน 3 candidates จาก 229: MALICIOUS→AMBIGUOUS 2 และ AMBIGUOUS→CLEAN 1; ทั้ง 3 มี `known_source=threatfox`. ตาม rule ปัจจุบัน (ตัด 3 engines) candidates ที่ drop เป็น AMBIGUOUS/no-report รวม 29 (24/5); แยกเป็น `threatfox` 12/5 และ `clean_pool` 12/0. ไม่พบ count 9 จากการคำนวณนี้; 9/14 ที่บันทึกในหัวข้อ 10 คือ URL false negatives จาก builder bug ไม่ใช่จำนวนที่เปลี่ยน label จาก VT engine exclusion. [NOT FOUND — paper/manuscript §3.4 ไม่อยู่ใน repo จึงยืนยันข้อความ rationale ไม่ได้]
-- วิธีได้ URL ลึก: เปิด homepage ของแต่ละ Tranco domain ที่สุ่มได้ด้วย fixed User-Agent; ดึง `<a href>` ที่อยู่ใน registrable domain เดียวกันและมี path หรือ query; ตัด fragments; เลือกหนึ่ง URL ต่อ domain ด้วย `random.Random(20261011)`. เก็บ manifest ของ candidate links ทั้งหมดและ homepage SHA-256; skip และ log domain ที่ล้มเหลวหรือไม่มี internal link; ห้ามแก้ URL ที่เลือก
+- วิธีได้ URL ลึก: เปิด homepage ของแต่ละ Tranco domain ที่สุ่มได้ด้วย fixed User-Agent; ดึง `<a href>` ที่อยู่ใน registrable domain เดียวกันและมี path หรือ query; ตัด fragments; เลือกหนึ่ง URL ต่อ domain ด้วย `random.Random(20261011)`. เก็บ manifest ของ candidate links ทั้งหมดและ homepage SHA-256; skip และ log domain ที่ล้มเหลวหรือไม่มี internal link; ห้ามแก้ URL ที่เลือก. รอบสองใช้โดเมนตำแหน่ง 401–800 จาก sample ลำดับเดียวกัน; ใช้ candidate รอบแรกที่ freeze แล้วและห้ามดึง homepage ของ 400 โดเมนแรกซ้ำ
 
 ## 3. ขั้นตอน (ห้ามสลับลำดับ)
 
@@ -40,7 +40,8 @@
 - [ ] เขียนและ commit `scripts/eval/measure_url_overlap.py` ใน tracked location: freeze C2 feeds และเก็บ ThreatFox raw lookup ต่อ IOC ก่อน eval; ทำ overlap โดยไม่เรียก scoring pipeline
 - [ ] เขียนและ commit `scripts/eval/label_clean_urls_vt.py` ใน tracked location: ใช้ VT 3-tier rule; log ทุก candidate ที่ drop พร้อม reason (เช่น no report, missing `last_analysis_results`, AMBIGUOUS หรือ MALICIOUS)
 - [ ] เขียนและ commit `scripts/eval/compute_holdout_metrics.py` ใน tracked location: Precision/Recall/F1 พร้อม Wilson 95% CI; แยก OpenPhish/PhishTank, overlap strata, 3-class counts และจำนวน rows ที่ source unavailable
-- [ ] เขียนและ commit `scripts/eval/combine_independent_url_holdout.py` ใน tracked location: รวม `malicious_openphish.json`, `malicious_phishtank.json` และ `clean_labeled.json` ตามลำดับ; ปฏิเสธ label ที่ยังไม่ final และ IOC ซ้ำ
+- [ ] เขียนและ commit `scripts/eval/combine_independent_url_holdout.py` ใน tracked location: รวม `malicious_openphish.json`, `malicious_phishtank.json` และ `clean_labeled_final.json` ตามลำดับ; ปฏิเสธ label ที่ยังไม่ final และ IOC ซ้ำ
+- [ ] เขียนและ commit `scripts/eval/combine_clean_url_rounds.py` ใน tracked location: รวม CLEAN รอบ 1 และ 2 โดยรักษา `counts_by_stage` แยกรอบและป้องกัน IOC ซ้ำ
 - [ ] เตรียม dated evidence folder เช่น `evidence/independent_url_holdout_2026-10-11/` สำหรับ frozen source data, manifests และ checksums; `evidence/` ถูก ignore เว้นแต่ allowlist ไว้ใน `.gitignore`; เพิ่ม rule `!evidence/independent_url_holdout_2026-10-11/` หลัง `evidence/*` ก่อนเริ่ม pull (งานนี้ไม่แก้ `.gitignore`)
 - [ ] วาง Tranco full-list CSV ใน `evidence/independent_url_holdout_2026-10-11/` และบันทึก SHA-256 ก่อนสร้าง clean candidates
 - [ ] ก่อน pull ยืนยันว่า scripts และ `.gitignore` exception ถูก tracked/committed แล้ว
@@ -48,11 +49,12 @@
 1. ดาวน์โหลด OpenPhish และ PhishTank แยกแหล่ง; ดาวน์โหลด Tranco full-list CSV ด้วยตนเองและบันทึก URL, UTC time และ SHA-256 ในหัวข้อ 7
 2. Freeze raw response/files ก่อนกรอง แล้วบันทึก SHA-256 และ metadata ในหัวข้อ 7
 3. ทำ eligibility filter และ dedup ภายใน/ข้ามรอบ; บันทึกจำนวนทุก stage และ shortfall โดยห้าม backfill ข้ามแหล่ง
-4. ทำ VT clean screening ตาม 3-tier rule และเก็บ candidate order เดิม; เลือก CLEAN 200 รายการแรก
-5. รวม `malicious_openphish.json`, `malicious_phishtank.json` และ VT labeler output `clean_labeled.json` ตามลำดับด้วย `combine_independent_url_holdout.py`; ตรวจว่าไม่มี label ที่ยังไม่ final หรือ IOC ซ้ำ
-6. วัด overlap **ก่อน eval และไม่ใช้ verdict/score ของระบบ** กับสอง source ที่ใช้กับ URL IOC ใน scoring path: C2 Trackers และ ThreatFox. สำหรับ C2 ให้ freeze raw copies ของ feed ทั้ง 10 ไฟล์ ณ pull time พร้อม UTC timestamp, source URL และ SHA-256 ต่อไฟล์; คำนวณ exact-URL match และ host-level match กับข้อมูลใน feed. สำหรับ ThreatFox แนะนำให้เก็บ raw API response ต่อ candidate โดยส่ง URL ต้นฉบับที่ไม่แก้ไข พร้อม UTC timestamp, request URL/query metadata และ SHA-256 ของ response; วิธีนี้รักษาความสัมพันธ์ระหว่าง IOC กับ query ต้นฉบับ และหลีกเลี่ยงการอาศัย export ที่จำกัด `THREATFOX_LIMIT=500` ต่อ fetch (`src/integrations/threat_feed_sync.py:28-38, 283-299`) หรือ export เก่า `evidence_raw/threatfox/threatfox_export_2026-09-16.json`. วัด exact-URL และ host-level match แยกกัน; บันทึก snapshot date, source URL/hash และแถวที่ไม่มี offline source data. URL IOC ไม่มี overlap check สำหรับ FeodoTracker, Spamhaus, Tor exit nodes และ SSLBL เพราะเป็น IP/hash-only sources (`src/integrations/threat_intel.py:1021-23, 1025-39, 1052-53`)
-7. รัน eval เพียงครั้งเดียวด้วยระบบตามที่เป็นอยู่และไฟล์ `combined_holdout.json`
-8. คำนวณและรายงานผลตามหัวข้อ 5
+4. ทำ VT clean screening ตาม 3-tier rule และ candidate order ที่ freeze ไว้: ใช้ CLEAN 30 จากรอบแรกและเพิ่ม candidate จากโดเมนตำแหน่ง 401–800 ตาม deviation ในหัวข้อ 8; เป้าหมาย clean **เป้าที่ประกาศไว้เดิม** คือ 200 แต่ clean arm ที่ใช้จริงคือ 30 + CLEAN รอบสองเท่าที่ได้ (รอบสอง [กรอกหลัง label])
+5. รวมผล label clean รอบ 1 และรอบ 2 เป็น `clean_labeled_final.json` ด้วย `combine_clean_url_rounds.py`; ห้ามส่ง 170 URL เดิมเข้า VT ซ้ำและบันทึก counts แยกรอบ
+6. รวม `malicious_openphish.json`, `malicious_phishtank.json` และ `clean_labeled_final.json` ตามลำดับด้วย `combine_independent_url_holdout.py`; ตรวจว่าไม่มี label ที่ยังไม่ final หรือ IOC ซ้ำ
+7. วัด overlap **ก่อน eval และไม่ใช้ verdict/score ของระบบ** กับสอง source ที่ใช้กับ URL IOC ใน scoring path: C2 Trackers และ ThreatFox. สำหรับ C2 ให้ freeze raw copies ของ feed ทั้ง 10 ไฟล์ ณ pull time พร้อม UTC timestamp, source URL และ SHA-256 ต่อไฟล์; คำนวณ exact-URL match และ host-level match กับข้อมูลใน feed. สำหรับ ThreatFox แนะนำให้เก็บ raw API response ต่อ candidate โดยส่ง URL ต้นฉบับที่ไม่แก้ไข พร้อม UTC timestamp, request URL/query metadata และ SHA-256 ของ response; วิธีนี้รักษาความสัมพันธ์ระหว่าง IOC กับ query ต้นฉบับ และหลีกเลี่ยงการอาศัย export ที่จำกัด `THREATFOX_LIMIT=500` ต่อ fetch (`src/integrations/threat_feed_sync.py:28-38, 283-299`) หรือ export เก่า `evidence_raw/threatfox/threatfox_export_2026-09-16.json`. วัด exact-URL และ host-level match แยกกัน; บันทึก snapshot date, source URL/hash และแถวที่ไม่มี offline source data. URL IOC ไม่มี overlap check สำหรับ FeodoTracker, Spamhaus, Tor exit nodes และ SSLBL เพราะเป็น IP/hash-only sources (`src/integrations/threat_intel.py:1021-23, 1025-39, 1052-53`)
+8. รัน eval เพียงครั้งเดียวด้วยระบบตามที่เป็นอยู่และไฟล์ `combined_holdout.json`
+9. คำนวณและรายงานผลตามหัวข้อ 5
 
 สถานะข้อมูลสำหรับ overlap (ผลตรวจ read-only):
 
@@ -68,6 +70,7 @@
 
 - ใช้ Flow A ครบ 6 scoring sources ตาม config ปัจจุบัน
 - ก่อน full run ให้ทำ smoke test จาก 5 rows แรกของ **old holdout** (`evidence/vt_independent_holdout_2026-09-25/vt_holdout_eval_results_batch3_21.jsonl`); ทั้งห้าเป็น URL IOC และมี `expected_verdict`. สร้าง benchmark JSON array ด้วย fields `ioc`, `ioc_type`, `expected_verdict`, `source`, `collected_at`; รันภายใต้ isolated `USERPROFILE` และห้ามใช้ rows จาก new frozen set. ยืนยันว่า API key โหลดจาก isolated profile โดยบันทึกเพียงว่าพบ key (ห้าม log ค่า key); สำหรับ URL rows คาดว่า C2 Trackers เป็น `unavailable` ตามสถานะ 9/10 feeds ที่บันทึกไว้ ส่วน ThreatFox ให้บันทึก hit/miss และสถานะตามจริง. เก็บผล เวลา UTC จำนวนแถวที่ C2 Trackers เป็น `unavailable` และสถานะ ThreatFox ในหัวข้อ 7
+- [VERIFIED — `scripts/eval/eval_benchmark.py:54-95, 204-208`] evaluator JSONL เก็บสถานะ/คะแนน/`unavailable`/`observed_at` แยกตาม source แต่ไม่เก็บ raw ThreatFox response; จึงบันทึก raw response จาก evaluator ไม่ได้ และการวิเคราะห์ FN ย้อนหลังถูกจำกัดด้วยข้อมูลที่ผลประเมินไม่มี (งานนี้ไม่แก้ evaluator)
 - บันทึก environment ของ run: `LLM_DGA_VLLM_CANARY_PERCENT=100`, `BTA_CONFIG` unset. LLM-DGA ถูกเรียกใน environment นี้ แต่ไม่ส่งผลต่อ `threat_score` หรือ `predicted_verdict` สำหรับ URL IOC
 - บันทึก git commit hash ของระบบ ณ ตอนรัน: [TBD]
 - **ไม่แก้** น้ำหนัก AHP, multiplier, threshold หรือ config ใด ๆ ระหว่างขั้นตอนนี้
@@ -87,9 +90,10 @@ $env:USERPROFILE = "$evidence\smoke_userprofile"
 .venv\Scripts\python.exe scripts/eval/eval_benchmark.py --benchmark "$evidence/smoke_old_holdout.json" --output "$evidence/smoke_eval_results.jsonl" --group-a-only --delay 0
 .venv\Scripts\python.exe scripts/eval/build_independent_url_holdout.py --source openphish --out-dir $evidence --target 100 --seed 20261011
 .venv\Scripts\python.exe scripts/eval/build_independent_url_holdout.py --source phishtank --out-dir $evidence --target 100 --seed 20261011 --dedup-against-round "$evidence/malicious_openphish.json"
-.venv\Scripts\python.exe scripts/eval/build_independent_url_holdout.py --source tranco --out-dir $evidence --target 300 --seed 20261011 --input-file "$evidence/tranco_full_list.csv" --dedup-against-round "$evidence/malicious_openphish.json" "$evidence/malicious_phishtank.json"
-.venv\Scripts\python.exe scripts/eval/label_clean_urls_vt.py --input-file "$evidence/clean_candidates_tranco.json" --out-dir $evidence --target 200 --delay 16 --seed 20261011
-.venv\Scripts\python.exe scripts/eval/combine_independent_url_holdout.py --openphish "$evidence/malicious_openphish.json" --phishtank "$evidence/malicious_phishtank.json" --clean "$evidence/clean_labeled.json" --out-dir $evidence
+.venv\Scripts\python.exe scripts/eval/build_independent_url_holdout.py --source tranco --out-dir "$evidence/clean_round2_build" --target 300 --seed 20261011 --input-file "$evidence/tranco_8P4GV.csv" --domain-offset 400 --domain-count 400 --dedup-against-round "$evidence/clean_candidates_tranco.json"
+.venv\Scripts\python.exe scripts/eval/label_clean_urls_vt.py --input-file "$evidence/clean_round2_build/clean_candidates_tranco_round2.json" --out-dir "$evidence/clean_round2_vt" --target 200 --delay 16 --seed 20261011
+.venv\Scripts\python.exe scripts/eval/combine_clean_url_rounds.py --round1 "$evidence/clean_labeled.json" --round1-manifest "$evidence/label_clean_urls_vt_manifest.json" --round2 "$evidence/clean_round2_vt/clean_labeled.json" --round2-manifest "$evidence/clean_round2_vt/label_clean_urls_vt_manifest.json" --out-dir "$evidence/clean_final"
+.venv\Scripts\python.exe scripts/eval/combine_independent_url_holdout.py --openphish "$evidence/malicious_openphish.json" --phishtank "$evidence/malicious_phishtank.json" --clean "$evidence/clean_final/clean_labeled_final.json" --out-dir $evidence
 .venv\Scripts\python.exe scripts/eval/measure_url_overlap.py --input-file "$evidence/combined_holdout.json" --out-dir "$evidence/overlap" --seed 20261011
 .venv\Scripts\python.exe scripts/eval/eval_benchmark.py --benchmark "$evidence/combined_holdout.json" --output "$evidence/eval_results.jsonl" --group-a-only --delay 16
 .venv\Scripts\python.exe scripts/eval/compute_holdout_metrics.py --eval-results "$evidence/eval_results.jsonl" --overlap-flags "$evidence/overlap/url_overlap_flags.json" --output "$evidence/holdout_metrics.json"
@@ -113,12 +117,15 @@ $env:USERPROFILE = "$evidence\smoke_userprofile"
 
 ## 7. บันทึกการดึงข้อมูล (กรอกหลังดึง)
 
-| รอบ | วันเวลา UTC | ไฟล์ | SHA-256 | จำนวนดิบ | หลัง dedup |
-|---|---|---|---|---|---|
+| รอบ | วันเวลา UTC | ไฟล์ | SHA-256 | จำนวน candidates/clean | จำนวนที่ตัด แยกเหตุผล |
+|---|---|---|---|---:|---|
 | OpenPhish | | | | | |
 | PhishTank | | | | | |
-| Clean candidates | | | | | |
-| Clean หลัง VT labeling | | | | | |
+| Clean รอบ 1 (candidates) | 2026-10-11T15:17:19.673954Z | `clean_candidates_tranco.json` | `9765be606926738705fc2cffe7fa1cbf28ae5560cf49211c462d3bc33827b94b` | 170 | 134 homepage fetch failed; 55 HTTP errors; 41 ไม่มี deep link; 0 dedup/overlap; shortfall 130 ต่อ target 300 |
+| Clean รอบ 1 หลัง VT | 2026-10-11T15:58:04Z–16:45:00Z (ช่วง fetched reports) | `clean_labeled.json` | `1a0f4686d134ca8f8145f473efeaf39754a3c387a41402e101f6a8b52fde2773` | 30 CLEAN | 139 NO_REPORT/http_404; 1 AMBIGUOUS; 0 MALICIOUS; 0 SOURCE_ERROR; 0 CLEAN เกิน target |
+| Clean รอบ 2 (candidates) | [กรอกหลังดึง] | [กรอกหลังดึง] | [กรอกหลังดึง] | [กรอกหลังดึง] | [กรอกหลังดึง แยกเหตุผล] |
+| Clean รอบ 2 หลัง VT | [กรอกหลัง label] | [กรอกหลัง label] | [กรอกหลัง label] | [กรอกหลัง label] | [กรอกหลัง label แยกเหตุผล] |
+| Clean รวมสุดท้าย | [กรอกหลังรวม] | [กรอกหลังรวม] | [กรอกหลังรวม] | 30 + CLEAN รอบ 2 | [กรอกจำนวนที่ตัด แยกเหตุผล] |
 | C2 Trackers overlap snapshots (10 feed files; บันทึก URL, UTC time, SHA-256 แยกทุกไฟล์) | | | | | |
 | ThreatFox per-candidate raw API results (query ด้วย original URL; UTC time และ SHA-256) | | | | | |
 | Tranco full-list CSV (manual download; URL, UTC time, SHA-256) | | | | | |
@@ -134,13 +141,18 @@ IOC cache ก่อน run: path `[กรอก path ของ process USERPROFI
 
 - **2026-10-11 — สถานะ C2 Trackers และผลต่อ URL:** จาก 10 feeds ที่กำหนดใน `src/integrations/threat_intel.py:786-832`, 9 feeds ตอบ HTTP 404 และมีเพียง `drb-ra` `IPC2s-30day.csv` ที่ตอบ HTTP 200 (เป็น IP list). หลักฐานใน repo ที่เก่าที่สุดที่พบคือ snapshot เวลา `2026-09-15T18:35:57Z` (`evidence/source_weights_2026-09-16/independent_external_proxy_holdout_overlap_2026-09-16.json:2,54-151`) และ `docs/CABTA_scope_ledger.md:1839-1840`. `montysecurity/C2-Tracker` ถูก archive (last push 2026-04-13) และไม่มี `data/` แล้ว. ประวัติ Git ระบุว่า URL ทั้ง 10 ถูกเพิ่มใน `e12e768` (2026-03-19); กฎ “no match + >=1 failed feed => unavailable” เพิ่มใน `21577ff` (2026-10-09). ก่อนหน้านั้น partial failures ถูกส่งกลับเป็น plain misses จึงเห็น `unavailable:false` ในผล holdout เก่า. **การตัดสินใจ:** ไม่เปลี่ยนระบบและไม่ซ่อม feed; ระบบที่ประเมินจึงยังเป็นระบบเดียวกับที่ให้ผล 91.0% และเป็นระบบตาม paper. ผลที่ต้องบันทึก: คาดว่า `c2_trackers` เป็น `unavailable=true` บน URL rows และ ThreatFox เป็น effective URL source; บันทึกจำนวน URL rows ที่ C2 unavailable และให้ overlap script เก็บ failed feed freezes โดยระบุว่า `scripts/eval/measure_url_overlap.py` มีสำเนา feed list ของตนเอง. Environment ของ run: `LLM_DGA_VLLM_CANARY_PERCENT=100`, `BTA_CONFIG` unset; LLM-DGA ไม่ส่งผลต่อ `threat_score` หรือ verdict.
 
+- **2026-10-12 — เพิ่ม clean candidates หลังรอบแรก:** [VERIFIED — `evidence/independent_url_holdout_2026-10-11/build_tranco_manifest.json` (`counts_by_stage`)] รอบแรกใช้ 400 Tranco domains (seed `20261011`) ได้ 170 candidates; [VERIFIED — `evidence/independent_url_holdout_2026-10-11/label_clean_urls_vt_manifest.json` (`counts_by_stage`)] ผล VT คือ CLEAN 30, AMBIGUOUS 1, MALICIOUS 0, NO_REPORT (`http_404`) 139, SOURCE_ERROR 0. ตัวเลือกที่พิจารณาคือใช้ CLEAN 30 ที่มี, สุ่ม candidates เพิ่มด้วยกฎเดิม, หรือส่ง URL เดิมให้ VT สแกนใหม่; ไม่เลือกการสแกนใหม่เพราะเปลี่ยนความหมายของ label จาก “มีรายงานอยู่แล้ว” เป็นผลหลัง submit scan. **การตัดสินใจที่กำหนดไว้ก่อน eval:** สุ่มโดเมนต่อจากลำดับเดียวกันที่สร้างด้วย `random.Random(20261011)` โดยใช้ตำแหน่ง 401–800 (400 domains ที่ไม่ซ้ำกับ 400 แรก); สร้าง candidate ตามกฎเดิม (homepage → หนึ่งลิงก์ภายในโดเมนเดียวกันที่มี path/query เป็น deep URL ไม่ใช่ homepage) และใช้ VT 3-tier rule เดิมโดยไม่เปลี่ยน. เป้าหมายคือ CLEAN รวมประมาณ 60 เท่านั้น; กฎหยุดคือสุ่มเพิ่มครบ 400 domains แล้วหยุด ไม่หยุดเมื่อถึงจำนวน CLEAN และไม่สุ่มต่อ. Clean arm สุดท้าย = CLEAN รอบแรก 30 + CLEAN รอบสองเท่าที่ได้. Candidate รอบแรกใช้จากไฟล์ที่ freeze ไว้ ห้ามดึง homepage ใหม่. หากการดึงหรือ label รอบสองยังไม่เสร็จภายใน 2026-10-13 12:00 เวลาไทย (+07:00) ให้ใช้ CLEAN 30 รายการและบันทึก deviation เพิ่ม. ฝั่ง malicious ไม่เปลี่ยน (OpenPhish 100 + PhishTank 100); ห้ามแก้ระบบ, weights, thresholds หรือ config. การตัดสินใจนี้เกิดหลังเห็นผล VT รอบแรก แต่ก่อนรัน eval ใด ๆ บนชุดใหม่.
+
 ## 9. ข้อจำกัดที่ประกาศล่วงหน้า
 
 - ครอบคลุมเฉพาะ URL
 - C2 Trackers มี 10 feeds ตาม config; หลักฐานที่เก่าที่สุดใน repo (snapshot `2026-09-15T18:35:57Z`) บันทึก 9 feeds เป็น HTTP 404 และ `drb-ra` `IPC2s-30day.csv` เป็น HTTP 200 ซึ่งเป็น IP list. คาดว่า URL rows จะมี `c2_trackers unavailable=true`; ดังนั้น effective URL source ในสภาวะนี้คือ ThreatFox. ระบบไม่ถูกแก้หรือซ่อม feed เพื่อคงระบบที่ประเมินให้ตรงกับผล 91.0% และ paper (`evidence/source_weights_2026-09-16/independent_external_proxy_holdout_overlap_2026-09-16.json:2,54-151`; `docs/CABTA_scope_ledger.md:1839-1840`; `src/integrations/threat_intel.py:786-832`). `measure_url_overlap.py` เก็บ feed list แยกไว้เอง จึงต้องบันทึก failed feed freezes จาก script นั้นด้วย
 - FeodoTracker, Spamhaus และ Tor exit nodes อาจตรงได้ผ่าน IP ของ URL host เท่านั้น; ระบบไม่ใช้แหล่งเหล่านี้กับ URL IOC. SSLBL เป็น SHA1-only และไม่ใช้กับ URL IOC. [VERIFIED — `src/integrations/threat_intel.py:1021-23, 1025-39, 1052-53`]
 - แหล่ง malicious เป็นข้อมูล phishing เท่านั้น ซึ่งต่างจากประเภทภัยที่ 6 scoring sources เน้น (C2/malware) ผล recall ต่ำจึงอาจสะท้อนความไม่ตรงของประเภทภัยด้วย ไม่ใช่แค่คุณภาพของระบบ
-- Clean URL ไม่ได้ครอบคลุมทุกลักษณะของ URL ปกติ โดยเฉพาะ URL บนแพลตฟอร์มที่ถูกใช้ทั้งโดย phishing และผู้ใช้ปกติ
+- Clean URLs ในชุดนี้จำกัดเฉพาะ URL ที่ VirusTotal มี report อยู่แล้ว; รอบแรก 139/170 candidates ไม่มี report (`http_404`). ห้ามเขียนว่าสุ่มเอนไปทางเว็บยอดนิยม เพราะข้อมูล Tranco rank ของ URL ที่ได้ยังไม่ชัดพอ
+- จำนวน clean ที่น้อยทำให้ช่วงความเชื่อมั่นของ Precision/FPR กว้าง; รายงาน Specificity คู่กับ Precision พร้อม Wilson 95% CI แยกกัน. หาก FP=0 ให้คำนวณขอบบนจากจำนวน clean สุดท้ายจริง ห้ามใส่ตัวเลขล่วงหน้า
+- [INFERRED] ผลหลักด้าน recall บน malicious URL ไม่ขึ้นกับขนาด clean arm เพราะ recall คำนวณจากแถว MALICIOUS ซึ่งเป็น positive class
+- [VERIFIED — `evidence/vt_independent_holdout_2026-09-25/holdout_labeled_221.json`; ตรวจ clean URL 23 แถว] clean URL 23 รายการใน holdout เดิมเป็น homepage (`https://{domain}/`), ต่างจากชุดนี้ที่เลือก deep URL; ห้ามนำมารวมเป็นตัวเลขเดียว
 - ขนาดชุดจำกัด ช่วงความเชื่อมั่นกว้าง
 - OpenPhish community feed มีเฉพาะ URL ที่ active ณ เวลาดึง ไม่สามารถสร้างชุดเดิมซ้ำได้นอกจากใช้ไฟล์ที่ freeze ไว้
 - [INFERRED] คาดว่า URL recall อาจต่ำ เพราะ OpenPhish/PhishTank อยู่นอก scoring และ IOC type URL มีแหล่ง scoring ที่ applicable เพียง C2 Trackers + ThreatFox; นี่เป็นข้อคาดหมายจาก source applicability ไม่ใช่ผลการทดลอง

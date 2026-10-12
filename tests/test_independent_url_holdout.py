@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 
 from scripts.eval import build_independent_url_holdout as builder
+from scripts.eval import combine_clean_url_rounds as clean_round_combiner
 from scripts.eval import combine_independent_url_holdout as combiner
 from scripts.eval import compute_holdout_metrics as metrics
 from scripts.eval import label_clean_urls_vt as vt_labeler
@@ -225,6 +226,108 @@ def test_tranco_non_2xx_homepage_response_is_snapshotted_before_drop(tmp_path, m
     assert rows == []
     assert dropped[0]["reason"] == "homepage_http_error"
     assert manifest["counts"]["shortfall"] == 1
+
+
+def test_tranco_round2_window_matches_frozen_first_round_and_is_disjoint():
+    evidence = builder.REPO_ROOT / "evidence" / "independent_url_holdout_2026-10-11"
+    csv_path = evidence / "tranco_8P4GV.csv"
+    manifest_path = evidence / "build_tranco_manifest.json"
+    candidates_path = evidence / "clean_candidates_tranco.json"
+    assert builder.sha256_bytes(csv_path.read_bytes()).upper() == builder.ROUND2_TRANCO_SHA256
+    domains, _ = builder._tranco_domains(csv_path.read_bytes())
+    domains.sort(key=lambda item: item[1])
+    first_window, _ = builder.sample_tranco_window(domains, 20261011, domain_offset=0, domain_count=400)
+    second_window, _ = builder.sample_tranco_window(domains, 20261011, domain_offset=400, domain_count=400)
+    frozen = json.loads(manifest_path.read_text(encoding="utf-8"))
+    first_400 = frozen["tranco_sampling"]["sampled_domains"]
+    assert first_window == [(row["rank"], row["domain"]) for row in first_400]
+    assert len(second_window) == 400
+    assert not ({domain for _rank, domain in first_window} &
+                {domain for _rank, domain in second_window})
+    # The stored first-round candidates remain the frozen output; round two starts
+    # after the same 400-domain sample prefix and cannot rewrite that file.
+    old_candidates = json.loads(candidates_path.read_text(encoding="utf-8"))
+    assert len(old_candidates) == 170
+    sampled_domain_order = {domain: position for position, (_rank, domain) in enumerate(first_window)}
+    candidate_positions = [sampled_domain_order[row["domain"]] for row in old_candidates]
+    assert candidate_positions == sorted(candidate_positions)
+    assert all(row["domain"] in sampled_domain_order for row in old_candidates)
+    old_bytes = candidates_path.read_bytes()
+    assert candidates_path.read_bytes() == old_bytes
+
+
+def test_tranco_round2_build_uses_separate_names_and_preserves_round1(tmp_path, monkeypatch):
+    domains = [(1000 + index, f"site{index:03d}.example") for index in range(10)]
+    csv_body = "".join(f"{rank},{domain}\n" for rank, domain in domains).encode()
+    input_file = tmp_path / "tranco.csv"
+    input_file.write_bytes(csv_body)
+    monkeypatch.setattr(builder, "ROUND2_TRANCO_SHA256", builder.sha256_bytes(csv_body).upper())
+    html = b'<a href="/deep/path?Q=AbC">deep</a>'
+    monkeypatch.setattr(builder, "_fetch_homepage", lambda domain, timeout: (
+        html, f"https://{domain}/", builder.sha256_bytes(html), 200
+    ))
+    first_path, first_manifest = builder.build(
+        "tranco", tmp_path / "rounds", 4, 20261011, input_file, [], None, 1,
+        domain_count=4,
+    )
+    first_bytes = first_path.read_bytes()
+    first_manifest_bytes = first_manifest.read_bytes()
+    second_path, second_manifest = builder.build(
+        "tranco", tmp_path / "rounds", 4, 20261011, input_file, [], None, 1,
+        domain_offset=4, domain_count=4,
+    )
+    assert first_path.name == "clean_candidates_tranco.json"
+    assert second_path.name == "clean_candidates_tranco_round2.json"
+    assert second_manifest.name == "build_tranco_round2_manifest.json"
+    assert first_path.read_bytes() == first_bytes
+    assert first_manifest.read_bytes() == first_manifest_bytes
+    first_rows = json.loads(first_bytes)
+    second_rows = json.loads(second_path.read_text(encoding="utf-8"))
+    assert not ({row["domain"] for row in first_rows} & {row["domain"] for row in second_rows})
+    assert json.loads(second_manifest.read_text(encoding="utf-8"))["tranco_sampling"]["sampling_window"]["first_position_one_based"] == 5
+
+
+def test_tranco_round2_refuses_wrong_frozen_csv_hash(tmp_path, monkeypatch):
+    csv_body = b"1000,site.example\n"
+    input_file = tmp_path / "tranco.csv"
+    input_file.write_bytes(csv_body)
+    monkeypatch.setattr(builder, "ROUND2_TRANCO_SHA256", "0" * 64)
+    with pytest.raises(ValueError, match="requires the frozen Tranco 8P4GV CSV"):
+        builder.build(
+            "tranco", tmp_path / "out", 1, 20261011, input_file, [], None, 1,
+            domain_offset=400, domain_count=400,
+        )
+    assert not (tmp_path / "out" / "clean_candidates_tranco_round2.json").exists()
+
+
+def test_clean_round_combiner_preserves_round_counts_and_refuses_duplicates(tmp_path):
+    paths = []
+    manifests = []
+    for round_name, ioc in (("round1", "https://one.example/a"),
+                            ("round2", "https://two.example/b")):
+        row = {"ioc": ioc, "ioc_type": "url", "expected_verdict": "CLEAN",
+               "vt_label": "CLEAN", "sampling_source": "tranco",
+               "label_source": "virustotal_3tier", "round": round_name,
+               "collected_at": "2026-10-12T00:00:00Z"}
+        data_path = tmp_path / f"{round_name}.json"
+        manifest_path = tmp_path / f"{round_name}_manifest.json"
+        data_path.write_text(json.dumps([row]), encoding="utf-8")
+        manifest_path.write_text(json.dumps({"counts_by_stage": {"CLEAN": 1}}), encoding="utf-8")
+        paths.append(data_path)
+        manifests.append(manifest_path)
+    output, manifest_path = clean_round_combiner.combine_clean_rounds(
+        paths[0], manifests[0], paths[1], manifests[1], tmp_path / "final"
+    )
+    assert [row["round"] for row in json.loads(output.read_text(encoding="utf-8"))] == ["round1", "round2"]
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assert manifest["counts_by_round"]["round1"]["counts_by_stage"] == {"CLEAN": 1}
+    assert manifest["counts_by_round"]["round2"]["clean_rows"] == 1
+    duplicate_rows = json.loads(paths[0].read_text(encoding="utf-8"))
+    paths[1].write_text(json.dumps(duplicate_rows), encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicate clean IOC across rounds"):
+        clean_round_combiner.combine_clean_rounds(
+            paths[0], manifests[0], paths[1], manifests[1], tmp_path / "duplicate_final"
+        )
 
 
 def test_vt_three_tier_excludes_named_engines_and_404_is_no_report():

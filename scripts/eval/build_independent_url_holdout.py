@@ -23,6 +23,7 @@ from urllib.request import Request, urlopen
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SEED = 20261011
+ROUND2_TRANCO_SHA256 = "2AB4810272C7B00E93D1BCC94C00CF64B050BBC188BD5167CD2BC58AB0D2B061"
 TRANCO_LIST_ID = "8P4GV"
 TRANCO_URL = f"https://tranco-list.eu/list/{TRANCO_LIST_ID}/1000000"
 OPENPHISH_URL = "https://openphish.com/feed.txt"
@@ -333,15 +334,30 @@ def _fetch_homepage(domain: str, timeout: float) -> tuple[bytes, str, str, int]:
     return body, homepage_url, sha256_bytes(body), status
 
 
+def sample_tranco_window(domains: list[tuple[int, str]], seed: int, *,
+                         domain_offset: int = 0, domain_count: int = 400
+                         ) -> tuple[list[tuple[int, str]], int]:
+    """Return a zero-based window from the canonical seeded sample order."""
+    if domain_offset < 0 or domain_count < 1:
+        raise ValueError("domain offset must be non-negative and domain count must be positive")
+    sample_end = domain_offset + domain_count
+    sampled_prefix = random.Random(seed).sample(domains, min(sample_end, len(domains)))
+    return sampled_prefix[domain_offset:sample_end], len(sampled_prefix)
+
+
 def build_tranco(input_body: bytes, *, out_dir: Path, target: int, seed: int,
                  fetched_at: str, timeout: float, sample_domains: int = 400,
                  exclusions: set[str] | None = None,
                  exclusion_hosts: dict[str, set[str]] | None = None,
-                 other_round_path: list[Path] | Path | None = None) -> tuple[list[dict[str, Any]], dict[str, Any], list[dict[str, Any]]]:
+                 other_round_path: list[Path] | Path | None = None,
+                 domain_offset: int = 0, domain_count: int | None = None) -> tuple[list[dict[str, Any]], dict[str, Any], list[dict[str, Any]]]:
     domains, stage_counts = _tranco_domains(input_body)
     domains.sort(key=lambda item: item[1])
-    rng = random.Random(seed)
-    sampled_domains = rng.sample(domains, min(sample_domains, len(domains)))
+    requested_count = sample_domains if domain_count is None else domain_count
+    # Sample the same prefix as round 1, then select the requested window.
+    sampled_domains, sampled_prefix_count = sample_tranco_window(
+        domains, seed, domain_offset=domain_offset, domain_count=requested_count
+    )
     counts: dict[str, Any] = {**stage_counts, "domains_sampled": len(sampled_domains),
                               "homepages_fetched": 0, "domains_with_internal_links": 0,
                               "candidate_links": 0, "excluded_exact_url": 0,
@@ -355,7 +371,7 @@ def build_tranco(input_body: bytes, *, out_dir: Path, target: int, seed: int,
     other_iocs, other_keys, other_hosts = _prior_round_sets(other_round_path)
     seen_candidates: set[tuple[Any, ...]] = set()
     rng_links = random.Random(seed)
-    raw_dir = out_dir / "homepage_raw"
+    raw_dir = out_dir / ("homepage_raw_round2" if domain_offset else "homepage_raw")
     for index, (rank, domain) in enumerate(sampled_domains):
         home_path = raw_dir / f"{rank:05d}_{hashlib.sha256(domain.encode()).hexdigest()[:12]}.html"
         try:
@@ -450,18 +466,29 @@ def build_tranco(input_body: bytes, *, out_dir: Path, target: int, seed: int,
         dropped.append({"reason": "candidate_shortfall", "target": target,
                         "selected": len(selected_rows), "shortfall": counts["shortfall"]})
     return selected_rows, {"counts": counts, "candidate_links": candidate_links,
-                           "sampled_domains": [{"rank": rank, "domain": domain} for rank, domain in sampled_domains]}, dropped
+                           "sampled_domains": [{"rank": rank, "domain": domain} for rank, domain in sampled_domains],
+                           "sampling_window": {"seed": seed, "domain_offset_zero_based": domain_offset,
+                                               "first_position_one_based": domain_offset + 1,
+                                               "last_position_one_based": domain_offset + len(sampled_domains),
+                                               "requested_domain_count": requested_count,
+                                               "sampled_prefix_count": sampled_prefix_count}}, dropped
 
 
 def build(source: str, out_dir: Path, target: int, seed: int, input_file: Path | None,
           exclusion_files: list[Path], other_round: list[Path] | Path | None, timeout: float,
-          sample_domains: int = 400) -> tuple[Path, Path]:
+          sample_domains: int = 400, domain_offset: int = 0,
+          domain_count: int | None = None) -> tuple[Path, Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     exclusions, exclusion_hosts, exclusion_audit = load_exclusion_data(exclusion_files)
     if source == "tranco":
         source_url = f"file:{input_file}" if input_file else TRANCO_URL
         if input_file:
             raw_body = input_file.read_bytes()
+            if domain_offset:
+                actual_sha256 = sha256_bytes(raw_body).upper()
+                if actual_sha256 != ROUND2_TRANCO_SHA256:
+                    raise ValueError("round 2 requires the frozen Tranco 8P4GV CSV with SHA-256 "
+                                     f"{ROUND2_TRANCO_SHA256}; got {actual_sha256}")
         else:
             raw_body, status, _headers = fetch_bytes(source_url, timeout=timeout)
             if status < 200 or status >= 300:
@@ -469,13 +496,22 @@ def build(source: str, out_dir: Path, target: int, seed: int, input_file: Path |
                 raw_snapshot(out_dir / "tranco_full_list.raw.csv", raw_body, source_url, fetched_at)
                 raise RuntimeError(f"Tranco download returned HTTP {status}; no fallback was attempted")
         fetched_at = utc_now()
-        raw_path = out_dir / "tranco_full_list.raw.csv"
+        is_round2 = domain_offset > 0
+        raw_path = out_dir / ("tranco_full_list_round2.raw.csv" if is_round2 else "tranco_full_list.raw.csv")
+        dataset_name = "clean_candidates_tranco_round2.json" if is_round2 else "clean_candidates_tranco.json"
+        manifest_name = "build_tranco_round2_manifest.json" if is_round2 else "build_tranco_manifest.json"
+        if is_round2:
+            protected_outputs = [raw_path, out_dir / dataset_name, out_dir / manifest_name]
+            existing = [str(path) for path in protected_outputs if path.exists()]
+            if existing:
+                raise FileExistsError("refusing to overwrite round 2 outputs: " + ", ".join(existing))
         source_meta = raw_snapshot(raw_path, raw_body, source_url, fetched_at)
         rows, stages, dropped = build_tranco(raw_body, out_dir=out_dir, target=target,
                                              seed=seed, fetched_at=fetched_at,
                                              timeout=timeout, sample_domains=sample_domains,
                                              exclusions=exclusions, exclusion_hosts=exclusion_hosts,
-                                             other_round_path=other_round)
+                                             other_round_path=other_round,
+                                             domain_offset=domain_offset, domain_count=domain_count)
         counts = stages["counts"]
     else:
         source_url = OPENPHISH_URL if source == "openphish" else PHISHTANK_URL
@@ -505,9 +541,9 @@ def build(source: str, out_dir: Path, target: int, seed: int, input_file: Path |
         )
         counts.update(eligibility_counts)
         stages = {"counts": counts}
-    dataset_path = out_dir / ("clean_candidates_tranco.json" if source == "tranco" else f"malicious_{source}.json")
+    dataset_path = out_dir / (dataset_name if source == "tranco" else f"malicious_{source}.json")
     write_json(dataset_path, rows)
-    manifest_path = out_dir / f"build_{source}_manifest.json"
+    manifest_path = out_dir / (manifest_name if source == "tranco" else f"build_{source}_manifest.json")
     manifest = {
         "script": Path(__file__).name,
         "source": source,
@@ -516,6 +552,8 @@ def build(source: str, out_dir: Path, target: int, seed: int, input_file: Path |
         "raw_snapshot": {"path": str(raw_path.relative_to(out_dir)), **source_meta},
         "seed": seed,
         "target": target,
+        "domain_offset_zero_based": domain_offset if source == "tranco" else None,
+        "domain_count": (domain_count if domain_count is not None else sample_domains) if source == "tranco" else None,
         "counts_by_stage": stages,
         "exclusion_files": exclusion_audit,
         "warnings": [
@@ -525,6 +563,7 @@ def build(source: str, out_dir: Path, target: int, seed: int, input_file: Path |
         "exclusion_notes": DEFAULT_EXCLUSION_NOTES,
         "dedup_against_round": [str(path) for path in other_round] if isinstance(other_round, list) else str(other_round) if other_round else None,
         "output_file": str(dataset_path.relative_to(out_dir)),
+        "output_sha256": sha256_bytes(dataset_path.read_bytes()),
         "dropped_items": dropped,
         **git_metadata(),
     }
@@ -545,10 +584,16 @@ def main() -> None:
     parser.add_argument("--dedup-against-round", nargs="+", type=Path)
     parser.add_argument("--timeout", type=float, default=30)
     parser.add_argument("--sample-domains", type=int, default=400)
+    parser.add_argument("--domain-offset", type=int, default=0,
+                        help="zero-based position in the same seeded Tranco sample; nonzero selects a later window")
+    parser.add_argument("--domain-count", type=int,
+                        help="number of sampled Tranco domains in the requested window")
     args = parser.parse_args()
     target = args.target if args.target is not None else (300 if args.source == "tranco" else 100)
     if target < 1:
         parser.error("--target must be at least 1")
+    if args.domain_offset and (args.source != "tranco" or not args.input_file):
+        parser.error("a nonzero --domain-offset requires --source tranco and the frozen local --input-file")
     exclusion_files = args.exclusion_files
     if exclusion_files is None:
         exclusion_files = [REPO_ROOT / path for path in DEFAULT_EXCLUSIONS]
@@ -561,17 +606,21 @@ def main() -> None:
         dataset, manifest = build(
             args.source, args.out_dir, target, args.seed, args.input_file,
             exclusion_files, other_round, args.timeout,
-            args.sample_domains,
+            args.sample_domains, args.domain_offset, args.domain_count,
         )
     except Exception as exc:
         args.out_dir.mkdir(parents=True, exist_ok=True)
-        write_json(args.out_dir / f"build_{args.source}_manifest.json", {
-            "script": Path(__file__).name, "source": args.source, "seed": args.seed,
-            "target": args.target if args.target is not None else (300 if args.source == "tranco" else 100),
-            "counts_by_stage": {},
-            "dropped_items": [{"reason": "run_failed", "error": type(exc).__name__}],
-            **git_metadata(),
-        })
+        failure_name = ("build_tranco_round2_manifest.json" if args.source == "tranco" and args.domain_offset
+                        else f"build_{args.source}_manifest.json")
+        failure_path = args.out_dir / failure_name
+        if not failure_path.exists():
+            write_json(failure_path, {
+                "script": Path(__file__).name, "source": args.source, "seed": args.seed,
+                "target": args.target if args.target is not None else (300 if args.source == "tranco" else 100),
+                "counts_by_stage": {},
+                "dropped_items": [{"reason": "run_failed", "error": type(exc).__name__}],
+                **git_metadata(),
+            })
         print(f"ERROR: {exc}", file=sys.stderr)
         raise SystemExit(2) from exc
     print(f"Wrote {dataset} and {manifest}")
