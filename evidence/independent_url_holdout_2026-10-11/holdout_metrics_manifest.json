@@ -1,0 +1,13 @@
+{
+  "script": "compute_holdout_metrics.py",
+  "seed": 20261011,
+  "counts_by_stage": {
+    "eval_results": 256,
+    "joined": 256,
+    "missing_overlap_flags": 0
+  },
+  "dropped_items": [],
+  "output_file": "evidence\\independent_url_holdout_2026-10-11\\holdout_metrics.json",
+  "script_git_commit": "5dc60fa3802b93de8f66417f93f0b8dd2a97eaf2",
+  "script_git_dirty": true
+}

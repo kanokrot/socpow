@@ -1,0 +1,34 @@
+﻿git_head: 5dc60fa3802b93de8f66417f93f0b8dd2a97eaf2
+utc_start: 2026-10-12T12:44:18.5804473Z
+LLM_DGA_VLLM_CANARY_PERCENT=100
+BTA_CONFIG=
+USERPROFILE=C:\Users\ACER
+combined_holdout_sha256: 88DE8F6BB5FF87239C7304F35479CBBAFBC2D11AA2E9B8ECE610D24A77CB066C
+git_status_after_commit:
+?? evidence/independent_url_holdout_2026-10-11/build_tranco_manifest.json
+?? evidence/independent_url_holdout_2026-10-11/clean_round2_build/build_tranco_round2_manifest.json
+?? evidence/independent_url_holdout_2026-10-11/clean_round2_build/homepage_raw_round2/
+?? evidence/independent_url_holdout_2026-10-11/clean_round2_build/tranco_full_list_round2.raw.csv
+?? evidence/independent_url_holdout_2026-10-11/clean_round2_build/tranco_full_list_round2.raw.csv.metadata.json
+?? evidence/independent_url_holdout_2026-10-11/clean_round2_vt/virustotal_raw/
+?? evidence/independent_url_holdout_2026-10-11/git_status_at_pull.txt
+?? evidence/independent_url_holdout_2026-10-11/homepage_raw/
+?? evidence/independent_url_holdout_2026-10-11/openphish_source.raw
+?? evidence/independent_url_holdout_2026-10-11/openphish_source.raw.metadata.json
+?? evidence/independent_url_holdout_2026-10-11/phishtank_source.raw
+?? evidence/independent_url_holdout_2026-10-11/phishtank_source.raw.metadata.json
+?? evidence/independent_url_holdout_2026-10-11/round1_backup_2026-10-12/
+?? evidence/independent_url_holdout_2026-10-11/smoke_eval_results.jsonl
+?? evidence/independent_url_holdout_2026-10-11/smoke_old_holdout.json
+?? evidence/independent_url_holdout_2026-10-11/tranco_8P4GV.csv
+?? evidence/independent_url_holdout_2026-10-11/tranco_8P4GV.sha256.txt
+?? evidence/independent_url_holdout_2026-10-11/tranco_full_list.raw.csv
+?? evidence/independent_url_holdout_2026-10-11/tranco_full_list.raw.csv.metadata.json
+?? evidence/independent_url_holdout_2026-10-11/virustotal_raw/
+
+FullName                                               Length LastWriteTimeUtc      
+--------                                               ------ ----------------      
+C:\Users\ACER\.blue-team-assistant\cache\ioc_cache.db 2134016 10/12/2026 10:01:06 AM
+
+
+
