@@ -452,6 +452,34 @@ uses `templates/tickets.html` and the API route is under the `/api` prefix.
 Evidence: `src/web/routes/tickets.py:16-25`; `src/web/app.py:670-695`;
 `templates/tickets.html:2-19`, `:29-56`.
 
+### Help Desk (SOC Room)
+
+The **SOC Room** page (`/soc-operations`) is the system's help desk. Any logged-in
+user can open it. The pixel office is decorative; the panel on the right is where
+you read answers and send feedback.
+
+**Answers tab**
+- Search the frequently asked questions by keyword.
+- Select a question to open its answer; only one answer is open at a time.
+- If nothing matches, choose **Report it instead**. The report form opens with your
+  search term already in the message.
+
+**Report a finding**
+1. Choose a type: **Wrong verdict**, **Something is broken**, or **Idea or other**.
+2. Optional: add a reference (an analysis ID or page name, up to 200 characters).
+3. Describe what you saw and what you expected (at least 5 and at most 2000 characters).
+4. Select **Send report**. A reference ID is shown once it is saved.
+
+Each account can send up to 20 reports per hour. Only the `admin` role can read
+them; Team Lead and the other roles cannot.
+
+**Admin: Help Desk admin page** (`/admin/helpdesk`, admin role only)
+- **Inbox**: reports from users, newest first, with filters for New, Reviewed and
+  Resolved. Update a report's status and add an admin-only note (up to 2,000 characters).
+- **FAQ editor**: add, edit, delete and set the sort order of the FAQ entries shown
+  on the Answers tab. A question can be up to 300 characters and an answer up to
+  4,000. Use the inbox to find questions that keep coming back.
+
 ### MCP Management
 
 Open `/mcp/servers` to configure and manage MCP server connections. The MCP
