@@ -1,0 +1,31 @@
+{
+    "query_status": "ok",
+    "data": [
+        {
+            "id": "1803713",
+            "ioc": "https:\/\/telegra.ph\/Functions-04-03",
+            "threat_type": "payload_delivery",
+            "threat_type_desc": "Indicator that identifies a malware distribution server (payload delivery)",
+            "ioc_type": "url",
+            "ioc_type_desc": "URL that delivers a malware payload",
+            "malware": "unknown",
+            "malware_printable": "Unknown malware",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/unknown",
+            "confidence_level": 95,
+            "is_compromised": false,
+            "first_seen": "2026-05-01 15:38:58 UTC",
+            "last_seen": null,
+            "reference": null,
+            "reporter": "Lenny_3BO",
+            "sightings": 1,
+            "tags": [
+                "clearfake",
+                "clickfix",
+                "midie",
+                "telegraph-deaddrop"
+            ],
+            "malware_samples": []
+        }
+    ]
+}

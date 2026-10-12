@@ -1,0 +1,8 @@
+{
+  "fetched_at_utc": "2026-10-12T10:56:05.776980Z",
+  "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/Metasploit.csv",
+  "http_status": 404,
+  "request_kind": "c2_feed",
+  "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+  "byte_count": 14
+}

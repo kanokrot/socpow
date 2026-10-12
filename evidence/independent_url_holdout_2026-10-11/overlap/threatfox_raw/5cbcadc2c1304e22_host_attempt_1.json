@@ -1,0 +1,29 @@
+{
+    "query_status": "ok",
+    "data": [
+        {
+            "id": "1863889",
+            "ioc": "https:\/\/goo.su\/xls7375d",
+            "threat_type": "payload_delivery",
+            "threat_type_desc": "Indicator that identifies a malware distribution server (payload delivery)",
+            "ioc_type": "url",
+            "ioc_type_desc": "URL that delivers a malware payload",
+            "malware": "unknown",
+            "malware_printable": "Unknown malware",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/unknown",
+            "confidence_level": 100,
+            "is_compromised": false,
+            "first_seen": "2026-07-30 05:54:20 UTC",
+            "last_seen": null,
+            "reference": "",
+            "reporter": "abuse_ch",
+            "sightings": 1,
+            "tags": [
+                "BRA",
+                "geo"
+            ],
+            "malware_samples": []
+        }
+    ]
+}

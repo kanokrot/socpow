@@ -1,0 +1,1002 @@
+[
+  {
+    "ioc": "https://l.wl.co/l?u=https://qrco.de/bfAZzhscvascweSV",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://europetranslations.net/secure/madeinchina/secure/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://ldgerlive.framer.ai/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://enattentedeconnexiondeserveur.mydurable.com/?pt=NjVhMDExNDZiMTMyOTU4NDU2Y2U0NjQ4OjE3MDUwMDIxODQuMDA1OnByZXZpZXc=",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vR8LAkQKh7j87bU6DNWmtzGHqBCHYaVQ5c1JVyNiOvKN_YYThTE94dBJ5onVaUQK94ci6hxaDGpAUx0/pub?start=false&amp;loop=false&amp;delayms=3000",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://moonshot-listing-dug.netlify.app",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://cfzpv-pubzm-g0y2-062-tdv.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://fixedsmartdappsresolver.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://l.ead.me/bgbtLC",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://bac-vmckf.com",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://q-r.to/bgcwSS",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://allegro.pl-984523.sbs",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://qrco.de/bfIG6u",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://syr-03-metro-partner-2ms.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://qrco.de/bgekU0",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://q-r.to/bga3Hp",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://eu.jotform.com/app/251960986008364",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://confirmation-appeal.start.page/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://www.dropbox.com/scl/fi/qyesaiwglti9vpk5ozh8f/Securely-sign-in-with-your-email-address-to-keep-you-updated..paper?rlkey=7h3kb1i41alobs1glcnvishg7&dl=0",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://q-r.to/bfPfzS",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://powr.io/form-builder/i/41113749",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://metafb-pegcoub.web.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://suivipersonnalise.com",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://allegrolokalnie.lokalne-ofety96953.click/oferta/PlayStation-5-Pro-2-TB-nowa/480820546",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://l.ead.me/bgaXu2",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://vewupunema.ddnsfree.com/ojulij/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://allegrolokalnie.oferta3947zxb299.click",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://about.pb3.duckdns.org/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://datefordate.weebly.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://xn--d1aqfkf.xn--p1ai:443/bitrix/.../GlobalSources/?email=info.sg@ovivowater.com",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://up2client.com/template/easy-calculators/plugin/demo/wp-includes/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://dkde239rikozefri.g18.email/webcard/de/4J6I-94E9B5D2A0/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://aruba.assistenzastaff.net/xe8m9zskHRo/areautenti/login.php",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://businesscenter-helppolicy.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://galcionci.st/jrk/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://us15.campaign-archive.com/?u=506f803ab1e9b75d8bcbe6346&id=379bfc9f36",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://signdevicelocation.com.tr/isignesp.php",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://qrco.de/bfJw8N",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://l.ead.me/bfO8eM",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://primevideos-renouvellement.com/pages/mobile/remboursement/prime/confirmation.php",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vS-ub2EGAJWzCuyc5gCc_L3_g_pYCfTImpCy8tF5f5IcC484KDnNWdA5hOQE7SbUcCn347MhLYidzEm/pub?start=false&amp;loop=false&amp;delayms=3000",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://allegro.smar8u32781299.forum",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://apogeeleveller.com/htaccess/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/1VMkBDHLIwF8T671PlwwShY8JfEB7wQOswiam3YccFc8/pub?start=false&loop=false&delayms=3000&slide=id.p%3E",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://jalakzuakuaa.blogspot.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://qr-codes.io/0a4n1G",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://fabulous-embeds-059788.framer.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://redigfrgklounoura.firebaseapp.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://qrco.de/bg9hRp",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://case1009841851085.web.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vSmecDaBvcGU7v4ol41oSCBWNvd1fvxDzQ54C-fqrPiRUtq-MFxYkTLxx11V44PcTfDkMxl_-mfuIEf/pub?start=false&amp;loop=false&amp;delayms=3000",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://coxon8.godaddysites.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://startd-ledgrcdnapp.wixstudio.com/io-us",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://fidelidade-pontos-app.ct.ws",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://ln.run/L0isL",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://accountnoticealertsupport.weebly.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://q-r.to/bgcQ2m",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://bafkreiasemkrtgbf5dxtenhybiz4qv6uyesgzc4e5e3y3i6thi3zsghvcy.ipfs.dweb.link/?K2J8N4QVP=J7QL9M2BXVZnJhbmNlc2NvQG1B5XZ2W4NJF1Y2llbGxvLml0ZPQJ7T8W4K",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://q-r.to/bgccve",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://l.ead.me/bfLmLq",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://sp19ct7-lurem-biz-vadex-kafis.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://telegram-ca.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://l.ead.me/bgao3Z",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://espace97280.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://erionetrfindsa.weebly.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://forms.visme.co/fv/op6wpoz1-o9jyo9",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vRlmVF0AzHplBrNGC5XUsIsdT5hxED0OD6og213c-A2Szik0AcFOJX8-TV7-BhvuYq-Ih8Vglb_CuJs/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.p",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vTuTwetlYxT3IdIGLgV6ISe-76n02NPcLwncq_6z1JtV0SKd5bCXdcfTCq_63l6SEvVJ5CAHlBmBv-t/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.p",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://l.ead.me/bfbB9V",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://tiwofiana9.firebaseapp.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://corrieosap0teaam-corrieosap0teaam.netlify.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://share.hsforms.com/1QBQgHG2MR42dwVcU0mWSzAsp10q",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://qrco.de/bfQPSK",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://conscientious-dragon-981945.framer.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://help---ex--azuure---coinbase-app.webflow.io",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://allegro-lokalnie.smar923801039.lat/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://mplobvfr.firebaseapp.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://datavine.ws/invoice/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "http://allegrolokalnie.pl-oferta182036.click",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://pub-49c39047b2314447857f660f5d89d43e.r2.dev/conversaxcxczxczxzczcwqqwwwq.html",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://limpa-cliente.vercel.app/atendimento/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/drawings/d/17ZCh9zkHHW0D8krLPxBV8kZ73lZdBwRu4rPzgCVbFuc/edit",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://incomplete-breakfast-362471.framer.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://telegra.ph/KF-272335-11-27#",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://www.dropbox.com/scl/fi/rqwa7nyayqn676cdeav2d/BT-VOICE.paper?dl=0&oref=e&r=ACOt9De9h8MTaEhxzRBWuEr8cpeVQdcjf-JmZyWHLscmhHw0mvAwyg7-zlKMnDglECNNxJoLIA0bb0KYnfcRTnlEjpRnRbYqsUIDL1A_K6AS45qxqfvz508QAPdjrg15M1ncLnT8SOr63ODr2v2g4grAKg7YjpMVdOrOpIJLChGVO0-QRh5YT7Kwwu-uibVAmZw&sm=1",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://bigtalkcentres.weebly.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://favorite-walrus-196809.framer.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://suivi-verification.site/login",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://www.dropbox.com/scl/fi/37jva6e0emybt7wgyypg8/CLICK-HERE-TO-CONTINUE.paper?rlkey=rwq5nurdal10rrsru60g96jc9&dl=0",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vScTG1e5TSqir95P45FGJfZ1qDK9w7QRDB-d2rFJUBO86UNfaKeYwCnflt8-34WUtAN_nqAQNJ_6NXD/pub?start=false&loop=false&delayms=3000&slide=id.p%3E",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://youssef.bdll457877.pro/captcha.php",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vRUymVErucJKKFN7l1cbKqfexdfLkyVZfRtXSafa-63dktpVY-5bNQw8nSJ-VeW8vOQXtDvuuS4nsaH/pub?start=false&amp;loop=false&amp;delayms=3000",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vQHV0Za_vJqVRtbONxkDnVWAMcFMZvELLNkN8uHVO8zbsq8nGlEsDF-1tW_h0U3E2uV_5kEO63cKrRc/pub?start=false&amp;loop=false&amp;delayms=3000",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://new.express.adobe.com/webpage/PG8n3TIpak0rm",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://domainsecurityerror.firebaseapp.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://serviciomaillo.weebly.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://comsync.lijit.com/1/d/r?aqet=clk&v0=247317e1984ecadbe0c97b369b2d0221&ru=https%3A%2F%2Fnew.express.adobe.com%2Fwebpage%2FdIvaZYbJ9y4qO",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://q-r.to/bfGkvJ",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://icashback-5bddf.firebaseapp.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  },
+  {
+    "ioc": "https://qrco.de/bgbOi3",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "PhishTank",
+    "sampling_source": "PhishTank",
+    "label_source": "PhishTank",
+    "collected_at": "2026-10-11T14:49:33.802491Z",
+    "round": "phishtank"
+  }
+]

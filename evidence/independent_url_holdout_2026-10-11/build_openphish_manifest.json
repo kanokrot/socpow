@@ -1,0 +1,82 @@
+{
+  "script": "build_independent_url_holdout.py",
+  "source": "openphish",
+  "source_url": "https://openphish.com/feed.txt",
+  "fetched_at_utc": "2026-10-11T14:47:30.810802Z",
+  "raw_snapshot": {
+    "path": "openphish_source.raw",
+    "fetched_at_utc": "2026-10-11T14:47:30.810802Z",
+    "source_url": "https://openphish.com/feed.txt",
+    "sha256": "8a87b6438c9957868ccb42a66b93f9067f34dcc503ab014978dcbed822e513ec",
+    "byte_count": 14386
+  },
+  "seed": 20261011,
+  "target": 100,
+  "counts_by_stage": {
+    "counts": {
+      "raw": 300,
+      "eligible": 299,
+      "duplicate_within_source": 1,
+      "excluded_exact_url": 0,
+      "excluded_host_only": 1,
+      "other_round_overlap": 0,
+      "selected": 100,
+      "shortfall": 0,
+      "raw_rows": 300
+    }
+  },
+  "exclusion_files": [
+    {
+      "path": "D:\\ai_cti_automate\\data\\benchmark\\benchmark_iocs_v2.json",
+      "exists": true,
+      "row_count": 1094,
+      "ioc_count": 1094
+    },
+    {
+      "path": "D:\\ai_cti_automate\\data\\benchmark\\benchmark_iocs_v2_backup.json",
+      "exists": true,
+      "row_count": 894,
+      "ioc_count": 894
+    },
+    {
+      "path": "D:\\ai_cti_automate\\data\\benchmark\\benchmark_iocs_clean_additions_2026-09-22.json",
+      "exists": true,
+      "row_count": 250,
+      "ioc_count": 250
+    },
+    {
+      "path": "D:\\ai_cti_automate\\evidence\\vt_independent_holdout_2026-09-25\\holdout_labeled_221.json",
+      "exists": true,
+      "row_count": 221,
+      "ioc_count": 221
+    },
+    {
+      "path": "D:\\ai_cti_automate\\evidence\\vt_independent_holdout_2026-09-25\\vt_holdout_scoring_input.json",
+      "exists": false,
+      "row_count": 0
+    }
+  ],
+  "warnings": [
+    "exclusion file missing: D:\\ai_cti_automate\\evidence\\vt_independent_holdout_2026-09-25\\vt_holdout_scoring_input.json"
+  ],
+  "exclusion_notes": {
+    "evidence/vt_independent_holdout_2026-09-25/holdout_labeled_221.json": "221 labeled rows; verified to contain all 179 + 21 IOC strings in the stored eval result files"
+  },
+  "dedup_against_round": null,
+  "output_file": "malicious_openphish.json",
+  "dropped_items": [
+    {
+      "ioc": "https://tinyurl.com/4ehd3jyu",
+      "reason": "exclusion_host_only",
+      "exclusion_files": [
+        "D:\\ai_cti_automate\\data\\benchmark\\benchmark_iocs_clean_additions_2026-09-22.json"
+      ]
+    },
+    {
+      "ioc": "https://mihaeldidu20-debug.github.io/net-with-tailwind.css-and-html",
+      "reason": "duplicate_within_source"
+    }
+  ],
+  "script_git_commit": "3c1a0ad751f814ba032932d1ac92745a641414e3",
+  "script_git_dirty": true
+}

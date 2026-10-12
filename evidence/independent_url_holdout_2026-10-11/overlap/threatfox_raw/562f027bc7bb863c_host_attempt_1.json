@@ -1,0 +1,30 @@
+{
+    "query_status": "ok",
+    "data": [
+        {
+            "id": "1878483",
+            "ioc": "mzrln.run",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "domain",
+            "ioc_type_desc": "Domain that is used for botnet Command&control (C&C)",
+            "malware": "js.clearfake",
+            "malware_printable": "ClearFake",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/js.clearfake",
+            "confidence_level": 90,
+            "is_compromised": false,
+            "first_seen": "2026-08-17 17:46:57 UTC",
+            "last_seen": null,
+            "reference": null,
+            "reporter": "anonymous",
+            "sightings": 1,
+            "tags": [
+                "ClearFake",
+                "ClickFix",
+                "EtherHiding"
+            ],
+            "malware_samples": []
+        }
+    ]
+}

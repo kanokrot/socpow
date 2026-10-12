@@ -1,0 +1,8 @@
+{
+  "fetched_at_utc": "2026-10-12T10:56:03.932332Z",
+  "source_url": "https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/IPC2s-30day.csv",
+  "http_status": 200,
+  "request_kind": "c2_feed",
+  "sha256": "eaa1eccf48aa3e5f22ef13269495203d66be9149548cdbae5405878cd6e6dd05",
+  "byte_count": 10332
+}

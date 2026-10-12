@@ -1,0 +1,110 @@
+{
+    "query_status": "ok",
+    "data": [
+        {
+            "id": "1906287",
+            "ioc": "https:\/\/fotoboxx.ch\/galerie.html?link=https%3A%2F%2Fwww.dropbox.com%2Fscl%2Ffo%2F5v8qdlm56vcfhpz5aga7o%2FAF0hALHptr4TjZxkzPc8CdM%3Frlkey%3Dqmwdn7bha7lk869lnfs033xux%26dl%3D0",
+            "threat_type": "payload_delivery",
+            "threat_type_desc": "Indicator that identifies a malware distribution server (payload delivery)",
+            "ioc_type": "url",
+            "ioc_type_desc": "URL that delivers a malware payload",
+            "malware": "unknown_stealer",
+            "malware_printable": "Unknown Stealer",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/unknown_stealer",
+            "confidence_level": 90,
+            "is_compromised": false,
+            "first_seen": "2026-09-09 15:40:06 UTC",
+            "last_seen": null,
+            "reference": null,
+            "reporter": "Sir_XX",
+            "sightings": 1,
+            "tags": [
+                "credit-card",
+                "phishing",
+                "planzer",
+                "switzerland"
+            ],
+            "malware_samples": []
+        },
+        {
+            "id": "1902983",
+            "ioc": "https:\/\/www.dropbox.com\/scl\/fi\/tvvsyk7x5kkbdfyuw7zh7\/DiscordNitroGenerator.exe?rlkey=m3immhficmucb21uom0lknjuz&st=ebilsg9p&dl=0",
+            "threat_type": "payload_delivery",
+            "threat_type_desc": "Indicator that identifies a malware distribution server (payload delivery)",
+            "ioc_type": "url",
+            "ioc_type_desc": "URL that delivers a malware payload",
+            "malware": "unknown_stealer",
+            "malware_printable": "Unknown Stealer",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/unknown_stealer",
+            "confidence_level": 100,
+            "is_compromised": false,
+            "first_seen": "2026-09-07 05:43:31 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/x.com\/devmihaylov\/status\/2096664388849615038",
+            "reporter": "devmihaylov",
+            "sightings": 1,
+            "tags": [
+                "dropbox",
+                "MythStealer",
+                "payload-delivery",
+                "stealer"
+            ],
+            "malware_samples": []
+        },
+        {
+            "id": "1833581",
+            "ioc": "https:\/\/www.dropbox.com\/scl\/fi\/5s7jeh4brmv6zttfswcd3\/kkkkkk1.zip?rlkey=rddyt5s55ghjnv6rgtyzyes4p&dl=1",
+            "threat_type": "payload_delivery",
+            "threat_type_desc": "Indicator that identifies a malware distribution server (payload delivery)",
+            "ioc_type": "url",
+            "ioc_type_desc": "URL that delivers a malware payload",
+            "malware": "unknown",
+            "malware_printable": "Unknown malware",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/unknown",
+            "confidence_level": 75,
+            "is_compromised": false,
+            "first_seen": "2026-06-18 07:22:12 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/www.virustotal.com\/gui\/file\/a8fe7ea23ff20fb3ab2bcd122650e0fd0c6f9d384c11570a37290126f5cbef32",
+            "reporter": "Lenny3BO",
+            "sightings": 1,
+            "tags": [
+                "clickfix",
+                "kongtuke",
+                "python-backdoor",
+                "winpython"
+            ],
+            "malware_samples": []
+        },
+        {
+            "id": "1785152",
+            "ioc": "https:\/\/www.dropbox.com\/scl\/fi\/6sd0a0od839wwehcndldi\/Merluis-Setup-2.0.0.exe",
+            "threat_type": "payload_delivery",
+            "threat_type_desc": "Indicator that identifies a malware distribution server (payload delivery)",
+            "ioc_type": "url",
+            "ioc_type_desc": "URL that delivers a malware payload",
+            "malware": "unknown_rat",
+            "malware_printable": "Unknown RAT",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/unknown_rat",
+            "confidence_level": 75,
+            "is_compromised": false,
+            "first_seen": "2026-04-13 12:58:18 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/tria.ge\/260407-s8dpgahs5l\/behavioral1",
+            "reporter": "Omaha",
+            "sightings": 1,
+            "tags": [
+                "dropbox",
+                "fake-game",
+                "infostealer",
+                "RAT",
+                "ZKM-Stealer"
+            ],
+            "malware_samples": []
+        }
+    ]
+}

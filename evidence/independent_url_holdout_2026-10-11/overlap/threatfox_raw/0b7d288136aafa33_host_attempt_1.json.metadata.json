@@ -1,0 +1,8 @@
+{
+  "fetched_at_utc": "2026-10-12T11:13:16.296227Z",
+  "source_url": "https://threatfox-api.abuse.ch/api/v1/",
+  "http_status": 200,
+  "request_kind": "0b7d288136aafa33_host",
+  "sha256": "cd6264a576800d78c2d7c9d35ca159b2dd678f4e72aab0c46d74be5dab9d9e39",
+  "byte_count": 1074
+}

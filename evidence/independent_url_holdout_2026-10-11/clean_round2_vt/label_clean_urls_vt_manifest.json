@@ -1,0 +1,2502 @@
+{
+  "script": "label_clean_urls_vt.py",
+  "input_file": "evidence\\independent_url_holdout_2026-10-11\\clean_round2_build\\clean_candidates_tranco_round2.json",
+  "seed": 20261011,
+  "target": 200,
+  "delay_seconds": 16.0,
+  "counts_by_stage": {
+    "input_candidates": 188,
+    "reports_fetched": 188,
+    "resumed": 0,
+    "CLEAN": 26,
+    "AMBIGUOUS": 2,
+    "MALICIOUS": 0,
+    "NO_REPORT": 160,
+    "SOURCE_ERROR": 0,
+    "clean_selected": 26,
+    "clean_over_target": 0
+  },
+  "reports": [
+    {
+      "ioc_sha256": "479575f076618f161bb11d7ec8de0e93a2f3c121390b1a5beaa75a6bd9da9be0",
+      "fetched_at_utc": "2026-10-12T07:54:55.614982Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly90cnloYXJkZ3VpZGVzLmNvbS9vd25lcnNoaXAtZnVuZGluZy1hbmQtYWR2ZXJ0aXNpbmctcG9saWN5Lw",
+      "http_status": 404,
+      "sha256": "8c503e5197e71b900a0063309f0b144ba5d16b24431cc3c7e541f617e75e7a5e",
+      "byte_count": 159
+    },
+    {
+      "ioc_sha256": "22b344f352b77187fe5f534882d0bc5d46d51c748793a60af02178ec94aff066",
+      "fetched_at_utc": "2026-10-12T07:55:12.387720Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9kcmlmdC5jb20vcGxhdGZvcm0vcGlwZWxpbmUtaW5zcGVjdGlvbi1zb2Z0d2FyZQ",
+      "http_status": 404,
+      "sha256": "ab4aa4580910b8177d1b9ca5bafdc4f7de23171b4ef76b4a2e3c7f990f8ef3a1",
+      "byte_count": 143
+    },
+    {
+      "ioc_sha256": "532475c6248343de71ca10029ebc1b87572f162b04c3259e1aaf1152f3f5c0f9",
+      "fetched_at_utc": "2026-10-12T07:55:29.074255Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yZWRlaG9zdC5jb20uYnIvYnIvdGFsay9jaGF0Ym90LXdoYXRzYXBw",
+      "http_status": 404,
+      "sha256": "b93ad37fe12b1deb396dc4902c8320ef8d1fabdba9a2e74c4f95e6ec805e7c7a",
+      "byte_count": 133
+    },
+    {
+      "ioc_sha256": "94f4377e764020f045a87b65ee280a5418df323f5780553fcb29138dbdb168c2",
+      "fetched_at_utc": "2026-10-12T07:55:46.154273Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tYXJjdXNvc2NhcnNzb24uc2Uvbnl0dC1idWRnZXRtYXJrZS1mcmFuLWxpZGwtc2thLXNhbGphcy1pLWhlbGEtc3ZlcmlnZS8",
+      "http_status": 404,
+      "sha256": "66e0295a9f0000c81438b78e2bd3af02a5afa363d9b0ac053b1eb5043d4e5c08",
+      "byte_count": 176
+    },
+    {
+      "ioc_sha256": "c267c625ad8271edc71418188b7f422eba91c1a21218a233d0d10bdd0f4494a3",
+      "fetched_at_utc": "2026-10-12T07:56:02.868754Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yYWRpb2xhYi5vcmcvcmFkaW9sYWItcmVhZC1jcmVkaXQ",
+      "http_status": 404,
+      "sha256": "8828f6bee3c85be1089ff976a7167bed07c1cdeb0b974ef0325f32a872f94968",
+      "byte_count": 124
+    },
+    {
+      "ioc_sha256": "575f67cc2170b77beba625e8a82dc87c2842c1cd922b0025a6334358b571cd70",
+      "fetched_at_utc": "2026-10-12T07:56:20.030155Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9rdWNvaW4ucGx1cy9tYXJrZXRzL3Jhbmtpbmdz",
+      "http_status": 404,
+      "sha256": "1c5f6682d67e94e68648552ead05d9e32113e993eab4893f434ca6d8d0920be0",
+      "byte_count": 117
+    },
+    {
+      "ioc_sha256": "5f6eac31d4cb87c00c706bc39a1856a2663c5238906832184b375041db0f2df8",
+      "fetched_at_utc": "2026-10-12T07:56:36.575863Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jbi5jb20vYWJ1c2U",
+      "http_status": 404,
+      "sha256": "6bff88de7f0078f33d2c6ec4316363e3a12ecf84246c086c5baf13fead5912a9",
+      "byte_count": 96
+    },
+    {
+      "ioc_sha256": "bda8c3777a3df06035016045edb5f77dbafbe16dd7b6848bc19fcbea0ea4f7b8",
+      "fetched_at_utc": "2026-10-12T07:56:53.096170Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tZWxjbG91ZC5jb20vc2VsZWN0LXNpdGU_dG89JTJGZnImbWFya2V0PWd1YWRlbG91cGU",
+      "http_status": 404,
+      "sha256": "f1f072f3fb8f27cbc6ab116a4fb2004fff5b1ff1f21050846f2f976ef6320409",
+      "byte_count": 148
+    },
+    {
+      "ioc_sha256": "965a86e95ea762d1f095bfb24c154a4f1ca6152d73c8f520536aa13036da3571",
+      "fetched_at_utc": "2026-10-12T07:57:09.658528Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tZXJpcGVoY2hhYW4uZ292LmluL3ByaXZhY3k",
+      "http_status": 404,
+      "sha256": "c9a71e04da4bd2e73c7382a2497500be7436741de16a2082bc3b9e01abc27ebd",
+      "byte_count": 116
+    },
+    {
+      "ioc_sha256": "4b47d00cd55c721f32dd10e34e6263303a5e569715ffad16a4fca488175b8de3",
+      "fetched_at_utc": "2026-10-12T07:57:26.179004Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jbGFyaXAuY29tL3ByaXZhY3kvY2xhcmlwLWNhc2Utc3R1ZGllcw",
+      "http_status": 404,
+      "sha256": "1e7e3bba148bae03380bfb62c547d6884395fd7bf46b251892db6d5c25a84455",
+      "byte_count": 131
+    },
+    {
+      "ioc_sha256": "21729c0f2c1d5268f5dc37734069562d4918a573d62a3ee7eccf8220d01320c0",
+      "fetched_at_utc": "2026-10-12T07:57:42.649693Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iaW9tZXRyaWN1cGRhdGUuY29tL2Jpb21ldHJpY3MtYmxvZ3M",
+      "http_status": 404,
+      "sha256": "5a270c154b3c2a7a12cfab9bacd1e74caff7d5bcaceb731ba7f591fdeee5b44d",
+      "byte_count": 128
+    },
+    {
+      "ioc_sha256": "310d2499b8ac08fd94a05d59c4a8202e47ac7cefb4fdac899f001ec9f0a9c56b",
+      "fetched_at_utc": "2026-10-12T07:57:59.208604Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9nb29nbGUubm8vc2VydmljZXMv",
+      "http_status": 404,
+      "sha256": "de954abb7215ea266919630d8348aed790a4b0d7fe01026bd5547a8504b4e1a1",
+      "byte_count": 105
+    },
+    {
+      "ioc_sha256": "0b69a7e6bbfa0c1fb241eab598a64f902658c8126caa61c836ead13031ab6281",
+      "fetched_at_utc": "2026-10-12T07:58:15.985076Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9qYW1lc2NsZWFyLmNvbS9wcml2YWN5LXBvbGljeQ",
+      "http_status": 404,
+      "sha256": "ba84c1f2b40d41228d47bc9f185f2d918aad8c421532eee3328fec3b2b99de85",
+      "byte_count": 119
+    },
+    {
+      "ioc_sha256": "37fb450e14ac52ca68c20a8d77101239a3d7f0943654eebe8856d5faf55d4cf8",
+      "fetched_at_utc": "2026-10-12T07:58:32.479360Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cubWluZHRvb2xzLmNvbS9ibG9nLw",
+      "http_status": 404,
+      "sha256": "0999ac6be78fd3d661cc8d01b01ef75d039d974c4e29d0937cc17e39ec489051",
+      "byte_count": 111
+    },
+    {
+      "ioc_sha256": "9575fa8ca4560940e7c98a5110eb9860e97d21641003b4c9cf001ce5a7f5d931",
+      "fetched_at_utc": "2026-10-12T07:58:49.509619Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9uaWtrZWlicC5jby5qcC9jb21wYW55L2dyb3VwLmh0bWw",
+      "http_status": 404,
+      "sha256": "0daac26adf048281067056f288524584ca2173336686abbf3a0ee38c6f24119b",
+      "byte_count": 124
+    },
+    {
+      "ioc_sha256": "93d532096f6244255ff1fa97422f7a891497677f1abf51ab738d3b97477a3cda",
+      "fetched_at_utc": "2026-10-12T07:59:06.016248Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9pbmZvcm1idXJvLmt6L3dlYXRoZXIvdXN0LWthbWVub2dvcnNr",
+      "http_status": 404,
+      "sha256": "988a558bacab29538dc39f48e889ebfced6fc1ee8ae2e357e9788074b9cf36f6",
+      "byte_count": 129
+    },
+    {
+      "ioc_sha256": "420d248c0dadcd980144c80bd1a549e8d6e1e421032349617a6533c218447d31",
+      "fetched_at_utc": "2026-10-12T07:59:22.711970Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly96ZWRhbC5kZS9zdGFydHNlaXRl",
+      "http_status": 404,
+      "sha256": "f8ff0b269c15fa860d49968f12179e72739a57d398c2ae0f88efc5c156e5cbb5",
+      "byte_count": 105
+    },
+    {
+      "ioc_sha256": "6151b52ea223b1fdc36bf670da643ade695b260f791ce04862353aa469cab862",
+      "fetched_at_utc": "2026-10-12T07:59:39.313684Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jZXVyLXdzLm9yZy9Wb2wtMjg4MC8",
+      "http_status": 404,
+      "sha256": "e84b704f30785bf092bd076b403ce3a2c1fbabd93921b222ba5d44fa9f13d592",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "1ff861ca30e17b7560e56f06f483d0d5ff53b239d10fab73f62dd442259a9d5c",
+      "fetched_at_utc": "2026-10-12T07:59:55.867514Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cubGFuZWJyeWFudC5jb20vaGVscC9sb3lhbHR5LXRlcm1zLWFuZC1jb25kaXRpb25zP2ludGlkPWxiX2dsb2JhbF9kaXNjbGFpbWVyc19sb3lhbHR5dGNfMjAyNjA5MTA",
+      "http_status": 404,
+      "sha256": "9604736bcf609e4146fc16cda05375034a807274a7829c9ffb7f59419944fbe7",
+      "byte_count": 212
+    },
+    {
+      "ioc_sha256": "4ea2d379abeb6e2af74dd322787098ff8aa033de1527730cd540da3e85b5b574",
+      "fetched_at_utc": "2026-10-12T08:00:12.522179Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zdW1vbG9naWMuY29tL2NvbXBhbnkvY2FyZWVycw",
+      "http_status": 404,
+      "sha256": "7c1bb81ed4c0a0f53ab69a32fd9813db8da5756bba57b57af356b1df8a589d76",
+      "byte_count": 119
+    },
+    {
+      "ioc_sha256": "209fcea103680906132e3810dcfb00ac030f12facdd7fa78ad38a4f5c19fb315",
+      "fetched_at_utc": "2026-10-12T08:00:29.000371Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9lbS1jb25zdWx0ZS5jb20vb2ZmcmVzQWJvbm5lbWVudA",
+      "http_status": 404,
+      "sha256": "022c0768d24a02a8e701ac239e5d14fdfa4d5dbfc1207141468d45779dc6566d",
+      "byte_count": 123
+    },
+    {
+      "ioc_sha256": "6690ee28b3fe630caae4a1b8aa97870138c14b361719f23dea6d0fa75e8cdbaa",
+      "fetched_at_utc": "2026-10-12T08:00:45.736389Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ncm9oZS5jb20vZW4tR0IvY2F0ZWdvcnkvQmF0aHJvb20vV2FzaGJhc2luX2FyZWE",
+      "http_status": 404,
+      "sha256": "651c25075909b5de62a9cb19626e413231bdf7401bae492688aae574080a690b",
+      "byte_count": 144
+    },
+    {
+      "ioc_sha256": "3a7bd3566ee19923b6903dfd1d5b792b7322d5f1d3a7dcfaafc43f3195c7ee0e",
+      "fetched_at_utc": "2026-10-12T08:01:02.305796Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tYXJpY29wYS5nb3YvMzU5OC9BYm91dC1NYXJpY29wYS1Db3VudHk",
+      "http_status": 404,
+      "sha256": "01ea4b54085b8d6ee599869a2b32c1b8b18aca43923a941de6fd604a9855ca18",
+      "byte_count": 132
+    },
+    {
+      "ioc_sha256": "e6eafcfe308f7c710a2cdf96cde212cfcb85e90580d7950d07625dc2c03e1112",
+      "fetched_at_utc": "2026-10-12T08:01:18.909256Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9haXJmaW5kLmNvbS9jYXJ0",
+      "http_status": 404,
+      "sha256": "c9969a6ca5eed395e65dd9c11d3ee3f1215396c993e20b8edb28c75b3afbbff4",
+      "byte_count": 101
+    },
+    {
+      "ioc_sha256": "7b155731b61764bd84b87d479b053a57df1e16ff9cc38ccd6658cfa1b0f1c182",
+      "fetched_at_utc": "2026-10-12T08:01:35.446303Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9lbmViYS5jb20vc3RvcmUvYW1hem9uLWdpZnQtY2FyZHM_ZW5iX2NhbXBhaWduPUhvbWVwYWdlJmVuYl9jb250ZW50PU1haW4lMjBDYXRlZ29yaWVzJTIwTmF2aWdhdGlvbiZlbmJfbWVkaXVtPWxpbmsmZW5iX3NvdXJjZT1odHRwcyUzQSUyRiUyRnd3dy5lbmViYS5jb20lMkYmZW5iX3Rlcm09QW1hem9u",
+      "http_status": 404,
+      "sha256": "893b811696a5e99a161dc6bd01f85c444bf459ec2f3224cadc0ec25a5a46882c",
+      "byte_count": 309
+    },
+    {
+      "ioc_sha256": "b8f36ed86a031349e9286c9beceb2ab6446c2540bb1504ba72e24b556a3c6ec6",
+      "fetched_at_utc": "2026-10-12T08:01:52.835578Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ib2tlcHRvZC5wcm8vYm9rZXAtc21hLWppbGJhYi1wYXAtcGFjYXItbGFuanV0LW5nZXdlLWRpLWhvdGVsLw",
+      "http_status": 404,
+      "sha256": "31859dc26b54ee667c8150a424f2e42696477ff9d2f90d905f1a1b2b6b80a6f5",
+      "byte_count": 163
+    },
+    {
+      "ioc_sha256": "bb6a0e430b92ce3d7f915eef10b4a21fe08462b8240fd0789a85db03bd42316e",
+      "fetched_at_utc": "2026-10-12T08:02:09.354599Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9lbmdsaXNoY2x1Yi5jb20vc2VhcmNoLw",
+      "http_status": 404,
+      "sha256": "614abd0873543978162311398acceb4ad435b1d1210a17de15ceabb0cc2857ba",
+      "byte_count": 111
+    },
+    {
+      "ioc_sha256": "4a87a2dc709c6b68faf43e02578a42f9900fbd270348cce533d784ac5f81392a",
+      "fetched_at_utc": "2026-10-12T08:02:26.003422Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zcGluLWJldHRlci5uZXQvc2sv",
+      "http_status": 404,
+      "sha256": "918b32417621d703c4f751af35bef63b2be2bca3cc97b5a69b29fae3f2f7c511",
+      "byte_count": 105
+    },
+    {
+      "ioc_sha256": "bd6f826cf5a4c48c29ac8b274576cbd220704cf5f438f8f7d467946a1f660977",
+      "fetched_at_utc": "2026-10-12T08:02:42.633735Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zdXBwbHlmcmFtZS5jb20vY29uc3VtZXItcHJvZHVjdHM",
+      "http_status": 404,
+      "sha256": "bbd5b498100fa6b533d2a3b52a7f8167590283a2c3a8160c8f318d755ca6d80c",
+      "byte_count": 124
+    },
+    {
+      "ioc_sha256": "e5b12517eccfeffd527c2e5c8e446ef1b7ea239c67fcc5dcd335f128c27a3c66",
+      "fetched_at_utc": "2026-10-12T08:02:59.186834Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cubG9vdGkubmV0LzE1Lzk1NjMvcDE4OC8lRjAlOUYlODclQjklRjAlOUYlODclQjclRDklODElREIlOEMlRDklODQlRDklODUlRDklODclRDglQTclREIlOEMtJUQ4JUIzJURBJUE5JUQ4JUIzJURCJThDLSVEOCVBQSVEOCVCMSVEQSVBOSVEQiU4QyVEOSU4Ny0lRDglQTclREIlOEMlRjAlOUYlODclQjklRjAlOUYlODclQjc",
+      "http_status": 404,
+      "sha256": "e5a26477cd82a71dc1de5b22ce0b640c6bf7b00473aaf179602061a4a7202144",
+      "byte_count": 328
+    },
+    {
+      "ioc_sha256": "00c9b9eb529ad4714ee0dfb3086e502920fce4ca9162049d3b943edf71c4788e",
+      "fetched_at_utc": "2026-10-12T08:03:15.671272Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9vcmlnaW4uY29tL2dhbWVzL2Etd2F5LW91dA",
+      "http_status": 404,
+      "sha256": "40c8e9a1b12529d84b8d3c5781484e6b354f0c734dc1f65451d1e6c53fc2dbac",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "7c3e507d62de6791de04cbd34d546790e54cb556f51fa74fc605575bb12b2947",
+      "fetched_at_utc": "2026-10-12T08:03:32.183248Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cubWFyaWVjbGFpcmUuY28udWsvaW5mby9hYm91dC1tYXJpZS1jbGFpcmUtNzI5Mjk2",
+      "http_status": 200,
+      "sha256": "68b5f6e005bd10544176d85d2e6d4ce33d5631afe83f1877bb490452d4c99427",
+      "byte_count": 17635
+    },
+    {
+      "ioc_sha256": "22e008b51d8184e8039527abd891b29928de2bb1ae370fd4c2ac054f7303eeb4",
+      "fetched_at_utc": "2026-10-12T08:03:48.731923Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9nZXRicmluZy5jb20vZGUvbnV0enVuZ3NiZWRpbmd1bmdlbg",
+      "http_status": 200,
+      "sha256": "fe79bcf7475604081d80900ab615826893aa60f6c9eb01e44302c180becc81a7",
+      "byte_count": 16777
+    },
+    {
+      "ioc_sha256": "83a96de6d2b60bb9de32207aee344681eb328de9fb0152e2b4939f2e728e74dd",
+      "fetched_at_utc": "2026-10-12T08:04:05.224872Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9naXZlYnV0dGVyLmNvbS9ub25wcm9maXQtcGF5bWVudC1wcm9jZXNzaW5n",
+      "http_status": 404,
+      "sha256": "95f80738b663d32bf787c4350814984d295e7b670fefbe5eab07568069ff0c58",
+      "byte_count": 137
+    },
+    {
+      "ioc_sha256": "8dea75fa09b89014244ec751a5174caa2d5f3341c88a6282ca941db2606d49e6",
+      "fetched_at_utc": "2026-10-12T08:04:21.713173Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wb3Jub21pbGYudmlwL3Bvcm5vLTIwMjMv",
+      "http_status": 404,
+      "sha256": "6f906c617bcfebdf92e883fbe99e2040b4a27680f1c131ae36831c6f4fc76712",
+      "byte_count": 113
+    },
+    {
+      "ioc_sha256": "bdfd3f9e190d331a55528284b41b5faef283b0aca76fa8eb26a62ffa2d77b2c0",
+      "fetched_at_utc": "2026-10-12T08:04:38.205314Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9weXBwby5jb20vYXNzZXRzL3Rlcm1zLW9mLXNlcnZpY2UuaHRtbA",
+      "http_status": 404,
+      "sha256": "ec3e692193db3d3191e7a184630d0f9968c52d76cb27b3dc231b679d467b3ab4",
+      "byte_count": 131
+    },
+    {
+      "ioc_sha256": "3acdf7984f8bb07f3bcb24596cc48cddfa8e5a3ef1f81ef16461cc2f11dee29a",
+      "fetched_at_utc": "2026-10-12T08:04:54.742558Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jYnM4LmNvbS9oZWxwYnV0dG9u",
+      "http_status": 404,
+      "sha256": "4fe851d9790e4e6c939f32f97bcae21b4767ef5713017a2a44d6e0e829f16580",
+      "byte_count": 105
+    },
+    {
+      "ioc_sha256": "d646c80dde4059387843e9f4f49102eb0803e5a784082ce61dcfce24c78b82ce",
+      "fetched_at_utc": "2026-10-12T08:05:11.297226Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly90YXZpbHkuY29tL2N1c3RvbWVyLXN0b3JpZXMvYmVsbC1jeWJlcg",
+      "http_status": 404,
+      "sha256": "9089620756d0b329f77413c778b9fa0eef8562998da41c7b51d8bdea02a62c16",
+      "byte_count": 131
+    },
+    {
+      "ioc_sha256": "55829c693c05c2e8b5ae0a7c2a1c048c53661b84b6e28f4fb67927e848c57569",
+      "fetched_at_utc": "2026-10-12T08:05:27.924068Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9vbmUuaHUva2lzdmFsbGFsa296YXNvaw",
+      "http_status": 404,
+      "sha256": "e918da8c1bc9c0ac870ab3b33b2216a8f0f2b14e8411de1586364f4c45dd50a1",
+      "byte_count": 111
+    },
+    {
+      "ioc_sha256": "7f24e311f01905ed4fa7b1a1f49671c65e9662aec63694aba055b1098991e999",
+      "fetched_at_utc": "2026-10-12T08:05:44.455526Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuc216ZG0uY29tL2ZlbmxlaS9sZW5nZ3VpLw",
+      "http_status": 404,
+      "sha256": "26d0fe5ee71b362f85070430980a683042f4c779c34ec9663cc91c587cf8d976",
+      "byte_count": 119
+    },
+    {
+      "ioc_sha256": "2b7c08ddc917510fb903bc86c4e99772d01731a70509add955ad66a4125b538e",
+      "fetched_at_utc": "2026-10-12T08:06:00.935381Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jb2RlYmxhY2tiZWx0LmNvbS9wcm9kdWN0cy9zaGlwcGluZy1yYXRlcy1jYWxjdWxhdG9yLXBsdXM",
+      "http_status": 404,
+      "sha256": "e460ccb3c61d82c5869fbbc46bd595330004887e909fe0a2b733032ff9cc8b3f",
+      "byte_count": 156
+    },
+    {
+      "ioc_sha256": "7de4c51a4f6506838bd152095af7a88c76e0737d4855ac4fe990146fdce38b9d",
+      "fetched_at_utc": "2026-10-12T08:06:17.437475Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tZW5jcmV0bWVzdW0uc3RvcmUvYXJ0aXMtaW5kby12aXJhbC1rb3BpLW1hbGFtLWthbGFoLW1hbmlzLWRhcmktc2VueXVtbXUtaGVhcnR3YXJtaW5nLXRoZS1zdG9yeS1iZWhpbmQv",
+      "http_status": 404,
+      "sha256": "e26d05db66c8054c6ff3fd7d28f159220672e05a92091feecdc99b36a188c036",
+      "byte_count": 217
+    },
+    {
+      "ioc_sha256": "fe17af70c560ab6d816b8b68cea57b365b33615cadc696c371e0033c7576716b",
+      "fetched_at_utc": "2026-10-12T08:06:33.891767Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yZXN0YXVyYW50Lm9yZy9yZXNlYXJjaC1hbmQtbWVkaWEvbWVkaWEvcHJlc3MtcmVsZWFzZXMvbmF0aW9uYWwtcmVzdGF1cmFudC1hc3NvY2lhdGlvbi1sYXVuY2hlcy1tYWRlLWluLXJlc3RhdXJhbnRzJWUyJTgwJTlkLXRvLWNlbGVicmF0ZS1pbmR1c3RyeSVlMiU4MCU5OXMtcm9sZS1pbi1idWlsZC8",
+      "http_status": 404,
+      "sha256": "0528ae0730379c4cedef7b03ff0107e09e11ff306c9a5a7159c21e6ec002b8a9",
+      "byte_count": 308
+    },
+    {
+      "ioc_sha256": "fc067f9cf96284ab3e2dd064e527b0de35d46697cea71335380417fbf76189fe",
+      "fetched_at_utc": "2026-10-12T08:06:50.376129Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZmFtaWxpZS5kZS9mYW1pbGllbmxlYmVuL2RpZXNlLTE5LWhhcnJ5LXBvdHRlci1mYWt0ZW4ta2VubnQtc2VsYnN0LXNvLW1hbmNoZXItZmFuLW5pY2h0LS0wMUgxMjBGQUdOOTJZWTNSS0o4N001MTNGQw",
+      "http_status": 404,
+      "sha256": "054bc3f3eabff88e3f5f3b8d1003ee42ee177775da304e4863f62f3d49d48bc0",
+      "byte_count": 239
+    },
+    {
+      "ioc_sha256": "7c624a8277b7932b9704882771184bd907ce9c48eef86a0e3b0efbd9d46c62a3",
+      "fetched_at_utc": "2026-10-12T08:07:06.946555Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yYWRpby5uZXQvcy85NHdpcHNwb3J0c3JhZGlv",
+      "http_status": 404,
+      "sha256": "5ccdc850efa3d79f618c31e7be9a90730e1fff35653cf7cd40b09cc323d07e7c",
+      "byte_count": 117
+    },
+    {
+      "ioc_sha256": "121a769a2f3e8bc2546c564e15399aff7a0bf42d9b9aedb6d75462e6f3e76282",
+      "fetched_at_utc": "2026-10-12T08:07:23.466527Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9veHkuZWR1L2FjYWRlbWljcy9hcmVhcy1zdHVkeS9waHlzaWNzLzMtMi1lbmdpbmVlcmluZy1wcm9ncmFt",
+      "http_status": 404,
+      "sha256": "b5fd94dc67ac36dd1468e9925c3c030c6db7786596e0f767911172380899d1a0",
+      "byte_count": 161
+    },
+    {
+      "ioc_sha256": "62deca57b47ac79d105cc11163ad73552d6a0e6f31acc62f67eaf199ca735dd5",
+      "fetched_at_utc": "2026-10-12T08:07:39.944478Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9mZWVkZXIuY28vY29tcGxpYW5jZQ",
+      "http_status": 404,
+      "sha256": "b95577df1706a3973bbb7aa7bfc4075f8ba56b90d496bc2090ef10039e394df1",
+      "byte_count": 107
+    },
+    {
+      "ioc_sha256": "8f6a9f94ccf46c58ced8d9e9a707cc24586c44de3c55727ee141504ab5b2e63f",
+      "fetched_at_utc": "2026-10-12T08:07:56.667320Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly90dmd1aWRlLmNvbS9uZXdzL2hhcnJ5LXBvdHRlci10di1zZXJpZXMtaGJvLW1heC8",
+      "http_status": 404,
+      "sha256": "645bb2edd804aa126791abba15499eb2f6c37a9a81c0af308775e07247bd3270",
+      "byte_count": 144
+    },
+    {
+      "ioc_sha256": "84bc6e3674646f9398e02aab8a8cea31caa011a434985e85bf1ca655eb78ee8a",
+      "fetched_at_utc": "2026-10-12T08:08:13.166356Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZnJlZXNleGFyYWIuY29tL3RhZ3MvY3Vydnkv",
+      "http_status": 200,
+      "sha256": "10feeb5130c6045961647de2284c089244f428d4c75b2e9fd90fa6c80d980028",
+      "byte_count": 13805
+    },
+    {
+      "ioc_sha256": "492e54ec225b3e9a20b00656f9332d8258fa86ff25d6762c8d62f5729cf489f5",
+      "fetched_at_utc": "2026-10-12T08:08:29.783254Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9vdmVyLWJsb2cuZnIvbWFnL2pldXgtdmlkZW8",
+      "http_status": 404,
+      "sha256": "6c5e8f7b77277ca116ca3c6eac3f1f9e78a5b70bd6de66d0c24b1d52760c4c30",
+      "byte_count": 116
+    },
+    {
+      "ioc_sha256": "843a86aa5a6bb0a28255bb3469525641e39fceb75abed23c538fb6f1dbc56eb5",
+      "fetched_at_utc": "2026-10-12T08:08:46.296823Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yYWlzaW5nY2hpbGRyZW4ubmV0LmF1L2xlZ2FsL3ByaXZhY3k",
+      "http_status": 404,
+      "sha256": "3ff7f3142268d7fe8f1dd6949ee160c04fad4c1d69577d3661e7ec2de13c927c",
+      "byte_count": 128
+    },
+    {
+      "ioc_sha256": "45cdea58121f79b9514682d9f9d8ac584897e870568024497dba55fb6afb71d9",
+      "fetched_at_utc": "2026-10-12T08:09:02.818738Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wbWMuY29tL291ci1icmFuZHMvZmxvdy1zcGFjZQ",
+      "http_status": 404,
+      "sha256": "85cfa53b9f916866a422743f522b6bbe641654e8b6634d14cbf09c9a076f540c",
+      "byte_count": 119
+    },
+    {
+      "ioc_sha256": "0d0d584f0b24e4e250a5af9696b78c38c03ce621b9fd6ab376fd0b1fa5697b26",
+      "fetched_at_utc": "2026-10-12T08:09:19.984563Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9nZW1pdXMucGwvcGwva29udGFrdC8",
+      "http_status": 404,
+      "sha256": "dda1ed890716bb5b19a65505068dde77ac5e5e216693f4a832c5e8d298729a5b",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "f4f3ca272a4c0e2d3da8c98313cb6065cee354e27afdf7971bf1606aa63b2315",
+      "fetched_at_utc": "2026-10-12T08:09:36.498804Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hbW94aWJlc3QudG9wL2xlZ2Fs",
+      "http_status": 404,
+      "sha256": "562f33b0e46c3c5009d8414683d7f2af76be27d2ee3dca905c20f8a48ff6ac1f",
+      "byte_count": 105
+    },
+    {
+      "ioc_sha256": "299f7f006afd8975bf8854a205cb22d05de79997e1da678a95c883896d5576be",
+      "fetched_at_utc": "2026-10-12T08:09:52.998636Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9nb29nbGUudmcvaW50bC90aC9wb2xpY2llcy9wcml2YWN5Lw",
+      "http_status": 404,
+      "sha256": "051b08cc80e5094d1762c944c9b016be6d19b9c7a81fd92396d5f47e7700edeb",
+      "byte_count": 127
+    },
+    {
+      "ioc_sha256": "caeaac65deeaa2c6074e6d53494f554abf2d1c4948ac2228d9b909c3197ec215",
+      "fetched_at_utc": "2026-10-12T08:10:09.479277Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9rbWFpbC1saXN0cy5jb20vaXQv",
+      "http_status": 404,
+      "sha256": "fa599d1d0a4c176070f67f6e53bc27e114f3f14dcb2d856e3df4563b20171d28",
+      "byte_count": 105
+    },
+    {
+      "ioc_sha256": "6356c23f747ab7ae484fc51c4855a614ea9063127f8cd8202c5c3e164bbf8423",
+      "fetched_at_utc": "2026-10-12T08:10:26.075442Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jb25zb3J0aXVtbmV3cy5jb20vMjAxNC8wNS8",
+      "http_status": 404,
+      "sha256": "3357e8b481109e7591f964797b1eb8941d496fdc3f81d9cb74fca6e46e475a89",
+      "byte_count": 116
+    },
+    {
+      "ioc_sha256": "cf5f1e15475752768662fee9e5bcb69135e7f3f9cf9b6c13f50eb3a2968d769e",
+      "fetched_at_utc": "2026-10-12T08:10:42.679996Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ydWRkZXJzdGFjay5jb20vY3VzdG9tZXJzLw",
+      "http_status": 404,
+      "sha256": "dffddf632bb827a2e91b0961551f477d2db073c5dd6445f48e888a703c807f6d",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "efdc7e599d40e8e1b3980490f902f7dbbff7c5e6796a4e3c5632b776a13d6eff",
+      "fetched_at_utc": "2026-10-12T08:10:59.227193Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93b3RwYWNrLnJ1L3J1bGVzLWNvbW1lbnRzLw",
+      "http_status": 404,
+      "sha256": "61da01ce73072c93d438144c80f3b22f3f57175d2dc6fa1ea681aa996690b312",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "31ef6d09ebe53527a0d4f259d2c31e6ad46219035846f9b48303f0c6f7e060b0",
+      "fetched_at_utc": "2026-10-12T08:11:15.704768Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ibG9ja3BpLm5ldHdvcmsvY2FzZS1zdHVkaWVzL3BhcnRpY2xl",
+      "http_status": 404,
+      "sha256": "7398d22eeda24bd9f97b0d35ad4d9cdd9a4bc4ed051e408ba2a16029dc1f4e8f",
+      "byte_count": 129
+    },
+    {
+      "ioc_sha256": "d7b3edc459fa6a6beb15cd56d342f83e3726de8ccb4fcc7145e3e302a8316b0b",
+      "fetched_at_utc": "2026-10-12T08:11:32.202257Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tYWlsY29udHJvbC5jb20vbG9naW5fcmVzZXRfcmVxdWVzdC5taHRtbA",
+      "http_status": 404,
+      "sha256": "4c15595bd2c0454399aab7a5d3dde09ad2e98e69f03da8668eeb3143eff788d1",
+      "byte_count": 135
+    },
+    {
+      "ioc_sha256": "7cbbf745ac3fbca17ab24b1cffc9614f1b29f978dbc5e272732d70b23d168087",
+      "fetched_at_utc": "2026-10-12T08:11:48.654060Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hZG1lLnJ1L2Nvb2tpZXMv",
+      "http_status": 404,
+      "sha256": "2a57c6db99acbcf228a9211ac25c05e0291d0632138a460e26f25556a33487c3",
+      "byte_count": 101
+    },
+    {
+      "ioc_sha256": "fc1ffc972035d0ab205ea1b53a820126c7d19ef002534cbc06b5549dca525246",
+      "fetched_at_utc": "2026-10-12T08:12:05.178066Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9waW5kb3duLmlvL3VrMQ",
+      "http_status": 200,
+      "sha256": "09b2df6cbb46bf04694e38af9136d9e38b0475cb07e13715994ae0cd658894ed",
+      "byte_count": 19424
+    },
+    {
+      "ioc_sha256": "f7400f8ba869a29ce4f232518c464fded74f880d797b1dcd158e566d5bc2ec24",
+      "fetched_at_utc": "2026-10-12T08:12:21.716506Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cucG9ybmRyLmNvbS9jYXRlZ29yaWVzL3BldGl0ZS8",
+      "http_status": 200,
+      "sha256": "88aa8d9b747361e770348568b61c45e908d56d3ab03c701c6231c2a7e7477e5a",
+      "byte_count": 13705
+    },
+    {
+      "ioc_sha256": "84c1b4ab440a3a76a8731345426165e5e456935f6d45d77fea005d44dd70bf06",
+      "fetched_at_utc": "2026-10-12T08:12:38.494493Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ndWVzdHkuY29tL2ZyLw",
+      "http_status": 404,
+      "sha256": "e1b063ececb4fe8969b31b57b5a3aa65e5aabf5acfe5f87c8c83b4b0102529c7",
+      "byte_count": 99
+    },
+    {
+      "ioc_sha256": "6e4a09441a4284900502a495d745a8bce773d1470901d4d0c649c1119c3becfe",
+      "fetched_at_utc": "2026-10-12T08:12:55.018775Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9oZWFkd2F5YXBwLmNvL2NvZGVzaGlwLWNoYW5nZWxvZw",
+      "http_status": 404,
+      "sha256": "cdc7319c4c6a7462f0ab59c973bda256cfc65988c817d9b30e540dd78a420884",
+      "byte_count": 123
+    },
+    {
+      "ioc_sha256": "741b5fabcd64acc228fd85ecaefd77d0bb4e6ad0d87e2bb120bc18ccf656c016",
+      "fetched_at_utc": "2026-10-12T08:13:11.553132Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9rb25maWRlbmN5LmNvbS5ici9wcml2YWN5LXBvbGljeQ",
+      "http_status": 404,
+      "sha256": "f407339453e5c01e4aa8466bacfb12f7251963bf41e9abc536c18e83cf1187d4",
+      "byte_count": 123
+    },
+    {
+      "ioc_sha256": "927b8fcc587218626e13c95b7d61a7439c3cf8d92c259a5bfb543b2774b536d7",
+      "fetched_at_utc": "2026-10-12T08:13:28.275495Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9rb25pY2FtaW5vbHRhLmNvbS9pbmRleC5odG1s",
+      "http_status": 404,
+      "sha256": "d8f2a495fb540dbfacbe2fcde75d3fef3c4d3df8219410ef72c41d14f0edfeba",
+      "byte_count": 117
+    },
+    {
+      "ioc_sha256": "198938b3335d86bc3a4943f85be07049a83f0773c1e54870ad4a3267fbed5ab4",
+      "fetched_at_utc": "2026-10-12T08:13:45.607726Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9vZmVycGxhbi5kaWFyaW9zdXIuZXMvb2ZlcnRhcy1kZXNjdWVudG9zL2Rlc2N1YnJlLW1hbGFnYS1qdWdhbmRvLXBsYXktYW5kLWdsb3J5LTE0OTUtMTgyMDUuaHRtbD9lZGljaW9uPW1hbGFnYQ",
+      "http_status": 404,
+      "sha256": "18cbc44a375e8e12b4e884eea2760d5c1bb310913ce80f81cbaf42eb994eb32b",
+      "byte_count": 227
+    },
+    {
+      "ioc_sha256": "407dce1083f0d9089160b23f2c3d1bad9a1a8c355887c2a122ba006e8be8e7a2",
+      "fetched_at_utc": "2026-10-12T08:14:02.342817Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9waWRnaW4uaW0vZGV2ZWxvcG1lbnQvY29udHJpYnV0aW5nLw",
+      "http_status": 200,
+      "sha256": "0ecd318c0ae95b03ae0ad655bc264174e56d2b2ec8d65fe4267acc082cf78c5b",
+      "byte_count": 15093
+    },
+    {
+      "ioc_sha256": "620a4d67013e32026a1471691897c2b72863abe1ec6c4c87ac612bb38dc3424f",
+      "fetched_at_utc": "2026-10-12T08:14:18.902469Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly90aGluZ2xpbmsuY29tL3NhZmV0eS10cmFpbmluZw",
+      "http_status": 404,
+      "sha256": "7526b38c65df2faf5a5a55f16f491a9859f46e44731cbdf68647b64fecda4375",
+      "byte_count": 119
+    },
+    {
+      "ioc_sha256": "1109cd4840e8eb4c36ed88c568921ae54add0827bcae49a12542ef95bb289998",
+      "fetched_at_utc": "2026-10-12T08:14:35.409999Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hc3Ryb3RhbGsuY29tL2thYWwtc2FycC1kb3NoLWNhbGN1bGF0b3I",
+      "http_status": 404,
+      "sha256": "5d852c9677762d24ec9659aec5f5e481559510ce29a771a947cfc77d366d41c3",
+      "byte_count": 132
+    },
+    {
+      "ioc_sha256": "cc6bcd1f45293ac7be68c42bf16fc5c9578b4ec771517d7fe22f46823b2b0099",
+      "fetched_at_utc": "2026-10-12T08:14:51.982528Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iYW5nLW9sdWZzZW4uY29tL2VuL2ludC9sZWdhbC9wcml2YWN5LXBvbGljeQ",
+      "http_status": 404,
+      "sha256": "6280d7f1c8d871d89a1d0a132370e4a04d785f9989f6af43e3402f11cf5f0dad",
+      "byte_count": 139
+    },
+    {
+      "ioc_sha256": "aa14fe1b10597e801458d36b5da19cc6c85874132853bfbb1ecdbb52ba94b92f",
+      "fetched_at_utc": "2026-10-12T08:15:08.506456Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yZWRjaXJjbGUuY29tL3ByaXZhY3k",
+      "http_status": 200,
+      "sha256": "68df0c7b113421039046ed76a47a9ff6940da57561149a91b491b700953ac32c",
+      "byte_count": 15391
+    },
+    {
+      "ioc_sha256": "d8aa77b8c7ef1f8ff68a55bbfd6b1a61406b17a193ab02e4f0ed8dfdfb739aa0",
+      "fetched_at_utc": "2026-10-12T08:15:25.067564Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9lbXBpcmVzYW5kcHV6emxlcy5jb20vZ3VpZGVz",
+      "http_status": 404,
+      "sha256": "bec05d84c37fab8f69d86f8ca4af7bdc50a74d3fcf9609938b92b4420623d665",
+      "byte_count": 117
+    },
+    {
+      "ioc_sha256": "dc0012cf49b3ac9a096b221fc56072a06af4e5916ab5b365118c7aba356bd114",
+      "fetched_at_utc": "2026-10-12T08:15:42.029986Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly94LWZldGlzaC50dWJlL21vZGVscy9wbGVhc2UtdHJlYWQtb24tbWUv",
+      "http_status": 404,
+      "sha256": "3fa13d4330a5445eb895c1e49aa16fde0ad269622aa8cb8ca8d9c84ff9fde61c",
+      "byte_count": 133
+    },
+    {
+      "ioc_sha256": "64d0d65aeb9415abf5a91760154bfa18c4ec96fb4574ebea2372f8ca8cf4ebb6",
+      "fetched_at_utc": "2026-10-12T08:15:58.576948Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9oZW50YWkxOC5uZXQvcmVhZC1oZW50YWkvd2hhdC1hLWZveC11bmNlbnNvcmVkLWNoYXB0ZXItMTEtY2gxNDY1MTU",
+      "http_status": 404,
+      "sha256": "66cf93ca094721b3d0a58fc7183cfc68f6b4063f2abd6117376cee1436c68ea0",
+      "byte_count": 168
+    },
+    {
+      "ioc_sha256": "94ce5f3a4adf9c2ebf56d5444513f2219555f8135c69e0e5952d5f9474b8dd98",
+      "fetched_at_utc": "2026-10-12T08:16:15.035782Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ib2tlcGxvdC5jb20vYm9rZXAtc21wLWJvY2lsLXZpcmFsLWRpLXNldHVidWhpLWF5YWgtdGlyaS8",
+      "http_status": 404,
+      "sha256": "3d4cbd59a4d01e09030d2c815f2db00ab86c9b8bec032927746df35b2b40f1ad",
+      "byte_count": 156
+    },
+    {
+      "ioc_sha256": "08b803389aa1ed6943a016a1aae3ad17dca07fb8f4e38e1da4d3efc3243b526d",
+      "fetched_at_utc": "2026-10-12T08:16:31.556950Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9udWtpLmlvL2VuL2xlZ2FsL2d0Yw",
+      "http_status": 404,
+      "sha256": "3d8a1b18356018a2a5acb91f61fc98f3191a501137213df84668e9326ee8b2cc",
+      "byte_count": 107
+    },
+    {
+      "ioc_sha256": "a9603b6259ef8d0537ded5b426fe970f43e93672cf66122756a1b98b7e0e23cd",
+      "fetched_at_utc": "2026-10-12T08:16:48.062213Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cudXNjaGFtYmVyLmNvbS9lY29ub215",
+      "http_status": 404,
+      "sha256": "4e11b3ca258388d3a21d481c8b3db8fb258e0fa99b283122449ddbd29f73ee6a",
+      "byte_count": 113
+    },
+    {
+      "ioc_sha256": "2030f936025c6406d12ad22bd6a685f7eaaef37e771a356499cd6ec4f6334a65",
+      "fetched_at_utc": "2026-10-12T08:17:04.692693Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly8xMTc3LnNlL2Jhcm4tLWdyYXZpZC8",
+      "http_status": 404,
+      "sha256": "263f6b0b857632a9e283f020dd125e0cd6bc684e3976789f003240bbb21c734f",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "dcd15f752244fd280a210e7f834d09271f3c5d6c74b217848f7c043872ac05c5",
+      "fetched_at_utc": "2026-10-12T08:17:21.309714Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZGFpbHlwcmVzcy5jb20vMjAyNi8xMC8xMS9mYWl0aC12YWx1ZXMtaXRzLW9rLXRvLWVtYnJhY2UtdGhlLWRyYW1hLWVzcGVjaWFsbHktbm93Lw",
+      "http_status": 404,
+      "sha256": "0d89aa4f139c44474dee37b0ffc6be2fe2d60d25d486e7826a1d7c5c6c4a8cae",
+      "byte_count": 195
+    },
+    {
+      "ioc_sha256": "ea1e99ffaa155c38520d07934d620316e8f8eeb6b88e28960cc28ffb8b3f5367",
+      "fetched_at_utc": "2026-10-12T08:17:37.790982Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93YWx0b25iZC5jb20vbGVkLWxpZ2h0L3Nwb3QtZG93bi1saWdodA",
+      "http_status": 404,
+      "sha256": "54bd3732ebf3827a21d1a79d38cb5593eecc414540bbf3ff977e81bd2012399c",
+      "byte_count": 131
+    },
+    {
+      "ioc_sha256": "6068bce156be32b10e28eea3d4cff05961c38ecac9689f5582c2cd36f531a40a",
+      "fetched_at_utc": "2026-10-12T08:17:54.283243Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9rZXl3b3Jkc2V2ZXJ5d2hlcmUuY29tL2Jsb2cv",
+      "http_status": 404,
+      "sha256": "2e12e08c643bdca12090d86f70cc0f1f9a13fb9d411226432a5057d8431bf2f4",
+      "byte_count": 117
+    },
+    {
+      "ioc_sha256": "f7e23b7352c62fce964df09858bea5933be8c99b4821a10605fad8b332c2e5f1",
+      "fetched_at_utc": "2026-10-12T08:18:10.949522Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly83c2hpZnRzLmNvbS93aGF0LXJlc3RhdXJhbnQtZW1wbG95ZWVzLXdhbnQv",
+      "http_status": 404,
+      "sha256": "95c521755029408f1cb53e3f634ec079bcf05923fb1587451d951e939103cd4f",
+      "byte_count": 137
+    },
+    {
+      "ioc_sha256": "c9f76770ad1403618e6460558373e19ce6271462d107f97fb910e2dce3c82f81",
+      "fetched_at_utc": "2026-10-12T08:18:27.389359Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tYWNwYXcuY29tL3N1cHBvcnQvY2xlYW5teW1hYy9rbm93bGVkZ2ViYXNlL2Rpc2NvdW50cw",
+      "http_status": 200,
+      "sha256": "7e3cb9d10be59b4266fee4c7790012fe84500fdf287074c2409c154b83a87856",
+      "byte_count": 14111
+    },
+    {
+      "ioc_sha256": "4816e78858b16bd1dc7d163165d1036b27f6aecc7e838179b64db4f9b580f0e4",
+      "fetched_at_utc": "2026-10-12T08:18:43.864755Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jZW50cmFsaW5kZXguY29tL2RhdGEtYWxsaWFuY2Uv",
+      "http_status": 404,
+      "sha256": "0f9756ea4dce57e28587f87b1ebd127045614206d6b78c83bdc480a442167b2a",
+      "byte_count": 121
+    },
+    {
+      "ioc_sha256": "08691f2c59e0da0f79439c5a8a07ce7354d5f3e957920be36cfedbfc57fc2b9b",
+      "fetched_at_utc": "2026-10-12T08:19:00.456044Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ibG9nZnJlZWx5Lm5ldC9zaWdudXA",
+      "http_status": 404,
+      "sha256": "0a02cc0987ae2e1f6904e30cced908643ef0728ede22cff0c14e3f800e36287e",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "7cfb172513e8b70ea255307353afaed45e2e98110928e42a2e3e791dacffd0e8",
+      "fetched_at_utc": "2026-10-12T08:19:16.989034Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zbWFydGFzc2V0LmNvbS90YXhlcy9jdXJyZW50LWZlZGVyYWwtaW5jb21lLXRheC1icmFja2V0cw",
+      "http_status": 200,
+      "sha256": "e4678e7453358d97fa6997d5d42e31a2169d986905ada75669aba6bf6903aaa2",
+      "byte_count": 18896
+    },
+    {
+      "ioc_sha256": "933a0564ccd74a66eb36d587e5ffae1d6ccebe3b9ae994a1802a418d0ce35d56",
+      "fetched_at_utc": "2026-10-12T08:19:33.628146Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iZHNtbHIuY29tL3JlZ2lzdGVy",
+      "http_status": 200,
+      "sha256": "5f92977be3fa94deabc4bcf35daff02503984e5d5f320507682e6e54cd5332a2",
+      "byte_count": 15680
+    },
+    {
+      "ioc_sha256": "157104a3cd5070ae92438b94b3662e51020db3e84e0a2bbf43573174a9d7b324",
+      "fetched_at_utc": "2026-10-12T08:19:50.221623Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hbmRlcnNub3Jlbi5zZS9nZWFyLw",
+      "http_status": 404,
+      "sha256": "ac8a0f546e9c6f355800ac677ef8de7256dc5e9befd4efeab8d7cf97d90a2429",
+      "byte_count": 107
+    },
+    {
+      "ioc_sha256": "046610f54040b945688244fe76a37af9252f41bf3a395315ccf5d3dc69d7ca78",
+      "fetched_at_utc": "2026-10-12T08:20:06.739766Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZGVsc29sLmNvbS5teC93Y3Mvc2hvcC9lcy9kZWxzb2wvSW5mYW50aWxlcy9Sb3BhLUJlYmVzL0Jlcm11ZGFzLXktU2hvcnRzLTEx",
+      "http_status": 404,
+      "sha256": "43cd77b3f2da4d7306b805d254f74cd5ff460231730972ca5e1c0dab4a58f36f",
+      "byte_count": 185
+    },
+    {
+      "ioc_sha256": "bcdad8bd53628bfa53b7939d02f3123a2a7e16464f5527634255bad230ced488",
+      "fetched_at_utc": "2026-10-12T08:20:23.196354Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9pb3NwcmVzcy5jb20vcHJvZHVjdHMtdGVzdA",
+      "http_status": 404,
+      "sha256": "17706ad722adeb51ef2edb10c3b93b46e379f73cbd75006da84ac44affcbfbf7",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "fcdf96a16d965db07b3031afafd1797f9884e41958e0468ed33a71b6537a5530",
+      "fetched_at_utc": "2026-10-12T08:20:39.899963Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zdW1hbGwuc3Vtby5vci5qcC9jb2xsZWN0aW9ucy9vb2lyaS1idWt1cm8",
+      "http_status": 404,
+      "sha256": "70baaa1fdaa8624bb1f152498aab6f915ff917a605f51dc66d39b9decc585286",
+      "byte_count": 136
+    },
+    {
+      "ioc_sha256": "e36444b6a5c093a3b7a3f4d294f2131d6a6a237e1c2122ef343d86cb8160645b",
+      "fetched_at_utc": "2026-10-12T08:20:56.435406Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuYW1hLWFzc24ub3JnL2V2ZW50cw",
+      "http_status": 200,
+      "sha256": "8f7a12793533ebaa7ceb23b737ce852d1d61209258c06771a7ec400d1601c232",
+      "byte_count": 17243
+    },
+    {
+      "ioc_sha256": "4b00509abb935cc8beb8cac20fe932cfee154632ce9e8ef9da94f9b8555de860",
+      "fetched_at_utc": "2026-10-12T08:21:13.039439Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zbGlpZGUuY29tL3Rlcm1zLWNvbmRpdGlvbnM",
+      "http_status": 404,
+      "sha256": "89a2894de3534ca5d97d2e8fb48ffd6bc7c7517fce71d848d40c8780c61c2772",
+      "byte_count": 116
+    },
+    {
+      "ioc_sha256": "a6e202eea1aec6ea3b158d29043def4220e91599e7704311e896f69a477563b4",
+      "fetched_at_utc": "2026-10-12T08:21:29.563515Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hb3YuYWkvcGFydG5lcnMv",
+      "http_status": 404,
+      "sha256": "4aeca68bed2f4b740f01f0ae85f00c98d16e66dbbc5b031a9f8afee7df3dde62",
+      "byte_count": 101
+    },
+    {
+      "ioc_sha256": "5ce2a80b88bac22a98580b976470a83cbadd57af3088b4f83a57ab653b4561de",
+      "fetched_at_utc": "2026-10-12T08:21:46.068347Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wcmljZXNkYXkubmV0LzIwMjEvMTIvMTUvJWQ4JWI5JWQ4JWIxJWQ5JTg4JWQ4JWI2LSVkOCViNCVkOSU4NiVkOCViNyVkOCVhOS0lZDglYjElZDklODUlZDglYjYlZDglYTclZDklODYtMjAyMi8",
+      "http_status": 404,
+      "sha256": "a4d5018986201ba277a216e216bfb735302820891a85ac2b442fc0ee08ddee41",
+      "byte_count": 228
+    },
+    {
+      "ioc_sha256": "c51871c90754d87fb20cf4e6971bb852c8428c6c4ea77f4388474cdd1a48e9f9",
+      "fetched_at_utc": "2026-10-12T08:22:02.887589Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wcmluY2lwYWwuY29tL2ZpbnBybw",
+      "http_status": 404,
+      "sha256": "5179de86ee256008fdf33d5d5c7261079baed1530f3d231ddfbba682797fa428",
+      "byte_count": 107
+    },
+    {
+      "ioc_sha256": "3d708dcde3f17878cfc5d24fcd8077cab252bf9f54daaba5ce9e24632293d7ec",
+      "fetched_at_utc": "2026-10-12T08:22:19.415584Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zdGVhbWdhbWVzLmNvbS8_bD1yb21hbmlhbg",
+      "http_status": 404,
+      "sha256": "576069d91a41ed8354d129371be2aa7c4a7e30fef1f26a2f5d2db996e239301f",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "c66d6218fe5cfa7bd90dd8a65163729bc4dfa6816ab93d026c56b3bc562b5056",
+      "fetched_at_utc": "2026-10-12T08:22:36.028996Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jb29sLXR2Lm5ldC9jaC9uYXN1bC10di5odG0",
+      "http_status": 200,
+      "sha256": "8aadb53973fa7a52fe7226da72d8ad07802a1b3baf42a0d0a0fbec6808ba54da",
+      "byte_count": 14861
+    },
+    {
+      "ioc_sha256": "01d6e31202408661b30d44fbc654cdbad18b8e3d18da91f9fb04780ef7c48698",
+      "fetched_at_utc": "2026-10-12T08:22:52.621068Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93b3JrdHJpYmUuY29tL3doYXQtd2UtZG8vcmVzZWFyY2gtbWFuYWdlbWVudC93b3JrdHJpYmUtdGltZXNoZWV0cw",
+      "http_status": 404,
+      "sha256": "1e7a1f5d24e4556109e783034f85c1487845cde417f596da1c1d4e9d3adf17cd",
+      "byte_count": 167
+    },
+    {
+      "ioc_sha256": "4f36643d8f9cfc8a44d17ea861fe02e6fbee7b2374ad593ddfe80b4c80550be9",
+      "fetched_at_utc": "2026-10-12T08:23:09.263622Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yZWNydWl0Lm1vbm90YXJvLmNvbS9jYXJlZXIv",
+      "http_status": 200,
+      "sha256": "3244ddabca7e4c8ff7b1248469390fc95c42c60127ebb096e7c1413fb4859933",
+      "byte_count": 13071
+    },
+    {
+      "ioc_sha256": "93783a467edd2306192f088e719e70ac6bccb694dab2d77694fed5a63de75960",
+      "fetched_at_utc": "2026-10-12T08:23:26.348679Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9pbXNscC5vcmcvd2lraS9JTVNMUDpOZXdz",
+      "http_status": 404,
+      "sha256": "fe41a7de1124b2ba25e71466096b9ae16700717e182ced190cd2cdf468dc5f41",
+      "byte_count": 113
+    },
+    {
+      "ioc_sha256": "ad41bf1d9a3dcb11ce020661eaaf8a668de4eaefa1e34350b28208a817f0a571",
+      "fetched_at_utc": "2026-10-12T08:23:42.850853Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tdW5kb3NleGFudW5jaW8uY29tL2NvbnRhY3Rhck1TWA",
+      "http_status": 404,
+      "sha256": "95d25dcff571232af63b1c8db3ab2e113cee04a06c2054ddab47c38167983b65",
+      "byte_count": 123
+    },
+    {
+      "ioc_sha256": "07cc6ed542bf8d068ed38486aa6ee80ebef195ae9d94481fb052b5a03b6d4981",
+      "fetched_at_utc": "2026-10-12T08:23:59.341245Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cubzIucGwvdGFnL25ld3Mv",
+      "http_status": 200,
+      "sha256": "660c65ef041b5e7f3e8c1cc14c641ac08f5ac1d17a02566e5446d9d4291a7e1a",
+      "byte_count": 12405
+    },
+    {
+      "ioc_sha256": "de2f9503c1fb8041b9436f1ca0d7427a177ebdc0386a3f7963b4766932ce7483",
+      "fetched_at_utc": "2026-10-12T08:24:16.003402Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuY2RtLm1lL3BvbGl0aWthL3Z1a292aWMtY3JuYS1nb3JhLWRhbmFzLW1vemRhLXphdHZhcmEtaS10cmVjZS1wb2dsYXZsamUtc2EtZXUtY2VrYS1zZS1zYWdsYXNub3N0LWplZG5lLWNsYW5pY2Uv",
+      "http_status": 404,
+      "sha256": "ce844312e5f0fa7150a0e8a3de4492fe217198a0ec14b77e128a7196f92ea7cc",
+      "byte_count": 233
+    },
+    {
+      "ioc_sha256": "34a6b216c6decd410911c8249bb6cf5a761fc4020a36b09a2ec1078d3036c900",
+      "fetched_at_utc": "2026-10-12T08:24:32.487608Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iYXJrLmNvL2NvbGxlY3Rpb25zL2R1bmtpbg",
+      "http_status": 404,
+      "sha256": "fddfd470979039b9bde4af3092f0e73c0160fb719ab4709354bfab1c8faf2b82",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "f9844a42eb51d8bbae3c0da52568eb57c3e9b343e6c709b201b4639f48b70c53",
+      "fetched_at_utc": "2026-10-12T08:24:48.959609Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tb2RhbC5jb20vbGxtLWFsbWFuYWM",
+      "http_status": 404,
+      "sha256": "3bdd69c7e89041df940a9d2f769b9a89181ea2940daf91d46a32c243e4208acc",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "49cab868d7cb6e019609f3ee065c6dd17d8123e1241c57d58d66586b7ca40002",
+      "fetched_at_utc": "2026-10-12T08:25:05.414752Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jb29sY2Nsb3VkLmNvbS93d3cuemVnby5pbQ",
+      "http_status": 404,
+      "sha256": "e95c59510d768517c5f368bf9cbbcba461346fd8d6c4febd3a3a164c35ab20e1",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "73a5478901e061c1c8c114bc784f53055a1ff11f0e1f2236e84bde726ef10dae",
+      "fetched_at_utc": "2026-10-12T08:25:21.905670Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuYm9jZS5jb20vbG9jYWxfbmV0d29yaw",
+      "http_status": 404,
+      "sha256": "a16c09eb389997f692a694a104fc3856170ae68f7b5be0b9c3db6956329f4605",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "20afedc5feeb96d94b6d41b97bf1482a50627570ac0fd741ef8f005275abd6e7",
+      "fetched_at_utc": "2026-10-12T08:25:38.427183Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zaWduaW5hcHAuY29tL2hzL2N0YS93aS9yZWRpcmVjdD9lbmNyeXB0ZWRQYXlsb2FkPUFWeGlnTExQMGFqJTJCNXVOdHhSVlAzZFRUU0slMkZ1MElQQmUyS2FsTlUyUkZQbERKVFBnZDNoM3dJMlVSY2MlMkJxQTNTYU44dXFleDBHT1psaTFlT2k0Tnkzdm9VaHJZT2VzRHBDJTJGN044RnZIMW53YkZVT2dyc3pRRjVpWkNLbm44MzFQU05jdmNRMWhRcm5haiUyQjNndlR5M1RKR3VPclhvbDBpNjRBbDhVNVB5ZkpDaUtBWDdPQlpsSndXaGdXc2RoUUhwUkhVeGpOMTEzUWklMkYlMkYyRSZ3ZWJJbnRlcmFjdGl2ZUNvbnRlbnRJZD0zMDMwNjk1MDM3MzQmcG9ydGFsSWQ9MjU2MTA1MTImaHNMYW5nPWVu",
+      "http_status": 404,
+      "sha256": "bcc6bfa76586458f12d15bdb4350776bc47356c876d8e0ee031d1e0d04cc5155",
+      "byte_count": 529
+    },
+    {
+      "ioc_sha256": "ac1f546a430ed1b867d6c6f36e15a1a5bce19e0e3fe5b67e5939d41d4ee45220",
+      "fetched_at_utc": "2026-10-12T08:25:55.719907Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuYXJ0aWN1bGF0ZS5jb20vYWJvdXQvYWNjZXNzaWJpbGl0eS8",
+      "http_status": 200,
+      "sha256": "11c274343b33e71e21b8c048649aea2e231aad85586b393f84fd81e1f49d6919",
+      "byte_count": 39497
+    },
+    {
+      "ioc_sha256": "e135b9a9dd362a57bc55ca9a2e9eb82bf28b1567e44195be0e2af85ca7315ffa",
+      "fetched_at_utc": "2026-10-12T08:26:12.382807Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jaGVja2RvbWFpbi5kZS9ibG9nLw",
+      "http_status": 404,
+      "sha256": "c4935d2b96221ca8043265373792238fc325188af8f130d416cc169dfe04b464",
+      "byte_count": 107
+    },
+    {
+      "ioc_sha256": "a0eb570a17cdb8e741fa3ee7fd89474774bb852e30cf864bfe690e72528c2a78",
+      "fetched_at_utc": "2026-10-12T08:26:29.020867Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuaXRhdGlhaWEuY29tLmJyL2NvbHVuYXMvZmlsaXBlLWhvcnRhL21laW8tYW1iaWVudGUvYWd1YS1lbmVyZ2lhLWUtbWluZXJhaXMtby1ub3ZvLWN1c3RvLWRlLWNvbXBldGlyLW5hLWVjb25vbWlhLw",
+      "http_status": 404,
+      "sha256": "e2c746f3cc73d7dbf1da99f566dc634e4d8779b10c8ba18825421d3b90f9c892",
+      "byte_count": 235
+    },
+    {
+      "ioc_sha256": "0c152e331671728d5b2dbe3e3b05c3b0aa2fa4e5a90f9aea64ba414031e5fecc",
+      "fetched_at_utc": "2026-10-12T08:26:45.567091Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9nbGVhbi5jb20vc29sdXRpb25zL2luZHVzdHJpZXMvcHJvZmVzc2lvbmFsLXNlcnZpY2VzL2l0LXNlcnZpY2Vz",
+      "http_status": 404,
+      "sha256": "e2fb6d5e1aecb6dd5fb385f8b9cd7c427a0562515faa57ce2cd5700f439313cc",
+      "byte_count": 165
+    },
+    {
+      "ioc_sha256": "65e8124bce197b29b4a01af3a08fe3c38af42b012592959d833a37ec1edcdbf1",
+      "fetched_at_utc": "2026-10-12T08:27:02.283487Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly92b2x1bnRlZXJpbmcuYXJ0aHJpdGlzLm9yZy8_bmQ9bV9ob21l",
+      "http_status": 404,
+      "sha256": "39be0e56b9480fa8f42176105cb111803b44aeceafbd8c7ebe5c03a6b2990fed",
+      "byte_count": 129
+    },
+    {
+      "ioc_sha256": "2279fdc2587f9c1654a30cd528071a9042036ea15437e3dde76f30eb74a8c4f6",
+      "fetched_at_utc": "2026-10-12T08:27:18.849005Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly92aWN0b3JpYXNzZWNyZXQuY29tL3RoL3ZzL2xpbmdlcmll",
+      "http_status": 404,
+      "sha256": "24395d93fa7e99b487d73b8453d49c7b8ed639a5c416be26a179c3cfb1955ef1",
+      "byte_count": 125
+    },
+    {
+      "ioc_sha256": "a36f39936c2e9406e1a2ea592b29713fd5c1808dfed5e8dd7be04fcb99fe3895",
+      "fetched_at_utc": "2026-10-12T08:27:35.393541Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9teW9uLmNvbS9tb2JpbGVfZGV2aWNlLmh0bWw",
+      "http_status": 404,
+      "sha256": "460c055e554d3efd0a6df54e2603c004c1e7bcbbd74149ad1b55bcfe6c24fd07",
+      "byte_count": 116
+    },
+    {
+      "ioc_sha256": "907d3e5dc96baa6248275479058da69fdacf33072957a045f72c34ad45341d21",
+      "fetched_at_utc": "2026-10-12T08:27:51.909778Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jYW1wdXNwcmVzcy5jb20vaGlnaGVyLWVkLw",
+      "http_status": 200,
+      "sha256": "c687da223efdfc491e8cf888625915402eb8605242fbc5ee56b430d93cd42184",
+      "byte_count": 21955
+    },
+    {
+      "ioc_sha256": "36b9c36d29300fee0aca792f0eb4516b70387b44fb3b382a03fc72c24c5aff48",
+      "fetched_at_utc": "2026-10-12T08:28:08.926440Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9uaWMuY2x1Yi9hYm91dA",
+      "http_status": 404,
+      "sha256": "c561175cb81ec1deaff603da1800cd6ef4e8ee83c934a6667d1881f908004d54",
+      "byte_count": 99
+    },
+    {
+      "ioc_sha256": "1206c54c88289723fc8abc02198cb909671c52aa760aa7eafae073d4b1be8519",
+      "fetched_at_utc": "2026-10-12T08:28:25.409560Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZ2V0am9iYmVyLmNvbS9mZWF0dXJlcy9maWVsZC1zZXJ2aWNlLWNyZWRpdC1jYXJkLXByb2Nlc3Npbmcv",
+      "http_status": 404,
+      "sha256": "1532a442d9b95652a8087c17b15358d0c25394cee608bd04405809fce4af3d5e",
+      "byte_count": 165
+    },
+    {
+      "ioc_sha256": "f852140ca69c1a35af0dba13160409272017ad561a82bc444a4cb6c23bdc5e46",
+      "fetched_at_utc": "2026-10-12T08:28:41.930952Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuaGVscHNoaWZ0LmNvbS9zb2x1dGlvbi9jb21tdW5pdHkv",
+      "http_status": 404,
+      "sha256": "2a9c8c29fc81d9a107b0521aa9e1dd9e6f376d7cc58caba3d63af2beedf46631",
+      "byte_count": 129
+    },
+    {
+      "ioc_sha256": "c1b5c126823c7b84c6fecdf5a2e44b2de6ee6a5b62dc20fb2fa89ee1dbddb9a4",
+      "fetched_at_utc": "2026-10-12T08:28:58.432613Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9qYm9zcy5vcmcvYmxvZ3MuaHRtbA",
+      "http_status": 404,
+      "sha256": "eaee942bd72694e05c65099f131321ee2e5c8244f76145c25e83d9e8ee02fe20",
+      "byte_count": 107
+    },
+    {
+      "ioc_sha256": "4ac185b70791cf28a3afb99c2ed540273e91ce13cf7af2160018b234489727ae",
+      "fetched_at_utc": "2026-10-12T08:29:15.708423Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wZXJpbWV0ZXI4MS5jb20vc29sdXRpb25zL3JvbGUvaXQtbWFuYWdlcnM",
+      "http_status": 404,
+      "sha256": "db00224c5c9c5df2441d9b471e2d64493b98ca181d7daaf9237b865c0c6df4df",
+      "byte_count": 136
+    },
+    {
+      "ioc_sha256": "37a4c25601f91d1f3e7f41c5b002e5057bc30a21687e25869f297de295186505",
+      "fetched_at_utc": "2026-10-12T08:29:32.291750Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yZmEub3JnL2VuZ2xpc2gvc3BlY2lhbC1yZXBvcnRz",
+      "http_status": 404,
+      "sha256": "3833dcec189ce94d42f9b10095c8e6afb5eda7048cc1015877af30eff8422ea9",
+      "byte_count": 121
+    },
+    {
+      "ioc_sha256": "043bbf7fa1cde0c6cd66a916be77179103799f1543d74f5cb32b0a117c4a301c",
+      "fetched_at_utc": "2026-10-12T08:29:48.926298Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tb250Y2xhaXIuZWR1L2NhbXB1cy1saWZlL2NhbXB1cy1ob3VzaW5nLXJlc2lkZW5jZS1saWZl",
+      "http_status": 404,
+      "sha256": "c5c5156d5d338eca2f845b48a26bcb3d64b0475bc54104d615aecc8940940279",
+      "byte_count": 153
+    },
+    {
+      "ioc_sha256": "84be841d05656810cdcbfdaa7550ccba1cca008d58c1358c6bac412bcc776603",
+      "fetched_at_utc": "2026-10-12T08:30:05.375403Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9uaW50ZW5kby5jby51ay9pdC1pdC8",
+      "http_status": 404,
+      "sha256": "3356b1f2283c0454f659022def8e0e9b99128e5c13d3e818eeecfb057af5b08e",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "e08ae1db553b78199b1287c732634adf3b11c7eac3fced2c1716a0f1ba48f167",
+      "fetched_at_utc": "2026-10-12T08:30:21.871313Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yaWRpZ2l0YWwub3JnLmJyL3ZhbGlkYWNhby5hc3B4",
+      "http_status": 200,
+      "sha256": "337c4511232bb1a68fa2fee5ade31b9a4d57c1a0e0ca9b0b2a5c84cd71223ada",
+      "byte_count": 16882
+    },
+    {
+      "ioc_sha256": "cfe9bf172b39a6c91dac14187c2649ce1b32e8276634c54464ca8aa98cce838a",
+      "fetched_at_utc": "2026-10-12T08:30:38.414344Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9uZW9uY3JtLmNvbS9wcm9kdWN0LXRlcm1zLw",
+      "http_status": 404,
+      "sha256": "047a24aa10ec12a54d00f1c0459ce93c246574419fcd6e112089b8c7008b9e73",
+      "byte_count": 115
+    },
+    {
+      "ioc_sha256": "1c6e0e9f8517c595c130d9e3a2a70b45ab68cf69ea50598453fa1819e2e2207c",
+      "fetched_at_utc": "2026-10-12T08:30:54.891745Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ibGVycC5jb20vc3RyZWFtZXJz",
+      "http_status": 200,
+      "sha256": "4e69bff3a1ae46771e1c1faae9f3dc2e0575c2a8e49fa19233d9c2667f3adf09",
+      "byte_count": 15428
+    },
+    {
+      "ioc_sha256": "1d128671fa5891c67707536327f2d533a58ed52af6b71eab142205c861150bd2",
+      "fetched_at_utc": "2026-10-12T08:31:11.468932Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tb25hZC54eXovYmxvZy9tZXRhbWFzay1tb25leS1hY2NvdW50LWxhdW5jaGVzLW9uLW1vbmFk",
+      "http_status": 404,
+      "sha256": "0f2c2df8c0da4e50f3d7005342011a555d037cc41f17aa929085b267a3c313c0",
+      "byte_count": 153
+    },
+    {
+      "ioc_sha256": "8d13d5d9b3cb145ec77c0d8195081cdacff119803e623806029279bd6593dc24",
+      "fetched_at_utc": "2026-10-12T08:31:27.977779Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93ZWIua2FtaWhxLmNvbS93ZWIvdmlld2VyLmh0bWw",
+      "http_status": 200,
+      "sha256": "519707e9762c9afe1662c092a25f6c55940a39f75aed5483893ba545fdaca04b",
+      "byte_count": 33915
+    },
+    {
+      "ioc_sha256": "64cbd2639eabeac5be8d379685abb8f5cabf176236526bd5cb64bf654f2ae7a9",
+      "fetched_at_utc": "2026-10-12T08:31:44.712974Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly90aGV1cHNzdG9yZS5jb20vc21hbGwtYnVzaW5lc3Mtc2VydmljZXMvYnVzaW5lc3MtbWFuYWdlbWVudA",
+      "http_status": 404,
+      "sha256": "6f444dbcf633c546eb3f031f423938a17ad925cdb637f0c591bd8b0bf15d4e1f",
+      "byte_count": 159
+    },
+    {
+      "ioc_sha256": "5aa84cc5c672f648f2146ef96f71e2d6ca10d62e64af0fd5c364cbc850a74321",
+      "fetched_at_utc": "2026-10-12T08:32:01.200623Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9vbmUuY29tL2VzLw",
+      "http_status": 404,
+      "sha256": "aacd2bce160d638ca08123b4f0074c0534cffa059743a031cc4aff8aeeaeb06a",
+      "byte_count": 95
+    },
+    {
+      "ioc_sha256": "3d63f740621cd9c7bb4d81455ca80d6090b883fa621892f2d24d19ba68737e19",
+      "fetched_at_utc": "2026-10-12T08:32:17.709826Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jay5naWdhZmlsZS5udS9zdWItY29udGVudHMtbWVtYmVyLWxwXzE",
+      "http_status": 404,
+      "sha256": "84fd7a7ce80b9c1aef712ac5e6016fae4b621a0e74dce5d54442c2402d5c04b8",
+      "byte_count": 132
+    },
+    {
+      "ioc_sha256": "ea227e31ddcef97f2b9ec3424dd3b78105f4c0a89c658634d4550b925d47fa49",
+      "fetched_at_utc": "2026-10-12T08:32:34.203294Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9teS5mZW5nbmlhby5jb20vMTA0MzMyMTA",
+      "http_status": 404,
+      "sha256": "8f874c85350a83abb0244f64111e3a2214070c4f6e348f4e03e536e7e477f426",
+      "byte_count": 112
+    },
+    {
+      "ioc_sha256": "c10c48bc7233394e35a1bc945620f592aa0c022637b05db33ae0e56da00c2d7b",
+      "fetched_at_utc": "2026-10-12T08:32:50.773110Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuY25iY3R2MTguY29tL3BlcnNvbmFsLWZpbmFuY2UvcXVhbnQtc2lmLWZ1bmQtZ2Fpbi1vdmVyLTMwLXBjLXNpbmNlLWluY2VwdGlvbi13aGF0LW1heS1oYXZlLXdvcmtlZC0yMDAwOTU5NS5odG0",
+      "http_status": 404,
+      "sha256": "dd6521d5c3ad80c67aae0bf8ff5dda54f1ce640ca458299e467ebe3de224d14a",
+      "byte_count": 232
+    },
+    {
+      "ioc_sha256": "3fdcc434f0470fc1adee583b4a296573bbb744e0e902eaccdce7f7c5a139789d",
+      "fetched_at_utc": "2026-10-12T08:33:07.228660Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zYXR0YS1yZXN1bHRzLmNvbS9jaGFydC5waHA_aWQ9MTI2JnllYXI9MjAyNiZtb250aD0xMA",
+      "http_status": 404,
+      "sha256": "d4685b95b4b4a6a064223559ad24b81128e2d25c39835fb7096b016ef68e524c",
+      "byte_count": 151
+    },
+    {
+      "ioc_sha256": "5e0b75c5e1961cc0727e05ffdc813d3b5698328a8fb4a81fb6b82ef87bd606ad",
+      "fetched_at_utc": "2026-10-12T08:33:23.752127Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cDovL2J5c2V4LmNsaWNrL2F6aWF0a2kv",
+      "http_status": 404,
+      "sha256": "32f752f290c578467df1f690fba74199214d0075d7b495b16c2cd94d94375550",
+      "byte_count": 105
+    },
+    {
+      "ioc_sha256": "1fddc940c1740fa69199c95d65f5a3ea111ab18dd340396841f7820bf09d6bbe",
+      "fetched_at_utc": "2026-10-12T08:33:40.225171Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jbGlkZW8uY29tL2ZpbHRlci12aWRlbw",
+      "http_status": 200,
+      "sha256": "45713ee6f26396bedc9eac9ab008890b72d3672e9aa6cbf616f63d18878666e0",
+      "byte_count": 10846
+    },
+    {
+      "ioc_sha256": "5b07f627042346bdd67f25c0b5baed878fc0bd11f50fd59795039d0597b0dc1d",
+      "fetched_at_utc": "2026-10-12T08:33:56.694113Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zbXZlbmQuaW8vZW4vY29udGFjdHM",
+      "http_status": 404,
+      "sha256": "63ca36daa70cf2926146e7f34845928668418b072477c11f3260ceef2ded10a5",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "ee3f0af73741450d0801f53e7df7e9796e975a196824bbe39b9e90d371302f5f",
+      "fetched_at_utc": "2026-10-12T08:34:13.303306Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yc21zLm1lL2hvcGhvcC8",
+      "http_status": 404,
+      "sha256": "e2d89325ba88d460096a3772c303ab0fcf462c89ad7f640d8015127ecf78cb2f",
+      "byte_count": 100
+    },
+    {
+      "ioc_sha256": "a57958b4a86a8873531f4b64af7a30f8b7e7d3c4962ba8c2e3dc405adc6a4f89",
+      "fetched_at_utc": "2026-10-12T08:34:29.772009Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hdXRvbW9iaWxlLnRuL2ZyL25ldWYvbWl0c3ViaXNoaQ",
+      "http_status": 404,
+      "sha256": "746986ed1cebbd451fa765d4958dabd0f07bed2b90584c3cf841b729bc2fecb0",
+      "byte_count": 123
+    },
+    {
+      "ioc_sha256": "3017b5ebf27a55c33cb3b9e7b962838cc97d62b9dba1cda9ce80e4e34a94c707",
+      "fetched_at_utc": "2026-10-12T08:34:46.802871Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hbGljZXN3LmNvbS9saXN0cy83NS5odG1s",
+      "http_status": 404,
+      "sha256": "110facac3f63da6a2293726684b9690e40b0e5df2fafc7e9b4ac0bba8a4fb974",
+      "byte_count": 113
+    },
+    {
+      "ioc_sha256": "7ec77451a48711d5b958310af1712792f2037a844152c0a8faac7ccbd32d2db3",
+      "fetched_at_utc": "2026-10-12T08:35:03.417898Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9mcmFtZXJ1c2VyY29udGVudC5jb20vYWdlbmNpZXMv",
+      "http_status": 404,
+      "sha256": "5b2ceb6a437efe4e81bf844b7464f3fd88c96bb83d67b8c12d96ab19c0ea70b7",
+      "byte_count": 121
+    },
+    {
+      "ioc_sha256": "763e30c59eefbb7145b5233fee469b196643a059c0155abb25486e740753e3c0",
+      "fetched_at_utc": "2026-10-12T08:35:19.928595Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cud25wLnBsL2VuZXJnaWEvdHJhbnNmb3JtYWNqYS1lbmVyZ2V0eWN6bmEtbmFwZWR6YS1yeW5lay1rYWJsb3d5LXByb211amVteS1sb2NhbC1jb250ZW50LWV1cm9wZWpza2ksMTEwNjg4OS5odG1s",
+      "http_status": 404,
+      "sha256": "a8c1b7851bb00ec11da27ddb1a9dd8013de1fc18dc43062c22164a2c41a09d6c",
+      "byte_count": 233
+    },
+    {
+      "ioc_sha256": "150efd93b9127b65ae2bd16fd078e3893e604d9b522db2dcd883f21bff633bad",
+      "fetched_at_utc": "2026-10-12T08:35:36.403278Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9maXRzbWFsbGJ1c2luZXNzLmNvbS90dXJib3RheC1wcmVtaWVyLXZzLWhvbWUtYW5kLWJ1c2luZXNzLw",
+      "http_status": 404,
+      "sha256": "a442f64717a54c04cb78907665b9ae59bedfe382cf35f8ae6424fd6975ac90fd",
+      "byte_count": 159
+    },
+    {
+      "ioc_sha256": "7545556ab1488db2cc7596637282e473503a0a8d21fd090b4d75bbf9c907c731",
+      "fetched_at_utc": "2026-10-12T08:35:52.918212Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9nZXRkcm9wYm94LmNvbS9hYm91dA",
+      "http_status": 404,
+      "sha256": "b77c0369a0b09dec5d5b8aecb355a2d160b6fdf984c318e0d193f842d170cc2d",
+      "byte_count": 107
+    },
+    {
+      "ioc_sha256": "1465044c7d1f9069be47c3d320b9ec12fe747b239ae41b032a2636b16e4ed55c",
+      "fetched_at_utc": "2026-10-12T08:36:09.448886Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9mZXV4ZGVmb3JldC5mci9vY2NpdGFuaWUvbG90Lw",
+      "http_status": 404,
+      "sha256": "b1423212cbe34928ba0f91b90cd86d2231d1a984e32da4d15b09aee9aa7985d2",
+      "byte_count": 119
+    },
+    {
+      "ioc_sha256": "b8dd31598e547020cdfe9afb2105165fa09a30ca7919d95fc0eb0fa182e23e64",
+      "fetched_at_utc": "2026-10-12T08:36:25.903995Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly92YW5pdHlmYWlyLmNvbS9zdG9yeS9sYWNobGFuLW11cmRvY2gtbmV3LWVzdGFibGlzaG1lbnQ",
+      "http_status": 404,
+      "sha256": "5fb5b4fb09f2a127ee111372457519f3a8797a49ad1863e12b5faf1c858a3ec7",
+      "byte_count": 152
+    },
+    {
+      "ioc_sha256": "6c9c32181286c002e8c4db8d9bc96b8d0883b556853ee0e8d3c16d675f7b707b",
+      "fetched_at_utc": "2026-10-12T08:36:42.459541Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9tb2ZhLmdvdi5zYS9hci8",
+      "http_status": 404,
+      "sha256": "4809b6d4c78c9e9cc196a71d7fe0a38330a4174b106046bce39e8f94821253ad",
+      "byte_count": 100
+    },
+    {
+      "ioc_sha256": "6b8e7f8d775c42e6e8abdd0b264a9e8fd737d587ef404a6c12d1c48608815156",
+      "fetched_at_utc": "2026-10-12T08:36:59.074027Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ib3hvZmZpY2Vtb2pvLmNvbS9zaG93ZG93bi9zZDIyMTgzMjU1MDgvP3JlZl89Ym9faG1fc2Q",
+      "http_status": 404,
+      "sha256": "867734f3d2183194ff3a43a9566bdce4a848ba550fb4174574d24585ac5dc689",
+      "byte_count": 152
+    },
+    {
+      "ioc_sha256": "91433e061f1b31434e9373055ea730763796f7283a6dfcb52c5743c3161fc63e",
+      "fetched_at_utc": "2026-10-12T08:37:15.596740Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wdXNoeS5tZS9kb2NzL2FkZGl0aW9uYWwtcGxhdGZvcm1zL2NvcmRvdmE",
+      "http_status": 404,
+      "sha256": "063dd27916ee3afc8ed9a470c1bb4037f7764fd2c6046324a1af94e94a54d20b",
+      "byte_count": 136
+    },
+    {
+      "ioc_sha256": "1cb6d29b45ae8a51712612804e71c4db46373bfe7fae0969602c18456c9924fa",
+      "fetched_at_utc": "2026-10-12T08:37:32.515234Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9md3VwZC5vcmcvbHZmcy9kb2NzL3VzZXJz",
+      "http_status": 200,
+      "sha256": "3ef7b28c6fc376e423167ad9143fbf9b1d4bf17a1950360632e1e878a7db7d19",
+      "byte_count": 13374
+    },
+    {
+      "ioc_sha256": "504c1c7e3475985b0a1734e3bb4a66bfa6d3bddf837608321fa54bf570a93d21",
+      "fetched_at_utc": "2026-10-12T08:37:49.394331Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wb2Rpby5jb20vZXh0ZW5zaW9ucw",
+      "http_status": 200,
+      "sha256": "afe739836ffbd64428d09d06593dbf7706ce8b7ecaad068ce414f5a85a3c5ab9",
+      "byte_count": 11979
+    },
+    {
+      "ioc_sha256": "5cfac2c42ca4107b8ac8f3a6466ba6111cbe6d7fa52ceac63775b95203c8ee0a",
+      "fetched_at_utc": "2026-10-12T08:38:05.897234Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zdG9yZS11cy5zZW1pLm9yZy9jb2xsZWN0aW9ucy9zZW1pLXVuaXZlcnNpdHkvZWxudHBjLXNhZmV0eS1mYWNpbGl0eS13b3JrcGxhY2UrbGFuZy1lbmdsaXNoP3NvcnRfYnk9Y3JlYXRlZC1kZXNjZW5kaW5n",
+      "http_status": 404,
+      "sha256": "934d063ee89de5f1dc8f16ab13ec13ab229bd03014763922579ea9a65471934f",
+      "byte_count": 237
+    },
+    {
+      "ioc_sha256": "fa9ce4df6fc1613354a3ae6a64732d1267a18a81ef6a06c9ada1ede223500424",
+      "fetched_at_utc": "2026-10-12T08:38:22.429707Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9uZXRpbmZvLmJnL2JpdHJpeC5waHA",
+      "http_status": 404,
+      "sha256": "320df90db9fa0026671ec0186934eb8aec366bd3709280561ec60d384474d03a",
+      "byte_count": 108
+    },
+    {
+      "ioc_sha256": "0f489e65bccb63fa6bb4a8778a57f9bedc9317a17f5fe0a2d5789f3a9b3aa9b4",
+      "fetched_at_utc": "2026-10-12T08:38:38.939225Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jcmlvbGxhc3guY29tL3RhZy9fZ2FieTEteC8",
+      "http_status": 404,
+      "sha256": "a4a062c967d88cf34ab54757228b33de524c1a44cdd863b5e312678b3a19234f",
+      "byte_count": 116
+    },
+    {
+      "ioc_sha256": "e1602eab6d1096b580f5e1347458ba2d79c227bfacba23315618007c348e3fcb",
+      "fetched_at_utc": "2026-10-12T08:38:56.183019Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iYW5xdWUtZnJhbmNlLmZyL2ZyL3N0YXRpc3RpcXVlcy90aGVtZXMtc3RhdGlzdGlxdWVzLWV0LXNlcmllcy13ZWJzdGF0LWFzc29jaWVlcw",
+      "http_status": 404,
+      "sha256": "d9c6188769b24d1c4d8e6ac155eef64049bb7468564c4595e8f78c3f1df2dd95",
+      "byte_count": 187
+    },
+    {
+      "ioc_sha256": "567d5cb9ba3821870479a6dce8afbaa3bb718190f86cb54a3b615ce6a00c9e9d",
+      "fetched_at_utc": "2026-10-12T08:39:12.655591Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9uYW5vcmV2aWV3Lm5ldC9lbi9wcml2YWN5",
+      "http_status": 200,
+      "sha256": "dcafd7d5b4da91d0578e3a1af7a0541bf699d782cf34f3c6cd0cdd7f2cad40f9",
+      "byte_count": 14404
+    },
+    {
+      "ioc_sha256": "147ed02c446938a865503c070d8d7508c634d9f975cca6871bc624e9add02c54",
+      "fetched_at_utc": "2026-10-12T08:39:29.666408Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9vYnNpZGlhbi5tZC96aC8",
+      "http_status": 200,
+      "sha256": "9c436d01753da418e4b5766784f313f894f47ce53bb73a5c1868dceb4078e86c",
+      "byte_count": 20236
+    },
+    {
+      "ioc_sha256": "653787439567f2dbe84c12007aa5dedc460e1efc41e41f74f0d65b7b3c8753ae",
+      "fetched_at_utc": "2026-10-12T08:39:46.550164Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZG9jdGlzc2ltby5mci9odG1sL3NhbnRlL21hZy8yMDA2LzkzMzEtbWVuc3VyYXRpb25zLWZyYW5jYWlzLmh0bQ",
+      "http_status": 200,
+      "sha256": "8c299eb95f45815398a483b9811c56b5a58544a742095f27a30d84ea81eb3c29",
+      "byte_count": 15157
+    },
+    {
+      "ioc_sha256": "7be33137e95737e21d55752ba14f1b337c17b87b4b08ba3cec7a272b5f3dd447",
+      "fetched_at_utc": "2026-10-12T08:40:03.236935Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cudHVpLmNvbS90dWkta2lkcy1jbHViLz9jb250ZW50aWQ9MV9oYl90dWlraWRzY2x1Yl8yMDI2MDcxNQ",
+      "http_status": 404,
+      "sha256": "87ad05f1a892177372fd45b33be40cf95f273f5b85284f2a45366388195d1e03",
+      "byte_count": 163
+    },
+    {
+      "ioc_sha256": "be507d40481dc56acbe18757071e59a5608b2d53f5d3ad083dba773057b9f7fa",
+      "fetched_at_utc": "2026-10-12T08:40:19.765324Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9sYXN2ZWdhc3N1bi5jb20vcHJpdmFjeS1wb2xpY3kv",
+      "http_status": 404,
+      "sha256": "bc6b8ad35b3fb1fab66829890cae7b0ade95903e662a1b83aafcdd7c188177b2",
+      "byte_count": 121
+    },
+    {
+      "ioc_sha256": "c6ac9ee6481ff1fe52f655f85376f3d85378175e8fe2c291c812ee13ffd91edd",
+      "fetched_at_utc": "2026-10-12T08:40:36.300641Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zbHVzaC5hcHAvZG93bmxvYWQ",
+      "http_status": 200,
+      "sha256": "c89e9505513ff5ff8bf01ddba9ea027facd2fcf5a72ac932ba4acdddb4124135",
+      "byte_count": 37751
+    },
+    {
+      "ioc_sha256": "b20344d04b51bd169e862e29bc937ccf885f120c800e0279913ab9f7004ce8ce",
+      "fetched_at_utc": "2026-10-12T08:40:52.941028Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly94dmlkZW9zLnR2LmJyL3hueHgvbGVzYmljYXMtbm92aW5oYS1zZXhvLW1ldGVuZG8v",
+      "http_status": 404,
+      "sha256": "cc42bd7bf9cced5e9777cd1257bd5141c832dbb2121d16b5d5ce40a24315110f",
+      "byte_count": 145
+    },
+    {
+      "ioc_sha256": "0977d842b273c4799cb3d97bbfd4ef1f04aa125ddb8349c5cde8c4f79ec5de42",
+      "fetched_at_utc": "2026-10-12T08:41:09.432186Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9hYWdhZy5jb20vbWlycm9yL3JlLnBocD9zcz1ldG9sYW5kXzk0OTYzMTM",
+      "http_status": 404,
+      "sha256": "d7dd40513b5002fdf5511f791e760f2ab5de6c72873abeaedec689d838fbee96",
+      "byte_count": 136
+    },
+    {
+      "ioc_sha256": "555b3cce2fdda5d9ec8f6a43163f9d07036311dd983dd60dd0a6cea9ee66b4c8",
+      "fetched_at_utc": "2026-10-12T08:41:25.986895Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zaG9waWZ5LmRldi9kb2NzL3RoZW1lcy9zdG9yZS9yZXF1aXJlbWVudHM",
+      "http_status": 404,
+      "sha256": "ca13ccca9eb8421e52fcb6c5a8460ad38f5770a79e18c7455d38b37522796bf6",
+      "byte_count": 136
+    },
+    {
+      "ioc_sha256": "bc4ef2b6fe3e411dec3d9b660d48db2a0c32fbf818ec0a222f5c1fc14e149a27",
+      "fetched_at_utc": "2026-10-12T08:41:42.540940Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iZXByZXNzLmNvbS9vcGVuLWFjY2Vzcw",
+      "http_status": 404,
+      "sha256": "2813d4d0e41e952e097b30247a7a2f6b01a28ef1f90f820c081c93a345ad11a7",
+      "byte_count": 111
+    },
+    {
+      "ioc_sha256": "e72cd8fa73b056697fbf807d55f173e9ec6c0e4b0e983634c2a393b32ee2c219",
+      "fetched_at_utc": "2026-10-12T08:41:59.090380Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9kb2NzLmRyb3Bib3hhcGkuY29tL2Ryb3Bib3gtYXBpL2RvY3Mvc2Rrcy9zd2lmdA",
+      "http_status": 404,
+      "sha256": "e0d435895bef4da0ad90d767cf48330f2feb4d84409ab8b260e1d093da1b0e17",
+      "byte_count": 143
+    },
+    {
+      "ioc_sha256": "cc0cb3ef19afedeffd2aa833371d248879c43d13bbd3e7ddee4bd5b3ac5cd28c",
+      "fetched_at_utc": "2026-10-12T08:42:15.609263Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9yZW1vdGUuY29tL3doeS1yZW1vdGUvY3VzdG9tZXItZXhwZXJpZW5jZQ",
+      "http_status": 404,
+      "sha256": "dc7a842c901c9d594e3ccc5a870df86b8a906158ff98410bfeb3ce871e975e54",
+      "byte_count": 135
+    },
+    {
+      "ioc_sha256": "e5e6fd16ee0224c5d04e6bc844a41ad33845ef459533e29e29351daaeafde1b6",
+      "fetched_at_utc": "2026-10-12T08:42:32.067505Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9odGMuY29tL3RoL3N1cHBvcnQvaHRjLW1pbmktcGx1cy8",
+      "http_status": 404,
+      "sha256": "561cfe173c91160746079d607f47d73bdca9449daaba540c57bced67bda6a54c",
+      "byte_count": 124
+    },
+    {
+      "ioc_sha256": "44b266e51fbc71549742def23f6f41bc5bc9a12dfaa35e7e9273610b9a09c4bb",
+      "fetched_at_utc": "2026-10-12T08:42:48.588446Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9wcmVtaW9uLmNvbS9wcmVtaW9ucy1icmFuZC1zYWZldHktcG9saWN5Lw",
+      "http_status": 404,
+      "sha256": "cffe52f8e17c00160e08a87251f6f3b5745eda0bebc95c5b91330dcb55c697a0",
+      "byte_count": 135
+    },
+    {
+      "ioc_sha256": "d7c98ebc212c920fb4ea5c8fd25fd41623cdd0fe3d52f60adc65aa6b2fbadfca",
+      "fetched_at_utc": "2026-10-12T08:43:05.108081Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZmlyc3RpbnNwaXJlcy5vcmcvYWJvdXQvaGlzdG9yeQ",
+      "http_status": 404,
+      "sha256": "3733887fd6f3f5e01fea83ece2cc128832e42013495b7cd4ff248cda0de73881",
+      "byte_count": 127
+    },
+    {
+      "ioc_sha256": "d8d93f2682117512ca31e40b72a401427115534dcb990b4913f477193a5bf62e",
+      "fetched_at_utc": "2026-10-12T08:43:21.635467Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly8xOXdpa2k2LmNvbS_tlZzqta0vM2EwZGE0ODctOTJjNy00NjBlLThjNzUtN2RkYzNhOGFlOWRi",
+      "http_status": 404,
+      "sha256": "e93999018fa6cd257622bfc76af14267f4809a271352c9edfb4c2a276fe0bb7d",
+      "byte_count": 153
+    },
+    {
+      "ioc_sha256": "62108c309433e833af66375b47817f66034a6a40ca7012c08f79d2aec0e516c5",
+      "fetched_at_utc": "2026-10-12T08:43:38.184641Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iaW9sb2dpY2FsZGl2ZXJzaXR5Lm9yZy9wcm9ncmFtcy9wb3B1bGF0aW9uX2FuZF9zdXN0YWluYWJpbGl0eS9mb29kLXgv",
+      "http_status": 404,
+      "sha256": "cba2e3f32546119f2458ca4f58a85bfb16a6dd2fa85355ab0d64f52016ffd19d",
+      "byte_count": 173
+    },
+    {
+      "ioc_sha256": "564c650661842076ba4b3a8e0117170cc028e42bfd48120e347ef00e1dc063af",
+      "fetched_at_utc": "2026-10-12T08:43:54.699924Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jb29raWVhbmRrYXRlLmNvbS92ZWdldGFibGUtZnJpZWQtcmljZS1yZWNpcGUv",
+      "http_status": 200,
+      "sha256": "dc9c4c24d8d24ccde644ed20bdca875c755d5420c2cd5442b65954452a6f5189",
+      "byte_count": 17573
+    },
+    {
+      "ioc_sha256": "89af591dc949ebf054c5d2602127f14adc1373143fb50b0d967c19d2278312ab",
+      "fetched_at_utc": "2026-10-12T08:44:11.648369Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93ZWNoYXRwYXkuY24vaW5kZXgucGhwL3B1YmxpYy93ZWNoYXRwYXlfZW4",
+      "http_status": 404,
+      "sha256": "b52bdddce1ac3fe6bc60af4a81cc84a8c6aca5f80511e6a533474e37d622dcb2",
+      "byte_count": 136
+    },
+    {
+      "ioc_sha256": "a5f07b5525a8200673aea30a7765c2289c1dbbe589f227e2440a4a22242aa108",
+      "fetched_at_utc": "2026-10-12T08:44:28.237839Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9zY2FsYXBheS5jb20vYXQ",
+      "http_status": 404,
+      "sha256": "a7d22ad9659e854d3e9720c4f77fc5b2bb4c2972fba1f76ac604b1843e6a05f3",
+      "byte_count": 100
+    },
+    {
+      "ioc_sha256": "032e5df0b76f2158b530498b4342ab1a150ff4238b4308cb0a33b8c9ac42faba",
+      "fetched_at_utc": "2026-10-12T08:44:44.742028Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuaG5hLmRlL3Nwb3J0L2JnLWdvZXR0aW5nZW4vYmctNzQtZ29ldHRpbmdlbi1laW5lLXJ1bmRlLXdlaXRlci03NTQ5LWdlZ2VuLXR1cy1iZXJsaW4tbGljaHRlcmZlbGRlLTk0NTM1Nzk4Lmh0bWw",
+      "http_status": 404,
+      "sha256": "58d3d44eb1192ba37d64cd09a4d1b1d5d8135006bc69eb76722a585b06c00181",
+      "byte_count": 232
+    },
+    {
+      "ioc_sha256": "5dd9c7c8f0b28e99f1b413463eeca50a4e557861b6e6c826a61e2b4f5fd50180",
+      "fetched_at_utc": "2026-10-12T08:45:01.251131Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9jbHViZWFkdWx0by5uZXQvcXVpY2tzLzEyNTA5Lw",
+      "http_status": 404,
+      "sha256": "519c3710e2861289daa54a807270281121b291d09221ffba2853a92209dbb11b",
+      "byte_count": 119
+    },
+    {
+      "ioc_sha256": "d5ff9edd5b0f73241bec0e49941632eba46b2d22d863d3ac94f9e0cc5b035366",
+      "fetched_at_utc": "2026-10-12T08:45:17.778029Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93d3cuZ3JlZW5nZWVrcy5jb20vd2ViaW5hcnMv",
+      "http_status": 404,
+      "sha256": "a28f482655fa6bf867a80af0a324e87dc28685a537a15f2c05c05f96118b1292",
+      "byte_count": 117
+    },
+    {
+      "ioc_sha256": "7c8aa6b095223eb05f69462eb823c84364accb99d26c01fa2694aeba5cb02b6b",
+      "fetched_at_utc": "2026-10-12T08:45:34.371333Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly93b3QtbGlmZS5jb20vZXUvcGxheWVyL1BldGVyTHVzdGlnNzktNTU2MjYxNjMyLw",
+      "http_status": 404,
+      "sha256": "11ae74da0ed7204c8f6b0157ed7eaf9baa9225730bf08d83e3a54afa04eecce9",
+      "byte_count": 143
+    },
+    {
+      "ioc_sha256": "cd49bcc403c9a0831fb947f4b4e83976a88dc544da7b5a8eed3e93400b9ffd26",
+      "fetched_at_utc": "2026-10-12T08:45:51.071443Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9ibGVuZC5zY2hvb2wvcGFyZW50",
+      "http_status": 200,
+      "sha256": "43306eca1082dd2e5f7397250a541cee03d92d405ac1673ffe685dde7b11644e",
+      "byte_count": 10714
+    },
+    {
+      "ioc_sha256": "40f717453cf537f4678d5a2f051a834aa6d2a5286f74ab3990f985daf5da1bd8",
+      "fetched_at_utc": "2026-10-12T08:46:07.818266Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9uZXh0ZXJzZ2xvYmFsLmNvbS9lbi90ZXJtc19vZl9zZXJ2aWNl",
+      "http_status": 404,
+      "sha256": "dde88c807e10932313b5e80c7dcde493fc5da4f1c6169073d6998ab76f04ed49",
+      "byte_count": 129
+    },
+    {
+      "ioc_sha256": "c42db0bdd426c55277c893546340639f6cda2178dcca23ea751398e4af976818",
+      "fetched_at_utc": "2026-10-12T08:46:24.299594Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9iYWxrYW5pbnNpZ2h0LmNvbS9pbnN0aXR1dGlvbmFsLw",
+      "http_status": 404,
+      "sha256": "3f25481aad26451377f3258ef5de066be69fce7022cfc1cdd5811dc1c8d41830",
+      "byte_count": 123
+    },
+    {
+      "ioc_sha256": "50296558d81950a1f871ad64ecdd54f695eaca1a5af2b71438c1ccc65118392f",
+      "fetched_at_utc": "2026-10-12T08:46:40.827463Z",
+      "request_url": "https://www.virustotal.com/api/v3/urls/aHR0cHM6Ly9xei5jb20vcXVvdGUvUEJSLkE",
+      "http_status": 404,
+      "sha256": "16fe99fc18580a86a9c6ecd52b794adaec718681321dbb8fea26cf1e138734cc",
+      "byte_count": 104
+    }
+  ],
+  "dropped_items": [
+    {
+      "ioc": "https://tryhardguides.com/ownership-funding-and-advertising-policy/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://drift.com/platform/pipeline-inspection-software",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://redehost.com.br/br/talk/chatbot-whatsapp",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://marcusoscarsson.se/nytt-budgetmarke-fran-lidl-ska-saljas-i-hela-sverige/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://radiolab.org/radiolab-read-credit",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://kucoin.plus/markets/rankings",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://cn.com/abuse",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://melcloud.com/select-site?to=%2Ffr&market=guadeloupe",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://meripehchaan.gov.in/privacy",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://clarip.com/privacy/clarip-case-studies",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://biometricupdate.com/biometrics-blogs",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://google.no/services/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://jamesclear.com/privacy-policy",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.mindtools.com/blog/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://nikkeibp.co.jp/company/group.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://informburo.kz/weather/ust-kamenogorsk",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://zedal.de/startseite",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://ceur-ws.org/Vol-2880/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.lanebryant.com/help/loyalty-terms-and-conditions?intid=lb_global_disclaimers_loyaltytc_20260910",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://sumologic.com/company/careers",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://em-consulte.com/offresAbonnement",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://grohe.com/en-GB/category/Bathroom/Washbasin_area",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://maricopa.gov/3598/About-Maricopa-County",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://airfind.com/cart",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://eneba.com/store/amazon-gift-cards?enb_campaign=Homepage&enb_content=Main%20Categories%20Navigation&enb_medium=link&enb_source=https%3A%2F%2Fwww.eneba.com%2F&enb_term=Amazon",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://bokeptod.pro/bokep-sma-jilbab-pap-pacar-lanjut-ngewe-di-hotel/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://englishclub.com/search/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://spin-better.net/sk/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://supplyframe.com/consumer-products",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.looti.net/15/9563/p188/%F0%9F%87%B9%F0%9F%87%B7%D9%81%DB%8C%D9%84%D9%85%D9%87%D8%A7%DB%8C-%D8%B3%DA%A9%D8%B3%DB%8C-%D8%AA%D8%B1%DA%A9%DB%8C%D9%87-%D8%A7%DB%8C%F0%9F%87%B9%F0%9F%87%B7",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://origin.com/games/a-way-out",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://givebutter.com/nonprofit-payment-processing",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://pornomilf.vip/porno-2023/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://pyppo.com/assets/terms-of-service.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://cbs8.com/helpbutton",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://tavily.com/customer-stories/bell-cyber",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://one.hu/kisvallalkozasok",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.smzdm.com/fenlei/lenggui/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://codeblackbelt.com/products/shipping-rates-calculator-plus",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://mencretmesum.store/artis-indo-viral-kopi-malam-kalah-manis-dari-senyummu-heartwarming-the-story-behind/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://restaurant.org/research-and-media/media/press-releases/national-restaurant-association-launches-made-in-restaurants%e2%80%9d-to-celebrate-industry%e2%80%99s-role-in-build/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.familie.de/familienleben/diese-19-harry-potter-fakten-kennt-selbst-so-mancher-fan-nicht--01H120FAGN92YY3RKJ87M513FC",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://radio.net/s/94wipsportsradio",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://oxy.edu/academics/areas-study/physics/3-2-engineering-program",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://feeder.co/compliance",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://tvguide.com/news/harry-potter-tv-series-hbo-max/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.freesexarab.com/tags/curvy/",
+      "reason": "ambiguous",
+      "vt_label": "AMBIGUOUS",
+      "malicious_engine_count": 2
+    },
+    {
+      "ioc": "https://over-blog.fr/mag/jeux-video",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://raisingchildren.net.au/legal/privacy",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://pmc.com/our-brands/flow-space",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://gemius.pl/pl/kontakt/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://amoxibest.top/legal",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://google.vg/intl/th/policies/privacy/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://kmail-lists.com/it/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://consortiumnews.com/2014/05/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://rudderstack.com/customers/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://wotpack.ru/rules-comments/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://blockpi.network/case-studies/particle",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://mailcontrol.com/login_reset_request.mhtml",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://adme.ru/cookies/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://guesty.com/fr/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://headwayapp.co/codeship-changelog",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://konfidency.com.br/privacy-policy",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://konicaminolta.com/index.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://oferplan.diariosur.es/ofertas-descuentos/descubre-malaga-jugando-play-and-glory-1495-18205.html?edicion=malaga",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://thinglink.com/safety-training",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://astrotalk.com/kaal-sarp-dosh-calculator",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://bang-olufsen.com/en/int/legal/privacy-policy",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://empiresandpuzzles.com/guides",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://x-fetish.tube/models/please-tread-on-me/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://hentai18.net/read-hentai/what-a-fox-uncensored-chapter-11-ch146515",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://bokeplot.com/bokep-smp-bocil-viral-di-setubuhi-ayah-tiri/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://nuki.io/en/legal/gtc",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.uschamber.com/economy",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://1177.se/barn--gravid/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.dailypress.com/2026/10/11/faith-values-its-ok-to-embrace-the-drama-especially-now/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://waltonbd.com/led-light/spot-down-light",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://keywordseverywhere.com/blog/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://7shifts.com/what-restaurant-employees-want/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://centralindex.com/data-alliance/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://blogfreely.net/signup",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://andersnoren.se/gear/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.delsol.com.mx/wcs/shop/es/delsol/Infantiles/Ropa-Bebes/Bermudas-y-Shorts-11",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://iospress.com/products-test",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://sumall.sumo.or.jp/collections/ooiri-bukuro",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://sliide.com/terms-conditions",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://aov.ai/partners/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://pricesday.net/2021/12/15/%d8%b9%d8%b1%d9%88%d8%b6-%d8%b4%d9%86%d8%b7%d8%a9-%d8%b1%d9%85%d8%b6%d8%a7%d9%86-2022/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://principal.com/finpro",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://steamgames.com/?l=romanian",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://worktribe.com/what-we-do/research-management/worktribe-timesheets",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://imslp.org/wiki/IMSLP:News",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://mundosexanuncio.com/contactarMSX",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.cdm.me/politika/vukovic-crna-gora-danas-mozda-zatvara-i-trece-poglavlje-sa-eu-ceka-se-saglasnost-jedne-clanice/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://bark.co/collections/dunkin",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://modal.com/llm-almanac",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://coolccloud.com/www.zego.im",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.boce.com/local_network",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://signinapp.com/hs/cta/wi/redirect?encryptedPayload=AVxigLLP0aj%2B5uNtxRVP3dTTSK%2Fu0IPBe2KalNU2RFPlDJTPgd3h3wI2URcc%2BqA3SaN8uqex0GOZli1eOi4Ny3voUhrYOesDpC%2F7N8FvH1nwbFUOgrszQF5iZCKnn831PSNcvcQ1hQrnaj%2B3gvTy3TJGuOrXol0i64Al8U5PyfJCiKAX7OBZlJwWhgWsdhQHpRHUxjN113Qi%2F%2F2E&webInteractiveContentId=303069503734&portalId=25610512&hsLang=en",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://checkdomain.de/blog/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.itatiaia.com.br/colunas/filipe-horta/meio-ambiente/agua-energia-e-minerais-o-novo-custo-de-competir-na-economia/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://glean.com/solutions/industries/professional-services/it-services",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://volunteering.arthritis.org/?nd=m_home",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://victoriassecret.com/th/vs/lingerie",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://myon.com/mobile_device.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://nic.club/about",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.getjobber.com/features/field-service-credit-card-processing/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.helpshift.com/solution/community/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://jboss.org/blogs.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://perimeter81.com/solutions/role/it-managers",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://rfa.org/english/special-reports",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://montclair.edu/campus-life/campus-housing-residence-life",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://nintendo.co.uk/it-it/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://neoncrm.com/product-terms/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://monad.xyz/blog/metamask-money-account-launches-on-monad",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://theupsstore.com/small-business-services/business-management",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://one.com/es/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://ck.gigafile.nu/sub-contents-member-lp_1",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://my.fengniao.com/10433210",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.cnbctv18.com/personal-finance/quant-sif-fund-gain-over-30-pc-since-inception-what-may-have-worked-20009595.htm",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://satta-results.com/chart.php?id=126&year=2026&month=10",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "http://bysex.click/aziatki/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://smvend.io/en/contacts",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://rsms.me/hophop/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://automobile.tn/fr/neuf/mitsubishi",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://alicesw.com/lists/75.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://framerusercontent.com/agencies/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.wnp.pl/energia/transformacja-energetyczna-napedza-rynek-kablowy-promujemy-local-content-europejski,1106889.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://fitsmallbusiness.com/turbotax-premier-vs-home-and-business/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://getdropbox.com/about",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://feuxdeforet.fr/occitanie/lot/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://vanityfair.com/story/lachlan-murdoch-new-establishment",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://mofa.gov.sa/ar/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://boxofficemojo.com/showdown/sd2218325508/?ref_=bo_hm_sd",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://pushy.me/docs/additional-platforms/cordova",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://store-us.semi.org/collections/semi-university/elntpc-safety-facility-workplace+lang-english?sort_by=created-descending",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://netinfo.bg/bitrix.php",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://criollasx.com/tag/_gaby1-x/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://banque-france.fr/fr/statistiques/themes-statistiques-et-series-webstat-associees",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://obsidian.md/zh/",
+      "reason": "ambiguous",
+      "vt_label": "AMBIGUOUS",
+      "malicious_engine_count": 1
+    },
+    {
+      "ioc": "https://www.tui.com/tui-kids-club/?contentid=1_hb_tuikidsclub_20260715",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://lasvegassun.com/privacy-policy/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://xvideos.tv.br/xnxx/lesbicas-novinha-sexo-metendo/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://aagag.com/mirror/re.php?ss=etoland_9496313",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://shopify.dev/docs/themes/store/requirements",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://bepress.com/open-access",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://docs.dropboxapi.com/dropbox-api/docs/sdks/swift",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://remote.com/why-remote/customer-experience",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://htc.com/th/support/htc-mini-plus/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://premion.com/premions-brand-safety-policy/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.firstinspires.org/about/history",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://19wiki6.com/한국/3a0da487-92c7-460e-8c75-7ddc3a8ae9db",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://biologicaldiversity.org/programs/population_and_sustainability/food-x/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://wechatpay.cn/index.php/public/wechatpay_en",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://scalapay.com/at",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.hna.de/sport/bg-goettingen/bg-74-goettingen-eine-runde-weiter-7549-gegen-tus-berlin-lichterfelde-94535798.html",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://clubeadulto.net/quicks/12509/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://www.greengeeks.com/webinars/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://wot-life.com/eu/player/PeterLustig79-556261632/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://nextersglobal.com/en/terms_of_service",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://balkaninsight.com/institutional/",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    },
+    {
+      "ioc": "https://qz.com/quote/PBR.A",
+      "reason": "http_404",
+      "vt_label": "NO_REPORT",
+      "malicious_engine_count": null
+    }
+  ],
+  "output_file": "evidence\\independent_url_holdout_2026-10-11\\clean_round2_vt\\clean_labeled.json",
+  "script_git_commit": "04587259476b21664e61ea0b0b348a5bdb48eab4",
+  "script_git_dirty": true
+}

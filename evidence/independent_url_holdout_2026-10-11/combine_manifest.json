@@ -1,0 +1,78 @@
+{
+  "script": "combine_independent_url_holdout.py",
+  "created_at_utc": "2026-10-12T10:53:29.806630Z",
+  "seed": 20261011,
+  "input_order": [
+    "openphish",
+    "phishtank",
+    "clean"
+  ],
+  "inputs": {
+    "openphish": {
+      "path": "evidence\\independent_url_holdout_2026-10-11\\malicious_openphish.json",
+      "input_rows": 100,
+      "sha256": "95ff92c24e7d97ab330be309917f08e0ab9bf45ebe6f8712ba9b193ce6c3dbc6",
+      "round_counts": {
+        "openphish": 100
+      },
+      "label_counts": {
+        "MALICIOUS": 100
+      }
+    },
+    "phishtank": {
+      "path": "evidence\\independent_url_holdout_2026-10-11\\malicious_phishtank.json",
+      "input_rows": 100,
+      "sha256": "d1cdc9593ef082f8d0e92ee54fb421e023f3df3e09e6b6329ad7e392da280f15",
+      "round_counts": {
+        "phishtank": 100
+      },
+      "label_counts": {
+        "MALICIOUS": 100
+      }
+    },
+    "clean": {
+      "path": "evidence\\independent_url_holdout_2026-10-11\\clean_final\\clean_labeled_final.json",
+      "input_rows": 56,
+      "sha256": "e41b309d3d873328e18f58787e6592df222a96623c3ef6ba52aeaed5eb45defd",
+      "round_counts": {
+        "tranco": 56
+      },
+      "label_counts": {
+        "CLEAN": 56
+      }
+    }
+  },
+  "counts_by_stage": {
+    "input_rows": 256,
+    "output_rows": 256,
+    "dropped_rows": 0,
+    "counts_by_file": {
+      "openphish": 100,
+      "phishtank": 100,
+      "clean": 56
+    },
+    "counts_by_round_and_label": {
+      "openphish": {
+        "MALICIOUS": 100
+      },
+      "phishtank": {
+        "MALICIOUS": 100
+      },
+      "tranco": {
+        "CLEAN": 56
+      }
+    },
+    "counts_by_label": {
+      "MALICIOUS": 200,
+      "CLEAN": 56
+    }
+  },
+  "output": {
+    "path": "evidence\\independent_url_holdout_2026-10-11\\combined_holdout.json",
+    "row_count": 256,
+    "sha256": "88de8f6bb5ff87239c7304f35479cbbafbc2d11aa2e9b8ece610d24a77cb066c"
+  },
+  "dropped_items": [],
+  "script_git_commit": "eeb71688a6c5065d6e09813473138d272da573d9",
+  "script_git_dirty": true
+}

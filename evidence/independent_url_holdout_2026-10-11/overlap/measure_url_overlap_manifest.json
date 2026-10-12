@@ -1,0 +1,1210 @@
+{
+  "script": "measure_url_overlap.py",
+  "input_file": "evidence\\independent_url_holdout_2026-10-11\\combined_holdout.json",
+  "seed": 20261011,
+  "counts_by_stage": {
+    "input_rows": 256,
+    "malicious": 200,
+    "clean": 56,
+    "threatfox_url_hit": 0,
+    "threatfox_host_hit": 6,
+    "source_errors": 256
+  },
+  "overlap_by_round_and_label": {
+    "openphish": {
+      "MALICIOUS": {
+        "rows": 100,
+        "c2_exact": 0,
+        "c2_host": 0,
+        "threatfox_exact": 0,
+        "threatfox_host": 1
+      }
+    },
+    "phishtank": {
+      "MALICIOUS": {
+        "rows": 100,
+        "c2_exact": 0,
+        "c2_host": 0,
+        "threatfox_exact": 0,
+        "threatfox_host": 5
+      }
+    },
+    "tranco": {
+      "CLEAN": {
+        "rows": 56,
+        "c2_exact": 0,
+        "c2_host": 0,
+        "threatfox_exact": 0,
+        "threatfox_host": 0
+      }
+    }
+  },
+  "overlap_table_csv": "evidence\\independent_url_holdout_2026-10-11\\overlap\\url_overlap_summary.csv",
+  "c2_feed_files": {
+    "montysecurity_combined": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\montysecurity_combined.raw",
+      "fetched_at_utc": "2026-10-12T10:56:03.451100Z",
+      "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/combined.csv",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "drb_ra_30day": {
+      "status": "ok",
+      "http_status": 200,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\drb_ra_30day.raw",
+      "fetched_at_utc": "2026-10-12T10:56:03.932332Z",
+      "source_url": "https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/IPC2s-30day.csv",
+      "request_kind": "c2_feed",
+      "sha256": "eaa1eccf48aa3e5f22ef13269495203d66be9149548cdbae5405878cd6e6dd05",
+      "byte_count": 10332
+    },
+    "jmousqueton": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\jmousqueton.raw",
+      "fetched_at_utc": "2026-10-12T10:56:04.240365Z",
+      "source_url": "https://raw.githubusercontent.com/jmousqueton/C2-Tracker/main/c2-tracker.csv",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "stamparm_maltrail": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\stamparm_maltrail.raw",
+      "fetched_at_utc": "2026-10-12T10:56:04.649967Z",
+      "source_url": "https://raw.githubusercontent.com/stamparm/maltrail/master/trails/static/malware/c2.txt",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "c2_all_ips": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\c2_all_ips.raw",
+      "fetched_at_utc": "2026-10-12T10:56:05.060281Z",
+      "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/ips/all.txt",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "c2_cobalt_strike": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\c2_cobalt_strike.raw",
+      "fetched_at_utc": "2026-10-12T10:56:05.382481Z",
+      "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/Cobalt%20Strike.csv",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "c2_metasploit": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\c2_metasploit.raw",
+      "fetched_at_utc": "2026-10-12T10:56:05.776980Z",
+      "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/Metasploit.csv",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "c2_sliver": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\c2_sliver.raw",
+      "fetched_at_utc": "2026-10-12T10:56:06.100553Z",
+      "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/Sliver.csv",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "c2_brute_ratel": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\c2_brute_ratel.raw",
+      "fetched_at_utc": "2026-10-12T10:56:06.491995Z",
+      "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/Brute%20Ratel%20C4.csv",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    },
+    "c2_havoc": {
+      "status": "error",
+      "http_status": 404,
+      "path": "evidence\\independent_url_holdout_2026-10-11\\overlap\\c2_feeds\\c2_havoc.raw",
+      "fetched_at_utc": "2026-10-12T10:56:06.799269Z",
+      "source_url": "https://raw.githubusercontent.com/montysecurity/C2-Tracker/main/data/Havoc.csv",
+      "request_kind": "c2_feed",
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "byte_count": 14
+    }
+  },
+  "dropped_items": [
+    {
+      "source": "montysecurity_combined",
+      "reason": "http_404"
+    },
+    {
+      "source": "jmousqueton",
+      "reason": "http_404"
+    },
+    {
+      "source": "stamparm_maltrail",
+      "reason": "http_404"
+    },
+    {
+      "source": "c2_all_ips",
+      "reason": "http_404"
+    },
+    {
+      "source": "c2_cobalt_strike",
+      "reason": "http_404"
+    },
+    {
+      "source": "c2_metasploit",
+      "reason": "http_404"
+    },
+    {
+      "source": "c2_sliver",
+      "reason": "http_404"
+    },
+    {
+      "source": "c2_brute_ratel",
+      "reason": "http_404"
+    },
+    {
+      "source": "c2_havoc",
+      "reason": "http_404"
+    },
+    {
+      "ioc": "https://w3signin.xyz/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://network-office-cm51.bolt.host/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://web-okex-wallet-us.typedream.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://netflix-clone-five-ruby.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://gtv-pl1il.global.ssl.fastly.net/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://orangetrade.net/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://kxt8244z.demox.site/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://onchaindiagnois.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://us-monet.direct.quickconnect.to/cgi-bin/index.ha",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://kj2p-iwzb-xag78-qxi9-1iy.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://dawsondublin.spahotel.guru/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://netflixcol.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://cn.memxzf.com/home/register?code=54263/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.r.oblox.com.et/users/5467244032/profile%5C",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.3g.5.ztbdkj.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Trezor%20Guide%20Link%206%5D",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://glogin.calenblymeet.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://598913.xyz/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://cywkzhsska.cfd/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://exoduswalletcc.pages.dev/%22%3EExodus",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.nouvelle-reception-fond-lebon-coin.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://amazon-clone-jade-five.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://protected-user-practice-6eiy8jqthc.s3.ca-central-1.amazonaws.com/ecedhvjlnjmi0jjo2wcw.html",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://udorofuse.zapto.org/mufo/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://icloudbr-inc.com/expire/?2",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://esl-org-payment-verifynow.cfd/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.binance-account-login.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://g5.lu/386cy",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://security-check-secure.cfd/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://nlink.at/HAnd?/https://www.roblox.com/communities/8206589556/unset",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://binance-account-login.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://lnk.ink/jt1ff",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://cont17ct-nemvo-biz-zulra-fekun.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://nouvelle-reception-fond-lebon-coin.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www-deliverthewin-wpe-stage.usps.mrm-client.com/research-center/political-planning-tool/#/question/1",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://treursuite.square.site/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.signin-adobe-x4ou12j0f7c-3d031dfa-9ygwqx748489-4a60f031a-b62a.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://theguesstimate.com/camcam",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://roblox-4kx.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Wallet%20Setup%20Link%207%5D",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://netflix-clone-theta-ruby.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://netflix-clone-iota-two-39.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://palet.com.ua/de/app/login.php",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.fllicensehealthpdf-viewer.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.roblox.ly/users/770253869/profile/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://dawsondubl.spahotel.guru/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://testing-chase.hostmora.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://trezeth.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://rss2.sayler.at/go/y2C4Y254/z264X254",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://online-portal-bzst.cfd/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://voicemail.tsisd.ca/index.html",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://gang-1.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://portal365.dothome.co.kr/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://goo.su/2026-Seur",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://trfnf2.go.watchs.vip/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.roblox.rw/users/567384201879/profile",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://loquacious-axolotl-da2098.netlify.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://form.jotform.com/262591344749366",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://wh-appzn.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.grandparklara.spahotel.guru/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://testing-chase-page.hostmora.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://start-io-trzre.typedream.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://890091.xyz/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://sukonakoies-efeugghcfte8hvat.westeurope-01.azurewebsites.net/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.roblox.com.gr/games/8737602449/PLS-DONATE-?privateServerLinkCode=60869683094735370675006673192210",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.dawsondubl.spahotel.guru/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.acl.saintjohnmedicals.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://hanrahans.com/web/login.php?911ad&section=signinpage&ip=90b6d23d491ec570b9b691d7d4764d76&cookiecheck=yes&em=&device=AcceptComputer&destination=signin",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.scorpios.spahotel.guru/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://robnhixhildlogen.gitbook.io/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.acessoimediatocliente.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://metamaskuxlogen.gitbook.io/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://belgravess.spahotel.guru/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qazvuro-mpt-felqani-p8d4ka75.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://access-ledgr-desktop.pages.dev/favicon.ico",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://cba.zheimao.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://kidsgreenay.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://wh-appetn.com/index.html",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://tokeim-cdn-sg.beauty/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://max-slotmarvelx.click/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://jk9127.craftum.io/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.roblox.et/users/9153595208/profile",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://34abx.anixas.at:443/newtransfer",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://effortless-paletas-d1836b.netlify.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.suntrust-onlinebanking.blogspot.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://tokein-cdn-hk.lol/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://rbcode.net/v/271d9243d604619fd8547fbfc3a75f03",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://login-metemask-io.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.ravniko-zul594207.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://g5.lu/m8c7v",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.netflixcol.vercel.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://mail.amityhouse.org/gccc/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://pey-ahx.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://rbcode.net/v/1db576be7b231c830c8c02d313f9f2fc",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://valley-trail.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.amazonjobvip.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://www.belgravesands.spahotel.guru/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.roblox.rw/games/82294773713042/DO-NOT-ENTER-Original-Super-Sushi-Extreme?privateServerLinkCode=14633011511825217025565959325881",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://strts-ledgr.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://ledger-live-desktop-app-asc.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://l.wl.co/l?u=https://qrco.de/bfAZzhscvascweSV",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://europetranslations.net/secure/madeinchina/secure/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://ldgerlive.framer.ai/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://enattentedeconnexiondeserveur.mydurable.com/?pt=NjVhMDExNDZiMTMyOTU4NDU2Y2U0NjQ4OjE3MDUwMDIxODQuMDA1OnByZXZpZXc=",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vR8LAkQKh7j87bU6DNWmtzGHqBCHYaVQ5c1JVyNiOvKN_YYThTE94dBJ5onVaUQK94ci6hxaDGpAUx0/pub?start=false&amp;loop=false&amp;delayms=3000",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://moonshot-listing-dug.netlify.app",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://cfzpv-pubzm-g0y2-062-tdv.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://fixedsmartdappsresolver.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://l.ead.me/bgbtLC",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://bac-vmckf.com",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://q-r.to/bgcwSS",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://allegro.pl-984523.sbs",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qrco.de/bfIG6u",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://syr-03-metro-partner-2ms.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qrco.de/bgekU0",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://q-r.to/bga3Hp",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://eu.jotform.com/app/251960986008364",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://confirmation-appeal.start.page/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.dropbox.com/scl/fi/qyesaiwglti9vpk5ozh8f/Securely-sign-in-with-your-email-address-to-keep-you-updated..paper?rlkey=7h3kb1i41alobs1glcnvishg7&dl=0",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://q-r.to/bfPfzS",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://powr.io/form-builder/i/41113749",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://metafb-pegcoub.web.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://suivipersonnalise.com",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://allegrolokalnie.lokalne-ofety96953.click/oferta/PlayStation-5-Pro-2-TB-nowa/480820546",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://l.ead.me/bgaXu2",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://vewupunema.ddnsfree.com/ojulij/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://allegrolokalnie.oferta3947zxb299.click",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://about.pb3.duckdns.org/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://datefordate.weebly.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://xn--d1aqfkf.xn--p1ai:443/bitrix/.../GlobalSources/?email=info.sg@ovivowater.com",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://up2client.com/template/easy-calculators/plugin/demo/wp-includes/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://dkde239rikozefri.g18.email/webcard/de/4J6I-94E9B5D2A0/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://aruba.assistenzastaff.net/xe8m9zskHRo/areautenti/login.php",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://businesscenter-helppolicy.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://galcionci.st/jrk/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://us15.campaign-archive.com/?u=506f803ab1e9b75d8bcbe6346&id=379bfc9f36",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://signdevicelocation.com.tr/isignesp.php",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qrco.de/bfJw8N",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://l.ead.me/bfO8eM",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://primevideos-renouvellement.com/pages/mobile/remboursement/prime/confirmation.php",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vS-ub2EGAJWzCuyc5gCc_L3_g_pYCfTImpCy8tF5f5IcC484KDnNWdA5hOQE7SbUcCn347MhLYidzEm/pub?start=false&amp;loop=false&amp;delayms=3000",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://allegro.smar8u32781299.forum",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://apogeeleveller.com/htaccess/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/1VMkBDHLIwF8T671PlwwShY8JfEB7wQOswiam3YccFc8/pub?start=false&loop=false&delayms=3000&slide=id.p%3E",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://jalakzuakuaa.blogspot.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qr-codes.io/0a4n1G",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://fabulous-embeds-059788.framer.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://redigfrgklounoura.firebaseapp.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qrco.de/bg9hRp",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://case1009841851085.web.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vSmecDaBvcGU7v4ol41oSCBWNvd1fvxDzQ54C-fqrPiRUtq-MFxYkTLxx11V44PcTfDkMxl_-mfuIEf/pub?start=false&amp;loop=false&amp;delayms=3000",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://coxon8.godaddysites.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://startd-ledgrcdnapp.wixstudio.com/io-us",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://fidelidade-pontos-app.ct.ws",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://ln.run/L0isL",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://accountnoticealertsupport.weebly.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://q-r.to/bgcQ2m",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://bafkreiasemkrtgbf5dxtenhybiz4qv6uyesgzc4e5e3y3i6thi3zsghvcy.ipfs.dweb.link/?K2J8N4QVP=J7QL9M2BXVZnJhbmNlc2NvQG1B5XZ2W4NJF1Y2llbGxvLml0ZPQJ7T8W4K",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://q-r.to/bgccve",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://l.ead.me/bfLmLq",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://sp19ct7-lurem-biz-vadex-kafis.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://telegram-ca.pages.dev/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://l.ead.me/bgao3Z",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://espace97280.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://erionetrfindsa.weebly.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://forms.visme.co/fv/op6wpoz1-o9jyo9",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vRlmVF0AzHplBrNGC5XUsIsdT5hxED0OD6og213c-A2Szik0AcFOJX8-TV7-BhvuYq-Ih8Vglb_CuJs/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.p",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vTuTwetlYxT3IdIGLgV6ISe-76n02NPcLwncq_6z1JtV0SKd5bCXdcfTCq_63l6SEvVJ5CAHlBmBv-t/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.p",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://l.ead.me/bfbB9V",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://tiwofiana9.firebaseapp.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://corrieosap0teaam-corrieosap0teaam.netlify.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://share.hsforms.com/1QBQgHG2MR42dwVcU0mWSzAsp10q",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qrco.de/bfQPSK",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://conscientious-dragon-981945.framer.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://help---ex--azuure---coinbase-app.webflow.io",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://allegro-lokalnie.smar923801039.lat/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://mplobvfr.firebaseapp.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://datavine.ws/invoice/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "http://allegrolokalnie.pl-oferta182036.click",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://pub-49c39047b2314447857f660f5d89d43e.r2.dev/conversaxcxczxczxzczcwqqwwwq.html",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://limpa-cliente.vercel.app/atendimento/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/drawings/d/17ZCh9zkHHW0D8krLPxBV8kZ73lZdBwRu4rPzgCVbFuc/edit",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://incomplete-breakfast-362471.framer.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://telegra.ph/KF-272335-11-27#",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.dropbox.com/scl/fi/rqwa7nyayqn676cdeav2d/BT-VOICE.paper?dl=0&oref=e&r=ACOt9De9h8MTaEhxzRBWuEr8cpeVQdcjf-JmZyWHLscmhHw0mvAwyg7-zlKMnDglECNNxJoLIA0bb0KYnfcRTnlEjpRnRbYqsUIDL1A_K6AS45qxqfvz508QAPdjrg15M1ncLnT8SOr63ODr2v2g4grAKg7YjpMVdOrOpIJLChGVO0-QRh5YT7Kwwu-uibVAmZw&sm=1",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://bigtalkcentres.weebly.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://favorite-walrus-196809.framer.app/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://suivi-verification.site/login",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.dropbox.com/scl/fi/37jva6e0emybt7wgyypg8/CLICK-HERE-TO-CONTINUE.paper?rlkey=rwq5nurdal10rrsru60g96jc9&dl=0",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vScTG1e5TSqir95P45FGJfZ1qDK9w7QRDB-d2rFJUBO86UNfaKeYwCnflt8-34WUtAN_nqAQNJ_6NXD/pub?start=false&loop=false&delayms=3000&slide=id.p%3E",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://youssef.bdll457877.pro/captcha.php",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vRUymVErucJKKFN7l1cbKqfexdfLkyVZfRtXSafa-63dktpVY-5bNQw8nSJ-VeW8vOQXtDvuuS4nsaH/pub?start=false&amp;loop=false&amp;delayms=3000",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://docs.google.com/presentation/d/e/2PACX-1vQHV0Za_vJqVRtbONxkDnVWAMcFMZvELLNkN8uHVO8zbsq8nGlEsDF-1tW_h0U3E2uV_5kEO63cKrRc/pub?start=false&amp;loop=false&amp;delayms=3000",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://new.express.adobe.com/webpage/PG8n3TIpak0rm",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://domainsecurityerror.firebaseapp.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://serviciomaillo.weebly.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://comsync.lijit.com/1/d/r?aqet=clk&v0=247317e1984ecadbe0c97b369b2d0221&ru=https%3A%2F%2Fnew.express.adobe.com%2Fwebpage%2FdIvaZYbJ9y4qO",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://q-r.to/bfGkvJ",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://icashback-5bddf.firebaseapp.com/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://qrco.de/bgbOi3",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://api.country.is/openapi.json",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://lingojam.com/translators",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://privadovpn.com/copyright-policy/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://help.busuu.com/hc/en-us",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://famikura-store.jp/s/j/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://yutex.ru/blog_article.html?id=12",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://storeland.ru/user/register",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://talon.by/login",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.cbssports.com/college-football/standings/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://liner.com/search",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://appodeal.com/career/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://xxxz.tv/es/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.ais.th/consumers",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.it-recht-kanzlei.de/kontakt.php",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://securegatewayaccess.com/customer_support/support_form/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.sciencehistory.org/republication-guidelines",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://react.dev/reference/react-dom",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.shangri-la.com/en/corporate/shangrilacircle/contact-us/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://resetdigital.co/index.html",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://dashboard.instatus.com/onboarding",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.eurostar.com/rw-en/packages",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.animaljam.com/en/privacy",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://tastesbetterfromscratch.com/category/meal-plan/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://nordlayer.com/business-vpn/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://apps.abacus.ai/chatllm/?isSignUp=1",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://aqsi.ru/blog/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://domaineasy.com/privacy-policy",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://about.crunchbase.com/about-us",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://legal.uworld.com/mbe/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.rsna.org/login",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.marieclaire.co.uk/info/about-marie-claire-729296",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://getbring.com/de/nutzungsbedingungen",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://pindown.io/uk1",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.porndr.com/categories/petite/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://pidgin.im/development/contributing/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://redcircle.com/privacy",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://macpaw.com/support/cleanmymac/knowledgebase/discounts",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://smartasset.com/taxes/current-federal-income-tax-brackets",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://bdsmlr.com/register",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.ama-assn.org/events",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://cool-tv.net/ch/nasul-tv.htm",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://recruit.monotaro.com/career/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.o2.pl/tag/news/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.articulate.com/about/accessibility/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://campuspress.com/higher-ed/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://ridigital.org.br/validacao.aspx",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://blerp.com/streamers",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://web.kamihq.com/web/viewer.html",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://clideo.com/filter-video",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://fwupd.org/lvfs/docs/users",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://podio.com/extensions",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://nanoreview.net/en/privacy",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://www.doctissimo.fr/html/sante/mag/2006/9331-mensurations-francais.htm",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://slush.app/download",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://cookieandkate.com/vegetable-fried-rice-recipe/",
+      "reason": "one_or_more_source_errors"
+    },
+    {
+      "ioc": "https://blend.school/parent",
+      "reason": "one_or_more_source_errors"
+    }
+  ],
+  "threatfox_match_rule": "search_ioc using original URL and its hostname; response errors are not misses",
+  "script_git_commit": "eeb71688a6c5065d6e09813473138d272da573d9",
+  "script_git_dirty": true
+}

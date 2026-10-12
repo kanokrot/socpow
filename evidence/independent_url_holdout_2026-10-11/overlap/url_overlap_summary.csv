@@ -1,0 +1,4 @@
+round,expected_verdict,rows,c2_exact,c2_host,threatfox_exact,threatfox_host
+openphish,MALICIOUS,100,0,0,0,1
+phishtank,MALICIOUS,100,0,0,0,5
+tranco,CLEAN,56,0,0,0,0

@@ -1,0 +1,61 @@
+{
+  "script": "combine_clean_url_rounds.py",
+  "created_at_utc": "2026-10-12T09:07:05.017297Z",
+  "inputs": {
+    "round1": {
+      "path": "evidence\\independent_url_holdout_2026-10-11\\clean_labeled.json",
+      "sha256": "1a0f4686d134ca8f8145f473efeaf39754a3c387a41402e101f6a8b52fde2773"
+    },
+    "round1_manifest": {
+      "path": "evidence\\independent_url_holdout_2026-10-11\\label_clean_urls_vt_manifest.json",
+      "sha256": "af441e4e3f5d8d75d07f6a61d8cb88e43af339df3b0348168b50a98e1689d9e9"
+    },
+    "round2": {
+      "path": "evidence\\independent_url_holdout_2026-10-11\\clean_round2_vt\\clean_labeled.json",
+      "sha256": "d7c831c5a31cf8b12d176f2da2a1c35501c4904832768baa414434b74f18bbdf"
+    },
+    "round2_manifest": {
+      "path": "evidence\\independent_url_holdout_2026-10-11\\clean_round2_vt\\label_clean_urls_vt_manifest.json",
+      "sha256": "6802296293e1db3d130ee90607af5457d8bfe652c631936d7dea96afcacc4dbf"
+    }
+  },
+  "counts_by_round": {
+    "round1": {
+      "clean_rows": 30,
+      "counts_by_stage": {
+        "input_candidates": 170,
+        "reports_fetched": 170,
+        "resumed": 0,
+        "CLEAN": 30,
+        "AMBIGUOUS": 1,
+        "MALICIOUS": 0,
+        "NO_REPORT": 139,
+        "SOURCE_ERROR": 0,
+        "clean_selected": 30,
+        "clean_over_target": 0
+      }
+    },
+    "round2": {
+      "clean_rows": 26,
+      "counts_by_stage": {
+        "input_candidates": 188,
+        "reports_fetched": 188,
+        "resumed": 0,
+        "CLEAN": 26,
+        "AMBIGUOUS": 2,
+        "MALICIOUS": 0,
+        "NO_REPORT": 160,
+        "SOURCE_ERROR": 0,
+        "clean_selected": 26,
+        "clean_over_target": 0
+      }
+    }
+  },
+  "combined": {
+    "clean_rows": 56,
+    "sha256": "e41b309d3d873328e18f58787e6592df222a96623c3ef6ba52aeaed5eb45defd",
+    "output_file": "clean_labeled_final.json"
+  },
+  "script_git_commit": "04587259476b21664e61ea0b0b348a5bdb48eab4",
+  "script_git_dirty": true
+}

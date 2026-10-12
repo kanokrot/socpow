@@ -1,0 +1,1002 @@
+[
+  {
+    "ioc": "https://w3signin.xyz/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://network-office-cm51.bolt.host/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://web-okex-wallet-us.typedream.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://netflix-clone-five-ruby.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://gtv-pl1il.global.ssl.fastly.net/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://orangetrade.net/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://kxt8244z.demox.site/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://onchaindiagnois.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://us-monet.direct.quickconnect.to/cgi-bin/index.ha",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://kj2p-iwzb-xag78-qxi9-1iy.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://dawsondublin.spahotel.guru/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://netflixcol.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://cn.memxzf.com/home/register?code=54263/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.r.oblox.com.et/users/5467244032/profile%5C",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.3g.5.ztbdkj.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Trezor%20Guide%20Link%206%5D",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://glogin.calenblymeet.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://598913.xyz/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://cywkzhsska.cfd/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://exoduswalletcc.pages.dev/%22%3EExodus",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.nouvelle-reception-fond-lebon-coin.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://amazon-clone-jade-five.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://protected-user-practice-6eiy8jqthc.s3.ca-central-1.amazonaws.com/ecedhvjlnjmi0jjo2wcw.html",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://udorofuse.zapto.org/mufo/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://icloudbr-inc.com/expire/?2",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://esl-org-payment-verifynow.cfd/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.binance-account-login.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://g5.lu/386cy",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://security-check-secure.cfd/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://nlink.at/HAnd?/https://www.roblox.com/communities/8206589556/unset",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://binance-account-login.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://lnk.ink/jt1ff",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://cont17ct-nemvo-biz-zulra-fekun.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://nouvelle-reception-fond-lebon-coin.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www-deliverthewin-wpe-stage.usps.mrm-client.com/research-center/political-planning-tool/#/question/1",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://treursuite.square.site/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.signin-adobe-x4ou12j0f7c-3d031dfa-9ygwqx748489-4a60f031a-b62a.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://theguesstimate.com/camcam",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://roblox-4kx.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Wallet%20Setup%20Link%207%5D",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://netflix-clone-theta-ruby.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://netflix-clone-iota-two-39.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://palet.com.ua/de/app/login.php",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.fllicensehealthpdf-viewer.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.roblox.ly/users/770253869/profile/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://dawsondubl.spahotel.guru/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://testing-chase.hostmora.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://trezeth.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://rss2.sayler.at/go/y2C4Y254/z264X254",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://online-portal-bzst.cfd/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://voicemail.tsisd.ca/index.html",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://gang-1.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://portal365.dothome.co.kr/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://goo.su/2026-Seur",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://trfnf2.go.watchs.vip/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.roblox.rw/users/567384201879/profile",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://loquacious-axolotl-da2098.netlify.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://form.jotform.com/262591344749366",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://wh-appzn.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.grandparklara.spahotel.guru/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://testing-chase-page.hostmora.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://start-io-trzre.typedream.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://890091.xyz/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://sukonakoies-efeugghcfte8hvat.westeurope-01.azurewebsites.net/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.roblox.com.gr/games/8737602449/PLS-DONATE-?privateServerLinkCode=60869683094735370675006673192210",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.dawsondubl.spahotel.guru/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.acl.saintjohnmedicals.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://hanrahans.com/web/login.php?911ad&section=signinpage&ip=90b6d23d491ec570b9b691d7d4764d76&cookiecheck=yes&em=&device=AcceptComputer&destination=signin",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.scorpios.spahotel.guru/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://robnhixhildlogen.gitbook.io/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.acessoimediatocliente.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://metamaskuxlogen.gitbook.io/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://belgravess.spahotel.guru/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://qazvuro-mpt-felqani-p8d4ka75.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://access-ledgr-desktop.pages.dev/favicon.ico",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://cba.zheimao.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://kidsgreenay.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://wh-appetn.com/index.html",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://tokeim-cdn-sg.beauty/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://max-slotmarvelx.click/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://jk9127.craftum.io/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.roblox.et/users/9153595208/profile",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://34abx.anixas.at:443/newtransfer",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://effortless-paletas-d1836b.netlify.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.suntrust-onlinebanking.blogspot.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://tokein-cdn-hk.lol/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://rbcode.net/v/271d9243d604619fd8547fbfc3a75f03",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://login-metemask-io.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.ravniko-zul594207.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://g5.lu/m8c7v",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.netflixcol.vercel.app/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://mail.amityhouse.org/gccc/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://pey-ahx.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://rbcode.net/v/1db576be7b231c830c8c02d313f9f2fc",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://valley-trail.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.amazonjobvip.com/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://www.belgravesands.spahotel.guru/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://www.roblox.rw/games/82294773713042/DO-NOT-ENTER-Original-Super-Sushi-Extreme?privateServerLinkCode=14633011511825217025565959325881",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "http://strts-ledgr.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  },
+  {
+    "ioc": "https://ledger-live-desktop-app-asc.pages.dev/",
+    "ioc_type": "url",
+    "expected_verdict": "MALICIOUS",
+    "source": "OpenPhish",
+    "sampling_source": "OpenPhish",
+    "label_source": "OpenPhish",
+    "collected_at": "2026-10-11T14:47:30.810802Z",
+    "round": "openphish"
+  }
+]
