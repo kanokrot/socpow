@@ -68,12 +68,14 @@ def confusion_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     tp = fp = tn = fn = 0
     predicted_counts: Counter[str] = Counter()
     expected_counts: Counter[str] = Counter()
+    predicted_by_expected: dict[str, Counter[str]] = {}
     unavailable_rows = []
     for row in rows:
         expected = str(row.get("expected_verdict", "UNKNOWN")).upper()
         predicted = str(row.get("predicted_verdict") or "UNKNOWN").upper()
         expected_counts[expected] += 1
         predicted_counts[predicted] += 1
+        predicted_by_expected.setdefault(expected, Counter())[predicted] += 1
         actual_pos = expected == "MALICIOUS"
         predicted_pos = predicted == "MALICIOUS"  # SUSPICIOUS and UNKNOWN are negative.
         if actual_pos and predicted_pos:
@@ -94,21 +96,32 @@ def confusion_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
         if missing:
             unavailable_rows.append({"ioc": row.get("ioc"), "sources_unavailable": missing})
     precision = tp / (tp + fp) if tp + fp else None
+    specificity = tn / (tn + fp) if tn + fp else None
     recall = tp / (tp + fn) if tp + fn else None
     f1 = (2 * precision * recall / (precision + recall)
           if precision is not None and recall is not None and precision + recall else None)
     precision_ci = wilson_interval(tp, tp + fp)
+    specificity_ci = wilson_interval(tn, tn + fp) if tn + fp else None
     recall_ci = wilson_interval(tp, tp + fn)
     return {
         "n": len(rows),
         "confusion_matrix": {"TP": tp, "FP": fp, "TN": tn, "FN": fn},
         "precision": precision,
         "precision_wilson_95_ci": precision_ci,
+        "specificity": specificity,
+        "specificity_wilson_95": specificity_ci,
         "recall": recall,
         "recall_wilson_95_ci": recall_ci,
         "f1": f1,
         "expected_counts": dict(expected_counts),
         "predicted_3class_counts": dict(predicted_counts),
+        "predicted_3class_counts_by_expected": {
+            expected: {
+                verdict: counts.get(verdict, 0)
+                for verdict in ("MALICIOUS", "SUSPICIOUS", "UNKNOWN", "CLEAN")
+            }
+            for expected, counts in predicted_by_expected.items()
+        },
         "rows_with_any_source_unavailable": len(unavailable_rows),
         "unavailable_rows": unavailable_rows,
     }

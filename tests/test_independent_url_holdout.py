@@ -405,6 +405,12 @@ def test_metrics_treat_suspicious_and_unknown_as_negative(tmp_path):
     assert result["recall"] == pytest.approx(0.5)
     assert result["f1"] == pytest.approx(0.5)
     assert result["predicted_3class_counts"] == {"MALICIOUS": 2, "UNKNOWN": 1, "SUSPICIOUS": 1}
+    assert result["specificity"] == pytest.approx(0.5)
+    assert result["specificity_wilson_95"] == pytest.approx(metrics.wilson_interval(1, 2))
+    assert result["predicted_3class_counts_by_expected"] == {
+        "MALICIOUS": {"MALICIOUS": 1, "SUSPICIOUS": 0, "UNKNOWN": 1, "CLEAN": 0},
+        "CLEAN": {"MALICIOUS": 1, "SUSPICIOUS": 1, "UNKNOWN": 0, "CLEAN": 0},
+    }
     assert result["rows_with_any_source_unavailable"] == 1
 
     results_path = tmp_path / "eval.jsonl"
@@ -421,5 +427,43 @@ def test_metrics_treat_suspicious_and_unknown_as_negative(tmp_path):
     output, _manifest = metrics.compute(results_path, overlap_path, tmp_path / "metrics.json")
     rendered = json.loads(output.read_text(encoding="utf-8"))
     assert rendered["metrics"]["overall"]["confusion_matrix"]["TN"] == 1
+    assert rendered["metrics"]["round:openphish"]["predicted_3class_counts_by_expected"]["CLEAN"]["SUSPICIOUS"] == 1
+    assert rendered["metrics"]["overlap:any"]["n"] == 0
     assert rendered["malicious_overlap_coverage"]["either"]["trials"] == 2
     assert rendered["non_overlap_note"] == metrics.NON_OVERLAP_NOTE
+
+
+def test_specificity_is_none_when_there_are_no_actual_negative_rows():
+    rows = [
+        {"expected_verdict": "MALICIOUS", "predicted_verdict": "MALICIOUS"},
+        {"expected_verdict": "MALICIOUS", "predicted_verdict": "UNKNOWN"},
+    ]
+    result = metrics.confusion_metrics(rows)
+    assert result["confusion_matrix"]["TN"] + result["confusion_matrix"]["FP"] == 0
+    assert result["specificity"] is None
+    assert result["specificity_wilson_95"] is None
+
+
+def test_specificity_wilson_upper_bound_for_zero_false_positives_from_56():
+    rows = [{"expected_verdict": "CLEAN", "predicted_verdict": "CLEAN"} for _ in range(56)]
+    result = metrics.confusion_metrics(rows)
+    assert result["specificity"] == 1.0
+
+    # Independent Wilson calculation for p=1, n=56.
+    n = 56
+    z = 1.959963984540054
+    p = 1.0
+    z2 = z * z
+    denominator = 1 + z2 / n
+    center = (p + z2 / (2 * n)) / denominator
+    margin = z * ((p * (1 - p) / n) + z2 / (4 * n * n)) ** 0.5 / denominator
+    expected_upper = min(1.0, center + margin)
+    assert result["specificity_wilson_95"][1] == pytest.approx(expected_upper)
+
+
+def test_empty_metrics_group_does_not_error():
+    result = metrics.confusion_metrics([])
+    assert result["n"] == 0
+    assert result["confusion_matrix"] == {"TP": 0, "FP": 0, "TN": 0, "FN": 0}
+    assert result["specificity"] is None
+    assert result["specificity_wilson_95"] is None
