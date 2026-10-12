@@ -62,45 +62,73 @@
                 </div>
             </div>
 
-            <aside class="soc-helpdesk-panel" aria-label="SOC Room help desk">
-                <section class="soc-helpdesk-section" aria-labelledby="soc-faq-title">
-                    <div class="soc-helpdesk-section-heading">
-                        <p class="soc-helpdesk-eyebrow">QUICK ANSWERS</p>
-                        <h3 id="soc-faq-title">Frequently asked questions</h3>
-                    </div>
-                    <p id="soc-faq-status" class="soc-helpdesk-status" role="status" aria-live="polite">Loading FAQ…</p>
-                    <div id="soc-faq-list" class="soc-faq-list"></div>
-                </section>
+            <aside id="soc-helpdesk-panel" class="soc-helpdesk-panel" aria-label="SOC Room help desk">
+                <div class="soc-helpdesk-speech" aria-live="polite">
+                    <span id="soc-helpdesk-avatar" class="soc-helpdesk-avatar">NOVA</span>
+                    <p id="soc-helpdesk-speech-text">I’m here if you need a hand.</p>
+                </div>
 
-                <section class="soc-helpdesk-section soc-report-section" aria-labelledby="soc-report-title">
-                    <div class="soc-helpdesk-section-heading">
-                        <p class="soc-helpdesk-eyebrow">HELP US IMPROVE</p>
-                        <h3 id="soc-report-title">Report a finding</h3>
-                        <p>Share an issue, a wrong verdict, or an idea for the SOC Room.</p>
-                    </div>
-                    <form id="soc-feedback-form" class="soc-feedback-form">
-                        <div class="soc-field">
-                            <label for="soc-feedback-type">What would you like to report?</label>
-                            <select id="soc-feedback-type" name="type" required>
-                                <option value="wrong_verdict">Wrong verdict</option>
-                                <option value="bug">Bug</option>
-                                <option value="suggestion">Suggestion</option>
-                            </select>
+                <div class="soc-helpdesk-tabs" role="tablist" aria-label="Help desk">
+                    <button id="soc-tab-answers" class="soc-helpdesk-tab" type="button" role="tab" aria-selected="true" aria-controls="soc-panel-answers">Answers</button>
+                    <button id="soc-tab-report" class="soc-helpdesk-tab" type="button" role="tab" aria-selected="false" aria-controls="soc-panel-report" tabindex="-1">Report a finding</button>
+                </div>
+
+                <div class="soc-helpdesk-body">
+                    <section id="soc-panel-answers" class="soc-helpdesk-section" role="tabpanel" aria-labelledby="soc-tab-answers">
+                        <h3 id="soc-faq-title" class="soc-sr-only">Frequently asked questions</h3>
+                        <label class="soc-helpdesk-search-label" for="soc-faq-search">Search answers</label>
+                        <input id="soc-faq-search" class="soc-helpdesk-search" type="search" autocomplete="off">
+                        <div id="soc-faq-category-chips" class="soc-faq-chips" role="group" aria-label="Filter FAQ by category" hidden></div>
+                        <p id="soc-faq-status" class="soc-helpdesk-status" role="status" aria-live="polite">Loading FAQ…</p>
+                        <div id="soc-faq-list" class="soc-faq-list"></div>
+                        <div id="soc-faq-empty" class="soc-faq-empty" hidden>
+                            <p id="soc-faq-empty-text"></p>
+                            <button id="soc-faq-report-instead" class="soc-helpdesk-button" type="button">Report it instead</button>
                         </div>
-                        <div class="soc-field">
-                            <label for="soc-feedback-reference">Reference <span>(optional)</span></label>
-                            <input id="soc-feedback-reference" name="reference" type="text" maxlength="200" autocomplete="off" aria-describedby="soc-reference-hint">
-                            <small id="soc-reference-hint">Analysis ID or page, up to 200 characters.</small>
-                        </div>
-                        <div class="soc-field">
-                            <label for="soc-feedback-message">Message</label>
-                            <textarea id="soc-feedback-message" name="message" rows="5" maxlength="2000" required aria-describedby="soc-message-count"></textarea>
-                            <small id="soc-message-count" aria-live="polite">0 / 2000</small>
-                        </div>
+                    </section>
+
+                    <section id="soc-panel-report" class="soc-helpdesk-section soc-report-section" role="tabpanel" aria-labelledby="soc-tab-report" hidden>
+                        <h3 id="soc-report-title" class="soc-sr-only">Report a finding</h3>
+                        <form id="soc-feedback-form" class="soc-feedback-form">
+                            <p class="soc-report-helper">Share an issue, a wrong verdict, or an idea for the SOC Room.</p>
+                            <fieldset class="soc-type-cards">
+                                <legend>What would you like to report?</legend>
+                                <div class="soc-type-options">
+                                    <label class="soc-type-card">
+                                        <input type="radio" name="type" value="wrong_verdict" checked>
+                                        <span>Wrong verdict</span>
+                                    </label>
+                                    <label class="soc-type-card">
+                                        <input type="radio" name="type" value="bug">
+                                        <span>Something is broken</span>
+                                    </label>
+                                    <label class="soc-type-card">
+                                        <input type="radio" name="type" value="suggestion">
+                                        <span>Idea or other</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <div class="soc-field">
+                                <label for="soc-feedback-reference">Reference <span>(optional)</span></label>
+                                <input id="soc-feedback-reference" name="reference" type="text" maxlength="200" autocomplete="off" aria-describedby="soc-reference-hint">
+                                <small id="soc-reference-hint">Analysis ID or page, up to 200 characters.</small>
+                            </div>
+                            <div class="soc-field">
+                                <label for="soc-feedback-message">Message</label>
+                                <textarea id="soc-feedback-message" name="message" rows="5" minlength="5" maxlength="2000" required aria-describedby="soc-message-count soc-message-privacy"></textarea>
+                                <small id="soc-message-count" aria-live="polite">0 / 2000</small>
+                                <small id="soc-message-privacy">Only the admin reads this.</small>
+                            </div>
+                        </form>
                         <p id="soc-feedback-result" class="soc-helpdesk-status" role="status" aria-live="polite"></p>
-                        <button id="soc-feedback-submit" class="soc-helpdesk-button" type="submit">Send report</button>
-                    </form>
-                </section>
+                        <div id="soc-feedback-success" class="soc-feedback-success" role="status" aria-live="polite" hidden></div>
+                    </section>
+                </div>
+
+                <footer id="soc-helpdesk-footer" class="soc-helpdesk-footer" hidden>
+                    <button id="soc-feedback-submit" class="soc-helpdesk-button" type="submit" form="soc-feedback-form" disabled>Send report</button>
+                    <button id="soc-send-another" class="soc-helpdesk-button" type="button" hidden>Send another</button>
+                </footer>
             </aside>
         </div>
     </section>

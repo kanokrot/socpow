@@ -1,16 +1,32 @@
 .soc-helpdesk-grid {
     grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr);
     min-height: 0;
+    align-items: stretch;
 }
 
 .soc-helpdesk-panel {
+    color-scheme: dark;
+    --bg-primary: #080b12;
+    --bg-secondary: #0d121c;
+    --bg-tertiary: #111827;
+    --bg-card: #0b1019;
+    --text-primary: #e6edf8;
+    --text-secondary: #8f9bb0;
+    --border-color: #293449;
+    --color-primary: #22d3ee;
     display: flex;
     flex-direction: column;
     gap: 0;
     min-width: 0;
-    max-height: min(72vh, 720px);
-    overflow: auto;
-    background: rgba(10, 15, 24, .86);
+    min-height: 0;
+    align-self: stretch;
+    /* Keep FAQ content from increasing the shared grid row height. */
+    contain: size;
+    container-name: soc-helpdesk;
+    container-type: inline-size;
+    overflow: hidden;
+    background: var(--bg-card);
+    color: var(--text-primary);
 }
 
 .soc-helpdesk-section {
@@ -197,6 +213,10 @@
     align-content: start;
 }
 
+.soc-live-pill {
+    color: #f1f5f9;
+}
+
 .soc-office-header > .soc-helpdesk-button {
     flex: 0 0 auto;
 }
@@ -213,10 +233,6 @@
 }
 
 @media (max-width: 992px) {
-.soc-live-pill {
-    color: #f1f5f9;
-}
-
     .soc-helpdesk-grid {
         grid-template-columns: minmax(0, 1fr);
     }
@@ -227,13 +243,317 @@
     }
 
     .soc-helpdesk-panel {
-        max-height: none;
-        overflow: visible;
+        height: 560px;
+        min-height: 560px;
+        max-height: 560px;
+        contain: none;
+        overflow: hidden;
     }
 }
 
 @media (max-width: 600px) {
     .soc-helpdesk-section {
         padding: 16px;
+    }
+}
+
+/* The help desk is a fixed shell; only its central content area scrolls. */
+.soc-helpdesk-panel [hidden] {
+    display: none !important;
+}
+
+.soc-helpdesk-speech,
+.soc-helpdesk-tabs,
+.soc-helpdesk-footer {
+    flex: 0 0 auto;
+}
+
+.soc-helpdesk-speech {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 76px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.soc-helpdesk-avatar {
+    flex: 0 0 auto;
+    padding: 7px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+.soc-helpdesk-speech p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.soc-helpdesk-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-card);
+}
+
+.soc-helpdesk-tab {
+    flex: 1 1 0;
+    min-height: 42px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.soc-helpdesk-tab[aria-selected="true"] {
+    border-color: var(--color-primary);
+    color: var(--text-primary);
+}
+
+.soc-helpdesk-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 18px;
+    scrollbar-gutter: stable;
+}
+
+.soc-helpdesk-body .soc-helpdesk-section {
+    padding: 0;
+}
+
+.soc-helpdesk-body .soc-report-section {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.soc-helpdesk-section-heading {
+    margin-bottom: 14px;
+}
+
+.soc-helpdesk-panel .soc-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.soc-helpdesk-search-label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.soc-helpdesk-search,
+.soc-field input,
+.soc-field textarea {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.soc-helpdesk-search {
+    width: 100%;
+    min-height: 44px;
+    margin-bottom: 12px;
+    padding: 10px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    font: inherit;
+}
+
+.soc-faq-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 0 0 12px;
+}
+
+.soc-faq-chips button {
+    min-height: 34px;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.soc-faq-chips button[aria-pressed="true"] {
+    border-color: var(--color-primary);
+    color: var(--text-primary);
+}
+
+.soc-faq-empty {
+    display: grid;
+    justify-items: start;
+    gap: 8px;
+    padding: 16px;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+}
+
+.soc-faq-empty p {
+    margin: 0;
+}
+
+.soc-feedback-form {
+    gap: 12px;
+}
+
+.soc-report-helper {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.soc-type-cards {
+    display: block;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.soc-type-cards legend {
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.soc-type-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.soc-type-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.soc-type-card input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.soc-type-card span {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.soc-type-card input:checked + span {
+    border-color: var(--color-primary);
+    color: var(--text-primary);
+    box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.soc-type-card input:focus-visible + span {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+.soc-helpdesk-footer {
+    padding: 12px 18px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.soc-helpdesk-footer .soc-helpdesk-button {
+    width: 100%;
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--bg-primary);
+}
+
+.soc-helpdesk-footer .soc-helpdesk-button:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+.soc-feedback-success {
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.soc-helpdesk-panel :is(input, textarea, button):focus-visible,
+.soc-helpdesk-panel [role="tab"]:focus-visible,
+.soc-faq-retry:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+@container soc-helpdesk (max-width: 360px) {
+    .soc-type-options {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .soc-helpdesk-body {
+        padding: 16px;
+    }
+
+    .soc-helpdesk-speech,
+    .soc-helpdesk-footer {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .soc-helpdesk-panel *,
+    .soc-helpdesk-panel *::before,
+    .soc-helpdesk-panel *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }
