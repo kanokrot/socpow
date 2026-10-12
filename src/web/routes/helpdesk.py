@@ -165,6 +165,41 @@ def list_feedback(
     return {"items": items}
 
 
+@router.get("/admin/summary")
+def admin_summary(
+    _admin: dict = Depends(require_role("admin")),
+) -> dict:
+    with _connect() as connection:
+        _upgrade(connection)
+        feedback_rows = connection.execute(
+            "SELECT status, COUNT(*) AS count FROM helpdesk_feedback GROUP BY status"
+        ).fetchall()
+        faq_rows = connection.execute(
+            "SELECT is_published, COUNT(*) AS count "
+            "FROM helpdesk_faq GROUP BY is_published"
+        ).fetchall()
+
+    feedback_counts = {"new": 0, "reviewed": 0, "resolved": 0}
+    for row in feedback_rows:
+        if row["status"] in feedback_counts:
+            feedback_counts[row["status"]] = int(row["count"])
+    faq_counts = {"published": 0, "unpublished": 0}
+    for row in faq_rows:
+        key = "published" if row["is_published"] == 1 else "unpublished"
+        faq_counts[key] = int(row["count"])
+
+    return {
+        "feedback": {
+            **feedback_counts,
+            "total": sum(feedback_counts.values()),
+        },
+        "faq": {
+            **faq_counts,
+            "total": sum(faq_counts.values()),
+        },
+    }
+
+
 @router.patch("/admin/feedback/{feedback_id}")
 def update_feedback(
     feedback_id: int,

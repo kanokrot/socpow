@@ -19,50 +19,71 @@
         <a class="helpdesk-admin-back" href="/soc-operations">Back to Ask the SOC Room</a>
     </header>
 
-    <div class="helpdesk-admin-tabs" role="tablist" aria-label="Help Desk administration">
-        <button id="helpdesk-tab-inbox" type="button" role="tab" aria-selected="true" aria-controls="helpdesk-panel-inbox" tabindex="0">Inbox</button>
-        <button id="helpdesk-tab-faq" type="button" role="tab" aria-selected="false" aria-controls="helpdesk-panel-faq" tabindex="-1">FAQ editor</button>
+    <div class="helpdesk-admin-layout">
+        <main class="helpdesk-admin-main">
+            <div class="helpdesk-admin-tabs" role="tablist" aria-label="Help Desk administration">
+                <button id="helpdesk-tab-inbox" type="button" role="tab" aria-label="Inbox" aria-selected="true" aria-controls="helpdesk-panel-inbox" tabindex="0">Inbox <span id="helpdesk-tab-inbox-count" class="helpdesk-tab-count" aria-hidden="true" hidden></span></button>
+                <button id="helpdesk-tab-faq" type="button" role="tab" aria-label="FAQ editor, –" aria-selected="false" aria-controls="helpdesk-panel-faq" tabindex="-1">FAQ editor <span id="helpdesk-tab-faq-count" class="helpdesk-tab-count" aria-hidden="true">–</span></button>
+            </div>
+
+            <section id="helpdesk-panel-inbox" class="helpdesk-admin-panel" role="tabpanel" aria-labelledby="helpdesk-tab-inbox" tabindex="0">
+                <div class="helpdesk-admin-toolbar">
+                    <h2>Feedback inbox</h2>
+                    <fieldset class="helpdesk-filter-fieldset">
+                        <legend>Status filter</legend>
+                        <div id="helpdesk-feedback-filter" class="helpdesk-filter-pills" role="group" aria-label="Filter feedback by status">
+                            <button type="button" data-status="all" aria-label="All, –" aria-pressed="true">All <span id="helpdesk-count-all" class="helpdesk-filter-count" aria-hidden="true">· –</span></button>
+                            <button type="button" data-status="new" aria-label="New, –" aria-pressed="false">New <span id="helpdesk-count-new" class="helpdesk-filter-count" aria-hidden="true">· –</span></button>
+                            <button type="button" data-status="reviewed" aria-label="Reviewed, –" aria-pressed="false">Reviewed <span id="helpdesk-count-reviewed" class="helpdesk-filter-count" aria-hidden="true">· –</span></button>
+                            <button type="button" data-status="resolved" aria-label="Resolved, –" aria-pressed="false">Resolved <span id="helpdesk-count-resolved" class="helpdesk-filter-count" aria-hidden="true">· –</span></button>
+                        </div>
+                    </fieldset>
+                </div>
+                <div id="helpdesk-feedback-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
+                <div id="helpdesk-feedback-list" class="helpdesk-feedback-list"></div>
+            </section>
+
+            <section id="helpdesk-panel-faq" class="helpdesk-admin-panel" role="tabpanel" aria-labelledby="helpdesk-tab-faq" tabindex="0" hidden>
+                <h2>FAQ editor</h2>
+                <div class="helpdesk-faq-layout">
+                    <div class="helpdesk-faq-list-column">
+                        <div id="helpdesk-faq-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
+                        <div id="helpdesk-faq-list" class="helpdesk-faq-list"></div>
+                    </div>
+
+                    <form id="helpdesk-faq-create" class="helpdesk-admin-card helpdesk-faq-create">
+                        <h3>Create FAQ entry</h3>
+                        <label for="helpdesk-faq-new-question">Question</label>
+                        <textarea id="helpdesk-faq-new-question" name="question" rows="2" maxlength="300" required></textarea>
+                        <p id="helpdesk-faq-new-question-count" class="helpdesk-admin-counter" aria-live="polite">0 / 300</p>
+                        <label for="helpdesk-faq-new-answer">Answer</label>
+                        <textarea id="helpdesk-faq-new-answer" name="answer" rows="5" maxlength="4000" required></textarea>
+                        <p id="helpdesk-faq-new-answer-count" class="helpdesk-admin-counter" aria-live="polite">0 / 4000</p>
+                        <label for="helpdesk-faq-new-sort">Sort order</label>
+                        <input id="helpdesk-faq-new-sort" name="sort_order" type="number" value="0">
+                        <label class="helpdesk-admin-checkbox" for="helpdesk-faq-new-published">
+                            <input id="helpdesk-faq-new-published" name="is_published" type="checkbox" checked>
+                            Published
+                        </label>
+                        <div id="helpdesk-faq-create-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
+                        <button class="helpdesk-admin-button helpdesk-admin-button--primary" type="submit">Create FAQ</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <aside id="helpdesk-overview" class="helpdesk-admin-card helpdesk-overview" aria-labelledby="helpdesk-overview-title">
+            <h2 id="helpdesk-overview-title">Overview</h2>
+            <ul class="helpdesk-overview-list">
+                <li><span class="helpdesk-overview-label"><span class="helpdesk-overview-dot helpdesk-overview-dot--new" aria-hidden="true"></span>New</span><strong id="helpdesk-overview-new">–</strong></li>
+                <li><span class="helpdesk-overview-label"><span class="helpdesk-overview-dot helpdesk-overview-dot--reviewed" aria-hidden="true"></span>Reviewed</span><strong id="helpdesk-overview-reviewed">–</strong></li>
+                <li><span class="helpdesk-overview-label"><span class="helpdesk-overview-dot helpdesk-overview-dot--resolved" aria-hidden="true"></span>Resolved</span><strong id="helpdesk-overview-resolved">–</strong></li>
+                <li><span>Published FAQ</span><strong id="helpdesk-overview-published">–</strong></li>
+                <li><span>Drafts</span><strong id="helpdesk-overview-unpublished">–</strong></li>
+            </ul>
+            <p class="helpdesk-overview-tip">Tip: turn recurring findings into clear, searchable FAQ answers.</p>
+        </aside>
     </div>
-
-    <section id="helpdesk-panel-inbox" class="helpdesk-admin-panel" role="tabpanel" aria-labelledby="helpdesk-tab-inbox" tabindex="0">
-        <div class="helpdesk-admin-toolbar">
-            <h2>Feedback inbox</h2>
-            <label for="helpdesk-feedback-filter">Status
-                <select id="helpdesk-feedback-filter">
-                    <option value="all">All statuses</option>
-                    <option value="new">New</option>
-                    <option value="reviewed">Reviewed</option>
-                    <option value="resolved">Resolved</option>
-                </select>
-            </label>
-        </div>
-        <div id="helpdesk-feedback-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
-        <div id="helpdesk-feedback-list" class="helpdesk-feedback-list"></div>
-    </section>
-
-    <section id="helpdesk-panel-faq" class="helpdesk-admin-panel" role="tabpanel" aria-labelledby="helpdesk-tab-faq" tabindex="0" hidden>
-        <h2>FAQ editor</h2>
-        <div id="helpdesk-faq-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
-        <div id="helpdesk-faq-list" class="helpdesk-faq-list"></div>
-
-        <form id="helpdesk-faq-create" class="helpdesk-admin-card helpdesk-faq-create">
-            <h3>Create FAQ entry</h3>
-            <label for="helpdesk-faq-new-question">Question</label>
-            <textarea id="helpdesk-faq-new-question" name="question" rows="2" maxlength="300" required></textarea>
-            <p id="helpdesk-faq-new-question-count" class="helpdesk-admin-counter" aria-live="polite">0 / 300</p>
-            <label for="helpdesk-faq-new-answer">Answer</label>
-            <textarea id="helpdesk-faq-new-answer" name="answer" rows="5" maxlength="4000" required></textarea>
-            <p id="helpdesk-faq-new-answer-count" class="helpdesk-admin-counter" aria-live="polite">0 / 4000</p>
-            <label for="helpdesk-faq-new-sort">Sort order</label>
-            <input id="helpdesk-faq-new-sort" name="sort_order" type="number" value="0">
-            <label class="helpdesk-admin-checkbox" for="helpdesk-faq-new-published">
-                <input id="helpdesk-faq-new-published" name="is_published" type="checkbox" checked>
-                Published
-            </label>
-            <div id="helpdesk-faq-create-state" class="helpdesk-admin-state" role="status" aria-live="polite"></div>
-            <button class="helpdesk-admin-button" type="submit">Create FAQ</button>
-        </form>
-    </section>
 </div>
 {% endblock %}
 

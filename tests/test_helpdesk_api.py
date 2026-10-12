@@ -22,6 +22,7 @@ NON_ADMIN_ROLES = (
     "Team Lead",
 )
 ADMIN_ENDPOINTS = (
+    ("get", "/api/helpdesk/admin/summary", None),
     ("get", "/api/helpdesk/admin/feedback", None),
     ("patch", "/api/helpdesk/admin/feedback/1", {"status": "reviewed"}),
     ("get", "/api/helpdesk/admin/faq", None),
@@ -313,6 +314,62 @@ def test_admin_can_create_update_and_delete_faq(tmp_path, monkeypatch):
     assert updated.json()["question"] == "How exactly?"
     assert deleted.status_code == 200
     assert missing == []
+
+
+def test_admin_summary_counts_feedback_and_faq_by_status(tmp_path, monkeypatch):
+    db_path = tmp_path / "auth.db"
+    user_id = _auth_db(db_path)
+    monkeypatch.setenv("AUTH_DB_PATH", str(db_path))
+    _migration("015_add_helpdesk.py").migrate(str(db_path))
+    with sqlite3.connect(db_path) as connection:
+        connection.executemany(
+            "INSERT INTO helpdesk_feedback (submitter_id, type, message, status) "
+            "VALUES (?, ?, ?, ?)",
+            (
+                (user_id, "bug", "New one", "new"),
+                (user_id, "suggestion", "New two", "new"),
+                (user_id, "bug", "Reviewed", "reviewed"),
+                (user_id, "wrong_verdict", "Resolved", "resolved"),
+            ),
+        )
+        connection.executemany(
+            "INSERT INTO helpdesk_faq (question, answer, is_published) VALUES (?, ?, ?)",
+            (
+                ("Published A", "Answer A", 1),
+                ("Published B", "Answer B", 1),
+                ("Draft", "Draft answer", 0),
+            ),
+        )
+        connection.commit()
+
+    with TestClient(_app({"id": user_id, "role": "admin", "is_active": 1})) as client:
+        response = client.get("/api/helpdesk/admin/summary")
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "feedback": {"new": 2, "reviewed": 1, "resolved": 1, "total": 4},
+        "faq": {"published": 2, "unpublished": 1, "total": 3},
+    }
+
+
+def test_admin_summary_is_zero_on_fresh_helpdesk_schema(tmp_path, monkeypatch):
+    db_path = tmp_path / "fresh-auth.db"
+    user_id = _auth_db(db_path)
+    monkeypatch.setenv("AUTH_DB_PATH", str(db_path))
+    with sqlite3.connect(db_path) as connection:
+        before = connection.execute(
+            "SELECT name FROM sqlite_master WHERE type = 'table' AND name LIKE 'helpdesk_%'"
+        ).fetchall()
+    assert before == []
+
+    with TestClient(_app({"id": user_id, "role": "admin", "is_active": 1})) as client:
+        response = client.get("/api/helpdesk/admin/summary")
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "feedback": {"new": 0, "reviewed": 0, "resolved": 0, "total": 0},
+        "faq": {"published": 0, "unpublished": 0, "total": 0},
+    }
 
 
 def test_fresh_auth_db_creates_helpdesk_schema_lazily_and_repeated_calls_are_safe(

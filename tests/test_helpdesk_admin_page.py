@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import sqlite3
 from pathlib import Path
 
@@ -19,6 +20,7 @@ MIGRATIONS = ROOT / "src" / "db" / "migrations"
 ADMIN_TEMPLATE = ROOT / "templates" / "helpdesk_admin.html"
 SOC_TEMPLATE = ROOT / "templates" / "soc_operations.html"
 ADMIN_SCRIPT = ROOT / "static" / "js" / "helpdesk_admin.js"
+ADMIN_CSS = ROOT / "static" / "css" / "helpdesk_admin.css"
 NON_ADMIN_ROLES = (
     "SOC Analyst Tier 1-2",
     "Incident Responder",
@@ -111,6 +113,79 @@ def test_admin_script_uses_no_html_string_sinks():
     script = ADMIN_SCRIPT.read_text(encoding="utf-8")
     for forbidden in ("innerHTML", "insertAdjacentHTML", "outerHTML"):
         assert forbidden not in script
+    for mapping in (
+        'wrong_verdict: "Wrong verdict"',
+        'suggestion: "Suggestion"',
+        'bug: "Bug"',
+    ):
+        assert mapping in script
+
+
+def test_admin_styles_define_light_and_dark_theme_tokens_without_dark_raw_backgrounds():
+    css = ADMIN_CSS.read_text(encoding="utf-8")
+    assert '[data-theme="light"] .helpdesk-admin-page' in css
+    assert '[data-theme="dark"] .helpdesk-admin-page' in css
+    assert ':root:not([data-theme="light"]) .helpdesk-admin-page' in css
+    for token in ("--hd-page:", "--hd-surface:", "--hd-border:", "--hd-text:", "--hd-muted:", "--hd-accent:"):
+        assert css.count(token) >= 2
+    # No direct dark hex literal may be used in a background declaration; surfaces use scoped tokens.
+    assert not re.search(
+        r"(?im)^\s*background(?:-color)?\s*:\s*#(?:0[0-9a-f]{5}|1[0-9a-f]{5})\b",
+        css,
+    )
+
+
+def test_admin_action_buttons_have_primary_outline_danger_and_touch_target_styles():
+    template = ADMIN_TEMPLATE.read_text(encoding="utf-8")
+    script = ADMIN_SCRIPT.read_text(encoding="utf-8")
+    css = ADMIN_CSS.read_text(encoding="utf-8")
+
+    assert 'class="helpdesk-admin-button helpdesk-admin-button--primary" type="submit">Create FAQ' in template
+    assert 'node("button", "helpdesk-admin-button--primary", "Save")' in script
+    assert 'node("button", "helpdesk-admin-button--primary", "Save changes")' in script
+    assert '"helpdesk-admin-button helpdesk-admin-button--outline"' in script
+    assert 'node("button", "helpdesk-admin-button--danger", "Delete")' in script
+    assert ".helpdesk-faq-actions .helpdesk-admin-button--primary" in css
+    assert ".helpdesk-feedback-actions .helpdesk-admin-button--outline" in css
+    assert ".helpdesk-faq-actions .helpdesk-admin-button--danger" in css
+    assert re.search(r"(?s)input\[type=\"checkbox\"\]\s*\{[^}]*width:\s*22px;[^}]*height:\s*22px;", css)
+    checkbox_rule = re.search(r"(?s)input\[type=\"checkbox\"\]\s*\{([^}]*)\}", css)
+    assert checkbox_rule is not None
+    assert "width: 44px" not in checkbox_rule.group(1)
+    assert "height: 44px" not in checkbox_rule.group(1)
+    checkbox_row = re.search(r"(?s)\.helpdesk-admin-checkbox\s*\{([^}]*)\}", css)
+    assert checkbox_row is not None and "min-height: 44px;" in checkbox_row.group(1)
+
+
+def test_admin_summary_panel_counts_and_sticky_faq_form_are_wired():
+    template = ADMIN_TEMPLATE.read_text(encoding="utf-8")
+    script = ADMIN_SCRIPT.read_text(encoding="utf-8")
+    css = ADMIN_CSS.read_text(encoding="utf-8")
+
+    assert 'id="helpdesk-overview"' in template
+    assert 'byId("helpdesk-overview")' in script
+    assert '"/api/helpdesk/admin/summary"' in script
+    for status in ("all", "new", "reviewed", "resolved"):
+        assert f'id="helpdesk-count-{status}"' in template
+        assert f'helpdesk-count-${{status}}' in script
+    assert 'id="helpdesk-tab-inbox-count"' in template
+    assert 'id="helpdesk-tab-faq-count"' in template
+    assert re.search(
+        r"(?s)\.helpdesk-faq-create\s*\{[^}]*position:\s*sticky;[^}]*top:\s*76px;",
+        css,
+    )
+    assert re.search(
+        r"(?s)\.helpdesk-faq-create \.helpdesk-admin-state\s*\{[^}]*min-height:\s*0;[^}]*margin:\s*0;",
+        css,
+    )
+
+
+def test_feedback_status_filter_uses_accessible_pills():
+    template = ADMIN_TEMPLATE.read_text(encoding="utf-8")
+    assert 'id="helpdesk-feedback-filter"' in template
+    for value in ("all", "new", "reviewed", "resolved"):
+        assert f'data-status="{value}"' in template
+    assert template.count('aria-pressed="') == 4
 
 
 def test_soc_helpdesk_tooltip_text_is_current():

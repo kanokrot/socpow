@@ -13,9 +13,25 @@
     const faqCreateState = byId("helpdesk-faq-create-state");
     const faqQuestion = byId("helpdesk-faq-new-question");
     const faqAnswer = byId("helpdesk-faq-new-answer");
+    const overview = byId("helpdesk-overview");
+    const feedbackFilterButtons = Array.from(
+        feedbackFilter.querySelectorAll("button[data-status]")
+    );
+    const feedbackTypes = {
+        wrong_verdict: "Wrong verdict",
+        suggestion: "Suggestion",
+        bug: "Bug",
+    };
+    let activeFeedbackStatus = "all";
     let faqLoaded = false;
+    const feedbackStatusLabels = {
+        all: "All",
+        new: "New",
+        reviewed: "Reviewed",
+        resolved: "Resolved",
+    };
 
-    if (!tabs[0] || !tabs[1] || !feedbackList || !faqList) return;
+    if (!tabs[0] || !tabs[1] || !feedbackList || !faqList || !overview) return;
 
     function node(tag, className, text) {
         const item = document.createElement(tag);
@@ -68,6 +84,66 @@
         };
     }
 
+    function showUnavailableSummary() {
+        ["all", "new", "reviewed", "resolved"].forEach((status) => {
+            const count = byId(`helpdesk-count-${status}`);
+            if (count) count.textContent = "· –";
+            const button = feedbackFilterButtons.find((item) => item.dataset.status === status);
+            if (button) button.setAttribute("aria-label", `${feedbackStatusLabels[status]}, –`);
+        });
+        const inboxCount = byId("helpdesk-tab-inbox-count");
+        inboxCount.textContent = "– new";
+        inboxCount.hidden = false;
+        byId("helpdesk-tab-inbox").setAttribute("aria-label", "Inbox, – new");
+        byId("helpdesk-tab-faq-count").textContent = "–";
+        byId("helpdesk-tab-faq").setAttribute("aria-label", "FAQ editor, –");
+        ["new", "reviewed", "resolved", "published", "unpublished"].forEach((key) => {
+            byId(`helpdesk-overview-${key}`).textContent = "–";
+        });
+    }
+
+    function renderSummary(data) {
+        const feedback = data.feedback || {};
+        const faq = data.faq || {};
+        const newCount = Number(feedback.new) || 0;
+        const faqTotal = Number(faq.total) || 0;
+        const values = {
+            all: feedback.total,
+            new: feedback.new,
+            reviewed: feedback.reviewed,
+            resolved: feedback.resolved,
+        };
+        Object.entries(values).forEach(([status, value]) => {
+            const count = Number.isFinite(Number(value)) ? Number(value) : 0;
+            byId(`helpdesk-count-${status}`).textContent = `· ${count}`;
+            const button = feedbackFilterButtons.find((item) => item.dataset.status === status);
+            if (button) button.setAttribute("aria-label", `${feedbackStatusLabels[status]}, ${count}`);
+        });
+        const inboxCount = byId("helpdesk-tab-inbox-count");
+        inboxCount.textContent = `${newCount} new`;
+        inboxCount.hidden = newCount === 0;
+        byId("helpdesk-tab-inbox").setAttribute(
+            "aria-label",
+            newCount > 0 ? `Inbox, ${newCount} new` : "Inbox",
+        );
+        byId("helpdesk-tab-faq-count").textContent = String(faqTotal);
+        byId("helpdesk-tab-faq").setAttribute("aria-label", `FAQ editor, ${faqTotal}`);
+        byId("helpdesk-overview-new").textContent = String(Number(feedback.new) || 0);
+        byId("helpdesk-overview-reviewed").textContent = String(Number(feedback.reviewed) || 0);
+        byId("helpdesk-overview-resolved").textContent = String(Number(feedback.resolved) || 0);
+        byId("helpdesk-overview-published").textContent = String(Number(faq.published) || 0);
+        byId("helpdesk-overview-unpublished").textContent = String(Number(faq.unpublished) || 0);
+    }
+
+    async function refreshSummary() {
+        try {
+            const data = await api("/api/helpdesk/admin/summary");
+            renderSummary(data);
+        } catch (_error) {
+            showUnavailableSummary();
+        }
+    }
+
     function addLabeledControl(parent, title, control, id) {
         const label = node("label", "", title);
         label.htmlFor = id;
@@ -109,16 +185,34 @@
         });
     });
 
-    async function loadFeedback() {
+    function formatCreatedAt(rawValue) {
+        if (!rawValue) return "Unknown";
+        const isoValue = rawValue.includes("T")
+            ? rawValue
+            : `${rawValue.replace(" ", "T")}Z`;
+        const parsed = new Date(isoValue);
+        return Number.isNaN(parsed.getTime()) ? rawValue : parsed.toLocaleString();
+    }
+
+    async function loadFeedback(selectedStatus = activeFeedbackStatus) {
+        activeFeedbackStatus = selectedStatus;
+        feedbackFilterButtons.forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.status === selectedStatus));
+        });
         setState(feedbackState, "Loading feedback…", "loading");
         feedbackList.replaceChildren();
-        const selectedStatus = feedbackFilter.value;
         const suffix = selectedStatus === "all" ? "" : `?status=${encodeURIComponent(selectedStatus)}`;
         try {
             const data = await api(`/api/helpdesk/admin/feedback${suffix}`);
             const items = Array.isArray(data.items) ? data.items : [];
             if (!items.length) {
-                setState(feedbackState, "No feedback matches this filter.", "empty");
+                setState(
+                    feedbackState,
+                    selectedStatus === "all"
+                        ? "No feedback yet. Reports submitted from Ask the SOC Room will appear here."
+                        : "No feedback matches this filter.",
+                    "empty",
+                );
                 return;
             }
             setState(feedbackState, `${items.length} feedback item${items.length === 1 ? "" : "s"}.`, "loaded");
@@ -130,17 +224,34 @@
 
     function renderFeedback(item) {
         const card = node("article", "helpdesk-admin-card helpdesk-feedback-card");
+        const knownType = Object.prototype.hasOwnProperty.call(feedbackTypes, item.type);
+        card.dataset.type = knownType ? item.type : "unknown";
         const heading = node("div", "helpdesk-admin-card-heading");
-        heading.append(node("h3", "", item.type || "Feedback"));
-        const meta = node("div", "helpdesk-feedback-meta");
-        meta.append(
-            node("span", "", `Reference: ${item.reference || "None"}`),
-            node("span", "", `Submitted by: ${item.submitter_username || "Unknown user"}`),
-            node("span", "", `Created: ${item.created_at || "Unknown"}`),
+        heading.append(node("h3", "", `Feedback #${item.id}`));
+        const badges = node("div", "helpdesk-feedback-badges");
+        const typeBadge = node(
+            "span",
+            "helpdesk-type-badge",
+            knownType ? feedbackTypes[item.type] : String(item.type || "Feedback"),
         );
-        card.append(heading, meta, node("p", "helpdesk-feedback-message", item.message || ""));
+        typeBadge.dataset.type = knownType ? item.type : "unknown";
+        badges.append(typeBadge);
+        const reference = node(
+            "span",
+            "helpdesk-reference-chip",
+            `Reference: ${item.reference || "None"}`,
+        );
+        badges.append(reference);
+        const meta = node("div", "helpdesk-feedback-meta");
+        meta.append(node("span", "", `Created: ${formatCreatedAt(item.created_at)}`));
+        card.append(
+            heading,
+            badges,
+            meta,
+            node("p", "helpdesk-feedback-message", item.message || ""),
+        );
 
-        const form = node("form", "helpdesk-admin-edit-grid");
+        const form = node("form", "helpdesk-feedback-editor");
         const status = node("select");
         status.id = `feedback-status-${item.id}`;
         [["new", "New"], ["reviewed", "Reviewed"], ["resolved", "Resolved"]].forEach(([value, label]) => {
@@ -149,7 +260,8 @@
             status.append(option);
         });
         status.value = item.status;
-        addLabeledControl(form, "Status", status, status.id);
+        const statusWrap = node("div", "helpdesk-admin-field");
+        addLabeledControl(statusWrap, "Status", status, status.id);
 
         const note = node("textarea");
         note.id = `feedback-note-${item.id}`;
@@ -157,17 +269,26 @@
         note.rows = 3;
         note.value = item.admin_note || "";
         const noteWrap = node("div", "helpdesk-admin-field");
-        addLabeledControl(noteWrap, "Admin note", note, note.id);
+        addLabeledControl(noteWrap, "Add admin note", note, note.id);
         const counter = node("p", "helpdesk-admin-counter");
         addCounter(note, counter, 2000);
         noteWrap.append(counter);
-        form.append(noteWrap);
 
+        const footer = node("div", "helpdesk-feedback-footer");
+        footer.append(
+            node("span", "helpdesk-feedback-submitter", `Submitted by ${item.submitter_username || "Unknown user"}`),
+            statusWrap,
+            noteWrap,
+        );
         const actions = node("div", "helpdesk-admin-actions helpdesk-feedback-actions");
-        const save = node("button", "", "Save");
+        const save = node("button", "helpdesk-admin-button--primary", "Save");
         save.type = "submit";
         actions.append(save);
-        const createFaq = node("button", "", "Create FAQ from this");
+        const createFaq = node(
+            "button",
+            "helpdesk-admin-button helpdesk-admin-button--outline",
+            "Create FAQ from this",
+        );
         createFaq.type = "button";
         createFaq.addEventListener("click", () => {
             activateTab(1, false);
@@ -176,7 +297,8 @@
             faqQuestion.focus();
         });
         actions.append(createFaq);
-        form.append(actions);
+        footer.append(actions);
+        form.append(footer);
         const state = node("div", "helpdesk-admin-state");
         state.setAttribute("role", "status");
         state.setAttribute("aria-live", "polite");
@@ -193,6 +315,7 @@
                 item.status = status.value;
                 item.admin_note = note.value;
                 setState(state, "Saved.", "saved");
+                await refreshSummary();
             } catch (error) {
                 setState(state, `Save error: ${error.message}`, "error");
             } finally {
@@ -211,7 +334,11 @@
             const items = Array.isArray(data.items) ? data.items : [];
             faqLoaded = true;
             if (!items.length) {
-                setState(faqState, "No FAQ entries yet.", "empty");
+                setState(
+                    faqState,
+                    "No FAQ entries yet. Use 'Create FAQ from this' on a report, or add one here.",
+                    "empty",
+                );
                 return;
             }
             setState(faqState, `${items.length} FAQ entr${items.length === 1 ? "y" : "ies"}.`, "loaded");
@@ -278,9 +405,9 @@
         state.setAttribute("role", "status");
         state.setAttribute("aria-live", "polite");
         const actions = node("div", "helpdesk-admin-actions helpdesk-faq-actions");
-        const save = node("button", "", "Save changes");
+        const save = node("button", "helpdesk-admin-button--primary", "Save changes");
         save.type = "submit";
-        const remove = node("button", "", "Delete");
+        const remove = node("button", "helpdesk-admin-button--danger", "Delete");
         remove.type = "button";
         actions.append(save, remove);
         form.append(actions, state);
@@ -301,6 +428,7 @@
                 title.textContent = item.question;
                 summary.textContent = `Sort order: ${item.sort_order} · ${item.is_published ? "Published" : "Unpublished"}`;
                 setState(state, "Saved.", "saved");
+                await refreshSummary();
             } catch (error) {
                 setState(state, `Save error: ${error.message}`, "error");
             } finally {
@@ -330,7 +458,14 @@
                 await api(`/api/helpdesk/admin/faq/${item.id}`, { method: "DELETE" });
                 card.remove();
                 const remaining = faqList.children.length;
-                setState(faqState, remaining ? `${remaining} FAQ entries.` : "No FAQ entries yet.", remaining ? "loaded" : "empty");
+                setState(
+                    faqState,
+                    remaining
+                        ? `${remaining} FAQ entries.`
+                        : "No FAQ entries yet. Use 'Create FAQ from this' on a report, or add one here.",
+                    remaining ? "loaded" : "empty",
+                );
+                await refreshSummary();
             } catch (error) {
                 setState(state, `Delete error: ${error.message}`, "error");
                 remove.disabled = false;
@@ -358,6 +493,7 @@
             faqLoaded = false;
             await loadFaq();
             setState(faqCreateState, "Saved.", "saved");
+            await refreshSummary();
         } catch (error) {
             setState(faqCreateState, `Save error: ${error.message}`, "error");
         } finally {
@@ -365,8 +501,12 @@
         }
     });
 
-    feedbackFilter.addEventListener("change", loadFeedback);
+    feedbackFilterButtons.forEach((button) => {
+        button.addEventListener("click", () => loadFeedback(button.dataset.status));
+    });
     addCounter(faqQuestion, byId("helpdesk-faq-new-question-count"), 300);
     addCounter(faqAnswer, byId("helpdesk-faq-new-answer-count"), 4000);
+    showUnavailableSummary();
+    refreshSummary();
     loadFeedback();
 })();
