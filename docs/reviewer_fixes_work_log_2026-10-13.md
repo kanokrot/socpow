@@ -460,3 +460,156 @@ GROUP BY 1,2,3,4;
 
 ## บันทึกต่อ
 
+
+### Phase 3 — Operational metrics แบบ 3 สถานะ
+
+ไฟล์ที่เพิ่มใน `evidence/operational_metrics_2026-10-13/`: `compute_operational_metrics.py`, `verify_truncated_rows.py`, `README.md`, `flow_c_as_recorded_metrics.csv`, `flow_c_rerun_metrics.csv`. เพิ่ม `.gitignore` exception สำหรับ directory นี้. `compute_operational_metrics.py` แบ่ง Flow C เป็น success/error/unparseable; error ซ้อนใน MCP result และ error ภายใน investigate_ioc รายงานแยก. Flow B ยังคงใช้ audit_log status.
+
+คำสั่งที่รันจริง:
+
+```powershell
+$env:PYTHONIOENCODING='utf-8'
+.\.venv\Scripts\python.exe evidence/operational_metrics_2026-10-13/compute_operational_metrics.py --extra-session-id 2320b6ac573d --extra-session-id ab2cb362c774 --extra-session-id 41fa383a6d03 --extra-session-id b0c0c527cdbb --label flow-c-as-recorded --output-csv evidence/operational_metrics_2026-10-13/flow_c_as_recorded_metrics.csv
+.\.venv\Scripts\python.exe evidence/operational_metrics_2026-10-13/compute_operational_metrics.py --session-ids-file scripts/adhoc/flow_c_rerun_session_ids.json --extra-session-id a643cd266adf --label flow-c-rerun --output-csv evidence/operational_metrics_2026-10-13/flow_c_rerun_metrics.csv
+.\.venv\Scripts\python.exe evidence/operational_metrics_2026-10-13/verify_truncated_rows.py
+```
+
+ผลดิบของ `compute_operational_metrics.py` สำหรับ as-recorded:
+
+```text
+group | metric | numerator | denominator | rate | details
+Flow B | step_success_rate | 0 | 0 | 0.000000 |
+Flow B | completion_rate | 0 | 0 | 0.000000 |
+Flow B | completion_rate_step_limit_abort_breakdown | 0 | 0 | 0.000000 |
+Flow B | completion_rate_other_non_completed_breakdown | 0 | 0 | 0.000000 |
+Flow B | human_override_rate | 0 | 0 | 0.000000 |
+Flow C [flow-c-as-recorded] | step_success_rate | 15 | 15 | 1.000000 |
+Flow C [flow-c-as-recorded] | error_count | 0 | 20 | 0.000000 |
+Flow C [flow-c-as-recorded] | unparseable_count | 5 | 20 | 0.250000 |
+Flow C [flow-c-as-recorded] | step_total | 20 | 20 | 1.000000 |
+Flow C [flow-c-as-recorded] | partial_failure_count | 0 | 15 | 0.000000 |
+Flow C [flow-c-as-recorded] | investigate_ioc_auxiliary_error_count | 0 | 20 | 0.000000 |
+Flow C | completion_rate | 4 | 4 | 1.000000 |
+Flow C | completion_rate_step_limit_abort_breakdown | 0 | 0 | 0.000000 |
+Flow C | completion_rate_other_non_completed_breakdown | 0 | 0 | 0.000000 |
+Flow C | human_override_rate | 0 | 5 | 0.000000 |
+csv_path=evidence/operational_metrics_2026-10-13/flow_c_as_recorded_metrics.csv
+```
+
+ผลดิบของ `compute_operational_metrics.py` สำหรับ rerun (session-id file บวก `a643cd266adf`):
+
+```text
+group | metric | numerator | denominator | rate | details
+Flow B | step_success_rate | 0 | 0 | 0.000000 |
+Flow B | completion_rate | 0 | 0 | 0.000000 |
+Flow B | completion_rate_step_limit_abort_breakdown | 0 | 0 | 0.000000 |
+Flow B | completion_rate_other_non_completed_breakdown | 0 | 0 | 0.000000 |
+Flow B | human_override_rate | 0 | 0 | 0.000000 |
+Flow C [flow-c-rerun] | step_success_rate | 73 | 73 | 1.000000 |
+Flow C [flow-c-rerun] | error_count | 0 | 73 | 0.000000 |
+Flow C [flow-c-rerun] | unparseable_count | 0 | 73 | 0.000000 |
+Flow C [flow-c-rerun] | step_total | 73 | 73 | 1.000000 |
+Flow C [flow-c-rerun] | partial_failure_count | 5 | 73 | 0.068493 | 7a5e681cf418:3:mcp:osint_tools/reverse_dns;b1afd5f64a38:10:mcp:osint_tools/subdomain_enumerate;b1afd5f64a38:12:mcp:free_osint_tools/crtsh_subdomain_search;e83135100307:10:mcp:osint_tools/subdomain_enumerate;e83135100307:12:mcp:free_osint_tools/crtsh_subdomain_search
+Flow C [flow-c-rerun] | investigate_ioc_auxiliary_error_count | 7 | 73 | 0.095890 | 7a5e681cf418:17:investigate_ioc;8898632cbf7a:17:investigate_ioc;a643cd266adf:17:investigate_ioc;b1afd5f64a38:17:investigate_ioc;cc587d2786b6:17:investigate_ioc;e83135100307:17:investigate_ioc;ee5744705850:17:investigate_ioc
+Flow C | completion_rate | 9 | 9 | 1.000000 |
+Flow C | completion_rate_step_limit_abort_breakdown | 0 | 0 | 0.000000 |
+Flow C | completion_rate_other_non_completed_breakdown | 0 | 0 | 0.000000 |
+Flow C | human_override_rate | 3 | 10 | 0.300000 |
+partial_failure_tool | 7a5e681cf418 | 3 | mcp:osint_tools/reverse_dns
+partial_failure_tool | b1afd5f64a38 | 10 | mcp:osint_tools/subdomain_enumerate
+partial_failure_tool | b1afd5f64a38 | 12 | mcp:free_osint_tools/crtsh_subdomain_search
+partial_failure_tool | e83135100307 | 10 | mcp:osint_tools/subdomain_enumerate
+partial_failure_tool | e83135100307 | 12 | mcp:free_osint_tools/crtsh_subdomain_search
+investigate_ioc_auxiliary_error | 7a5e681cf418 | 17 | investigate_ioc
+investigate_ioc_auxiliary_error | 8898632cbf7a | 17 | investigate_ioc
+investigate_ioc_auxiliary_error | a643cd266adf | 17 | investigate_ioc
+investigate_ioc_auxiliary_error | b1afd5f64a38 | 17 | investigate_ioc
+investigate_ioc_auxiliary_error | cc587d2786b6 | 17 | investigate_ioc
+investigate_ioc_auxiliary_error | e83135100307 | 17 | investigate_ioc
+investigate_ioc_auxiliary_error | ee5744705850 | 17 | investigate_ioc
+csv_path=evidence/operational_metrics_2026-10-13/flow_c_rerun_metrics.csv
+```
+
+ผลดิบของ `verify_truncated_rows.py`:
+
+```text
+session_id,step_number,tool_name,old_success,new_success,full_len,serialized_prefix_matches_truncated
+2320b6ac573d,1,extract_iocs,1,1,,n/a
+2320b6ac573d,14,mcp:threat_intel_tools/urlhaus_lookup,1,1,,n/a
+2320b6ac573d,16,mcp:threat_intel_tools/threatfox_ioc_lookup,1,1,,n/a
+2320b6ac573d,17,investigate_ioc,0,1,11715,true
+41fa383a6d03,1,extract_iocs,1,1,,n/a
+41fa383a6d03,14,mcp:threat_intel_tools/urlhaus_lookup,1,1,,n/a
+41fa383a6d03,16,mcp:threat_intel_tools/threatfox_ioc_lookup,1,1,,n/a
+41fa383a6d03,17,investigate_ioc,0,1,10719,true
+41fa383a6d03,19,generate_rules,1,1,,n/a
+ab2cb362c774,1,extract_iocs,1,1,,n/a
+ab2cb362c774,14,mcp:threat_intel_tools/urlhaus_lookup,1,1,,n/a
+ab2cb362c774,16,mcp:threat_intel_tools/threatfox_ioc_lookup,1,1,,n/a
+ab2cb362c774,17,investigate_ioc,0,1,10504,true
+b0c0c527cdbb,1,mcp:remote_tools/system_info_collect,1,1,,n/a
+b0c0c527cdbb,2,mcp:remote_tools/process_list_collect,0,1,20032,true
+b0c0c527cdbb,3,mcp:remote_tools/netstat_collect,1,1,,n/a
+b0c0c527cdbb,4,mcp:remote_tools/event_log_collect,0,1,1574876,true
+b0c0c527cdbb,6,mcp:remote_tools/autoruns_check,1,1,,n/a
+b0c0c527cdbb,10,extract_iocs,1,1,,n/a
+b0c0c527cdbb,12,mcp:forensics_tools/mitre_attack_mapper,1,1,,n/a
+SUMMARY old_success=15/20 new_success=20/20
+```
+
+raw CSV `flow_c_as_recorded_metrics.csv`:
+
+```csv
+group,metric,numerator,denominator,rate,details
+Flow B,step_success_rate,0,0,0.000000,
+Flow B,completion_rate,0,0,0.000000,
+Flow B,completion_rate_step_limit_abort_breakdown,0,0,0.000000,
+Flow B,completion_rate_other_non_completed_breakdown,0,0,0.000000,
+Flow B,human_override_rate,0,0,0.000000,
+Flow C [flow-c-as-recorded],step_success_rate,15,15,1.000000,
+Flow C [flow-c-as-recorded],error_count,0,20,0.000000,
+Flow C [flow-c-as-recorded],unparseable_count,5,20,0.250000,
+Flow C [flow-c-as-recorded],step_total,20,20,1.000000,
+Flow C [flow-c-as-recorded],partial_failure_count,0,15,0.000000,
+Flow C [flow-c-as-recorded],investigate_ioc_auxiliary_error_count,0,20,0.000000,
+Flow C,completion_rate,4,4,1.000000,
+Flow C,completion_rate_step_limit_abort_breakdown,0,0,0.000000,
+Flow C,completion_rate_other_non_completed_breakdown,0,0,0.000000,
+Flow C,human_override_rate,0,5,0.000000,
+```
+
+raw CSV `flow_c_rerun_metrics.csv`:
+
+```csv
+group,metric,numerator,denominator,rate,details
+Flow B,step_success_rate,0,0,0.000000,
+Flow B,completion_rate,0,0,0.000000,
+Flow B,completion_rate_step_limit_abort_breakdown,0,0,0.000000,
+Flow B,completion_rate_other_non_completed_breakdown,0,0,0.000000,
+Flow B,human_override_rate,0,0,0.000000,
+Flow C [flow-c-rerun],step_success_rate,73,73,1.000000,
+Flow C [flow-c-rerun],error_count,0,73,0.000000,
+Flow C [flow-c-rerun],unparseable_count,0,73,0.000000,
+Flow C [flow-c-rerun],step_total,73,73,1.000000,
+Flow C [flow-c-rerun],partial_failure_count,5,73,0.068493,7a5e681cf418:3:mcp:osint_tools/reverse_dns;b1afd5f64a38:10:mcp:osint_tools/subdomain_enumerate;b1afd5f64a38:12:mcp:free_osint_tools/crtsh_subdomain_search;e83135100307:10:mcp:osint_tools/subdomain_enumerate;e83135100307:12:mcp:free_osint_tools/crtsh_subdomain_search
+Flow C [flow-c-rerun],investigate_ioc_auxiliary_error_count,7,73,0.095890,7a5e681cf418:17:investigate_ioc;8898632cbf7a:17:investigate_ioc;a643cd266adf:17:investigate_ioc;b1afd5f64a38:17:investigate_ioc;cc587d2786b6:17:investigate_ioc;e83135100307:17:investigate_ioc;ee5744705850:17:investigate_ioc
+Flow C,completion_rate,9,9,1.000000,
+Flow C,completion_rate_step_limit_abort_breakdown,0,0,0.000000,
+Flow C,completion_rate_other_non_completed_breakdown,0,0,0.000000,
+Flow C,human_override_rate,3,10,0.300000,
+```
+
+ผล `git check-ignore` ใช้ `-v -n --no-index`; ทุก path แสดง `::` (ไม่มี ignore rule ที่จับ path) และ exit 1 ซึ่งหมายถึงไม่มี path ใดถูก ignore:
+
+```text
+::	evidence/operational_metrics_2026-10-13/compute_operational_metrics.py
+::	evidence/operational_metrics_2026-10-13/verify_truncated_rows.py
+::	evidence/operational_metrics_2026-10-13/README.md
+::	evidence/operational_metrics_2026-10-13/flow_c_as_recorded_metrics.csv
+::	evidence/operational_metrics_2026-10-13/flow_c_rerun_metrics.csv
+CHECK_IGNORE_EXIT=1
+```
+
+**สถานะ Phase 3:** สคริปต์ทั้งสองรันผ่าน; verifier ได้ 15/20 → 20/20 และทุก prefix comparison ของ 5 แถวเป็น true. ไม่ได้รัน pytest หรือ full pytest. Reject 3 ครั้งยังเป็น branch ที่บังคับด้วย `--reject-every`, ไม่ใช่ Human Override Rate จริง.
+
+**งานที่ยังค้างต่อจากนี้:** เพิ่มสคริปต์ metrics เสร็จแล้ว; ยังเหลือคำตอบ reviewer 37B/37C, การแก้ข้อความใต้ Table 3 ให้ใช้ `characters` แทน `bytes`, และการตัดสินใจเรื่องเพิ่ม timeout audit ใน `agent_loop.py`.
