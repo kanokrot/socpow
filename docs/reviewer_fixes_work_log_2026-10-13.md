@@ -613,3 +613,177 @@ CHECK_IGNORE_EXIT=1
 **สถานะ Phase 3:** สคริปต์ทั้งสองรันผ่าน; verifier ได้ 15/20 → 20/20 และทุก prefix comparison ของ 5 แถวเป็น true. ไม่ได้รัน pytest หรือ full pytest. Reject 3 ครั้งยังเป็น branch ที่บังคับด้วย `--reject-every`, ไม่ใช่ Human Override Rate จริง.
 
 **งานที่ยังค้างต่อจากนี้:** เพิ่มสคริปต์ metrics เสร็จแล้ว; ยังเหลือคำตอบ reviewer 37B/37C, การแก้ข้อความใต้ Table 3 ให้ใช้ `characters` แทน `bytes`, และการตัดสินใจเรื่องเพิ่ม timeout audit ใน `agent_loop.py`.
+## สรุปปิดงาน (2026-10-13)
+
+### 1. Commits
+
+ผล `git log --oneline -n 12`:
+
+```text
+e13810b Append Phase 3 to reviewer fixes work log
+1eb41e3 Add operational metrics 2026-10-13 with three-state step parsing
+da99c40 Add reviewer fixes work log
+457795c Store complete playbook tool results; valid JSON wrapper on oversize
+b078553 Add approval scenario tests
+3bd8c95 Approval resume guard and authenticated approver
+ba52283 docs: finalize protocol evidence tables (C2, ThreatFox, Tranco, smoke) and old-holdout checks
+9d2571c eval: add offline sensitivity analysis (weights, consensus multiplier, thresholds)
+420d4b1 docs: record evaluation run evidence, trusted-shortcut and coverage findings in protocol
+38978cd data: keep small raw source snapshots for independent URL holdout
+7e7b59d data: record single evaluation run and metrics for independent URL holdout
+5dc60fa data: freeze independent URL holdout (256 rows) and overlap measurement before evaluation
+```
+
+| hash | ข้อความ | ไฟล์ที่แตะ (จาก `git show --name-only`) |
+|---|---|---|
+| `3bd8c95` | Approval resume guard and authenticated approver | `src/agent/playbook_engine.py`; `src/web/routes/agent.py` |
+| `b078553` | Add approval scenario tests | `tests/test_approval_scenarios.py` |
+| `457795c` | Store complete playbook tool results; valid JSON wrapper on oversize | `src/agent/playbook_engine.py`; `tests/test_playbook_tool_result_storage.py` |
+| `1eb41e3` | Add operational metrics 2026-10-13 with three-state step parsing | `.gitignore`; `evidence/operational_metrics_2026-10-13/README.md`; `compute_operational_metrics.py`; `verify_truncated_rows.py`; CSV 2 ไฟล์ |
+| `e13810b` | Append Phase 3 to reviewer fixes work log | `docs/reviewer_fixes_work_log_2026-10-13.md` |
+
+ตรวจค่า cap จาก commit โดยตรง:
+
+```text
+$ git show 457795c:src/agent/playbook_engine.py | Select-String -Pattern '^_MAX_STORED_TOOL_RESULT_CHARS'
+_MAX_STORED_TOOL_RESULT_CHARS = 5_000_000
+```
+
+บันทึกใน work log เดิมกล่าวถึง full pytest `3339 passed, 1 skipped, 1 xfailed` ที่บรรทัด 320 และ 373 แต่บรรทัดเดียวกันระบุว่า raw output/log `ไม่พบหลักฐาน`; ดังนั้นค่านี้เป็นตัวเลขที่ถูกบันทึกไว้ ไม่ใช่ผลที่ตรวจยืนยันจาก raw pytest output ใน close-out นี้.
+
+### 2. การตรวจหลัง Phase 3
+
+บรรทัด 135 ของ work log ก่อนส่วนนี้:
+
+```text
+135:**เป้าหมาย:** เพิ่ม `tests/test_approval_scenarios.py` สำหรับ rejection, repeated resume, nonwaiting session, partial execution, tool errors, nested error, timeout และ route authorization
+```
+
+ผล sensitive-string scans:
+
+```text
+== evidence sensitive scan
+NO_MATCH
+MATCH_COUNT=0
+== worklog password scan
+NO_MATCH
+MATCH_COUNT=0
+```
+
+รูปแบบที่ค้นใน `evidence/operational_metrics_2026-10-13/*`: `password|token|PRIVATE KEY|Authorization|cabta_session|BEGIN`; รูปแบบที่ค้นใน work log: `--password\s+\S+`.
+
+ผล query read-only ของ `investigate_ioc` สำหรับ session IDs จากไฟล์ rerun บวก `a643cd266adf`; error string ตัดไม่เกิน 60 ตัวอักษร และไม่มี IOC/event-log payload:
+
+```text
+session_id|verdict|aux_error_paths_and_first_60_chars
+7a5e681cf418|CLEAN|llm_analysis.error=Failed to get LLM response; sources.c2_trackers.error=9 C2 tracker feed(s) failed; sources.greynoise.error=Error; sources.ip2proxy.error=Request failed
+8898632cbf7a|CLEAN|sources.threatzone.error=HTTP 405
+a643cd266adf|CLEAN|sources.c2_trackers.error=9 C2 tracker feed(s) failed; sources.greynoise.error=Error; sources.ip2proxy.error=Request failed
+b1afd5f64a38|CLEAN|sources.c2_trackers.error=9 C2 tracker feed(s) failed; sources.circl.error=HTTP 401
+cc587d2786b6|CLEAN|sources.c2_trackers.error=9 C2 tracker feed(s) failed; sources.greynoise.error=Error; sources.ip2proxy.error=Request failed
+e83135100307|CLEAN|sources.c2_trackers.error=9 C2 tracker feed(s) failed; sources.circl.error=HTTP 401
+ee5744705850|CLEAN|sources.c2_trackers.error=9 C2 tracker feed(s) failed; sources.greynoise.error=Error; sources.ip2proxy.error=Request failed
+verdict_counts= {'CLEAN': 7} investigate_ioc_rows= 7 aux_error_rows= 7
+aux_error_occurrences= {'llm_analysis.error': 1, 'c2_trackers': 6, 'greynoise': 4, 'ip2proxy': 4, 'threatzone': 1, 'circl': 2}
+sessions_total= 9
+```
+
+ผล query read-only สำหรับ rows, approvals และความยาวสูงสุด:
+
+```text
+tool_call_count,max_len,invalid_json,wrapper_rows
+(73, 515903, 0, 0)
+audit action_type,approved_by,status,count
+('approval_granted', 'admin', 'success', 7)
+('approval_rejected', 'admin', 'rejected', 3)
+('approval_required', None, 'pending', 10)
+largest_tool_result_row
+('89fc75c9b0fe', 4, 'mcp:remote_tools/event_log_collect', 515903)
+```
+
+`agent_sessions` ที่อยู่ในชุด rerun มี 7 `ioc_triage` และ 2 `forensic_triage`; ทั้ง 9 แถวมี status `completed`. ผล SELECT นี้ใช้ DB URI `mode=ro`.
+
+### 3. สถานะ reviewer comments
+
+| ข้อ | ที่มา | สถานะ | หลักฐาน |
+|---|---|---|---|
+| Output Truncation Bug (37C) | reviewer 37C | แก้แล้ว | `457795c`; cap `5_000_000`; `tests/test_playbook_tool_result_storage.py` มีผลเดิม 7 passed ตามบันทึกใน §2; rerun มี 73 tool_call, invalid 0, wrapper 0 |
+| Step Success Rate 75% (37B ข้อ 4) | reviewer 37B ข้อ 4 | อธิบายแล้ว | CSV committed ใน `1eb41e3`: as-recorded success 15, error 0, unparseable 5, total 20; `verify_truncated_rows.py` ให้ 15/20 → 20/20 |
+| Approve/Reject/tool failure/partial execution/unauthorized | reviewer 37B/37C | มีเทสต์ผ่านตาม targeted run | `tests/test_approval_scenarios.py`: 13 collected, 12 passed, 1 xfailed; raw output แนบด้านล่าง |
+| Reject บนระบบจริง | Flow C rerun | ทดสอบแล้ว: 3/10 approvals; session ทั้ง 9 จบ `completed`; `approved_by=admin` ใน granted/rejected audit rows | read-only SELECT ในข้อ 2; rerun script ใช้ `--reject-every 3`; นี่ไม่ใช่ Human Override Rate จริง |
+| Approval timeout audit | AgentLoop | ยังไม่แก้ | `test_agent_loop_approval_timeout_fails_without_tool_and_writes_timeout_audit` เป็น `xfail(strict=True)`; ต้องแก้ `src/agent/agent_loop.py` |
+| Playbook approval timeout | Playbook path | ไม่พบ timeout implementation ใน path ที่ตรวจ | `src/agent/playbook_engine.py` บันทึก `waiting_approval` และ return; เจตนาการออกแบบ: `ไม่พบหลักฐาน` |
+| LLM unavailable | Playbook/investigate_ioc | ไม่พบหลักฐานของ end-to-end test สำหรับ LLM unavailable path; มี nested-error fixture ใน approval scenario และมี unit tests ของ LLM failure ในไฟล์อื่น | `tests/test_approval_scenarios.py:209-...`; `rg` พบ LLM-related tests ใน `tests/test_domain_intel_and_rule_recs.py`, `test_ioc_llm_context.py` และไฟล์อื่น; DB พบ `llm_analysis.error` 1 แถวใน `7a5e681cf418` |
+| เพิ่มจำนวน run Flow B/C | Flow rerun | Flow C: 9 sessions (ioc_triage 7, forensic_triage 2); Flow B: ยังไม่ได้รันเพิ่มในชุดนี้ | session IDs file + `a643cd266adf`; read-only `agent_sessions` query |
+| URL Recall 30%, ชุดทดสอบอิสระจาก ThreatFox, sensitivity analysis ของ AHP | นอกขอบเขตงานนี้ | นอกขอบเขตของ log นี้ | ตามขอบเขต close-out ที่ระบุ |
+
+ผล targeted `tests/test_approval_scenarios.py`:
+
+```text
+$env:PYTHONIOENCODING='utf-8'
+.\.venv\Scripts\python.exe -m pytest -v tests/test_approval_scenarios.py --basetemp="$env:TEMP\closeout_approval_scenarios" -p no:cacheprovider
+============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.1.1, pluggy-1.6.0 -- D:\ai_cti_automate\.venv\Scripts\python.exe
+collecting ... collected 13 items
+
+tests/test_approval_scenarios.py::test_reject_skips_tool_audits_rejection_and_takes_on_failure PASSED [  7%]
+tests/test_approval_scenarios.py::test_repeated_approval_executes_tool_once_and_rejects_second_resume PASSED [ 15%]
+tests/test_approval_scenarios.py::test_nonwaiting_session_does_not_execute_approved_tool[completed] PASSED [ 23%]
+tests/test_approval_scenarios.py::test_nonwaiting_session_does_not_execute_approved_tool[failed] PASSED [ 30%]
+tests/test_approval_scenarios.py::test_top_level_tool_error_takes_failure_path_and_skips_dependent_tool PASSED [ 38%]
+tests/test_approval_scenarios.py::test_tool_exception_or_timeout_is_saved_as_error_without_crashing[exception] PASSED [ 46%]
+tests/test_approval_scenarios.py::test_tool_exception_or_timeout_is_saved_as_error_without_crashing[timeout] PASSED [ 53%]
+tests/test_approval_scenarios.py::test_nested_error_is_recorded_but_treated_as_top_level_success PASSED [ 61%]
+tests/test_approval_scenarios.py::test_agent_loop_approval_timeout_fails_without_tool_and_writes_timeout_audit XFAIL [ 69%]
+tests/test_approval_scenarios.py::test_agent_approval_route_uses_authenticated_username_not_forged_body PASSED [ 76%]
+tests/test_approval_scenarios.py::test_agent_loop_approval_route_uses_authenticated_username_not_forged_body PASSED [ 84%]
+tests/test_approval_scenarios.py::test_unauthorized_approval_does_not_run_tool_or_write_audit[role-forbidden] PASSED [ 92%]
+tests/test_approval_scenarios.py::test_unauthorized_approval_does_not_run_tool_or_write_audit[not-owner] PASSED [100%]
+```
+
+### 4. ตัวเลขสำหรับบทความ
+
+ตัวเลข count/rate ของ as-recorded และ rerun ด้านล่างคัดจาก CSV ที่ commit ใน `1eb41e3`; รายละเอียด error เสริมมาจาก SELECT read-only ในข้อ 2.
+
+- As-recorded Flow C: success 15 / error 0 / unparseable 5 / step_total 20. Legacy CSV เดิมรายงาน 15/20 = 75% เพราะ parse failure ถูกนับเป็น false.
+- Rerun Flow C: success 73/73 ตามเกณฑ์ไม่มี error ระดับบนสุด; error 0, unparseable 0; partial_failure 5/73 = 6.8%: `reverse_dns` 1, `subdomain_enumerate` 2, `crtsh_subdomain_search` 2; ทั้ง 5 อยู่ใน `ioc_triage`.
+- `investigate_ioc` auxiliary error: 7/7 rows มีอย่างน้อยหนึ่ง error. นับ path ที่พบ: `c2_trackers` ระบุ 9 feeds failed ใน 6 rows; `greynoise` 4; `ip2proxy` 4; `circl` HTTP 401 จำนวน 2; `threatzone` HTTP 405 จำนวน 1; `llm_analysis.error` จำนวน 1.
+- ผลที่ยาวที่สุดตาม DB query: `event_log_collect`, 515903 ตัวอักษร.
+- ข้อความที่ไม่ควรเขียนลงบทความ: อย่าอธิบาย 100% ว่าเป็นความน่าเชื่อถือของ Flow C เพราะเกณฑ์ไม่รวม error ซ้อน; อย่าเรียก 3/10 ว่า Human Override Rate; ระบุตัวอย่างว่ายังเล็ก; `[:10000]` ตัดตัวอักษร ไม่ใช่ bytes.
+
+### 5. ข้อสังเกตเพื่อตรวจภายหลัง (ไม่ใช่ข้อสรุป)
+
+`c2_trackers` ปรากฏใน source tiers 6 รายการของ `src/agent/agent_response_parsing.py`; DB แสดง 9 C2 tracker feeds failed ใน 6 จาก 7 investigate_ioc rows รอบนี้. ยังไม่ทราบสาเหตุว่าเป็นเครือข่าย, DNS หรือ feed หมดอายุ; `ไม่พบหลักฐาน` ว่าเกี่ยวข้องกับ URL Recall.
+
+### 6. ร่างข้อความสำหรับ reviewer และ Table 3
+
+ข้อความต่อไปนี้เป็น **ร่าง** ตามข้อความที่ผู้ใช้ให้ ผู้เขียนต้องตรวจก่อนใช้. ข้อสังเกต: ผลค้นหาใน tests พบ nested-error fixture ที่มี `llm_analysis.error` และพบ LLM failure tests ในไฟล์อื่น; ประโยค “ยังไม่มีเทสต์อัตโนมัติ” ควรตีความให้แคบเป็น “ยังไม่มี end-to-end test สำหรับ LLM unavailable ใน playbook path”.
+
+**ย่อหน้าใต้ Table 3 (ร่าง)**
+
+> Playbook Engine ใน Flow C ได้ Step Success Rate 75% (15/20) จาก 4 session ที่บันทึกไว้ในการทดลองเดิม เมื่อตรวจสอบพบว่า 5 จาก 20 step ไม่ใช่การล้มเหลวของเครื่องมือ แต่เกิดจากข้อบกพร่องในการบันทึกข้อมูล คือระบบตัดผลลัพธ์ JSON ที่ 10,000 ตัวอักษรก่อนบันทึก ทำให้ข้อมูลที่เก็บเป็น JSON ไม่สมบูรณ์ และเกณฑ์การนับถือว่าผลที่อ่านไม่ได้เป็นความล้มเหลว เมื่อคำนวณใหม่จากผลเต็มที่ยังเก็บไว้ใน metadata ของ session ด้วยเกณฑ์เดิม (ไม่มี error ระดับบนสุด) ได้ 20/20 และผลเต็มตรงกับข้อความที่ถูกตัดทุกแถว ผู้พัฒนาแก้ไขให้บันทึกผลครบ แล้วรันซ้ำ 9 session (ioc_triage 7, forensic_triage 2) พบว่าทั้ง 73 step ถูกบันทึกครบและอ่านได้ (ผลที่ใหญ่ที่สุด 515,903 ตัวอักษร) เกณฑ์นี้ตรวจเฉพาะ error ระดับบนสุด ในการรันซ้ำพบ error ซ้อนในผลของ 5 step (6.8%) ซึ่งรายงานแยกเป็น partial failure นอกจากนี้ผลของ investigate_ioc ทุกครั้ง (7 จาก 7) มีแหล่งข้อมูลเสริมอย่างน้อยหนึ่งแหล่งรายงานข้อผิดพลาด แต่ระบบยังคืนค่า verdict ได้ทุกครั้ง โดย IOC ที่ใช้ทดสอบเป็น IOC ปลอดภัย จึงไม่ใช่การวัดความแม่นยำ
+
+**ตอบ reviewer 37C (ร่าง)**
+
+> ยืนยันว่าบัคมีจริง: ผลลัพธ์เครื่องมือถูกตัดที่ 10,000 ตัวอักษรใน 3 เส้นทาง (tool call ปกติ, for_each และหลัง approval) และทำให้ 5 จาก 20 step ของ Flow C ถูกนับเป็นล้มเหลวทั้งที่เครื่องมือทำงานสำเร็จ แก้ไขแล้วโดยบันทึกผลครบ (เพดาน 5,000,000 ตัวอักษร หากเกินจะเก็บเป็น JSON ที่ถูกรูปแบบพร้อมสถานะความสำเร็จ) พร้อมเทสต์อัตโนมัติ และรันซ้ำ 9 session ได้ข้อมูลครบทุก step
+
+**ตอบ reviewer 37B (ร่าง)**
+
+> เพิ่มเทสต์อัตโนมัติ 13 กรณี (ผ่าน 12 ไม่ผ่านโดยตั้งใจ 1) ครอบคลุม Approve, Reject, tool failure, partial execution, การอนุมัติซ้ำ, การบังคับตัวตนผู้อนุมัติจากบัญชีที่ล็อกอิน และการปฏิเสธผู้ใช้ที่ไม่มีสิทธิ์ และทดสอบกิ่ง Reject บนระบบจริง 3 ครั้งจากการอนุมัติ 10 ครั้ง (กำหนดให้ปฏิเสธทุกครั้งที่สาม): step ที่ถูกปฏิเสธไม่ถูกรัน session ดำเนินต่อและจบสำเร็จ และ audit trail บันทึกผู้อนุมัติเป็นชื่อบัญชีจริง ข้อจำกัดที่ยังเหลือ: การหมดเวลารออนุมัติของ AgentLoop ไม่มีบันทึกใน audit trail, การอนุมัติของ Playbook ไม่มี timeout, ความพยายามที่ถูกปฏิเสธ (403/404) ไม่ถูกบันทึก และกรณี LLM ไม่พร้อมใช้งานยังไม่มีเทสต์อัตโนมัติ
+
+บรรทัดในร่างข้างต้นที่กล่าวถึงความปลอดภัยของ IOC คัดตามร่างผู้ใช้; ไม่มีการใส่ IOC ดิบใน work log. ถ้อยคำสุดท้ายยังต้องให้ผู้เขียนตรวจ.
+
+### 7. งานที่ยังเปิดอยู่
+
+- ตัดสินใจว่าจะอนุญาตแก้ `src/agent/agent_loop.py` เพื่อบันทึก approval timeout audit หรือไม่.
+- รัน Flow B ซ้ำ หากต้องการเพิ่มตัวอย่าง.
+- ตรวจสาเหตุ `c2_trackers` ล้มเหลว โดยยังไม่สรุปว่าเป็น network/DNS/feed expiration.
+- ผู้ใช้เป็นผู้ commit ไฟล์นี้ด้วย `git add docs/reviewer_fixes_work_log_2026-10-13.md`.
+
+### Erratum ต่อท้าย: ถ้อยคำเรื่อง LLM ในร่างตอบ 37B
+
+ประโยคนี้ใช้แทนข้อความท้ายร่าง 37B ที่กล่าวกว้างว่าไม่มีเทสต์อัตโนมัติสำหรับ LLM:
+
+> กรณี LLM ไม่พร้อมใช้งานในเส้นทาง Playbook ยังไม่มีเทสต์แบบ end-to-end (Playbook Engine ไม่เรียก LLM โดยตรง ผลกระทบจำกัดที่ส่วน llm_analysis ของ investigate_ioc ซึ่งพบ 1 ครั้งใน 7 การรัน และระบบยังคืน verdict ได้)
+
+ตรวจ source: `src/agent/playbook_engine.py` ส่ง `investigate_ioc` เป็น tool และ `src/tools/ioc_investigator.py:371-404` เรียก LLM analyzer พร้อมจัดการข้อผิดพลาดแบบไม่ทำให้การวิเคราะห์หลักหยุด; ผลมีฟิลด์ `llm_analysis` ที่ `src/tools/ioc_investigator.py:489`. ผลการนับ 1 ใน 7 อ้างอิงการตรวจฐานข้อมูล read-only ที่บันทึกไว้ในงานนี้. เทสต์ LLM ทั่วไปที่มีอยู่ไม่ใช่การทดสอบ end-to-end ของเส้นทาง Playbook.
