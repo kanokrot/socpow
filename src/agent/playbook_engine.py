@@ -31,6 +31,22 @@ from ..integrations.ticketing import create_incident_ticket
 
 logger = logging.getLogger(__name__)
 
+_MAX_STORED_TOOL_RESULT_CHARS = 5_000_000
+
+
+def _serialize_tool_result(result: Any) -> str:
+    """Serialize tool output for storage, preserving valid JSON when shortened."""
+    serialized = json.dumps(result, default=str)
+    if len(serialized) <= _MAX_STORED_TOOL_RESULT_CHARS:
+        return serialized
+    return json.dumps({
+        "truncated": True,
+        "original_size": len(serialized),
+        "ended_in_error": _tool_call_ended_in_error(result),
+        "preview": serialized[:10_000],
+    })
+
+
 # Try to import yaml; fall back gracefully if not installed
 try:
     import yaml
@@ -1280,7 +1296,7 @@ class PlaybookEngine:
                 content=pending_step.description or pending_step.name,
                 tool_name=pending_step.tool,
                 tool_params=json.dumps(params, default=str),
-                tool_result=json.dumps(result, default=str)[:10000],
+                tool_result=_serialize_tool_result(result),
                 duration_ms=duration_ms,
             )
             action_status = "error" if isinstance(result, dict) and "error" in result else "success"
@@ -1420,7 +1436,7 @@ class PlaybookEngine:
                 content=f"{current_step.name} (item {i})",
                 tool_name=current_step.tool,
                 tool_params=json.dumps(params, default=str),
-                tool_result=json.dumps(result, default=str)[:10000],
+                tool_result=_serialize_tool_result(result),
                 duration_ms=duration_ms,
             )
 
@@ -1806,7 +1822,7 @@ class PlaybookEngine:
                         content=current_step.description or current_step.name,
                         tool_name=current_step.tool,
                         tool_params=json.dumps(params, default=str),
-                        tool_result=json.dumps(result, default=str)[:10000],
+                        tool_result=_serialize_tool_result(result),
                         duration_ms=duration_ms,
                     )
 
