@@ -333,6 +333,7 @@ async def approve_action(
             detail="Session not found",
         )
 
+    approved_by = current_user.get("username") or current_user.get("email") or "unknown"
     metadata = session.get('metadata', {})
     if isinstance(metadata, dict) and 'pending_step_name' in metadata:
         # Flow C: Playbook session
@@ -340,7 +341,9 @@ async def approve_action(
         if playbook_engine is None:
             return {"success": False, "error": "playbook_engine not available"}
         try:
-            await playbook_engine.execute_from_step(session_id, approved=body.approved, approved_by=body.approved_by)
+            await playbook_engine.execute_from_step(
+                session_id, approved=body.approved, approved_by=approved_by,
+            )
             return {"success": True}
         except Exception as exc:
             return {"success": False, "error": "Action execution failed"}
@@ -348,9 +351,9 @@ async def approve_action(
         # Flow B: Agent Loop session
         agent_loop = _require_agent_loop(request)
         if body.approved:
-            success = await agent_loop.approve_action(session_id, approved_by=body.approved_by)
+            success = await agent_loop.approve_action(session_id, approved_by=approved_by)
         else:
-            success = await agent_loop.reject_action(session_id, approved_by=body.approved_by)
+            success = await agent_loop.reject_action(session_id, approved_by=approved_by)
         return {"success": success}
 
 

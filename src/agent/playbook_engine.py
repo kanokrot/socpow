@@ -1179,6 +1179,11 @@ class PlaybookEngine:
         if session is None:
             raise ValueError(f"Session '{session_id}' not found")
 
+        if session.get("status") != "waiting_approval":
+            raise ValueError(
+                f"Session '{session_id}' has no pending approval checkpoint to resume"
+            )
+
         playbook_id = session.get("playbook_id")
         pb = self._cache.get(playbook_id)
         if pb is None:
@@ -1203,6 +1208,13 @@ class PlaybookEngine:
                 f"Pending step '{pending_step_name}' no longer exists in "
                 f"playbook '{playbook_id}'"
             )
+
+        # Claim the approval before any approved action can be dispatched.
+        # The status guard above rejects subsequent resume attempts.
+        self.store.update_session_status(session_id, "active")
+        claimed_metadata = dict(metadata)
+        claimed_metadata.pop("pending_step_name", None)
+        self.store.update_session_metadata(session_id, claimed_metadata)
 
         case_id = metadata.get("case_id")
 
@@ -1348,8 +1360,6 @@ class PlaybookEngine:
             next_step_name = pending_step.on_failure
 
         next_step = self._resolve_next(next_step_name, step_map, steps, pending_step, step_index_map)
-
-        self.store.update_session_status(session_id, "active")
 
         step_args = (
             session_id, playbook_id, pb, steps, step_map, context,
