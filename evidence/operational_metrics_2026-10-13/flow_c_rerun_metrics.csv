@@ -1,0 +1,16 @@
+group,metric,numerator,denominator,rate,details
+Flow B,step_success_rate,0,0,0.000000,
+Flow B,completion_rate,0,0,0.000000,
+Flow B,completion_rate_step_limit_abort_breakdown,0,0,0.000000,
+Flow B,completion_rate_other_non_completed_breakdown,0,0,0.000000,
+Flow B,human_override_rate,0,0,0.000000,
+Flow C [flow-c-rerun],step_success_rate,73,73,1.000000,
+Flow C [flow-c-rerun],error_count,0,73,0.000000,
+Flow C [flow-c-rerun],unparseable_count,0,73,0.000000,
+Flow C [flow-c-rerun],step_total,73,73,1.000000,
+Flow C [flow-c-rerun],partial_failure_count,5,73,0.068493,7a5e681cf418:3:mcp:osint_tools/reverse_dns;b1afd5f64a38:10:mcp:osint_tools/subdomain_enumerate;b1afd5f64a38:12:mcp:free_osint_tools/crtsh_subdomain_search;e83135100307:10:mcp:osint_tools/subdomain_enumerate;e83135100307:12:mcp:free_osint_tools/crtsh_subdomain_search
+Flow C [flow-c-rerun],investigate_ioc_auxiliary_error_count,7,73,0.095890,7a5e681cf418:17:investigate_ioc;8898632cbf7a:17:investigate_ioc;a643cd266adf:17:investigate_ioc;b1afd5f64a38:17:investigate_ioc;cc587d2786b6:17:investigate_ioc;e83135100307:17:investigate_ioc;ee5744705850:17:investigate_ioc
+Flow C,completion_rate,9,9,1.000000,
+Flow C,completion_rate_step_limit_abort_breakdown,0,0,0.000000,
+Flow C,completion_rate_other_non_completed_breakdown,0,0,0.000000,
+Flow C,human_override_rate,3,10,0.300000,
