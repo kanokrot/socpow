@@ -1,0 +1,151 @@
+{
+  "created_at_utc": "2026-10-12T20:42:35.837626+00:00",
+  "script_git_commit": "420d4b190d041de41777d8dd286fa6d1d60fea47",
+  "script_git_dirty": true,
+  "seed": 20261013,
+  "grid": {
+    "seed": 20261013,
+    "random_perturbation_rounds_per_dataset_sigma": 1000,
+    "weights": {
+      "current_ahp": {
+        "feodotracker": 1.5,
+        "c2_trackers": 0.442818,
+        "spamhaus": 0.69593,
+        "tor_exit_nodes": 0.54248,
+        "sslblacklist": 0.878018,
+        "threatfox": 0.33961
+      },
+      "equal": "1.0 for every scoring source",
+      "adjacent_priority_swaps": [
+        [
+          "feodotracker",
+          "sslblacklist"
+        ],
+        [
+          "sslblacklist",
+          "spamhaus"
+        ],
+        [
+          "spamhaus",
+          "tor_exit_nodes"
+        ],
+        [
+          "tor_exit_nodes",
+          "c2_trackers"
+        ],
+        [
+          "c2_trackers",
+          "threatfox"
+        ]
+      ],
+      "lognormal_sigma": [
+        0.25,
+        0.5
+      ]
+    },
+    "multipliers": {
+      "two_sources": [
+        1.0,
+        1.1,
+        1.2,
+        1.3,
+        1.4
+      ],
+      "three_or_more_sources": [
+        1.2,
+        1.3,
+        1.4
+      ],
+      "no_multiplier": [
+        1.0,
+        1.0
+      ]
+    },
+    "thresholds": {
+      "malicious": [
+        60,
+        65,
+        70,
+        75,
+        80
+      ],
+      "suspicious": [
+        30,
+        35,
+        40,
+        45,
+        50
+      ],
+      "coverage": 0.3,
+      "constraint": "suspicious <= malicious"
+    },
+    "full_multiplier_x_threshold_grid": "holdout_200 only; all valid combinations, including no multiplier"
+  },
+  "input_files": {
+    "group_a_908": [
+      {
+        "path": "evidence\\vt_independent_holdout_2026-09-25\\group_a_eval_results.jsonl",
+        "sha256": "faedc65fdb9d1132e54e473470d8cfa09f121124cab06874dcd42177e066dafc"
+      }
+    ],
+    "holdout_200": [
+      {
+        "path": "evidence\\vt_independent_holdout_2026-09-25\\vt_holdout_eval_results_179.jsonl",
+        "sha256": "669966d5b8c0393d39d84179b944002bd103e26faee9cd1380da3bb5f5c59e3b"
+      },
+      {
+        "path": "evidence\\vt_independent_holdout_2026-09-25\\vt_holdout_eval_results_batch3_21.jsonl",
+        "sha256": "9decd21fffc2f9008b8cb86a39fb6ae4f9cd9d9873e179f4f5e13f2c0e3f3a7d"
+      }
+    ],
+    "independent_256": [
+      {
+        "path": "evidence\\independent_url_holdout_2026-10-11\\eval_results.jsonl",
+        "sha256": "60d7fb6a9a2b6ee8724f62ecefc9627092abc7a53547ed0740b36c8363db62fb"
+      }
+    ]
+  },
+  "dataset_rows": {
+    "group_a_908": 908,
+    "holdout_200": 200,
+    "independent_256": 256
+  },
+  "trusted_shortcut_deviation": {
+    "deviation_from_original_specification": true,
+    "reason": "Trusted-shortcut rows bypassed per-source scoring in the stored evaluation; the responsible reviewer decided to retain their stored predicted_verdict in every sensitivity scenario.",
+    "decision_timing": "Recorded before any sensitivity result was calculated.",
+    "baseline_gate": "Applied to every non-shortcut row; shortcut rows are excluded from reproduction comparison.",
+    "scenario_handling": "Shortcut rows retain their stored predicted_verdict and remain included in all metrics and dataset denominators.",
+    "counts_by_dataset": {
+      "group_a_908": 24,
+      "holdout_200": 0,
+      "independent_256": 12
+    }
+  },
+  "status": "sensitivity_complete",
+  "baseline_check": {
+    "group_a_908": {
+      "rows": 908,
+      "shortcut_count": 24,
+      "baseline_checked_non_shortcut_rows": 884,
+      "mismatch_count": 0,
+      "examples": []
+    },
+    "holdout_200": {
+      "rows": 200,
+      "shortcut_count": 0,
+      "baseline_checked_non_shortcut_rows": 200,
+      "mismatch_count": 0,
+      "examples": []
+    },
+    "independent_256": {
+      "rows": 256,
+      "shortcut_count": 12,
+      "baseline_checked_non_shortcut_rows": 244,
+      "mismatch_count": 0,
+      "examples": []
+    },
+    "total_mismatches": 0,
+    "mismatch_examples": []
+  }
+}
