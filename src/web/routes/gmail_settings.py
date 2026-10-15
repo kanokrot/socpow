@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from urllib.parse import urlencode
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
@@ -19,6 +20,7 @@ from ..visibility import serialize_gmail_status, serialize_gmail_summary
 router = APIRouter()
 admin_router = APIRouter()
 ACCOUNT_PATH = "/account"
+logger = logging.getLogger(__name__)
 
 
 def _service() -> GmailOAuthService:
@@ -38,8 +40,12 @@ def _account_redirect(result: str, reason: str | None = None) -> RedirectRespons
 def connect_gmail(current_user: dict = Depends(get_current_user)) -> RedirectResponse:
     try:
         authorization_url, _raw_state = _service().authorization_url(int(current_user["id"]))
-    except GmailOAuthConfigurationError as exc:
-        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except GmailOAuthConfigurationError:
+        logger.warning("Gmail OAuth start failed: configuration")
+        return _account_redirect("error", "configuration")
+    except Exception as exc:
+        logger.warning("Gmail OAuth start failed: %s", type(exc).__name__)
+        return _account_redirect("error", "start_failed")
     return RedirectResponse(authorization_url, status_code=status.HTTP_302_FOUND)
 
 
@@ -50,23 +56,28 @@ def gmail_callback(
     error: str | None = Query(default=None),
 ) -> RedirectResponse:
     """Complete OAuth using the single-use state as the callback's user binding."""
-    if not state:
-        raise HTTPException(status_code=400, detail="OAuth state is required")
-    service = _service()
     try:
+        if not state:
+            logger.warning("Gmail OAuth callback failed: state_missing")
+            return _account_redirect("error", "state_missing")
+        service = _service()
         user_id = service.resolve_pending_state(state)
         if error or not code:
             service.consume_authorization_state(state, user_id)
-            return _account_redirect("error", "consent_denied" if error else "invalid_code")
+            reason = "consent_denied" if error else "invalid_code"
+            logger.warning("Gmail OAuth callback failed: %s", reason)
+            return _account_redirect("error", reason)
         service.exchange_code(state, user_id, code)
         return _account_redirect("success")
-    except OAuthStateError as exc:
-        raise HTTPException(status_code=400, detail="Invalid or expired OAuth state") from exc
-    except GmailOAuthConfigurationError as exc:
+    except OAuthStateError:
+        logger.warning("Gmail OAuth callback failed: state_invalid")
+        return _account_redirect("error", "state_invalid")
+    except GmailOAuthConfigurationError:
+        logger.warning("Gmail OAuth callback failed: configuration")
         return _account_redirect("error", "configuration")
-    except Exception:
-        # Do not reflect Google's error text or authorization code to the browser.
-        return _account_redirect("error", "invalid_code")
+    except Exception as exc:
+        logger.warning("Gmail OAuth callback failed: %s", type(exc).__name__)
+        return _account_redirect("error", "exchange_failed")
 
 
 @router.get("/status")

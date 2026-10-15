@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import logging
 import json
 import sqlite3
 import time
@@ -151,6 +152,68 @@ def test_unauthenticated_endpoints_are_rejected(tmp_path, monkeypatch):
         assert client.delete("/api/settings/gmail").status_code == 401
 
 
+def test_connect_missing_config_redirects_and_logs_without_secrets(monkeypatch, caplog):
+    class Service:
+        def authorization_url(self, user_id):
+            raise GmailOAuthConfigurationError("private config detail")
+
+    monkeypatch.setattr(gmail_settings_routes, "_service", lambda: Service())
+    with caplog.at_level(logging.WARNING, logger=gmail_settings_routes.__name__):
+        with TestClient(_app(user=_user())) as client:
+            response = client.get("/api/settings/gmail/connect", follow_redirects=False)
+
+    assert response.status_code == 302
+    assert response.headers["location"] == "/account?gmail=error&reason=configuration"
+    assert len(caplog.records) == 1
+    message = caplog.records[0].getMessage()
+    assert message == "Gmail OAuth start failed: configuration"
+    assert "code" not in message.lower()
+    assert "state" not in message.lower()
+    assert "private config detail" not in message
+
+
+def test_connect_unexpected_exception_redirects_to_start_failed(monkeypatch, caplog):
+    class Service:
+        def authorization_url(self, user_id):
+            raise RuntimeError("private start detail")
+
+    monkeypatch.setattr(gmail_settings_routes, "_service", lambda: Service())
+    with caplog.at_level(logging.WARNING, logger=gmail_settings_routes.__name__):
+        with TestClient(_app(user=_user())) as client:
+            response = client.get("/api/settings/gmail/connect", follow_redirects=False)
+
+    assert response.status_code == 302
+    assert response.headers["location"] == "/account?gmail=error&reason=start_failed"
+    assert len(caplog.records) == 1
+    assert caplog.records[0].getMessage() == "Gmail OAuth start failed: RuntimeError"
+    assert "private start detail" not in caplog.text
+
+
+def test_callback_exchange_failure_redirects_and_logs_exception_type(monkeypatch, caplog):
+    class Service:
+        def resolve_pending_state(self, state):
+            return 1
+
+        def exchange_code(self, state, user_id, code):
+            raise RuntimeError("private exchange detail")
+
+    monkeypatch.setattr(gmail_settings_routes, "_service", lambda: Service())
+    with caplog.at_level(logging.WARNING, logger=gmail_settings_routes.__name__):
+        with TestClient(_app()) as client:
+            response = client.get(
+                "/api/settings/gmail/callback?state=state-fixture&code=code-fixture",
+                follow_redirects=False,
+            )
+
+    assert response.status_code == 302
+    assert response.headers["location"] == "/account?gmail=error&reason=exchange_failed"
+    assert len(caplog.records) == 1
+    assert caplog.records[0].getMessage() == "Gmail OAuth callback failed: RuntimeError"
+    assert "private exchange detail" not in caplog.text
+    assert "state-fixture" not in caplog.text
+    assert "code-fixture" not in caplog.text
+
+
 @pytest.mark.parametrize(
     "scenario,query,expected_location",
     [
@@ -158,7 +221,7 @@ def test_unauthenticated_endpoints_are_rejected(tmp_path, monkeypatch):
         ("consent_denied", "&error=access_denied", "/account?gmail=error&reason=consent_denied"),
         ("invalid_code", "", "/account?gmail=error&reason=invalid_code"),
         ("configuration", "&code=auth-code", "/account?gmail=error&reason=configuration"),
-        ("unexpected", "&code=auth-code", "/account?gmail=error&reason=invalid_code"),
+        ("unexpected", "&code=auth-code", "/account?gmail=error&reason=exchange_failed"),
     ],
 )
 def test_callback_redirects_to_account_for_success_and_redirecting_failures(
@@ -190,8 +253,16 @@ def test_callback_redirects_to_account_for_success_and_redirecting_failures(
     assert response.headers["location"] == expected_location
 
 
-@pytest.mark.parametrize("query", ["", "?state=invalid-state&code=auth-code"])
-def test_callback_missing_or_invalid_state_still_returns_400(query, monkeypatch):
+@pytest.mark.parametrize(
+    "query,expected_location",
+    [
+        ("", "/account?gmail=error&reason=state_missing"),
+        ("?state=invalid-state&code=auth-code", "/account?gmail=error&reason=state_invalid"),
+    ],
+)
+def test_callback_redirects_to_account_for_missing_or_invalid_state(
+    query, expected_location, monkeypatch
+):
     class Service:
         def resolve_pending_state(self, state):
             raise OAuthStateError("invalid state")
@@ -203,7 +274,8 @@ def test_callback_missing_or_invalid_state_still_returns_400(query, monkeypatch)
             follow_redirects=False,
         )
 
-    assert response.status_code == 400
+    assert response.status_code == 302
+    assert response.headers["location"] == expected_location
 
 
 def test_status_never_exposes_ciphertext_and_is_owner_scoped(tmp_path, monkeypatch):

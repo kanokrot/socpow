@@ -52,6 +52,24 @@
     function init() {
         document.getElementById('gmailConnect').addEventListener('click', connectGmail);
         document.getElementById('gmailDisconnect').addEventListener('click', disconnectGmail);
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('gmail') === 'error') {
+            var messages = {
+                configuration: 'Gmail connection is not configured. Contact an administrator.',
+                consent_denied: 'Google authorization was cancelled.',
+                invalid_code: 'Google did not return an authorization code. Try again.',
+                state_missing: 'The Gmail authorization response was incomplete. Try again.',
+                state_invalid: 'The Gmail authorization expired or could not be verified. Try again.',
+                start_failed: 'Could not start Gmail authorization. Try again.',
+                exchange_failed: 'Gmail authorization failed. Try again.'
+            };
+            var message = document.getElementById('gmailError');
+            message.textContent = messages[params.get('reason')] || 'Gmail authorization failed. Try again.';
+            message.style.display = '';
+        }
+        if (params.has('gmail')) {
+            history.replaceState(null, '', window.location.pathname);
+        }
         loadStatus();
     }
 
