@@ -62,6 +62,19 @@ def test_integrations_page_shows_hub_cards_and_provider_status_placeholders(
     assert 'href="/integrations/wazuh"' in response.text
     assert 'href="/api/integrations/wazuh/download"' in response.text
     assert "Gmail notifications" in response.text
+    gmail_card = re.search(
+        r'<article class="hub-card hub-compact-card">\s*'
+        r'<div class="hub-card-top">.*?PLANNED.*?</div>\s*'
+        r'<h3>Gmail notifications</h3>.*?</article>',
+        response.text,
+        re.DOTALL,
+    )
+    assert gmail_card is not None
+    assert "<a " not in gmail_card.group(0) and "<button" not in gmail_card.group(0)
+    assert "hubGmailStatus" not in response.text and "hubGmailDetail" not in response.text
+    hub_js = (Path(__file__).parents[1] / "static" / "js" / "integrations_hub.js").read_text(encoding="utf-8")
+    assert "/api/settings/gmail/status" not in hub_js
+    assert "/static/js/integrations_hub.js?v=2" in response.text
     assert "MCP servers" in response.text
     assert "Threat intelligence" in response.text
     assert "Malware sandboxes" in response.text
@@ -80,9 +93,8 @@ def test_integrations_page_describes_circl_public_misp_feed_without_status(
     assert response.status_code == 200
     assert "CIRCL public MISP feed" in response.text
     misp_card = re.search(
-        r'<article class="hub-card hub-compact-card">\s*'
-        r'<div class="hub-card-top">.*?</div>\s*'
-        r'<h3>CIRCL public MISP feed</h3>.*?</article>',
+        r'<article class="hub-card hub-compact-card">(?:(?!</article>)[\s\S])*'
+        r'<h3>CIRCL public MISP feed</h3>(?:(?!</article>)[\s\S])*</article>',
         response.text,
         re.DOTALL,
     )

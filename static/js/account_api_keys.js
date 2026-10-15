@@ -170,25 +170,8 @@
         }
     }
 
-    function syncGmailStatus() {
-        var label = byId('gmailStatusLabel');
-        var card = byId('gmailCard');
-        if (!label || !card) return;
-        function update() {
-            var state = label.textContent.trim().toLowerCase();
-            card.dataset.gmailState = state === 'connected' ? 'connected' : 'disconnected';
-        }
-        new MutationObserver(update).observe(label, {
-            childList: true,
-            characterData: true,
-            subtree: true
-        });
-        update();
-    }
-
     function init() {
         if (byId('userApiKeysRows')) refresh();
-        syncGmailStatus();
     }
     window.AccountApiKeys = { init: init };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

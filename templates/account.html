@@ -27,14 +27,6 @@
     .account-card-heading { flex: 1 1 auto; min-width: 0; }
     .account-card-heading h2 { margin: 0; font-size: 1rem; font-weight: 600; }
     .account-card-subtitle { margin: .2rem 0 0; color: var(--text-secondary); font-size: .85rem; }
-    .account-status-pill { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; border-radius: 999px; padding: .25rem .6rem; color: var(--text-secondary); background: var(--bg-hover, rgba(127,127,127,.12)); font-size: .78rem; }
-    .account-status-pill::before { content: ''; width: .45rem; height: .45rem; border-radius: 50%; background: var(--text-secondary); }
-    #gmailCard[data-gmail-state="connected"] .account-status-pill { color: var(--success, #198754); }
-    #gmailCard[data-gmail-state="connected"] .account-status-pill::before { background: var(--success, #198754); }
-    .gmail-connected-details { display: none; }
-    #gmailCard[data-gmail-state="connected"] .gmail-connected-details { display: block; }
-    #gmailCard[data-gmail-state="connected"] #gmailConnect { display: none !important; }
-    .gmail-details-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
     .account-info-banner { margin-bottom: 1rem; }
     .user-api-key-row { display: flex; flex-direction: column; gap: .75rem; padding: .85rem 0; border-bottom: 1px solid var(--border-color, rgba(127,127,127,.2)); }
     .user-api-key-row:last-child { border-bottom: 0; }
@@ -48,17 +40,12 @@
         .user-api-key-row { flex-direction: row; align-items: center; justify-content: space-between; }
         .user-api-key-controls { flex: 0 1 22rem; flex-direction: row; }
         .user-api-key-controls .form-control { flex: 1 1 auto; }
-        .gmail-details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @container account-content (min-width: 992px) {
-        .account-cards-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
     }
     @media (min-width: 992px) {
         .settings-layout { grid-template-columns: 220px minmax(0, 1fr); align-items: start; gap: 1.5rem; }
         .settings-side-nav { position: sticky; top: 76px; }
         .settings-nav-list { flex-direction: column; }
         .settings-nav-link { width: 100%; }
-        .gmail-details-grid { grid-template-columns: minmax(0, 1fr); }
     }
 </style>
 {% endblock %}
@@ -88,34 +75,6 @@
         </header>
 
         <div class="account-cards-grid">
-            <section class="card settings-section account-card" id="gmailCard" data-gmail-state="loading" aria-labelledby="gmailHeading">
-                <div class="card-header account-card-header">
-                    <i class="bi bi-google text-accent" aria-hidden="true"></i>
-                    <div class="account-card-heading">
-                        <h2 id="gmailHeading">Gmail</h2>
-                        <p class="account-card-subtitle">Send alerts from your own mailbox</p>
-                    </div>
-                    <span id="gmailStatusLabel" class="account-status-pill">Not connected</span>
-                </div>
-                <div class="card-body">
-                    <div id="gmailError" class="alert alert-danger py-2" style="display:none;"></div>
-                    <p class="text-muted small mb-3">Only the Gmail send permission is requested. Tokens are encrypted and never shown here.</p>
-                    <div class="gmail-connected-details">
-                        <div class="gmail-details-grid mb-3">
-                            <div><small class="text-muted d-block">Connected address</small><span id="gmailAccount">Not connected</span></div>
-                            <div><small class="text-muted d-block">Granted scopes</small><span id="gmailScopes">—</span></div>
-                            <div><small class="text-muted d-block">Last refresh</small><span id="gmailLastRefresh">—</span></div>
-                        </div>
-                        <button id="gmailDisconnect" type="button" class="btn btn-outline-danger btn-sm">
-                            <i class="bi bi-x-circle me-1"></i>Disconnect
-                        </button>
-                    </div>
-                    <button id="gmailConnect" type="button" class="btn btn-accent w-100">
-                        <i class="bi bi-link-45deg me-1"></i>Connect Gmail
-                    </button>
-                </div>
-            </section>
-
             <section class="card settings-section account-card" aria-labelledby="userApiKeysHeading">
                 <div class="card-header account-card-header">
                     <i class="bi bi-shield-check text-accent" aria-hidden="true"></i>
@@ -144,6 +103,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/static/js/gmail_settings.js?v=2"></script>
-<script src="/static/js/account_api_keys.js?v=2"></script>
+<script src="/static/js/account_api_keys.js?v=3"></script>
 {% endblock %}

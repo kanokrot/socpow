@@ -40,6 +40,11 @@ def _audit(request: Request, current_user: dict, source: str, action: str) -> No
         return
 
 
+def _reject_admin(current_user: dict) -> None:
+    if current_user.get("role") == "admin":
+        raise HTTPException(status_code=403, detail="Personal API keys are unavailable to administrators")
+
+
 def _validate_source(source: str) -> None:
     if source not in ALLOWED_SOURCES:
         raise HTTPException(status_code=400, detail="Unsupported intelligence source")
@@ -47,6 +52,7 @@ def _validate_source(source: str) -> None:
 
 @router.get("/intel-keys")
 def list_intel_keys(current_user: dict = Depends(get_current_user)) -> dict:
+    _reject_admin(current_user)
     try:
         UserApiKeyCipher()
     except UserApiKeyEncryptionUnavailable:
@@ -69,6 +75,7 @@ async def save_intel_key(
     request: Request,
     current_user: dict = Depends(get_current_user),
 ) -> dict:
+    _reject_admin(current_user)
     _validate_source(source)
     try:
         payload = await request.json()
@@ -95,6 +102,7 @@ def delete_intel_key(
     request: Request,
     current_user: dict = Depends(get_current_user),
 ) -> Response:
+    _reject_admin(current_user)
     _validate_source(source)
     try:
         UserApiKeyCipher()

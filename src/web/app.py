@@ -413,7 +413,9 @@ def create_app() -> FastAPI:
         prefix='/api/admin',
         tags=['Admin access requests'],
     )
-    app.include_router(gmail_routes.router, prefix='/api/settings/gmail', tags=['Gmail OAuth'])
+    # Gmail connect is Planned; GMAIL_CONNECT_ENABLED defaults off.
+    if os.environ.get('GMAIL_CONNECT_ENABLED', '').strip().lower() in {'1', 'true', 'yes', 'on'}:
+        app.include_router(gmail_routes.router, prefix='/api/settings/gmail', tags=['Gmail OAuth'])
     app.include_router(account_api_keys_routes.router, prefix='/api/account', tags=['Account API keys'])
     app.include_router(helpdesk_routes.router, prefix='/api/helpdesk', tags=['Help Desk'])
     app.include_router(gmail_routes.admin_router, prefix='/api/admin', tags=['Admin Gmail OAuth'])
@@ -1025,4 +1027,7 @@ def _register_page_routes(app: FastAPI) -> None:
         redirect = _page_auth_redirect(request)
         if redirect is not None:
             return redirect
+        current_user = getattr(request.state, 'user', None) or _page_auth_user(request)
+        if current_user is not None and current_user.get('role') == 'admin':
+            return RedirectResponse('/settings#sources', status_code=302)
         return templates.TemplateResponse(request, 'account.html', {})

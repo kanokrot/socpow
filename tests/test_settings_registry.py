@@ -235,23 +235,30 @@ def test_system_info_falls_back_to_database_directory(monkeypatch, tmp_path):
     assert Path(response.json()["data_dir"]) == db_path.parent.resolve()
 
 
-def test_full_app_registers_both_admin_and_account_endpoints(monkeypatch, tmp_path):
+def test_full_app_gmail_router_is_default_off_and_can_be_enabled(monkeypatch, tmp_path):
     config_path = tmp_path / "app_config.yaml"
     config_path.write_text("{}\n", encoding="utf-8")
     monkeypatch.setenv("BTA_CONFIG", str(config_path))
     monkeypatch.setenv("AUTH_DB_PATH", str(tmp_path / "auth.db"))
     monkeypatch.setenv("USER_API_KEY_ENCRYPTION_KEY", "")
+    monkeypatch.delenv("GMAIL_CONNECT_ENABLED", raising=False)
 
     from src.web.app import create_app
 
-    app = create_app()
-    app.dependency_overrides[get_current_user] = lambda: _admin()
-    with TestClient(app) as client:
+    disabled_app = create_app()
+    disabled_app.dependency_overrides[get_current_user] = lambda: _admin()
+    with TestClient(disabled_app) as client:
         sources = client.get("/api/config/settings/sources")
         personal_keys = client.get("/api/account/intel-keys")
-    # FastAPI lazily expands included routers, so successful GETs are the
-    # registration smoke check for these two endpoints.
+        gmail_status = client.get("/api/settings/gmail/status")
     assert sources.status_code == 200
     assert {item["tier"] for item in sources.json()["sources"]} == {"scoring", "report", "sandbox"}
-    assert personal_keys.status_code == 200
-    assert personal_keys.json()["enabled"] is False
+    assert personal_keys.status_code == 403
+    assert gmail_status.status_code == 404
+
+    monkeypatch.setenv("GMAIL_CONNECT_ENABLED", "true")
+    enabled_app = create_app()
+    enabled_app.dependency_overrides[get_current_user] = lambda: _admin()
+    with TestClient(enabled_app) as client:
+        enabled_status = client.get("/api/settings/gmail/status")
+    assert enabled_status.status_code == 200

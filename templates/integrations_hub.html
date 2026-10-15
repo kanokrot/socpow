@@ -33,11 +33,10 @@
             </div>
         </article>
 
-        <article class="hub-card">
-            <div class="hub-card-top"><span class="hub-icon"><i class="bi bi-envelope-check" aria-hidden="true"></i></span><span id="hubGmailStatus" class="hub-status is-loading">Checking status</span></div>
+        <article class="hub-card hub-compact-card">
+            <div class="hub-card-top"><span class="hub-icon"><i class="bi bi-envelope-check" aria-hidden="true"></i></span><span class="hub-tag hub-tag-planned">PLANNED</span></div>
             <h3>Gmail notifications</h3>
-            <p id="hubGmailDetail">Checking the Gmail connection for your account.</p>
-            <div class="hub-actions"><a class="hub-button hub-button-secondary" href="/account">Manage in My settings</a></div>
+            <p>Gmail notifications are planned.</p>
         </article>
 
         <article class="hub-card">
@@ -58,7 +57,9 @@
             <div class="hub-card-top"><span class="hub-icon"><i class="bi bi-search" aria-hidden="true"></i></span><span class="hub-tag">THREAT INTELLIGENCE</span></div>
             <h3>Threat intelligence</h3>
             <p id="hubThreatCount" class="hub-count">Loading provider configuration</p>
+            {% if request.state.user.get('role') != 'admin' %}
             <p class="hub-note">Counts system keys only. Personal keys in My settings are extra evidence and are not included.</p>
+            {% endif %}
             <div id="hubThreatSummary" class="hub-provider-summary" aria-live="polite"><p>Loading status…</p></div>
             <p class="hub-note">Configured means a key passed format validation; it does not test the provider connection.</p>
             {% if request.state.user.get('role') == 'admin' %}
@@ -99,5 +100,5 @@
         </article>
     </div>
 </section>
-<script src="/static/js/integrations_hub.js?v=1" defer></script>
+<script src="/static/js/integrations_hub.js?v=2" defer></script>
 {% endblock %}

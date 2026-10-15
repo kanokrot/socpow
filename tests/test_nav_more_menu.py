@@ -57,34 +57,40 @@ def test_more_menu_role_gates_and_unique_nav_links(tmp_path, monkeypatch, role: 
 
     with TestClient(_build_page_app(tmp_path)) as client:
         client.cookies.set("cabta_session", "test-token")
-        response = client.get("/account")
+        account_response = client.get("/account", follow_redirects=False)
         other_page = client.get("/history")
+        if role == "admin":
+            assert account_response.status_code == 302
+            assert account_response.headers["location"] == "/settings#sources"
+            response = client.get("/settings")
+        else:
+            response = account_response
 
     assert response.status_code == 200
-    assert "Admin only" not in response.text
-    assert "Extra evidence only. These keys never change the score or verdict." in response.text
-    assert "account-avatar" in response.text
-    assert '<div class="account-avatar" aria-hidden="true">TU</div>' in response.text
-    assert 'aria-labelledby="gmailHeading"' in response.text
-    for gmail_id in ("gmailStatusLabel", "gmailAccount", "gmailScopes", "gmailLastRefresh", "gmailConnect", "gmailDisconnect", "gmailError"):
-        assert f'id="{gmail_id}"' in response.text
-    account_template = (Path(__file__).parents[1] / "templates" / "account.html").read_text(encoding="utf-8")
-    assert all(label not in account_template for label in ("VirusTotal", "AbuseIPDB", "AlienVault OTX"))
     if role == "admin":
-        assert '<h1 class="h3">My settings</h1>' in response.text
-        account_side_nav = re.search(r'<aside class="settings-side-nav".*?<nav class="settings-nav-list"[^>]*>(.*?)</nav>', response.text, re.S)
-        assert account_side_nav is not None
-        account_links = re.findall(r'<a\b[^>]*class="([^"]*settings-nav-link[^"]*)"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', account_side_nav.group(1), re.S)
-        assert [label.strip() for _classes, _href, label in account_links] == ["My settings", "General", "Intelligence sources", "System"]
-        assert [href for _classes, href, _label in account_links] == ["/account", "/settings#general", "/settings#sources", "/settings#system"]
-        assert "active" in account_links[0][0]
-        assert all("active" not in classes for classes, _href, _label in account_links[1:])
+        assert "account-avatar" not in response.text
     else:
+        assert "account-avatar" in response.text
+    if role == "admin":
+        nav_match = re.search(r'<aside class="settings-side-nav".*?<nav class="settings-nav-list"[^>]*>(.*?)</nav>', response.text, re.S)
+        assert nav_match is not None
+        assert "My settings" not in nav_match.group(1)
+        assert "/account" not in nav_match.group(1)
+        assert "Intelligence sources" in nav_match.group(1)
+    else:
+        assert "Extra evidence only. These keys never change the score or verdict." in response.text
         assert '<h1 class="h3">My settings</h1>' in response.text
+        assert "userApiKeysRows" in response.text
+        assert "gmailCard" not in response.text
+        assert "Connect Gmail" not in response.text
+        assert "/static/js/gmail_settings.js" not in response.text
+        assert "/static/js/account_api_keys.js?v=3" in response.text
+        account_template = (Path(__file__).parents[1] / "templates" / "account.html").read_text(encoding="utf-8")
+        assert all(label not in account_template for label in ("gmailCard", "gmailStatusLabel", "gmail_settings.js"))
         assert '<aside class="settings-side-nav"' not in response.text
     nav_start = response.text.index("<nav ")
     nav_end = response.text.index("</nav>", nav_start) + len("</nav>")
-    nav_html = response.text[nav_start:nav_end]
+    nav_html = response.text[:nav_end]
     capsule_match = re.search(r'<div class="navbar-user-capsule">(.*?)</div>', nav_html, re.S)
     assert capsule_match is not None
     capsule = capsule_match.group(1)
@@ -109,7 +115,6 @@ def test_more_menu_role_gates_and_unique_nav_links(tmp_path, monkeypatch, role: 
     history_nav = other_page.text[:other_page.text.index("</nav>") + len("</nav>")]
     history_links = re.findall(r'<a\b[^>]*href="/account"[^>]*class="([^"]*)"', history_nav)
     assert not any("active" in classes.split() for classes in history_links)
-    assert "/static/js/gmail_settings.js" in response.text
 
     for href, roles in HREFS.items():
         nav_link_hrefs = []
@@ -129,7 +134,6 @@ def test_more_menu_role_gates_and_unique_nav_links(tmp_path, monkeypatch, role: 
     assert len(re.findall(r'<h6 class="dropdown-header">(?:<i[^>]*></i>)?System</h6>', nav_html)) == (
         1 if role == "admin" else 0
     )
-
 
 def test_settings_page_keeps_admin_settings_script_without_gmail_card(tmp_path, monkeypatch) -> None:
     user = {
@@ -152,11 +156,11 @@ def test_settings_page_keeps_admin_settings_script_without_gmail_card(tmp_path, 
     settings_nav = re.search(r'<aside class="settings-side-nav".*?<nav class="settings-nav-list"[^>]*>(.*?)</nav>', response.text, re.S)
     assert settings_nav is not None
     settings_links = re.findall(r'<a\b[^>]*class="([^"]*settings-nav-link[^"]*)"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', settings_nav.group(1), re.S)
-    assert [label.strip() for _classes, _href, label in settings_links] == ["My settings", "General", "Intelligence sources", "System"]
-    assert [href for _classes, href, _label in settings_links] == ["/account", "/settings#general", "/settings#sources", "/settings#system"]
-    assert "My settings" in response.text
-    assert "active" in settings_links[1][0]
-    assert all("active" not in classes for index, (classes, _href, _label) in enumerate(settings_links) if index != 1)
+    assert [label.strip() for _classes, _href, label in settings_links] == ["General", "Intelligence sources", "System"]
+    assert [href for _classes, href, _label in settings_links] == ["/settings#general", "/settings#sources", "/settings#system"]
+    assert "My settings" not in response.text
+    assert "active" in settings_links[0][0]
+    assert all("active" not in classes for index, (classes, _href, _label) in enumerate(settings_links) if index != 0)
     assert "Admin only" in response.text
 
 

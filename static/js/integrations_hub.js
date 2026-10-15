@@ -69,27 +69,4 @@
             showSummaryUnavailable('hubSandboxSummary');
         });
 
-    fetch('/api/settings/gmail/status', { credentials: 'same-origin' })
-        .then(function (response) {
-            if (!response.ok) throw new Error('status unavailable');
-            return response.json();
-        })
-        .then(function (data) {
-            var status = byId('hubGmailStatus');
-            if (data.linked && !data.revoked) {
-                status.textContent = 'Connected';
-                status.className = 'hub-status is-connected';
-                setText('hubGmailDetail', data.google_email || 'Gmail is connected to your account.');
-            } else {
-                status.textContent = 'Not connected';
-                status.className = 'hub-status';
-                setText('hubGmailDetail', 'Connect Gmail from your account settings to send notifications.');
-            }
-        })
-        .catch(function () {
-            var status = byId('hubGmailStatus');
-            status.textContent = 'Status unavailable';
-            status.className = 'hub-status';
-            setText('hubGmailDetail', 'Gmail status could not be loaded.');
-        });
 }());

@@ -80,8 +80,8 @@ def test_cipher_encrypt_decrypt_roundtrip(monkeypatch):
     assert cipher.decrypt(ciphertext) == "vt-secret"
 
 
-@pytest.mark.parametrize("role", ROLES)
-def test_every_authenticated_role_can_manage_own_keys(tmp_path, monkeypatch, role):
+@pytest.mark.parametrize("role", [role for role in ROLES if role != "admin"])
+def test_non_admin_authenticated_roles_can_manage_own_keys(tmp_path, monkeypatch, role):
     ids = _database(tmp_path / "auth.db")
     monkeypatch.setenv("AUTH_DB_PATH", str(tmp_path / "auth.db"))
     monkeypatch.setenv("USER_API_KEY_ENCRYPTION_KEY", Fernet.generate_key().decode())
@@ -96,6 +96,41 @@ def test_every_authenticated_role_can_manage_own_keys(tmp_path, monkeypatch, rol
     otx = next(row for row in listed.json()["keys"] if row["source"] == "otx")
     assert otx["configured"] is True
     assert otx["masked_suffix"] == "••••oken"
+
+
+def test_admin_personal_key_endpoints_are_forbidden_without_changing_rows(tmp_path, monkeypatch):
+    ids = _database(tmp_path / "auth.db")
+    db_path = tmp_path / "auth.db"
+    monkeypatch.setenv("AUTH_DB_PATH", str(db_path))
+    monkeypatch.setenv("USER_API_KEY_ENCRYPTION_KEY", Fernet.generate_key().decode())
+    user_api_keys.UserApiKeyStore().save(ids["admin"], "otx", "s" * 40)
+    with sqlite3.connect(db_path) as connection:
+        before_count = connection.execute(
+            "SELECT COUNT(*) FROM user_api_keys WHERE user_id = ?", (ids["admin"],)
+        ).fetchone()[0]
+        before_ciphertext = connection.execute(
+            "SELECT encrypted_key FROM user_api_keys WHERE user_id = ? AND source = 'otx'",
+            (ids["admin"],),
+        ).fetchone()[0]
+
+    admin = {"id": ids["admin"], "role": "admin", "is_active": 1}
+    with TestClient(_app(admin)) as client:
+        listed = client.get("/api/account/intel-keys")
+        saved = client.put("/api/account/intel-keys/otx", json={"api_key": "r" * 40})
+        deleted = client.delete("/api/account/intel-keys/otx")
+
+    with sqlite3.connect(db_path) as connection:
+        after_count = connection.execute(
+            "SELECT COUNT(*) FROM user_api_keys WHERE user_id = ?", (ids["admin"],)
+        ).fetchone()[0]
+        after_ciphertext = connection.execute(
+            "SELECT encrypted_key FROM user_api_keys WHERE user_id = ? AND source = 'otx'",
+            (ids["admin"],),
+        ).fetchone()[0]
+    assert listed.status_code == 403
+    assert saved.status_code == 403
+    assert deleted.status_code == 403
+    assert (after_count == before_count and after_ciphertext == before_ciphertext) is True
 
 
 def test_account_api_key_card_shows_disabled_message_and_three_sources():
@@ -174,10 +209,10 @@ def test_owner_isolation_and_no_key_or_ciphertext_in_response_audit_or_logs(
 def test_payload_rejects_extra_fields_and_unauthenticated_is_401():
     with TestClient(_app(None)) as client:
         assert client.get("/api/account/intel-keys").status_code == 401
-    user = {"id": 1, "role": "admin", "is_active": 1}
+    user = {"id": 1, "role": "Threat Hunter", "is_active": 1}
     with TestClient(_app(user)) as client:
         response = client.put(
-            "/api/account/intel-keys/otx", json={"api_key": "secret", "url": "https://evil.test"}
+            "/api/account/intel-keys/otx", json={"api_key": "x" * 32, "url": "https://evil.test"}
         )
     assert response.status_code == 400
 

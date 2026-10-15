@@ -8,7 +8,9 @@
 <div class="settings-layout">
 <aside class="settings-side-nav" aria-label="Settings navigation">
     <nav class="settings-nav-list" role="tablist" aria-label="Settings sections">
+    {% if not nav_admin %}
         <a class="settings-nav-link{% if on_account %} active{% endif %}" href="/account"{% if on_account %} aria-current="page"{% endif %}>My settings</a>
+    {% endif %}
         <a id="general-tab" class="settings-nav-link{% if not on_account %} active{% endif %}" href="/settings#general" data-settings-tab="general" role="tab" aria-controls="general-panel"{% if not on_account %} aria-selected="true"{% else %} aria-selected="false"{% endif %}>General</a>
         <a id="sources-tab" class="settings-nav-link" href="/settings#sources" data-settings-tab="sources" role="tab" aria-controls="sources-panel" aria-selected="false">Intelligence sources</a>
         <a id="system-tab" class="settings-nav-link" href="/settings#system" data-settings-tab="system" role="tab" aria-controls="system-panel" aria-selected="false">System</a>
