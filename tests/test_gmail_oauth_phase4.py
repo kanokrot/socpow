@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import importlib.util
-import logging
 import json
+import logging
 import sqlite3
 import time
 from pathlib import Path
 from types import SimpleNamespace
 from urllib.parse import parse_qs, urlparse
+from oauthlib.oauth2.rfc6749.parameters import parse_token_response
 
 import pytest
 from cryptography.fernet import Fernet, InvalidToken
@@ -19,6 +20,7 @@ from fastapi.testclient import TestClient
 from src.web.auth import get_current_user
 from src.web.gmail_oauth import (
     ALLOWED_SCOPES,
+    REQUESTED_SCOPES,
     GMAIL_REDIRECT_URI,
     GmailOAuthConfigurationError,
     GmailOAuthService,
@@ -189,6 +191,16 @@ def test_connect_unexpected_exception_redirects_to_start_failed(monkeypatch, cap
     assert "private start detail" not in caplog.text
 
 
+def _assert_callback_page(response, expected_target):
+    escaped_target = expected_target.replace("&", "&amp;")
+    assert response.status_code == 200
+    assert f'content="0;url={escaped_target}"' in response.text
+    assert f'href="{escaped_target}"' in response.text
+    assert "<noscript>" in response.text
+    assert f"window.location.replace('{expected_target}')" in response.text
+    assert response.headers["Cache-Control"] == "no-store"
+
+
 def test_callback_exchange_failure_redirects_and_logs_exception_type(monkeypatch, caplog):
     class Service:
         def resolve_pending_state(self, state):
@@ -205,8 +217,9 @@ def test_callback_exchange_failure_redirects_and_logs_exception_type(monkeypatch
                 follow_redirects=False,
             )
 
-    assert response.status_code == 302
-    assert response.headers["location"] == "/account?gmail=error&reason=exchange_failed"
+    _assert_callback_page(response, "/account?gmail=error&reason=exchange_failed")
+    assert "state-fixture" not in response.text
+    assert "code-fixture" not in response.text
     assert len(caplog.records) == 1
     assert caplog.records[0].getMessage() == "Gmail OAuth callback failed: RuntimeError"
     assert "private exchange detail" not in caplog.text
@@ -224,7 +237,7 @@ def test_callback_exchange_failure_redirects_and_logs_exception_type(monkeypatch
         ("unexpected", "&code=auth-code", "/account?gmail=error&reason=exchange_failed"),
     ],
 )
-def test_callback_redirects_to_account_for_success_and_redirecting_failures(
+def test_callback_returns_page_for_success_and_failures(
     scenario, query, expected_location, monkeypatch
 ):
     class Service:
@@ -249,8 +262,7 @@ def test_callback_redirects_to_account_for_success_and_redirecting_failures(
             follow_redirects=False,
         )
 
-    assert response.status_code == 302
-    assert response.headers["location"] == expected_location
+    _assert_callback_page(response, expected_location)
 
 
 @pytest.mark.parametrize(
@@ -260,7 +272,7 @@ def test_callback_redirects_to_account_for_success_and_redirecting_failures(
         ("?state=invalid-state&code=auth-code", "/account?gmail=error&reason=state_invalid"),
     ],
 )
-def test_callback_redirects_to_account_for_missing_or_invalid_state(
+def test_callback_returns_page_for_missing_or_invalid_state(
     query, expected_location, monkeypatch
 ):
     class Service:
@@ -274,8 +286,7 @@ def test_callback_redirects_to_account_for_missing_or_invalid_state(
             follow_redirects=False,
         )
 
-    assert response.status_code == 302
-    assert response.headers["location"] == expected_location
+    _assert_callback_page(response, expected_location)
 
 
 def test_status_never_exposes_ciphertext_and_is_owner_scoped(tmp_path, monkeypatch):
@@ -329,6 +340,52 @@ def test_disconnect_is_idempotent_and_deletes_local_when_remote_revoke_fails(
     assert [row[0] for row in events] == ["connect", "disconnect"]
 
 
+def test_oauthlib_accepts_observed_mixed_scopes_when_requested_exactly():
+    requested = " ".join(sorted(REQUESTED_SCOPES))
+    response = {
+        "access_token": "access-token-fixture",
+        "token_type": "Bearer",
+        "scope": requested,
+    }
+
+    parsed = parse_token_response(json.dumps(response), scope=requested)
+
+    assert set(parsed["scope"]) == set(REQUESTED_SCOPES)
+
+
+def test_oauthlib_and_service_reject_unexpected_scope(tmp_path):
+    requested = " ".join(sorted(REQUESTED_SCOPES))
+    unexpected_response = {
+        "access_token": "access-token-fixture",
+        "token_type": "Bearer",
+        "scope": requested + " unexpected.scope",
+    }
+    with pytest.raises(Warning, match="Scope has changed"):
+        parse_token_response(json.dumps(unexpected_response), scope=requested)
+
+    db_path = tmp_path / "auth.db"
+    _auth_db(db_path)
+    service = GmailOAuthService(db_path=db_path)
+    with pytest.raises(ValueError, match="outside the Phase 4 allowlist"):
+        service.save_token(
+            1,
+            "subject-fixture",
+            "user@example.test",
+            "refresh-token-fixture",
+            set(ALLOWED_SCOPES) | {"unexpected.scope"},
+        )
+
+
+def test_callback_page_maps_unknown_reason_to_exchange_failed():
+    response = gmail_settings_routes._callback_result_page("error", "unknown-reason")
+    body = response.body.decode("utf-8")
+
+    assert response.status_code == 200
+    assert "/account?gmail=error&amp;reason=exchange_failed" in body
+    assert "unknown-reason" not in body
+    assert response.headers["Cache-Control"] == "no-store"
+
+
 def test_connect_requests_exact_scopes_and_stores_hashed_state(tmp_path, monkeypatch):
     db_path = tmp_path / "auth.db"
     _auth_db(db_path)
@@ -348,7 +405,7 @@ def test_connect_requests_exact_scopes_and_stores_hashed_state(tmp_path, monkeyp
     service = GmailOAuthService(db_path=db_path)
     url, raw_state = service.authorization_url(1)
     assert GMAIL_REDIRECT_URI in service.get_state_redirect_uri(raw_state, 1)
-    assert set(service.requested_scopes) == set(ALLOWED_SCOPES)
+    assert set(service.requested_scopes) == set(REQUESTED_SCOPES)
     assert "gmail.readonly" not in url
     with sqlite3.connect(db_path) as connection:
         row = connection.execute("SELECT state_hash FROM gmail_oauth_states").fetchone()

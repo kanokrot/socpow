@@ -36,6 +36,16 @@ ALLOWED_SCOPES = frozenset(
         "profile",
     }
 )
+REQUESTED_SCOPES = frozenset(
+    {
+        "https://www.googleapis.com/auth/gmail.send",
+        "openid",
+        "email",
+        "profile",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+    }
+)
 
 
 def _normalize_scopes(scopes: Iterable[str]) -> set[str]:
@@ -89,7 +99,7 @@ class GmailOAuthService:
     def __init__(self, db_path: str | os.PathLike[str] | None = None):
         self.db_path = Path(db_path or os.getenv("AUTH_DB_PATH", "src/db/auth.db"))
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        self.requested_scopes = tuple(sorted(ALLOWED_SCOPES))
+        self.requested_scopes = tuple(sorted(REQUESTED_SCOPES))
         self._ensure_schema()
 
     def _connect(self) -> sqlite3.Connection:
