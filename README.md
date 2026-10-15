@@ -1,4 +1,6 @@
-# CABTA — Cyan Agent Blue Team Assistant
+# SOCPOW
+
+**Every IOC gets the POW.**
 
 AI-powered SOC platform for threat analysis, IOC investigation, email forensics, and playbook-driven response.
 
@@ -8,7 +10,7 @@ AI-powered SOC platform for threat analysis, IOC investigation, email forensics,
 
 ## 1. Project overview and maturity
 
-CABTA is a local-first platform for SOC analysts, incident responders, and threat hunters. It combines a FastAPI web application, deterministic scoring, file and email analysis, threat-intelligence enrichment, an AI agent, MCP tool servers, and YAML playbooks.
+SOCPOW is a local-first platform for SOC analysts, incident responders, and threat hunters. It combines a FastAPI web application, deterministic scoring, file and email analysis, threat-intelligence enrichment, an AI agent, MCP tool servers, and YAML playbooks.
 
 Version **2.0.0** is the product version exposed by FastAPI/OpenAPI and configuration-health endpoints. The project is under active development: core paths have broad automated coverage, while some integrations require external services, credentials, specialist tools, or further production hardening. Local-first does not mean offline-only; operators choose which external integrations to enable.
 
@@ -54,7 +56,7 @@ Security input
 
 ## 4. Security and data-boundary model
 
-CABTA is a **local-first deployment with optional external intelligence, LLM, sandbox, notification, and remote-host integrations**.
+SOCPOW is a **local-first deployment with optional external intelligence, LLM, sandbox, notification, and remote-host integrations**.
 
 Data may leave the local environment when using:
 
@@ -294,7 +296,7 @@ The known failures were the unsuffixed `for_each` result reference, URLhaus dire
 ## 15. Project structure
 
 ```text
-CABTA/
+SOCPOW/
 ├─ src/
 │  ├─ agent/          # Agent, MCP client, sessions, RAG, playbook engine
 │  ├─ analyzers/      # File, email, malware, and memory analysis
@@ -333,7 +335,7 @@ Licensed under the MIT License; see [LICENSE](LICENSE).
 - Medium: [@ugur.can.ates](https://medium.com/@ugur.can.ates)
 - LinkedIn: [Ugur Ates](https://www.linkedin.com/in/ugurcanates/)
 
-This fork ([kanokrot/cabta-llm](https://github.com/kanokrot/cabta-llm)) is maintained by [@kanokrot](https://github.com/kanokrot), building on the original CABTA project.
+This SOCPOW fork of [CABTA](https://github.com/ugurrates/CABTA) ([kanokrot/cabta-llm](https://github.com/kanokrot/cabta-llm)) is maintained by [@kanokrot](https://github.com/kanokrot).
 
 ### Acknowledgments
 
@@ -345,4 +347,4 @@ This fork ([kanokrot/cabta-llm](https://github.com/kanokrot/cabta-llm)) is maint
 
 ### Disclaimer
 
-CABTA is intended for authorized security testing, investigation, and research. Users are responsible for authorization, data and credential protection, reviewing automated findings, and legal/provider compliance. The authors and maintainers are not responsible for misuse.
+SOCPOW is intended for authorized security testing, investigation, and research. Users are responsible for authorization, data and credential protection, reviewing automated findings, and legal/provider compliance. The authors and maintainers are not responsible for misuse.
