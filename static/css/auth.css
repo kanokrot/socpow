@@ -59,11 +59,6 @@ html[data-theme="light"] .auth-console {
     order: 0;
 }
 
-.auth-console .auth-brand img {
-    filter: none;
-    flex: 0 0 42px;
-}
-
 .auth-console .auth-brand small {
     color: var(--text-secondary) !important;
     font-size: 0.68rem;

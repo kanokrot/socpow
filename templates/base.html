@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Application styles -->
-    <link href="/static/css/themes.css?v=5" rel="stylesheet">
+    <link href="/static/css/themes.css?v=6" rel="stylesheet">
     <link href="/static/css/dashboard.css?v=5" rel="stylesheet">
 
     <style>
@@ -42,34 +42,6 @@
             gap: 0.5rem;
             text-decoration: none;
             white-space: nowrap;
-        }
-
-        .cabta-navbar .navbar-brand .brand-logo {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.4));
-            transition: filter 0.3s ease;
-        }
-
-        .cabta-navbar .navbar-brand:hover .brand-logo {
-            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.7));
-        }
-
-        .cabta-navbar .navbar-brand .brand-label {
-            color: var(--text-primary);
-        }
-
-        .cabta-navbar .navbar-brand .brand-label small {
-            display: block;
-            font-size: 0.6rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            line-height: 1;
-            margin-top: 1px;
         }
 
         /* Nav link pills */
@@ -435,12 +407,8 @@
         <div class="container-fluid px-2 px-lg-3">
 
             <!-- Brand -->
-            <a class="navbar-brand me-3" href="{{ logo_href }}">
-                <img src="/static/img/logo.svg" alt="{{ BRAND_NAME }}" class="brand-logo">
-                <span class="brand-label">
-                    {{ BRAND_NAME }}
-                    <small>{{ BRAND_TAGLINE }}</small>
-                </span>
+            <a class="navbar-brand me-3" href="{{ logo_href }}" aria-label="{{ BRAND_NAME }}">
+                <span class="brand-wordmark"><strong>{{ BRAND_NAME }}</strong><small>{{ BRAND_TAGLINE }}</small></span>
             </a>
 
             <!-- Mobile toggler -->
@@ -456,9 +424,8 @@
 
                 <!-- Offcanvas header (mobile only) -->
                 <div class="offcanvas-header d-lg-none">
-                    <a class="navbar-brand" href="{{ logo_href }}">
-                        <img src="/static/img/logo.svg" alt="{{ BRAND_NAME }}" class="brand-logo">
-                        <span class="brand-label">{{ BRAND_NAME }}</span>
+                    <a class="navbar-brand" href="{{ logo_href }}" aria-label="{{ BRAND_NAME }}">
+                        <span class="brand-wordmark"><strong>{{ BRAND_NAME }}</strong><small>{{ BRAND_TAGLINE }}</small></span>
                     </a>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>

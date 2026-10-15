@@ -48,7 +48,11 @@ def test_login_page_displays_brand_and_tagline():
     assert title is not None
     assert BRAND_NAME in title.group(1)
     assert "CABTA" not in title.group(1)
-    assert f'<small class="d-block text-muted fw-normal">{BRAND_TAGLINE}</small>' in response.text
+    wordmark = re.search(r'<span class="brand-wordmark">(.*?)</span>', response.text, re.DOTALL)
+    assert wordmark is not None
+    assert f"<strong>{BRAND_NAME}</strong>" in wordmark.group(1)
+    assert f"<small>{BRAND_TAGLINE}</small>" in wordmark.group(1)
+    assert '<img src="/static/img/logo.svg"' not in response.text
     assert "Cyan Agent Blue Team Assistant" not in response.text
 
 
@@ -82,7 +86,10 @@ def test_agent_chat_page_uses_branded_agent_name(monkeypatch, tmp_path):
         response = client.get("/")
 
     assert response.status_code == 200
-    assert f"{BRAND_NAME} Agent" in response.text
+    assert f'<span class="brand-wordmark"><strong>{BRAND_NAME}</strong><small>{BRAND_TAGLINE}</small></span>' in response.text
+    assert 'class="brand-logo"' not in response.text
+    assert f'<strong class="brand-wordmark-glow">{BRAND_NAME}</strong> Agent' in response.text
+    assert "agent-empty-state-logo" not in response.text
     assert "Cyan Agent" not in response.text
     title = re.search(r"<title>(.*?)</title>", response.text, re.DOTALL)
     assert title is not None

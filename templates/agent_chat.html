@@ -315,12 +315,6 @@
         padding: clamp(1.25rem, 5vw, 3rem) 0.5rem;
         text-align: center;
     }
-    .agent-empty-state-logo {
-        width: 58px;
-        height: 58px;
-        margin-bottom: 0.65rem;
-        filter: drop-shadow(0 0 8px var(--color-primary));
-    }
     .agent-empty-state-title {
         margin: 0;
         color: var(--text-primary);
@@ -609,7 +603,6 @@
         .agent-card-header-status .agent-status-value { font-size: 0.62rem; }
     }
     @media (max-height: 760px) {
-        .agent-empty-state-logo { display: none; }
         .agent-empty-state { padding-block: 0.75rem; }
     }
 
@@ -1416,8 +1409,7 @@
 {% block content %}
 <template id="agentEmptyStateTemplate">
     <div id="agentEmptyState" class="agent-empty-state">
-        <img src="/static/img/logo.svg" alt="" class="agent-empty-state-logo">
-        <h2 class="agent-empty-state-title">{{ BRAND_NAME }} Agent</h2>
+        <h2 class="agent-empty-state-title"><strong class="brand-wordmark-glow">{{ BRAND_NAME }}</strong> Agent</h2>
         <p class="agent-empty-state-subtitle">Your AI security analyst for fast, guided investigations.</p>
         <div class="agent-starter-grid" aria-label="Starter actions">
             <button type="button" class="agent-starter-card" onclick="AgentChat.quickAction('Investigate the IOC: ')" title="IOC Investigation">
@@ -1474,7 +1466,7 @@
                     <button type="button" class="btn btn-outline-secondary btn-sm d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#agentSessionsSidebar" aria-controls="agentSessionsSidebar">
                         <i class="bi bi-list" aria-hidden="true"></i><span>Chats</span>
                     </button>
-                    <h6 class="mb-0"><img src="/static/img/logo.svg" alt="" style="width:22px;height:22px;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 4px rgba(0,212,255,0.5));">{{ BRAND_NAME }} Agent</h6>
+                    <h6 class="mb-0"><strong class="brand-wordmark-glow">{{ BRAND_NAME }}</strong> Agent</h6>
                 </div>
                 <div class="agent-chat-header-actions">
                     <div class="dropdown" id="exportDropdownWrap" style="display:none;">
