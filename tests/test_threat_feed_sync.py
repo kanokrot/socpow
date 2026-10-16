@@ -50,7 +50,7 @@ async def test_normalize_threatfox_and_feodo_sanitize_skip_and_bound_fields():
         "query_status": "ok",
         "data": [
             {**_tf()["data"][0], "ioc": " 8.8.8.8\x00 ", "malware_printable": "m" * 150,
-             "threat_type_desc": "t" * 80},
+             "threat_type_desc": "t" * 200},
             {"ioc": "https://example.test/a", "ioc_type": "url", "confidence_level": "bad"},
             None,
             {"ioc": 5},
@@ -60,7 +60,7 @@ async def test_normalize_threatfox_and_feodo_sanitize_skip_and_bound_fields():
     assert len(tf_rows) == 2
     assert tf_rows[0]["ioc_value"] == "8.8.8.8"
     assert tf_rows[0]["malware"] == "m" * 100
-    assert tf_rows[0]["threat_type"] == "t" * 60
+    assert tf_rows[0]["threat_type"] == "t" * 160
     assert tf_rows[1]["ioc_type"] == "url"
     assert tf_rows[1]["confidence"] is None
 
