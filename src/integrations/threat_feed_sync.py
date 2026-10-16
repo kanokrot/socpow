@@ -145,7 +145,7 @@ def normalize_threatfox(payload: Any, fetched_at: str) -> tuple[list[dict[str, A
             "ioc_type": _normalize_ioc_type(row.get("ioc_type")),
             "ioc_value": value,
             "malware": _safe_text(row.get("malware_printable") or row.get("malware"), 100),
-            "threat_type": _safe_text(row.get("threat_type_desc") or row.get("threat_type"), 60),
+            "threat_type": _safe_text(row.get("threat_type_desc") or row.get("threat_type"), 160),
             "confidence": _integer(row.get("confidence_level")),
             "first_seen": _safe_text(row.get("first_seen_utc") or row.get("first_seen"), 80) or "",
             "last_seen": _safe_text(row.get("last_seen_utc") or row.get("last_seen"), 80),
