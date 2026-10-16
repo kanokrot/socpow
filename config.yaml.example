@@ -41,7 +41,7 @@ llm:
   base_url: "http://localhost:11434"
   vllm_api_key: ""
   # Set this to the separate vLLM/OpenAI-compatible service URL. Do not use
-  # the CABTA Web UI port (8080). Leave empty until a vLLM service is running.
+  # the SOCPOW Web UI port (8080). Leave empty until a vLLM service is running.
   vllm_base_url: ""
   vllm_model: ""
 
