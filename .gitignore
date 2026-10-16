@@ -151,3 +151,6 @@ scripts/adhoc/flow_abc_smoke.py
 # G3 ad hoc run outputs
 /g3_*.csv
 /g3_*.json
+# Experimental test-description generation outputs (keep test_descriptions.json decision separate)
+data/test_descriptions.trial*
+data/*.partial
