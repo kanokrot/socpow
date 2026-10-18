@@ -1,4 +1,4 @@
-# 🏗️ Architecture Documentation
+#  Architecture Documentation
 
 ## Overview
 
@@ -120,9 +120,9 @@ optional LLM-generated text.
                     +-------+-----------+------+
                             |           |
               +-------------v--+    +---v------------------+
-              | แหล่งที่เข้า IOC |    | แหล่งเสริม /        |
+              | แหล่งที่เข้า IOC    |   | แหล่งเสริม /           |
               | scoring โดยตรง  |    | report-only         |
-              |                 |    | เช่น VT, OTX,       |
+              |                 |    | เช่น VT, OTX,        |
               | FeodoTracker    |    | AbuseIPDB, Shodan   |
               | SSL Blacklist   |    +---+------------------+
               | Spamhaus        |        |
@@ -132,7 +132,7 @@ optional LLM-generated text.
               +--------+--------+                   |
                        |                            |
                        v                            |
-              +-------------------+                  |
+              +-------------------+                 |
               | IOC Scoring       |                  |
               | AHP multipliers   |                  |
               +--------+----------+                  |
@@ -142,12 +142,12 @@ optional LLM-generated text.
                          +-----------v-----------+
                          | Source Coverage       |
                          | แยกสถานะ source และ   |
-                         | คำนวณ coverage        |
+                         | คำนวณ coverage       |
                          +-----------+-----------+
                                      |
                          +-----------v-----------+
                          | Verdict Validator     |
-                         | ใช้ score + coverage  |
+                         | ใช้ score + coverage   |
                          +-----------------------+
 ```
 
