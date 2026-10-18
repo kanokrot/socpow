@@ -1,0 +1,16 @@
+# DGA detector examples - FOR TESTING ONLY
+# These are reserved example domains or synthetic labels. No DNS lookup is needed.
+# Run each domain through domain enrichment / DGA detection and inspect is_dga.
+
+# DGA-like labels: expected is_dga=true with the current rule-based detector
+xkjqmz8fnrpqwlst.example
+trk9v2x1.example.com
+n5c2v8b6.edge.example.net
+wa83neqa.example.com
+
+# Readable or common infrastructure labels: expected is_dga=false
+example.com
+www.example.com
+ns2.example.net
+cdn3.example.com
+mail.example.org
