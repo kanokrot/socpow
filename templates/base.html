@@ -541,6 +541,11 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><h6 class="dropdown-header"><i class="bi bi-gear me-1"></i>System</h6></li>
                             <li>
+                                <a class="dropdown-item {% if request.url.path == '/tests' %}active{% endif %}" href="/tests">
+                                    <i class="bi bi-play-circle"></i> Test Runner
+                                </a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item {% if request.url.path == '/mcp/servers' %}active{% endif %}" href="/mcp/servers">
                                     <i class="bi bi-hdd-network"></i> MCP Servers
                                 </a>

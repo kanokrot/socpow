@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Test Runner - {{ BRAND_NAME }}{% endblock %}
+{% block page_title %}{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="/static/css/test_runner.css?v=3">
+{% endblock %}
+
+{% block content %}
+<main class="test-runner" aria-label="Test Runner">
+    <header class="tr-heading">
+        <div class="tr-heading-copy">
+            <div class="tr-eyebrow">PYTEST <span>·</span> ADMIN ONLY</div>
+            <h1>Check that the system still works</h1>
+            <p id="tr-last-summary" class="tr-heading-meta" aria-live="polite">Load the collected tests to get started.</p>
+        </div>
+        <div class="tr-heading-actions" aria-label="Test run actions">
+            <button class="tr-button tr-button-quiet" id="tr-cancel" type="button" disabled>Cancel</button>
+            <button class="tr-button tr-button-warn" id="tr-run-failed" type="button" disabled>Run failed only <span id="tr-failed-action-count">0</span></button>
+            <button class="tr-button tr-button-secondary" id="tr-run-all" type="button" disabled>Run all</button>
+            <button class="tr-button tr-button-primary" id="tr-run-selected" type="button" disabled>Run selected <span id="tr-selected-count">0</span></button>
+        </div>
+    </header>
+
+    <div class="tr-layout">
+        <section class="tr-card tr-chooser" aria-labelledby="tr-tree-title">
+            <header class="tr-card-header">
+                <div><div class="tr-eyebrow">TEST SCOPE</div><h2 id="tr-tree-title">Choose what to run</h2></div>
+                <button class="tr-icon-button" id="tr-refresh" type="button" title="Refresh test collection" aria-label="Refresh test collection"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i></button>
+            </header>
+            <div class="tr-chooser-tools">
+                <label class="tr-search"><i class="bi bi-search" aria-hidden="true"></i><input id="tr-search" type="search" autocomplete="off" placeholder="Search tests or topics" aria-label="Search tests or topics"><kbd>/</kbd></label>
+                <div id="tr-topic-filters" class="tr-topic-filters" aria-label="Filter by topic"></div>
+                <div class="tr-selection-row"><span id="tr-selection-summary">0 tests selected</span><div><button id="tr-select-matching" class="tr-text-button" type="button" disabled>Select all matching</button><button id="tr-clear" class="tr-text-button" type="button" disabled>Clear</button></div></div>
+                <div id="tr-collection-state" class="tr-collection-state" aria-live="polite">Loading test collection…</div>
+            </div>
+            <div id="tr-tree" class="tr-topic-list" aria-label="Collected tests"></div>
+            <footer class="tr-card-footer">Only collected tests can be run. Free-form commands are not accepted.</footer>
+        </section>
+
+        <div class="tr-results-column">
+            <section class="tr-card tr-hero" aria-label="Latest test run" aria-live="polite">
+                <div class="tr-ring" aria-hidden="true">
+                    <svg viewBox="0 0 120 120"><circle class="tr-ring-track" cx="60" cy="60" r="51"></circle><circle id="tr-ring-progress" class="tr-ring-progress" cx="60" cy="60" r="51"></circle></svg>
+                    <div class="tr-ring-label"><strong id="tr-pass-percent">—</strong><span>PASSING</span></div>
+                </div>
+                <div class="tr-hero-copy">
+                    <div class="tr-eyebrow">LATEST RUN <span id="tr-run-state" class="tr-status-pill" data-status="empty">NOT RUN</span></div>
+                    <h2 id="tr-run-summary">No tests have run yet</h2>
+                    <p id="tr-run-caption">Choose a topic or run the complete collected test suite.</p>
+                    <div class="tr-hero-counts"><span><i class="tr-dot tr-dot-passed"></i><b id="tr-passed">0</b> passed</span><span><i class="tr-dot tr-dot-failed"></i><b id="tr-failed">0</b> failed</span><span><i class="tr-dot tr-dot-skipped"></i><b id="tr-skipped">0</b> skipped</span></div>
+                    <div class="tr-progress" role="progressbar" aria-label="Test progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="tr-progress-passed" class="tr-progress-passed"></span><span id="tr-progress-failed" class="tr-progress-failed"></span><span id="tr-progress-skipped" class="tr-progress-skipped"></span><span id="tr-progress-pending" class="tr-progress-pending"></span></div>
+                    <p id="tr-total-caption" class="tr-total-caption">0 collected tests</p>
+                </div>
+            </section>
+
+            <section class="tr-card tr-topic-health" aria-labelledby="tr-health-title">
+                <header class="tr-card-header"><div><div class="tr-eyebrow">COVERAGE</div><h2 id="tr-health-title">Topic health</h2></div><span id="tr-health-caption" class="tr-card-note">No run yet</span></header>
+                <div id="tr-topic-health" class="tr-health-list"></div>
+            </section>
+
+            <section class="tr-card tr-detail-card" aria-labelledby="tr-detail-heading">
+                <header class="tr-card-header"><div><div class="tr-eyebrow">TEST DETAILS</div><h2 id="tr-detail-heading">What this test checks</h2></div><span id="tr-detail-outcome" class="tr-detail-outcome">Select a test</span></header>
+                <div class="tr-detail-body" id="tr-detail-body">
+                    <h3 id="tr-detail-title">Choose a test to see what it checks.</h3>
+                    <p id="tr-detail-doc" class="tr-detail-doc"></p>
+                    <div id="tr-detail-steps" class="tr-detail-steps"></div>
+                    <section id="tr-detail-checks-wrap" class="tr-detail-section" hidden><h4>Checks</h4><ul id="tr-detail-checks" class="tr-detail-checks"></ul></section>
+                    <section id="tr-detail-why-wrap" class="tr-detail-why-wrap" hidden><h4>EXPECTED <span>VS</span> ACTUAL</h4><div class="tr-expected-actual"><div><b>EXPECTED</b><p id="tr-detail-expected"></p></div><div><b>ACTUAL</b><p id="tr-detail-why"></p></div></div><button type="button" id="tr-detail-show-details" class="tr-text-button tr-details-toggle">Show details</button><pre id="tr-detail-extra" class="tr-detail-extra" hidden></pre></section>
+                    <div class="tr-detail-foot"><code id="tr-detail-nodeid"></code><code id="tr-detail-first-assert"></code></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="tr-card tr-map-card" aria-labelledby="tr-map-title">
+        <header class="tr-card-header tr-map-header"><div><div class="tr-eyebrow">TEST COVERAGE</div><h2 id="tr-map-title">Test map</h2><p>Each point is a collected test. Select a point to open its details.</p></div><div class="tr-map-legend"><span><i class="tr-dot tr-dot-passed"></i>Passed</span><span><i class="tr-dot tr-dot-failed"></i>Failed</span><span><i class="tr-dot tr-dot-skipped"></i>Skipped</span><span><i class="tr-dot tr-dot-pending"></i>Not run</span></div></header>
+        <div class="tr-map" id="tr-map"><canvas id="tr-map-lines" aria-hidden="true"></canvas><canvas id="tr-map-failures" aria-hidden="true"></canvas><canvas id="tr-map-dots" tabindex="0" role="img" aria-label="Map of collected test results. Use arrow keys to inspect tests."></canvas><div id="tr-map-empty" class="tr-map-empty">Collect tests to build the test map.</div><div id="tr-map-tip" class="tr-map-tip" role="status" hidden></div></div>
+        <p class="tr-map-caption">One point for every collected test · Hover to see the result and why a test failed or was skipped.</p>
+    </section>
+
+    <div class="tr-lower-grid">
+        <section class="tr-card tr-cases" aria-labelledby="tr-cases-title">
+            <header class="tr-card-header tr-cases-header"><div><div class="tr-eyebrow">RUN DETAIL</div><h2 id="tr-cases-title">Test cases</h2></div><div class="tr-filter" role="group" aria-label="Filter test results"><button type="button" data-result-filter="all" aria-pressed="true">All <span id="tr-filter-all-count">0</span></button><button type="button" data-result-filter="passed" aria-pressed="false">Passed <span id="tr-filter-passed-count">0</span></button><button type="button" data-result-filter="failed" aria-pressed="false">Failed <span id="tr-filter-failed-count">0</span></button><button type="button" data-result-filter="skipped" aria-pressed="false">Skipped <span id="tr-filter-skipped-count">0</span></button></div></header>
+            <div class="tr-table-wrap"><table class="tr-results"><thead><tr><th scope="col">Test</th><th scope="col">Checks</th><th scope="col">File</th><th scope="col">Result</th><th scope="col">Time</th></tr></thead><tbody id="tr-results"><tr class="tr-empty-row"><td colspan="5">No test results yet.</td></tr></tbody></table></div>
+        </section>
+        <section class="tr-card tr-output-card" aria-labelledby="tr-output-title"><header class="tr-card-header"><div><div class="tr-eyebrow">PROCESS</div><h2 id="tr-output-title">Live output</h2></div><span class="tr-output-live"><i></i> LIVE</span></header><div class="tr-output" id="tr-output" role="log" aria-live="polite" aria-relevant="additions"></div></section>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}<script src="/static/js/test_runner.js?v=3"></script>{% endblock %}
