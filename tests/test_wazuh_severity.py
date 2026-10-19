@@ -2,9 +2,9 @@
 Unit tests for src/utils/wazuh_severity.py
 
 ครอบคลุมทั้ง 3 ฟังก์ชัน:
-- score_to_wazuh_severity()      : CABTA threat_score -> Wazuh label (export)
-- verdict_to_wazuh_severity()    : CABTA verdict string -> Wazuh label (export)
-- wazuh_level_to_severity()      : Wazuh rule.level -> CABTA bucket (import)
+- score_to_wazuh_severity()      : SOCPOW threat_score -> Wazuh label (export)
+- verdict_to_wazuh_severity()    : SOCPOW verdict string -> Wazuh label (export)
+- wazuh_level_to_severity()      : Wazuh rule.level -> SOCPOW bucket (import)
 
 หมายเหตุ: ฟังก์ชัน import (wazuh_level_to_severity) คือตัวที่ยังไม่มี
 production caller เพราะไม่มี webhook endpoint รับ Wazuh alert
@@ -120,7 +120,7 @@ class TestCorrelationToWazuhSeverity:
 
 
 # ====================================================================== #
-#  wazuh_level_to_severity() — Wazuh rule.level (0-15) -> CABTA bucket
+#  wazuh_level_to_severity() — Wazuh rule.level (0-15) -> SOCPOW bucket
 #  (import direction — no production caller yet, see capability gap doc)
 # ====================================================================== #
 

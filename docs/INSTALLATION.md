@@ -104,16 +104,15 @@ served model ID supplied by your deployment owner.
 # Test CLI entry point
 python -m src.soc_agent --help
 
-# Start the Web UI/API using the default web.port from config.yaml.example.
-# The configuration default is port 8080.
-python -m uvicorn src.web.app:create_app --factory --host 127.0.0.1 --port 8080
+# Start the Web UI/API on port 3003 (overrides config.yaml.example's default port 8080).
+python -m uvicorn src.web.app:create_app --factory --host 127.0.0.1 --port 3003
 
 # Optional network-dependent IOC smoke test
 python -m src.soc_agent ioc 8.8.8.8
 ```
 
-Open `http://localhost:8080` for the Web UI or
-`http://localhost:8080/api/docs` for Swagger UI.
+Open `http://localhost:3003` for the Web UI or
+`http://localhost:3003/api/docs` for Swagger UI.
 
 Port `3003` is an explicit local-development override used by the repository's
 Quick Start documentation and by the current Gmail OAuth callback URI. If you

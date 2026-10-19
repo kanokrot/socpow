@@ -1,7 +1,7 @@
 """
 Tests for src/utils/thai_fonts.py — Thai font registration for ReportLab.
 
-CABTA's PDF generators (executive_pdf.py, ioc_pdf.py) currently use ReportLab's
+SOCPOW's PDF generators (executive_pdf.py, ioc_pdf.py) currently use ReportLab's
 default Helvetica, which has no Thai glyphs. This module registers Sarabun
 (SIL OFL licensed, Thai National Font used in the Royal Thai Government Gazette)
 so any generator can request Thai-safe fonts by name.

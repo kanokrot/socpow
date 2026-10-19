@@ -153,11 +153,7 @@ llm:
 
 Prompt context may be sent to this endpoint. Review its access, retention, and privacy controls.
 
-Optional RAG uses seed data in `data/rag_knowledge/` and defaults to `~/.blue-team-assistant/rag_store`:
-
-```bash
-pip install chromadb sentence-transformers
-```
+RAG uses seed data in `data/rag_knowledge/` and defaults to `~/.blue-team-assistant/rag_store`. Its dependencies (`chromadb` and `sentence-transformers`) are included in `requirements.txt`.
 
 ## 8. MCP servers: available versus enabled
 

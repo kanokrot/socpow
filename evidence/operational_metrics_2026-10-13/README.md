@@ -1,35 +1,38 @@
 # Operational metrics — 2026-10-13
 
-## นิยาม
+## Definitions
 
-Flow C จัดผลแต่ละ tool_call เป็น `success`, `error` หรือ `unparseable`. success คือ JSON object ที่ไม่มี `error` ซึ่งไม่ใช่ null ที่ระดับบนสุด. wrapper ที่ `truncated=true` ใช้ `ended_in_error`: true เป็น error, false หรือไม่มีค่าเป็น success. JSON ที่ parse ไม่ได้หรือ parsed value ที่ไม่ใช่ object เป็น unparseable.
+For Flow C, each `tool_call` is classified as `success`, `error`, or `unparseable`. A result is `success` when it is a JSON object without a non-null top-level `error`. If a wrapper has `truncated=true`, `ended_in_error=true` means `error`; `false` or a missing value means `success`. Invalid JSON and parsed values that are not objects are `unparseable`.
 
-`step_success_rate = success / (success + error)`. unparseable แสดงแยกและไม่รวมเป็น failure ในตัวหาร. `step_total` แสดงทุก tool_call row. error ที่อยู่ซ้อนใน MCP `result` ไม่เปลี่ยน success ตามสูตรระดับบนสุด แต่รายงานแยกเป็น `partial_failure_count` พร้อม session, step และ tool. `investigate_ioc` ที่มี `llm_analysis.error` หรือ `sources.*.error` แสดงอีกแถวเป็นข้อมูลประกอบ และไม่รวมกับ partial_failure_count.
+`step_success_rate = success / (success + error)`. `unparseable` rows are reported separately and are not counted as failures in this denominator. `step_total` includes every `tool_call` row. Errors nested inside an MCP `result` do not change the top-level classification; they are reported separately as `partial_failure_count` with session, step, and tool. `investigate_ioc` rows with `llm_analysis.error` or `sources.*.error` are reported separately as auxiliary information and are not included in `partial_failure_count`.
 
-Flow B ยังคงนับ `audit_log` rows ที่ `action_type='tool_call'` โดย status `success` เทียบกับจำนวน tool_call rows เช่นสคริปต์เดิม.
+Flow B continues to count `audit_log` rows with `action_type='tool_call'`, comparing rows with `status='success'` against all tool-call rows, as in the earlier script.
 
-## ชุดข้อมูลและช่วงเวลา
+`human_override_rate` counts only audit rows where `requires_approval=1`, `action_type` is `approval_granted` or `approval_rejected`, and `status` is not `pending`; it is rejected decisions divided by completed decisions. When a group contains no sessions, the script emits a 0/0 metric row with rate `0.000000`. The Flow B rows in both CSVs below are empty-group placeholders because both input session lists contain only Flow C sessions. They are not Flow B evaluation results and do not indicate a 0% override rate.
 
-- As-recorded: 4 sessions ที่สร้างระหว่าง `2026-08-30T10:42:35Z` และ `2026-09-04T11:36:31Z`; metrics CSV เดิมอยู่ใน `evidence/operational_metrics_2026-09-27/`: `2320b6ac573d`, `ab2cb362c774`, `41fa383a6d03`, `b0c0c527cdbb`.
-- Recomputed จากผลเต็มใน metadata: ใช้ session IDs เดียวกัน; เป็นการคำนวณซ้ำ ไม่ใช่การรัน playbook ใหม่.
-- Flow C rerun: IDs ใน `scripts/adhoc/flow_c_rerun_session_ids.json` (`cc587d2786b6`, `e83135100307`, `8898632cbf7a`, `ee5744705850`, `b1afd5f64a38`, `7a5e681cf418`, `89fc75c9b0fe`, `4a2e030b1cee`) บวก `a643cd266adf` ที่ส่งด้วย `--extra-session-id`; IDs ทั้งหมดเป็น sessions วันที่ 2026-10-13 ตาม `agent_sessions`.
-- ห้ามรวมชุด as-recorded กับ rerun เป็น metric เดียว.
+## Cohorts and time ranges
 
-## ผลแยกตามชุด
+- **As-recorded:** 4 sessions created between `2026-08-30T10:42:35Z` and `2026-09-04T11:36:31Z`. The original metrics CSV is in `evidence/operational_metrics_2026-09-27/`. Session IDs: `2320b6ac573d`, `ab2cb362c774`, `41fa383a6d03`, `b0c0c527cdbb`.
+- **Recomputed:** the same session IDs, using full results from session metadata. This is a recalculation, not a new playbook run.
+- **Flow C rerun:** IDs in `scripts/adhoc/flow_c_rerun_session_ids.json` (`cc587d2786b6`, `e83135100307`, `8898632cbf7a`, `ee5744705850`, `b1afd5f64a38`, `7a5e681cf418`, `89fc75c9b0fe`, `4a2e030b1cee`) plus `a643cd266adf`, supplied with `--extra-session-id`. All are sessions dated 2026-10-13 according to `agent_sessions`.
+- Do not combine the as-recorded and rerun cohorts into one metric.
+- The Flow B `0/0` rows in the 2026-09-27 report refer to a different cohort: 15 Flow B sessions. The Flow B `0/0` rows in this report result from having no Flow B sessions in the input lists.
 
-As-recorded จาก `agent_steps.tool_result`: success 15, error 0, unparseable 5, step_total 20; success rate เมื่อไม่นับ unparseable = 15/15.
+## Results by cohort
 
-อัตรา legacy ที่รายงานไว้ก่อนหน้าเป็น 15/20 = 75% เพราะ parser เดิมนับ parse failure เป็น false. ตัวเลข 75% นี้เป็นการอ่านตามสูตรเดิม; อย่านำไปรวมกับ rate ใหม่ที่ตัด unparseable ออกจากตัวหาร.
+As-recorded results from `agent_steps.tool_result`: 15 successes, 0 errors, 5 unparseable rows, and 20 total steps. Excluding unparseable rows, the success rate is 15/15.
 
-Recomputed โดยแทนห้าแถวที่ถูกตัดด้วยผลเต็มจาก `agent_sessions.metadata`: success 20, error 0, unparseable 0, step_total 20; success rate = 20/20.
+The legacy rate reported earlier was 15/20 = 75%, because the old parser counted parse failures as false. This 75% follows the old formula and should not be combined with the revised rate, which excludes unparseable rows from the denominator.
 
-Flow C rerun ที่ตรวจ DB: 73 tool_call rows, unparseable 0, wrapper 0. สคริปต์จะคำนวณ status และ partial failures จากแถวเหล่านี้ใหม่เมื่อเรียกใช้งาน.
+Recomputed by replacing the five truncated rows with full results from `agent_sessions.metadata`: 20 successes, 0 errors, 0 unparseable rows, and 20 total steps; success rate = 20/20. This is a recalculation of the original four sessions, not the nine-session rerun below.
 
-การนับ Reject 3 ครั้งใน rerun เป็นการบังคับด้วย `--reject-every`; ไม่ใช่ Human Override Rate ของผู้ใช้จริง.
+For the Flow C rerun, the attached CSV counts 73/73 `tool_call` steps as successful under the top-level `error` rule. There are 0 unparseable rows and 5/73 nested partial failures (6.8493%), reported separately. Do not describe 73/73 as absence of all errors. `investigate_ioc` also has 7/73 auxiliary errors (9.5890%) according to the CSV. The separate result-size query counted 79 rows because it included both 73 `tool_call` rows and 6 `for_each_iteration` rows; the step-success metric filters to `tool_call` only.
 
-## ทำซ้ำ
+The as-recorded Flow C `human_override_rate` is 0/5 across five approval decisions in the original four sessions. The rerun has 3 rejections among 10 decisions because `--reject-every 3` forced those outcomes. This is a test scenario result, not the actual users' human override rate. Label 0/5 as the as-recorded cohort; do not attach it to the nine-session rerun.
 
-เปิดฐานข้อมูลด้วย `mode=ro` เท่านั้น. คำสั่ง metrics ต่อไปนี้เขียน CSV report ในโฟลเดอร์นี้และไม่เขียนฐานข้อมูล.
+## Reproduction
+
+The database is opened with `mode=ro`. The metrics commands below write CSV reports in this folder and do not write to the database.
 
 ```powershell
 $env:PYTHONIOENCODING='utf-8'
@@ -56,4 +59,4 @@ $env:PYTHONIOENCODING='utf-8'
 python evidence/operational_metrics_2026-10-13/verify_truncated_rows.py
 ```
 
-สคริปต์ตรวจย้อนหลังพิมพ์เฉพาะ session, step, tool, flags, ความยาว serialized และผลเปรียบเทียบ prefix; ไม่พิมพ์ result payload.
+The verification script prints only session, step, tool, flags, serialized length, and prefix-comparison results; it does not print result payloads.

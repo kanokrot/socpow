@@ -130,7 +130,6 @@ evidence_raw/
 test_keys/
 
 evidence/*
-!evidence/independent_url_holdout_2026-10-11/
 !evidence/sensitivity_2026-10-13/
 !evidence/vt_independent_holdout_2026-09-25/
 !evidence/operational_metrics_2026-09-27/
@@ -139,6 +138,30 @@ evidence/source_weights_2026-09-16
 evidence/vt_independent_holdout_2026-09-25/plot_comparison.py
 evidence/vt_independent_holdout_2026-09-25/flow_a_comparison.png
 !.env.example
+
+# Keep only compact, reproducibility outputs from the independent URL holdout.
+!evidence/independent_url_holdout_2026-10-11/
+evidence/independent_url_holdout_2026-10-11/*
+!evidence/independent_url_holdout_2026-10-11/combined_holdout.json
+!evidence/independent_url_holdout_2026-10-11/holdout_metrics.json
+!evidence/independent_url_holdout_2026-10-11/eval_results.jsonl
+!evidence/independent_url_holdout_2026-10-11/overlap/
+evidence/independent_url_holdout_2026-10-11/overlap/*
+!evidence/independent_url_holdout_2026-10-11/overlap/url_overlap_flags.json
+!evidence/independent_url_holdout_2026-10-11/overlap/url_overlap_summary.csv
+!evidence/independent_url_holdout_2026-10-11/overlap/measure_url_overlap_manifest.json
+evidence/independent_url_holdout_2026-10-11/homepage_raw/
+evidence/independent_url_holdout_2026-10-11/clean_round2_build/homepage_raw_round2/
+evidence/independent_url_holdout_2026-10-11/virustotal_raw/
+evidence/independent_url_holdout_2026-10-11/clean_round2_vt/virustotal_raw/
+evidence/independent_url_holdout_2026-10-11/phishtank_source.raw
+evidence/independent_url_holdout_2026-10-11/tranco_*.csv
+evidence/independent_url_holdout_2026-10-11/tranco_full_list*.raw.csv
+evidence/independent_url_holdout_2026-10-11/round1_backup_2026-10-12/
+evidence/independent_url_holdout_2026-10-11/smoke_*
+evidence/independent_url_holdout_2026-10-11/build_tranco_manifest.json
+evidence/independent_url_holdout_2026-10-11/clean_round2_build/build_tranco_round2_manifest.json
+data/test_descriptions.json
 
 # pytest temp dirs
 .pytest_tmp*/

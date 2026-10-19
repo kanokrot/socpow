@@ -4,13 +4,11 @@
 
 ### Python packages
 
-Install the core Windows-compatible packages:
+Install the project dependencies from the repository root. `requirements.txt` selects `python-magic-bin` on Windows:
 
 ```powershell
-pip install oletools python-magic-bin pefile yara-python requests
+python -m pip install -r requirements.txt
 ```
-
-> **Note:** On Windows, use `python-magic-bin` rather than `python-magic`.
 
 ---
 
@@ -215,8 +213,8 @@ Those fallback paths help only the MCP FLARE layer. They do not make the tools d
 # Install Python when Chocolatey is available
 choco install python -y
 
-# Install Python packages
-pip install oletools pefile yara-python python-magic-bin
+# Install project Python packages from the repository root
+python -m pip install -r requirements.txt
 
 # Download capa, FLOSS, and Detect It Easy manually from their release pages
 # Install Didier Stevens PDF Tools from its GitHub repository

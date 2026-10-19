@@ -234,7 +234,7 @@ PhishTank snapshot เดิมใน repo มี 76,125 records; ทุก reco
 - Clean URLs ในชุดนี้จำกัดเฉพาะ URL ที่ VirusTotal มี report อยู่แล้ว; รอบแรก 139/170 candidates ไม่มี report (`http_404`). ห้ามเขียนว่าสุ่มเอนไปทางเว็บยอดนิยม เพราะข้อมูล Tranco rank ของ URL ที่ได้ยังไม่ชัดพอ
 - จำนวน clean ที่น้อยทำให้ช่วงความเชื่อมั่นของ Precision/FPR กว้าง; รายงาน Specificity คู่กับ Precision พร้อม Wilson 95% CI แยกกัน. หาก FP=0 ให้คำนวณขอบบนจากจำนวน clean สุดท้ายจริง ห้ามใส่ตัวเลขล่วงหน้า
 - [INFERRED] ผลหลักด้าน recall บน malicious URL ไม่ขึ้นกับขนาด clean arm เพราะ recall คำนวณจากแถว MALICIOUS ซึ่งเป็น positive class
-- [VERIFIED — `evidence/vt_independent_holdout_2026-09-25/holdout_labeled_221.json`; ตรวจ clean URL 23 แถว] clean URL 23 รายการใน holdout เดิมเป็น homepage (`https://{domain}/`), ต่างจากชุดนี้ที่เลือก deep URL; ห้ามนำมารวมเป็นตัวเลขเดียว
+- [VERIFIED — `evidence/vt_independent_holdout_2026-09-25/holdout_labeled_221.json`; ตรวจ clean URL 23 แถว] clean URL 22 จาก 23 รายการใน holdout เดิมเป็น homepage ของ domain (`https://{domain}/`); รายการที่เหลือจาก batch 3 คือ `http://138.226.236.218` ซึ่งเป็น URL ของ IP ไม่ใช่ homepage ของ domain. ต่างจากชุดนี้ที่เลือก deep URL; ห้ามนำมารวมเป็นตัวเลขเดียว
 - ขนาดชุดจำกัด ช่วงความเชื่อมั่นกว้าง
 - OpenPhish community feed มีเฉพาะ URL ที่ active ณ เวลาดึง ไม่สามารถสร้างชุดเดิมซ้ำได้นอกจากใช้ไฟล์ที่ freeze ไว้
 - [INFERRED] คาดว่า URL recall อาจต่ำ เพราะ OpenPhish/PhishTank อยู่นอก scoring และ IOC type URL มีแหล่ง scoring ที่ applicable เพียง C2 Trackers + ThreatFox; นี่เป็นข้อคาดหมายจาก source applicability ไม่ใช่ผลการทดลอง
