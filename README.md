@@ -155,16 +155,16 @@ Prompt context may be sent to this endpoint. Review its access, retention, and p
 
 RAG uses seed data in `data/rag_knowledge/` and defaults to `~/.blue-team-assistant/rag_store`. Its dependencies (`chromadb` and `sentence-transformers`) are included in `requirements.txt`.
 
-## 8. MCP servers: available versus enabled
+## 8. MCP servers: available versus configured
 
-The repository contains 12 FastMCP modules with 79 decorated tools. Presence does not mean enabled.
+The repository contains 12 FastMCP server modules with 81 decorated tools. Presence in the repository does not mean a module is configured for auto-connection.
 
 ### Available in the repository
 
-| Module | Tools | Enabled |
+| Module | Tools | Configured auto-connect |
 |---|---:|:---:|
 | `flare_tools` | 4 | No |
-| `forensics_tools` | 8 | Yes |
+| `forensics_tools` | 9 | Yes |
 | `free_osint_tools` | 11 | Yes |
 | `ghidra_tools` | 5 | No |
 | `malwoverview_tools` | 7 | Yes |
@@ -172,38 +172,41 @@ The repository contains 12 FastMCP modules with 79 decorated tools. Presence doe
 | `network_tools` | 8 | Yes |
 | `osint_tools` | 8 | Yes |
 | `remnux_tools` | 7 | Yes |
-| `remote_tools` | 4 | Yes |
+| `remote_tools` | 5 | Yes |
 | `threat_intel_tools` | 8 | Yes |
-| `vulnerability_tools` | 5 | No |
+| `vulnerability_tools` | 5 | Yes |
 
-### Enabled/configured
+### Servers configured in the example
 
-| Server | Module | Transport | Tools |
-|---|---|---|---:|
-| `osint_tools` | `src.mcp_servers.osint_tools` | stdio | 8 |
-| `free_osint_tools` | `src.mcp_servers.free_osint_tools` | stdio | 11 |
-| `network_tools` | `src.mcp_servers.network_tools` | stdio | 8 |
-| `malwoverview_tools` | `src.mcp_servers.malwoverview_tools` | stdio | 7 |
-| `forensics_tools` | `src.mcp_servers.forensics_tools` | stdio | 8 |
-| `remnux_tools` | `src.mcp_servers.remnux_tools` | stdio | 7 |
-| `threat_intel_tools` | `src.mcp_servers.threat_intel_tools` | stdio | 8 |
-| `remote_tools` | `src.mcp_servers.remote_tools` | stdio | 4 |
+| Server | Module | Transport | Tools | enabled field | auto_connect |
+|---|---|---|---:|---|---|
+| `osint_tools` | `src.mcp_servers.osint_tools` | stdio | 8 | not set | true (default) |
+| `free_osint_tools` | `src.mcp_servers.free_osint_tools` | stdio | 11 | not set | true (default) |
+| `network_tools` | `src.mcp_servers.network_tools` | stdio | 8 | not set | true (default) |
+| `malwoverview_tools` | `src.mcp_servers.malwoverview_tools` | stdio | 7 | not set | true (default) |
+| `forensics_tools` | `src.mcp_servers.forensics_tools` | stdio | 9 | not set | true (default) |
+| `remnux_tools` | `src.mcp_servers.remnux_tools` | stdio | 7 | not set | true (default) |
+| `threat_intel_tools` | `src.mcp_servers.threat_intel_tools` | stdio | 8 | not set | true (default) |
+| `remote_tools` | `src.mcp_servers.remote_tools` | stdio | 5 | not set | true (default) |
+| `vulnerability-tools` | `src.mcp_servers.vulnerability_tools` | stdio | 5 | not set | true (default) |
 
-Some modules require external binaries, services, or credentials. MCP management and discovery are available under `/api/mcp`.
+The `mcp_servers` list in `config.yaml.example` has nine entries. Startup uses `auto_connect` and defaults it to `true` when omitted; the `enabled` field is not read by startup. A module absent from this list is available in the repository but is not auto-connected by the example configuration. Some modules require external binaries, services, or credentials. MCP management and discovery are available under `/api/mcp`.
 
 ## 9. Playbooks and approval behavior
 
 | Playbook | Steps | MCP steps | Approval steps |
 |---|---:|---:|---:|
 | Alert Triage | 21 | 17 | 0 |
-| Email Investigation | 35 | 30 | 0 |
+| Email Investigation | 29 | 23 | 0 |
 | Exploit Reversing | 46 | 43 | 0 |
-| Basic Host Forensic Triage | 15 | 11 | 4 |
-| Incident Response | 38 | 29 | 3 |
+| Basic Host Forensic Triage | 16 | 11 | 5 |
+| Incident Response | 40 | 30 | 3 |
 | IOC Triage | 20 | 15 | 0 |
 | Unified Malware Analysis | 60 | 48 | 1 |
 | Malware Deep Dive | 45 | 42 | 0 |
-| Phishing Investigation | 21 | 16 | 0 |
+| Phishing Investigation | 20 | 14 | 0 |
+
+`Steps` counts every entry under `steps`; `MCP steps` counts only entries whose `tool` value starts with `mcp:` (local tool calls and actions are excluded); `Approval steps` counts entries with `requires_approval: true`.
 
 `requires_approval: true` pauses before a protected operation; approval or rejection is available through playbook/agent session APIs. A playbook with zero approval steps is not necessarily safe for unattended production use. Playbooks support templates, conditions, and `for_each`; review every tool before automation.
 
@@ -269,13 +272,13 @@ python -m pytest
 python -m pytest tests/test_remote_tools.py -v
 ```
 
-Last verified **2026-09-02**:
+Last verified **2026-10-20**:
 
 ```text
-921 passed, 3 known failures
+3401 passed, 1 skipped, 1 xfailed, 111 warnings, 8 subtests passed
 ```
 
-The known failures were the unsuffixed `for_each` result reference, URLhaus direct call, and URLhaus through MCP. This is a dated observation, not a permanent expectation; re-run tests in the current environment and distinguish network-dependent failures from unit regressions.
+`for_each` stores iteration results under `{step}_results` and aggregate flags under `{step}_any_malicious` / `{step}_any_suspicious`. `_resolve_var()` provides an unsuffixed fallback for two-part `.malicious` and `.suspicious` references when the aggregate flag exists; `tests/test_for_each_unsuffixed_reference_bug.py` covers this behavior. Other iteration fields and lists are not synthesized as unsuffixed aliases, so use `{step}_results` or `{step}_items` for those values.
 
 ## 14. Known limitations
 
@@ -285,7 +288,7 @@ The known failures were the unsuffixed `for_each` result reference, URLhaus dire
 - `ss` parsing assumes standard iproute2 columns and enriches TCP `ESTAB` plus UDP `ESTAB`/`UNCONN` peers; other states remain only in raw output.
 - Event-log time ranges use a small named mapping and otherwise default to 24 hours.
 - Some MCP modules require unconfigured external tools or services.
-- The unsuffixed `for_each` aggregate-reference bug remains separate from MCP wrapper resolution.
+- Unsuffixed `for_each` fallback is limited to the `.malicious` and `.suspicious` aggregate flags; raw iteration results remain under suffixed keys.
 - External integration tests depend on credentials, provider availability, and network access.
 - Real SSH end-to-end validation requires separately approved hosts, keys, and known-hosts files.
 
