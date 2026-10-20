@@ -193,7 +193,7 @@ def test_flow_b_finds_email_level_rag_references_without_nested_iocs():
     reference = {
         'text': 'Follow the phishing-email containment playbook.',
         'metadata': {
-            'schema_version': 'cabta-rag-provenance/1',
+            'schema_version': 'socpow-rag-provenance/1',
             'citation_id': 'email_phishing_playbook',
             'knowledge_type': 'course_of_action',
             'source_name': 'Email Phishing Playbook',

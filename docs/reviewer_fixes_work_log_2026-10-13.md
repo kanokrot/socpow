@@ -670,7 +670,7 @@ NO_MATCH
 MATCH_COUNT=0
 ```
 
-รูปแบบที่ค้นใน `evidence/operational_metrics_2026-10-13/*`: `password|token|PRIVATE KEY|Authorization|cabta_session|BEGIN`; รูปแบบที่ค้นใน work log: `--password\s+\S+`.
+รูปแบบที่ค้นใน `evidence/operational_metrics_2026-10-13/*`: `password|token|PRIVATE KEY|Authorization|socpow_session|BEGIN`; รูปแบบที่ค้นใน work log: `--password\s+\S+`.
 
 ผล query read-only ของ `investigate_ioc` สำหรับ session IDs จากไฟล์ rerun บวก `a643cd266adf`; error string ตัดไม่เกิน 60 ตัวอักษร และไม่มี IOC/event-log payload:
 

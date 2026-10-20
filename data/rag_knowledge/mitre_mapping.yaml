@@ -2,7 +2,7 @@
   text: |
     **T1071: Application Layer Protocol.** Adversaries may communicate using application layer protocols to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server.
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: mitre_t1071
     knowledge_type: attack_pattern
     category: mitre_mapping
@@ -20,7 +20,7 @@
   text: >
     **T1059: Command and Scripting Interpreter.** Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature of most platforms.
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: mitre_t1059
     knowledge_type: attack_pattern
     category: mitre_mapping
@@ -38,7 +38,7 @@
   text: >
     **T1027: Obfuscated Files or Information.** Adversaries may attempt to make an executable or file difficult to discover or analyze by encrypting, encoding, or otherwise obfuscating its content. This is common behavior that can be used across different platforms and the network to evade defenses.
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: mitre_t1027
     knowledge_type: attack_pattern
     category: mitre_mapping
@@ -56,7 +56,7 @@
   text: >
     **T1566.001: Phishing: Spearphishing Attachment.** Adversaries may send spearphishing emails with a malicious attachment in an attempt to gain access to victim systems. Spearphishing attachment is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of malware attached to an email.
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: mitre_t1566_001
     knowledge_type: attack_pattern
     category: mitre_mapping
@@ -74,7 +74,7 @@
   text: >
     **T1566.002: Phishing: Spearphishing Link.** Adversaries may send spearphishing emails with a link to a malicious site in an attempt to gain access to victim systems. Spearphishing with a link is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of links to external websites, which can be used to harvest credentials or execute malicious code.
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: mitre_t1566_002
     knowledge_type: attack_pattern
     category: mitre_mapping

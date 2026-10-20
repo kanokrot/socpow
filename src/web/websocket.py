@@ -11,7 +11,7 @@ from typing import Sequence
 from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 
 from .auth import TEAM_LEAD, authorize_role, get_current_user, get_user_ids_by_role
-from .security import SESSION_COOKIE_NAME
+from .security import session_cookie
 from .visibility import (
     INCIDENT_RESPONDER,
     VisibilityError,
@@ -96,7 +96,7 @@ async def _authenticate_websocket(
     session cookie.  Non-browser clients retain the existing first-message
     ``{"type": "auth", "token": "..."}`` protocol.
     """
-    cookie_token = websocket.cookies.get(SESSION_COOKIE_NAME)
+    cookie_token = session_cookie(websocket.cookies)
     if cookie_token:
         try:
             user = get_current_user(cookie_token)

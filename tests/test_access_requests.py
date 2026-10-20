@@ -351,7 +351,7 @@ def test_team_lead_invite_uses_real_cookie_login_and_scoped_role_checks(
             json={"username": "team-lead", "password": password},
         )
         assert login.status_code == 200
-        csrf_token = client.cookies.get("cabta_csrf")
+        csrf_token = client.cookies.get("socpow_csrf")
         assert csrf_token
 
         missing_csrf = client.post(
@@ -435,7 +435,7 @@ def test_cookie_authenticated_access_request_actions_require_csrf(
             json={"username": "admin", "password": password},
         )
         assert login.status_code == 200
-        csrf_token = client.cookies.get("cabta_csrf")
+        csrf_token = client.cookies.get("socpow_csrf")
         assert csrf_token
 
         assert client.post(

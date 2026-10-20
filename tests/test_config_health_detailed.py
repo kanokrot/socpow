@@ -401,7 +401,7 @@ def test_detailed_endpoint_serializes_no_credentials(monkeypatch):
 
 
 def test_chromadb_mcp_threat_background_and_disk_probes(monkeypatch, tmp_path):
-    rag = SimpleNamespace(status=lambda: {"collection": "cabta_knowledge_base", "document_count": 3})
+    rag = SimpleNamespace(status=lambda: {"collection": "socpow_knowledge_base", "document_count": 3})
     mcp = SimpleNamespace(
         get_connection_status=lambda: {"one": {"connected": True, "tool_count": 2}}
     )

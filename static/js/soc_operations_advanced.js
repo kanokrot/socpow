@@ -200,7 +200,7 @@
                 <path class="soc-net-link link-server" d="M110 61 L160 83" />
                 <path class="soc-net-link link-report" d="M184 25 V77" />
                 <g class="soc-net-node node-ioc" transform="translate(8 39)"><rect width="40" height="25" rx="3"/><text x="20" y="15">IOC</text></g>
-                <g class="soc-net-node node-cabta" transform="translate(80 34)"><rect width="42" height="36" rx="3"/><text x="21" y="21">${brand.toUpperCase()}</text></g>
+                <g class="soc-net-node node-socpow" transform="translate(80 34)"><rect width="42" height="36" rx="3"/><text x="21" y="21">${brand.toUpperCase()}</text></g>
                 <g class="soc-net-node node-intel" transform="translate(158 7)"><rect width="52" height="24" rx="3"/><text x="26" y="15">INTEL</text></g>
                 <g class="soc-net-node node-server" transform="translate(158 73)"><rect width="52" height="24" rx="3"/><text x="26" y="15">SERVER</text></g>
             </svg>`;

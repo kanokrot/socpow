@@ -149,7 +149,7 @@ class IntelligentScoring:
         # Weight different sources.
         # รายชื่อ source ในแต่ละ tier ต้อง sync กับ investigate_ioc_comprehensive()
         # ใน threat_intel.py เสมอ — เพิ่ม/ลบ source ใหม่ต้องอัปเดตทั้งสองที่พร้อมกัน
-        # (พบ mismatch 9 รายการเมื่อ 2026-09-13 ดู CABTA_scope_ledger.md)
+        # (พบ mismatch 9 รายการเมื่อ 2026-09-13 ดู SOCPOW_scope_ledger.md)
         weighted_scores = []
 
         # These lists preserve the operational source group inventory used by
@@ -221,14 +221,14 @@ class IntelligentScoring:
             # Boost score if multiple sources flagged
             # 2026-09-21: เลือก 1.20 สำหรับ 2-source จากช่วง 15-20% ตามเกณฑ์ (a)-(c); sweep ที่ threshold 95
             # แยก 15% กับ 20% ไม่ได้ และที่ threshold 50 F1 ไม่เปลี่ยน. 3+ คง 1.30 ตามการออกแบบ; S3 n=2, S4
-            # หลัง exclude PBL n=1 และคะแนนเต็ม 100 จึง calibrate ไม่ได้. sources_flagged นับ PBL เท่า SBL; ดู docs/CABTA_scope_ledger.md หัวข้อ 3.
+            # หลัง exclude PBL n=1 และคะแนนเต็ม 100 จึง calibrate ไม่ได้. sources_flagged นับ PBL เท่า SBL; ดู docs/SOCPOW_scope_ledger.md หัวข้อ 3.
             # หลักฐาน: evidence/source_weights_2026-09-21/final_boost_2026-09-21/threshold_sweep.csv,
             # evidence/source_weights_2026-09-21/final_boost_2026-09-21/score_group_summary.csv,
             # evidence/source_weights_2026-09-21/final_boost_2026-09-21/S3_results.txt.
             if group_a_sources_flagged >= 3:
                 base_score = min(100, base_score * 1.3)  # 30% boost for 3+ flagged
             elif group_a_sources_flagged >= 2:
-                # 2-source boost calibrated 2026-09-18: paired bootstrap on eval_results_group_a_v3_rich.jsonl (n=22), 95% CI [+0.0164,+0.0414]. See docs/CABTA_scope_ledger.md. 3+-source boost (30%) unchanged — n=2 insufficient to calibrate.
+                # 2-source boost calibrated 2026-09-18: paired bootstrap on eval_results_group_a_v3_rich.jsonl (n=22), 95% CI [+0.0164,+0.0414]. See docs/SOCPOW_scope_ledger.md. 3+-source boost (30%) unchanged — n=2 insufficient to calibrate.
                 base_score = min(100, base_score * 1.20)  # 20% boost for 2 flagged
 
         return max(0, min(100, int(base_score)))

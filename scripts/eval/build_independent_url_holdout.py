@@ -28,7 +28,7 @@ TRANCO_LIST_ID = "8P4GV"
 TRANCO_URL = f"https://tranco-list.eu/list/{TRANCO_LIST_ID}/1000000"
 OPENPHISH_URL = "https://openphish.com/feed.txt"
 PHISHTANK_URL = "https://data.phishtank.com/data/online-valid.json"
-USER_AGENT = "CABTA-Independent-URL-Holdout/1.0 (research reproducibility)"
+USER_AGENT = "SOCPOW-Independent-URL-Holdout/1.0 (research reproducibility)"
 DEFAULT_EXCLUSIONS = (
     "data/benchmark/benchmark_iocs_v2.json",
     "data/benchmark/benchmark_iocs_v2_backup.json",

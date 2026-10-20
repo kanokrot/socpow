@@ -18,7 +18,7 @@
        - จัดทำเอกสารสรุปเหตุการณ์ (incident report) ซึ่งประกอบด้วยการวิเคราะห์ root cause, บทเรียนที่ได้รับ (lessons learned), และแนวทางการปรับปรุง
        - บันทึก IOCs และ TTPs ของผู้โจมตีลงในฐานข้อมูล Threat Intelligence
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: playbook_malicious_ioc_001
     knowledge_type: course_of_action
     category: playbook

@@ -56,7 +56,7 @@ def test_more_menu_role_gates_and_unique_nav_links(tmp_path, monkeypatch, role: 
     monkeypatch.setattr(page_auth, "get_current_user", lambda token, request=None: user)
 
     with TestClient(_build_page_app(tmp_path)) as client:
-        client.cookies.set("cabta_session", "test-token")
+        client.cookies.set("socpow_session", "test-token")
         account_response = client.get("/account", follow_redirects=False)
         other_page = client.get("/history")
         if role == "admin":
@@ -146,7 +146,7 @@ def test_settings_page_keeps_admin_settings_script_without_gmail_card(tmp_path, 
     monkeypatch.setattr(page_auth, "get_current_user", lambda token, request=None: user)
 
     with TestClient(_build_page_app(tmp_path)) as client:
-        client.cookies.set("cabta_session", "test-token")
+        client.cookies.set("socpow_session", "test-token")
         response = client.get("/settings")
 
     assert response.status_code == 200
@@ -169,7 +169,7 @@ def test_non_admin_account_navigation_and_settings_guard_are_unchanged(tmp_path,
     user = {"id": 2, "email": "user@example.test", "username": "user", "role": role, "is_active": 1}
     monkeypatch.setattr(page_auth, "get_current_user", lambda token, request=None: user)
     with TestClient(_build_page_app(tmp_path)) as client:
-        client.cookies.set("cabta_session", "test-token")
+        client.cookies.set("socpow_session", "test-token")
         account = client.get("/account")
         settings = client.get("/settings")
     assert account.status_code == 200

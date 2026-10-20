@@ -168,7 +168,7 @@ def test_key_credential_ambiguity_and_keyless_context_rejected(monkeypatch, tmp_
         assert client.post(
             "/api/playbooks/alert_triage/run",
             headers={"X-API-Key": key},
-            cookies={"cabta_session": "stray"},
+            cookies={"socpow_session": "stray"},
         ).status_code == 400
         assert client.post(
             "/api/playbooks/alert_triage/run",
@@ -206,7 +206,7 @@ def test_api_key_throttling_is_separate_and_bad_prefix_is_401_then_429(monkeypat
         key, _ = _create_key(client, ids["ir"], admin_token)
         prefix = key.split("_")[2]
         limiter.clear(prefix, "testclient")
-        unknown_key = f"cabta_live_{'f' * 8}_{key.rsplit('_', 1)[-1]}"
+        unknown_key = f"socpow_live_{'f' * 8}_{key.rsplit('_', 1)[-1]}"
         assert client.post(
             "/api/playbooks/alert_triage/run", headers={"X-API-Key": unknown_key}
         ).status_code == 401

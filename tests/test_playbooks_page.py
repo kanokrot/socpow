@@ -283,7 +283,7 @@ def test_guided_playbook_modals_share_storage_backed_toggle_and_safe_form_render
 
     assert rendered.count('<input type="checkbox" data-guide-toggle>') == 2
     assert rendered.count('class="playbooks-guide-toggle"') == 2
-    assert "cabta.playbooks.guide" in script
+    assert "socpow.playbooks.guide" in script
     assert "window.localStorage.getItem(GUIDE_STORAGE_KEY)" in script
     assert "window.localStorage.setItem(GUIDE_STORAGE_KEY" in script
     assert re.search(r"function readGuidePreference\(\)\s*\{\s*try\s*\{", script)

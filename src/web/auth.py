@@ -19,10 +19,10 @@ from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 
 from .security import (
-    CSRF_COOKIE_NAME,
-    SESSION_COOKIE_NAME,
     UNSAFE_METHODS,
     api_key_rate_limiter,
+    csrf_cookie,
+    session_cookie,
 )
 
 
@@ -32,8 +32,11 @@ ACCESS_TOKEN_TTL_SECONDS = 60 * 60
 INVITE_TOKEN_TTL_SECONDS = 48 * 60 * 60
 TEAM_LEAD = "Team Lead"
 API_KEY_SCOPE = "POST /api/playbooks/alert_triage/run"
-API_KEY_PREFIX = "cabta_live_"
-_API_KEY_PATTERN = re.compile(r"^cabta_live_([A-Za-z0-9]{8})_([A-Za-z0-9_-]+)$")
+API_KEY_PREFIX = "socpow_live_"
+_API_KEY_PATTERN = re.compile(
+    r"^(?P<brand>socpow|cabta)_live_"
+    r"(?P<identifier>[A-Za-z0-9]{8})_(?P<secret>[A-Za-z0-9_-]+)$"
+)
 
 VALID_ROLES = frozenset(
     {
@@ -194,7 +197,7 @@ def get_access_token(
     token: Optional[str] = Depends(oauth2_scheme),
 ) -> Optional[str]:
     """Return a bearer token first, falling back to the browser session cookie."""
-    return token or request.cookies.get(SESSION_COOKIE_NAME)
+    return token or session_cookie(request.cookies)
 
 
 def _client_ip(request: Request) -> str:
@@ -202,8 +205,8 @@ def _client_ip(request: Request) -> str:
 
 
 def _api_key_rate_identifier(value: str) -> str:
-    match = re.match(r"^cabta_live_([A-Za-z0-9]{8})(?:_|$)", value)
-    return match.group(1) if match else "invalid"
+    match = _API_KEY_PATTERN.match(value)
+    return match.group("identifier") if match else "invalid"
 
 
 def _authenticate_api_key(key: str, request: Request) -> Dict[str, Any]:
@@ -220,7 +223,7 @@ def _authenticate_api_key(key: str, request: Request) -> Dict[str, Any]:
     match = _API_KEY_PATTERN.fullmatch(key)
     row = None
     if match:
-        key_prefix = f"{API_KEY_PREFIX}{match.group(1)}"
+        key_prefix = f"{match.group('brand')}_live_{match.group('identifier')}"
         with _connect() as connection:
             row = connection.execute(
                 "SELECT api_keys.id AS key_id, api_keys.user_id, "
@@ -275,7 +278,7 @@ def _require_cookie_csrf(request: Request) -> None:
     if request.method.upper() not in UNSAFE_METHODS:
         return
 
-    cookie_token = request.cookies.get(CSRF_COOKIE_NAME)
+    cookie_token = csrf_cookie(request.cookies)
     header_token = request.headers.get("X-CSRF-Token")
     if (
         not cookie_token
@@ -297,7 +300,7 @@ def get_current_user(
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    bearer_is_key = bool(token and token.startswith(API_KEY_PREFIX))
+    bearer_is_key = bool(token and _API_KEY_PATTERN.fullmatch(token))
     header_api_key = request.headers.get("X-API-Key") if request else None
     if header_api_key is not None or bearer_is_key:
         if request is None:
@@ -310,14 +313,14 @@ def get_current_user(
                 detail="Conflicting authentication credentials",
             )
         api_key = header_api_key if header_api_key is not None else token
-        if SESSION_COOKIE_NAME in request.cookies:
+        if session_cookie(request.cookies):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Conflicting authentication credentials",
             )
         return _authenticate_api_key(api_key, request)
 
-    cookie_token = request.cookies.get(SESSION_COOKIE_NAME) if request else None
+    cookie_token = session_cookie(request.cookies) if request else None
     using_session_cookie = not token and bool(cookie_token)
     token = token or cookie_token
     if using_session_cookie and request is not None:

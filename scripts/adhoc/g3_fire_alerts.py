@@ -7,9 +7,9 @@ Run once per account, then compare:
   python scripts/adhoc/g3_fire_alerts.py --compare g3_IR.csv g3_admin.csv
 
 Auth (pick one):
-  --token / env CABTA_TOKEN                      Bearer access token
-  --session + --csrf / env CABTA_SESSION, CABTA_CSRF
-      values of the cabta_session and cabta_csrf cookies copied from the browser
+  --token / env SOCPOW_TOKEN                      Bearer access token
+  --session + --csrf / env SOCPOW_SESSION, SOCPOW_CSRF
+      values of the socpow_session and socpow_csrf cookies copied from the browser
 
 The script never approves anything. A run that pauses at an approval gate is
 recorded with whatever status the API reports at that point.
@@ -105,7 +105,7 @@ def headers(args):
     if args.token:
         h["Authorization"] = "Bearer " + args.token
     elif args.session:
-        h["Cookie"] = f"cabta_session={args.session}; cabta_csrf={args.csrf}"
+        h["Cookie"] = f"socpow_session={args.session}; socpow_csrf={args.csrf}"
         h["X-CSRF-Token"] = args.csrf or ""
     return h
 
@@ -196,7 +196,7 @@ def run_one(args, alert):
     row["step_rows"] = len(steps)
     row["tools"] = ";".join(str(s.get("tool_name")) for s in steps if s.get("tool_name"))
     row["warn_count"], row["warn_steps"] = parse_summary(row["summary"])
-    db_path = args.db or os.environ.get("CABTA_AGENT_DB") or (
+    db_path = args.db or os.environ.get("SOCPOW_AGENT_DB") or (
         Path.home() / ".blue-team-assistant" / "cache" / "agent.db"
     )
     decision, decision_error = read_priority_decision(db_path, sid)
@@ -208,12 +208,12 @@ def run_one(args, alert):
 
 
 def fire(args):
-    token = args.token or os.environ.get("CABTA_TOKEN")
+    token = args.token or os.environ.get("SOCPOW_TOKEN")
     args.token = token
-    args.session = args.session or os.environ.get("CABTA_SESSION")
-    args.csrf = args.csrf or os.environ.get("CABTA_CSRF")
+    args.session = args.session or os.environ.get("SOCPOW_SESSION")
+    args.csrf = args.csrf or os.environ.get("SOCPOW_CSRF")
     if not (args.token or (args.session and args.csrf)):
-        sys.exit("need --token, or --session and --csrf (or the CABTA_* env vars)")
+        sys.exit("need --token, or --session and --csrf (or the SOCPOW_* env vars)")
     only = set(args.only.split(",")) if args.only else None
     rows = []
     for alert in ALERTS:
@@ -263,7 +263,7 @@ if __name__ == "__main__":
     p.add_argument("--only", help="comma list, e.g. A1,A3")
     p.add_argument("--poll", type=float, default=5.0)
     p.add_argument("--timeout", type=float, default=600.0)
-    p.add_argument("--db", help="agent SQLite DB path (default: CABTA_AGENT_DB or ~/.blue-team-assistant/cache/agent.db)")
+    p.add_argument("--db", help="agent SQLite DB path (default: SOCPOW_AGENT_DB or ~/.blue-team-assistant/cache/agent.db)")
     p.add_argument("--compare", nargs=2, metavar=("A_CSV", "B_CSV"))
     a = p.parse_args()
     if a.compare:

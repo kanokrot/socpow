@@ -6,7 +6,7 @@ AI-powered SOC platform for threat analysis, IOC investigation, email forensics,
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](https://github.com/kanokrot/cabta-llm)
+[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](https://github.com/kanokrot/socpow)
 
 ## 1. Project overview and maturity
 
@@ -73,8 +73,8 @@ Review provider policies and minimize submitted data. Never commit API keys, tok
 Requirements: Python 3.10+, plus Ollama or external tools only for features that need them.
 
 ```bash
-git clone https://github.com/kanokrot/cabta-llm.git
-cd cabta-llm
+git clone https://github.com/kanokrot/socpow.git
+cd socpow
 python -m venv .venv
 source .venv/bin/activate             # Linux/macOS
 # .\.venv\Scripts\Activate.ps1       # Windows PowerShell
@@ -331,7 +331,7 @@ Licensed under the MIT License; see [LICENSE](LICENSE).
 - Medium: [@ugur.can.ates](https://medium.com/@ugur.can.ates)
 - LinkedIn: [Ugur Ates](https://www.linkedin.com/in/ugurcanates/)
 
-This SOCPOW fork of [CABTA](https://github.com/ugurrates/CABTA) ([kanokrot/cabta-llm](https://github.com/kanokrot/cabta-llm)) is maintained by [@kanokrot](https://github.com/kanokrot).
+SOCPOW is maintained by [@kanokrot](https://github.com/kanokrot).
 
 ### Acknowledgments
 

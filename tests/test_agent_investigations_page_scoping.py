@@ -49,7 +49,7 @@ def _client_for_page(app: FastAPI, monkeypatch, user: dict) -> TestClient:
         lambda token, request=None: user,
     )
     client = TestClient(app)
-    client.cookies.set("cabta_session", "test-token")
+    client.cookies.set("socpow_session", "test-token")
     return client
 
 

@@ -1,4 +1,4 @@
-# CABTA — Windows Installation Guide
+# SOCPOW — Windows Installation Guide
 
 ## Requirements
 
@@ -154,7 +154,7 @@ $newPath = $currentPath + ";" + ($newPaths -join ";")
 ## Verify the installation
 
 ```powershell
-Write-Host "=== CABTA Tool Check ===" -ForegroundColor Cyan
+Write-Host "=== SOCPOW Tool Check ===" -ForegroundColor Cyan
 
 $tools = @{
     "capa" = "capa --version"
@@ -177,15 +177,15 @@ foreach ($tool in $tools.Keys) {
 
 ---
 
-## How CABTA Finds These Tools
+## How SOCPOW Finds These Tools
 
-CABTA has two separate tool-resolution mechanisms. They serve different execution paths and are not interchangeable.
+SOCPOW has two separate tool-resolution mechanisms. They serve different execution paths and are not interchangeable.
 
 ### Main analysis pipeline
 
 `src/tools/external_tool_runner.py::_discover_tools()` is used by `pe_analyzer.py`, `pdf_analyzer.py`, `firmware_analyzer.py`, and `obfuscated_string_analyzer.py`.
 
-At startup, it calls `shutil.which()` once for each candidate in `TOOL_BINARIES`. There is no fallback directory. If a tool cannot be found on `PATH` during startup, it remains unavailable to the main analysis pipeline for that session. After changing `PATH`, open a new terminal and restart CABTA.
+At startup, it calls `shutil.which()` once for each candidate in `TOOL_BINARIES`. There is no fallback directory. If a tool cannot be found on `PATH` during startup, it remains unavailable to the main analysis pipeline for that session. After changing `PATH`, open a new terminal and restart SOCPOW.
 
 ### MCP FLARE tool layer
 

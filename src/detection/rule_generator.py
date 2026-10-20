@@ -360,7 +360,7 @@ dataset = xdr_data
         """Generate DQL (OpenSearch Dashboards Query Language, used by the
         Wazuh indexer/dashboard) for an IOC. Field names below are
         best-effort guesses at common Wazuh alert field names (e.g. Sysmon
-        decoder fields) — CABTA does not yet have a live Wazuh ingestion
+        decoder fields) — SOCPOW does not yet have a live Wazuh ingestion
         pipeline to verify exact field mappings against, so this is a
         reference query format, not a verified-live query."""
         if ioc_type in ('ipv4', 'ip'):

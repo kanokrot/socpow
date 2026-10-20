@@ -581,7 +581,7 @@ async def start_tests(
         if not _run_lock.acquire(blocking=False):
             raise HTTPException(409, "A test run is already in progress")
         try:
-            temp = tempfile.NamedTemporaryFile(prefix="cabta-tests-", suffix=".xml", delete=False)
+            temp = tempfile.NamedTemporaryFile(prefix="socpow-tests-", suffix=".xml", delete=False)
             junit_path = temp.name
             temp.close()
             actual_targets = targets

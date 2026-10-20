@@ -522,7 +522,10 @@ async def sync_due(config: dict[str, Any] | None, path: str | Path | None = None
 
 
 def sync_enabled() -> bool:
-    return (os.environ.get("CABTA_THREAT_FEED_SYNC") != "0"
+    setting = os.environ.get("SOCPOW_THREAT_FEED_SYNC")
+    if setting is None:
+        setting = os.environ.get("CABTA_THREAT_FEED_SYNC")
+    return (setting != "0"
             and "PYTEST_CURRENT_TEST" not in os.environ
             and "pytest" not in sys.modules)
 

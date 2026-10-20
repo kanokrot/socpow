@@ -60,10 +60,10 @@
     }
 
     async function api(path, options) {
-        if (!window.CABTAAuth || typeof window.CABTAAuth.fetch !== "function") {
+        if (!window.SOCPOWAuth || typeof window.SOCPOWAuth.fetch !== "function") {
             throw new Error("Authentication helper is unavailable. Reload the page and try again.");
         }
-        const response = await window.CABTAAuth.fetch(path, options);
+        const response = await window.SOCPOWAuth.fetch(path, options);
         let data = {};
         try {
             data = await response.json();

@@ -1,7 +1,7 @@
 """
 Regression tests for HTML report generation wiring in playbook_engine.py
 (Flow C). Locks in behavior verified manually in adhoc script
-scripts/adhoc/verify_report_wiring.py — see CABTA session notes.
+scripts/adhoc/verify_report_wiring.py — see SOCPOW session notes.
 """
 import pytest
 

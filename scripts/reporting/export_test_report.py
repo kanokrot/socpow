@@ -160,7 +160,7 @@ def build_workbook(rows: list, docstrings_by_module: dict) -> Workbook:
     passed = sum(1 for r in rows if r["status"] == "Pass")
     failed = sum(1 for r in rows if r["status"] in ("Fail", "Error"))
     skipped = sum(1 for r in rows if r["status"] == "Skipped")
-    ws3.append(["CABTA Automated Test Report"])
+    ws3.append(["SOCPOW Automated Test Report"])
     ws3.append(["Generated", datetime.now().strftime("%Y-%m-%d %H:%M")])
     ws3.append([])
     ws3.append(["Total", total])

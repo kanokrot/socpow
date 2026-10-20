@@ -15,7 +15,7 @@ from src.rag.rag_knowledge_base import load_playbooks_from_yaml
 
 def _reference(**metadata_overrides):
     metadata = {
-        "schema_version": "cabta-rag-provenance/1",
+        "schema_version": "socpow-rag-provenance/1",
         "citation_id": "mitre_t1566_001",
         "knowledge_type": "attack_pattern",
         "source_name": "MITRE ATT&CK",

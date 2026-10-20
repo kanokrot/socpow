@@ -1,4 +1,4 @@
-# CABTA Scope Ledger
+# SOCPOW Scope Ledger
 
 **Last updated:** 17 Sep 2026
 
@@ -132,7 +132,7 @@ implemented in the current workstream.
 
 | # | Comment | Status | Evidence Tier | Definition of Done | Next Action |
 |---|---------|--------|----------------|---------------------|-------------|
-| 1 | Severity levels: Malicious/Suspicious/Clean/Unknown vs Critical/High/Medium/Low | ✅ | T1 | ยืนยันว่า CABTA มี severity mapping อยู่แล้ว 3 ชั้น ไม่ใช่ gap ที่ต้องออกแบบใหม่: per-IOC (`src/utils/wazuh_severity.py:33-66`, `src/utils/helpers.py:63-95`) ใช้ score >=70 → CRITICAL, >=40 → HIGH, <40 → LOW และ verdict MALICIOUS→CRITICAL, SUSPICIOUS→HIGH, CLEAN/UNKNOWN→LOW; correlation (`src/agent/correlation.py:646-736`) รวม additive score แล้ว map >=60/40/20/10/else → critical/high/medium/low/info; external Wazuh alert (`src/utils/wazuh_severity.py:83-119`) map rule.level 14-15/12-13/7-11/0-6 → CRITICAL/HIGH/MEDIUM/LOW | ปิดแล้ว — ไม่ต้อง design ใหม่ เตรียมพูดประเด็น asymmetry ระหว่าง 3-tier (per-IOC) กับ 5-tier (correlation) เผื่ออาจารย์ถามต่อ |
+| 1 | Severity levels: Malicious/Suspicious/Clean/Unknown vs Critical/High/Medium/Low | ✅ | T1 | ยืนยันว่า SOCPOW มี severity mapping อยู่แล้ว 3 ชั้น ไม่ใช่ gap ที่ต้องออกแบบใหม่: per-IOC (`src/utils/wazuh_severity.py:33-66`, `src/utils/helpers.py:63-95`) ใช้ score >=70 → CRITICAL, >=40 → HIGH, <40 → LOW และ verdict MALICIOUS→CRITICAL, SUSPICIOUS→HIGH, CLEAN/UNKNOWN→LOW; correlation (`src/agent/correlation.py:646-736`) รวม additive score แล้ว map >=60/40/20/10/else → critical/high/medium/low/info; external Wazuh alert (`src/utils/wazuh_severity.py:83-119`) map rule.level 14-15/12-13/7-11/0-6 → CRITICAL/HIGH/MEDIUM/LOW | ปิดแล้ว — ไม่ต้อง design ใหม่ เตรียมพูดประเด็น asymmetry ระหว่าง 3-tier (per-IOC) กับ 5-tier (correlation) เผื่ออาจารย์ถามต่อ |
 | 2 | ทำไมต้องคูณ `base_score` ด้วย `1.3` และเลข `1.3` มาจากไหน | 🔍 | T3 | ตรวจพบจาก `src/scoring/intelligent_scoring.py:237` ว่า `1.3` ถูกใช้หลังคำนวณ weighted average เมื่อมี admitted Group-A sources flagged ตั้งแต่ 3 แหล่งขึ้นไป จึงเป็น 30% multi-source boost ไม่ใช่ base score; `git blame` ชี้กลับไปที่ commit `e12e768` แต่ commit message เป็นเพียง broad scoring improvement และยังไม่พบ derivation จากทฤษฎี, สถิติ, calibration, หรือเอกสารอ้างอิงใด ๆ ใน repository | ยังไม่ปิด: ตอบอาจารย์ว่า provenance ของ code พบแล้ว แต่เหตุผลเชิงทฤษฎี/สถิติของ `1.3` ยังไม่พบ; ห้ามอ้างว่าเป็น evidence-based factor และห้ามเปลี่ยน factor โดยไม่มี decision แยกพร้อมหลักฐาน/approval |
 | 3 | Source ไหนน่าเชื่อถือที่สุด (ที่มาของ weight) | ✅ | T1 | ใช้ AHP (Saaty's pairwise comparison) บน 7 sources: `feodotracker`, `c2_trackers`, `spamhaus`, `tor_exit_nodes`, `sslblacklist`, `threatfox`, `virustotal`; เปรียบเทียบ verification rigor, specificity of scope และ maintenance/delisting policy โดยอ้างอิงเอกสารของแต่ละ feed ทุกคู่ที่ไม่เท่ากัน; priority vector รวมแบบ equal criteria แล้ว scale ให้ Feodo สูงสุด = `1.5`; VT ได้ multiplier สำหรับ audit เท่านั้นและยัง report-only | เตรียมอธิบายจาก `docs/source_weight_ahp_derivation_2026-09-16.md`: matrix → priority vector → CR → multiplier และแยก admission gate ออกจาก ranking |
 | 4 | ช่องทางแจ้งเตือนผูกกับ severity ระดับไหน | ✅ | T1 | โค้ดจริงไม่มี Teams channel และไม่มี severity→channel mapping ใน SMTP/LINE: `NotificationManager.notify()` fan-out ทุก event ไปยัง channel ที่เปิดใช้งาน; mapping ตาม verdict มีเฉพาะ Gmail policy คือ `MALICIOUS→realtime`, `SUSPICIOUS→digest`, `CLEAN/UNKNOWN→none` (`src/integrations/notification_policy.py:22-32,61-88`) ส่วน `approval_required` และ `action_executed` เป็น realtime event ไม่ใช่ severity; `verdict_alert` ส่งให้ active Gmail ของ SOC Analyst Tier 1-2 + Team Lead, approval ส่งให้ Incident Responder, action ส่งตรงผู้อนุมัติ | ปิดคำถามด้าน code mapping แล้ว; ถ้าต้องการให้ Email/LINE/Teams มี severity routing แยก ต้องเป็น design/change ใหม่ ไม่ควรอ้างว่า implementation ปัจจุบันมี mapping ดังกล่าว |
@@ -357,7 +357,7 @@ AHP-derived factor. หากจะเปลี่ยน ต้องเปิ�
 
 This is recorded as a system-provenance finding, not as a newly designed
 scoring policy. The current implementation inherited these values from the
-original CABTA v2.0 implementation in commit `e12e768`:
+initial v2.0 implementation in commit `e12e768`:
 
 | Signal | Current calculation | Current numeric value | Provenance/status |
 |---|---|---:|---|
@@ -449,7 +449,7 @@ day, not evidence that the `+20` signal is wrong.
 - The `<30 days` cutoff remains consistent with the cited industry practice in
   the preceding section: Netskope uses a 30-day window and Palo Alto Networks
   Unit 42 reports a 32-day early-life window. Those references support the
-  cutoff and signal direction, not CABTA's exact numeric bonus.
+  cutoff and signal direction, not SOCPOW's exact numeric bonus.
 - The static-benchmark test gave the correct direction and a significant
   one-sided result (`p=0.0366`), but `n=5` is too small for a stable point-scale
   derivation.
@@ -483,28 +483,28 @@ implementation provenance recorded in the preceding section.
 
 #### Newly registered domain cutoff
 
-| Reference | Relevant finding | Relationship to CABTA |
+| Reference | Relevant finding | Relationship to SOCPOW |
 |---|---|---|
-| Netskope Community, [Best Practices - Newly Registered Domains (NRDs)](https://community.netskope.com/real-time-protection-key-policies-72/best-practices-newly-registered-domains-ndrs-7668) | Uses a default 30-day classification window for newly registered domains. | Supports CABTA's `<30 days` cutoff as being consistent with an industry practice. |
+| Netskope Community, [Best Practices - Newly Registered Domains (NRDs)](https://community.netskope.com/real-time-protection-key-policies-72/best-practices-newly-registered-domains-ndrs-7668) | Uses a default 30-day classification window for newly registered domains. | Supports SOCPOW's `<30 days` cutoff as being consistent with an industry practice. |
 | Palo Alto Networks Unit 42, [Newly Registered Domains: Malicious Abuse by Bad Actors](https://unit42.paloaltonetworks.com/newly-registered-domains-malicious-abuse-by-bad-actors/) | Reports that more than 70% of observed NRDs were malicious, suspicious, or NSFW. | Supports the direction that newly registered domains are a higher-risk contextual signal, not that every NRD is malicious. |
-| Palo Alto Networks Unit 42, [Detecting Emerging Network Threats From Newly Observed Domains](https://unit42.paloaltonetworks.com/malicious-newly-observed-domains/) | Uses a 32-day NRD window; reports that 37.11% of suspicious newly observed domains were confirmed malicious within the following 30 days, and identifies the first 32 days as the optimal timeframe for detecting malicious NRDs. | Supports a short early-life window near CABTA's 30 days; the 32-day finding is not a direct derivation of CABTA's exact cutoff. |
+| Palo Alto Networks Unit 42, [Detecting Emerging Network Threats From Newly Observed Domains](https://unit42.paloaltonetworks.com/malicious-newly-observed-domains/) | Uses a 32-day NRD window; reports that 37.11% of suspicious newly observed domains were confirmed malicious within the following 30 days, and identifies the first 32 days as the optimal timeframe for detecting malicious NRDs. | Supports a short early-life window near SOCPOW's 30 days; the 32-day finding is not a direct derivation of SOCPOW's exact cutoff. |
 
 These references support the direction of the signal (`newly registered` means
 contextually riskier) and indicate that a 30-day cutoff is close to industry
-practice. They do **not** establish a numeric CABTA score contribution; the
+practice. They do **not** establish a numeric SOCPOW score contribution; the
 former `+20` domain-age bonus is no longer used.
 
 #### DGA feature selection
 
-| Reference | Relevant finding | Relationship to CABTA |
+| Reference | Relevant finding | Relationship to SOCPOW |
 |---|---|---|
-| Atlantis Press, [A Detection Scheme for DGA Domain Names Based on SVM](https://www.atlantis-press.com/article/25894313.pdf) | An SVM-based detector uses domain length, Shannon entropy, vowel ratio, consecutive-consonant ratio, and digit ratio; it reports TPR above 87% and precision above 88%. | Supports CABTA's use of length, entropy, consonant/vowel composition, and digit ratio as plausible DGA features. The reported metrics belong to that study's dataset/model, not CABTA. |
-| Splunk, [Machine Learning in Security: Deep Learning Based DGA Detection with a Pre-trained Model](https://www.splunk.com/en_us/blog/security/machine-learning-in-security-deep-learning-based-dga-detection-with-a-pre-trained-model.html) | Describes entropy, vowel/consonant/digit ratios, and n-gram similarity to dictionary words as standard features that correlate with DGA labels. | Supports CABTA's feature direction, including dictionary coverage and n-gram/bigram/trigram signals. |
-| Exp0se DGA Detector, referenced by [Gravity Falls: A Comparative Analysis of DGA Detection Methods for Mobile Device Spearphishing](https://arxiv.org/pdf/2603.03270) | A traditional heuristic/string-analysis detector uses entropy, consonant count, and string-length thresholds. | Supports the general heuristic design pattern used by CABTA; it is not evidence that CABTA's exact points or thresholds are optimal. |
+| Atlantis Press, [A Detection Scheme for DGA Domain Names Based on SVM](https://www.atlantis-press.com/article/25894313.pdf) | An SVM-based detector uses domain length, Shannon entropy, vowel ratio, consecutive-consonant ratio, and digit ratio; it reports TPR above 87% and precision above 88%. | Supports SOCPOW's use of length, entropy, consonant/vowel composition, and digit ratio as plausible DGA features. The reported metrics belong to that study's dataset/model, not SOCPOW. |
+| Splunk, [Machine Learning in Security: Deep Learning Based DGA Detection with a Pre-trained Model](https://www.splunk.com/en_us/blog/security/machine-learning-in-security-deep-learning-based-dga-detection-with-a-pre-trained-model.html) | Describes entropy, vowel/consonant/digit ratios, and n-gram similarity to dictionary words as standard features that correlate with DGA labels. | Supports SOCPOW's feature direction, including dictionary coverage and n-gram/bigram/trigram signals. |
+| Exp0se DGA Detector, referenced by [Gravity Falls: A Comparative Analysis of DGA Detection Methods for Mobile Device Spearphishing](https://arxiv.org/pdf/2603.03270) | A traditional heuristic/string-analysis detector uses entropy, consonant count, and string-length thresholds. | Supports the general heuristic design pattern used by SOCPOW; it is not evidence that SOCPOW's exact points or thresholds are optimal. |
 
 These references support the direction that entropy, consonant/vowel ratio,
 digit ratio, length, dictionary coverage, and n-gram features can help separate
-DGA-like domains from ordinary domains. They **do not** validate CABTA's exact
+DGA-like domains from ordinary domains. They **do not** validate SOCPOW's exact
 component weights (`25/15/20/10/10/15/5`) or confidence threshold (`50`). The
 former `+30` DGA bonus was an implementation-specific legacy heuristic and is
 no longer used for numeric scoring.
@@ -519,7 +519,7 @@ numeric scoring policy. In particular:
 - entropy, consonant/vowel ratio, digit ratio, length, dictionary coverage,
   and n-gram features are supported as literature/industry feature choices for
   DGA detection.
-- CABTA's exact detector component weights `25/15/20/10/10/15/5` and
+- SOCPOW's exact detector component weights `25/15/20/10/10/15/5` and
   confidence threshold `50` remain unvalidated legacy heuristics. The former
   DGA `+30` and domain-age `+20` numeric bonuses were removed and are not
   current scoring factors. No cited reference directly proves those historical
@@ -527,7 +527,7 @@ numeric scoring policy. In particular:
 
 This distinction must be preserved in the advisor handoff: external references
 support the rationale for the signals, while independent labelled validation
-and calibration are still required before presenting CABTA's exact numbers as
+and calibration are still required before presenting SOCPOW's exact numbers as
 evidence-based or statistically validated.
 
 ### Turkish-language code audit (16 Sep 2026)
@@ -1016,7 +1016,7 @@ modified.
 - **Content credibility**: เนื้อหาที่ source รายงานมีความน่าเชื่อถือเชิงภัยคุกคามเพียงใด
 - **Group A/B**: ขอบเขตที่ระบบ scoring ปัจจุบันอนุญาตให้นำ source ไปใช้
 
-การแยกสี่เรื่องนี้มีเป้าหมายไม่ให้ source ที่เรียกง่ายหรือเร็วถูกตีความว่าเนื้อหาถูกต้องกว่าโดยอัตโนมัติ และไม่ให้ source ที่ใช้ API ถูกตัดสินว่าไม่น่าเชื่อถือเพียงเพราะมี quota สำหรับ execution tier นี้ CABTA ให้ความสำคัญกับ non-API, local/cache lookup และ coverage ที่กว้าง เพราะตรงกับเป้าหมายการประหยัดเวลาและลด dependency ภายนอก
+การแยกสี่เรื่องนี้มีเป้าหมายไม่ให้ source ที่เรียกง่ายหรือเร็วถูกตีความว่าเนื้อหาถูกต้องกว่าโดยอัตโนมัติ และไม่ให้ source ที่ใช้ API ถูกตัดสินว่าไม่น่าเชื่อถือเพียงเพราะมี quota สำหรับ execution tier นี้ SOCPOW ให้ความสำคัญกับ non-API, local/cache lookup และ coverage ที่กว้าง เพราะตรงกับเป้าหมายการประหยัดเวลาและลด dependency ภายนอก
 
 ### สถานะรวม (historical snapshot)
 
@@ -1116,7 +1116,7 @@ Warm lookup รอบถัดไปใช้เวลาประมาณ `0.0
 - `talos` excluded from scoring/reliability sampling — confirmed non-functional (120/120 fail across 2 runs in window1, DNS SenderBase timeout ~5s matching configured timeout, root cause: service deprecated per source code comment). Effective source count: 13 (was 14). Excluded from window1 metrics retroactively via filter at compute time; raw window1 jsonl file unmodified for evidence integrity.
 - Excluded: `misp_circl_feed_osint` (separate MISP live-feed validation step) and the 13 Group B API-key sources: `virustotal`, `abuseipdb`, `shodan`, `alienvault`, `greynoise`, `censys`, `pulsedive`, `criminalip`, `ipqualityscore`, `phishtank`, `ip2proxy`, `triage`, `threatzone`.
 - Key findings:
-  - `talos`: `60/60` failures in this window and `120/120` failures including the prior invalid run. DNS SenderBase lookup timed out at approximately `5,000 ms`, matching the resolver timeout in `threat_intel_extended.py:105-106`. Evidence indicates the service is deprecated, not a CABTA code-path bug. See `evidence/reliability_sampling/invalid_runs/README.md`.
+  - `talos`: `60/60` failures in this window and `120/120` failures including the prior invalid run. DNS SenderBase lookup timed out at approximately `5,000 ms`, matching the resolver timeout in `threat_intel_extended.py:105-106`. Evidence indicates the service is deprecated, not a SOCPOW code-path bug. See `evidence/reliability_sampling/invalid_runs/README.md`.
   - `tor_exit_nodes`: `0` failures in this clean window. The prior `429` responses came from duplicated concurrent load, so the prior `429` is not treated as normal source behavior.
   - `malwarebazaar`: `1/60` failure (`5xx`) in window1; no failures in
     windows 2 and 3.
@@ -1981,7 +1981,7 @@ filtering, Gmail OAuth และ notification routing by role ยังไม่
 implementation และไม่ใช่ blocker อีกต่อไป:
 
 1. SOC ควรเห็นเฉพาะข้อมูลของตัวเอง หรือคง shared behavior เดิมตามที่
-   `docs/CABTA_scope_ledger.md:1164` ระบุอยู่ปัจจุบัน เพราะการเพิ่ม Team Lead กระทบ
+   `docs/SOCPOW_scope_ledger.md:1164` ระบุอยู่ปัจจุบัน เพราะการเพิ่ม Team Lead กระทบ
    พฤติกรรมเดิมของ SOC role โดยตรง
 2. คำว่า “SOC ในทีม” หมายถึงผู้ใช้ทุกคนที่มี role SOC ในระบบทั้งหมด หรือจะมี
    `team membership` concept แยกในอนาคต ปัจจุบันไม่มี `team_id` ใน DB

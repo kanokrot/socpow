@@ -94,7 +94,7 @@ def test_navbar_badge_uses_username_and_public_login_has_no_badge(monkeypatch) -
     monkeypatch.setattr(page_auth, "get_current_user", lambda token, request=None: user)
 
     with TestClient(_build_page_app()) as client:
-        client.cookies.set("cabta_session", "test-token")
+        client.cookies.set("socpow_session", "test-token")
         dashboard = client.get("/dashboard")
 
     with TestClient(_build_page_app()) as client:

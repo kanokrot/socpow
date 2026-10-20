@@ -1596,9 +1596,9 @@ textarea.form-control {
    31. Print Styles
    ================================================================= */
 @media print {
-    .cabta-navbar,
+    .socpow-navbar,
     .sub-header,
-    .cabta-offcanvas,
+    .socpow-offcanvas,
     .system-bar,
     .toast-container,
     .theme-toggle {

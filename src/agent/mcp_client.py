@@ -201,7 +201,12 @@ class MCPClientManager:
 
         config_env = config_env or {}
         allowed_names = set(DEFAULT_INHERITED_ENV_VARS)
-        allowed_names.update(name for name in os.environ if name.startswith("CABTA_DNS_"))
+        allowed_names.update({
+            "SOCPOW_DNS_TIMEOUT", "SOCPOW_DNS_TOTAL_TIMEOUT",
+            "SOCPOW_DNS_FALLBACK", "SOCPOW_DNS_FALLBACK_SERVERS",
+            "CABTA_DNS_TIMEOUT", "CABTA_DNS_TOTAL_TIMEOUT",
+            "CABTA_DNS_FALLBACK", "CABTA_DNS_FALLBACK_SERVERS",
+        })
         allowed_names.update(str(name) for name in config_env)
 
         env = {

@@ -1,9 +1,9 @@
 """
-CABTA - RAG Knowledge Base (minimal, lightweight version)
+SOCPOW - RAG Knowledge Base (minimal, lightweight version)
 ============================================================
 
 จุดประสงค์:
-    เพิ่ม Retrieval-Augmented Generation (RAG) ให้ CABTA แบบเบาที่สุด
+    เพิ่ม Retrieval-Augmented Generation (RAG) ให้ SOCPOW แบบเบาที่สุด
     เพื่อให้รันคู่กับ Ollama (Llama3.2 3B) ได้บนเครื่องที่มี VRAM จำกัด
     (RTX 2050, 4GB VRAM)
 
@@ -48,7 +48,8 @@ except ImportError:
 
 
 DEFAULT_PERSIST_DIR = Path.home() / ".blue-team-assistant" / "rag_store"
-DEFAULT_COLLECTION_NAME = "cabta_knowledge_base"
+DEFAULT_COLLECTION_NAME = "socpow_knowledge_base"
+LEGACY_COLLECTION_NAME = "cabta_knowledge_base"
 DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # เบา รันบน CPU ได้ ไม่กิน VRAM
 
 
@@ -78,6 +79,17 @@ class RAGKnowledgeBase:
         self._persist_dir.mkdir(parents=True, exist_ok=True)
 
         self._client = chromadb.PersistentClient(path=str(self._persist_dir))
+
+        available_names = {
+            getattr(collection, "name", collection)
+            for collection in self._client.list_collections()
+        }
+        if (
+            collection_name == DEFAULT_COLLECTION_NAME
+            and collection_name not in available_names
+            and LEGACY_COLLECTION_NAME in available_names
+        ):
+            collection_name = LEGACY_COLLECTION_NAME
 
         # Embedding function รันบน CPU โดย default (ไม่ต้องตั้ง device='cuda')
         # เพื่อไม่แย่ง VRAM กับ Ollama ที่รัน Llama3.2 3B อยู่แล้ว

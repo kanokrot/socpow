@@ -15,7 +15,7 @@
        - สำหรับผู้ใช้ที่ตกเป็นเหยื่อ, ให้ทำการ reset credentials และตรวจสอบกิจกรรมที่น่าสงสัยในบัญชี
        - ส่ง phishing email ตัวอย่าง (พร้อม header) ให้ทีม Threat Intelligence เพื่อวิเคราะห์และปรับปรุงระบบป้องกัน
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: playbook_phishing_email
     knowledge_type: course_of_action
     category: playbook

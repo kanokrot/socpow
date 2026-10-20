@@ -11,8 +11,8 @@
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/kanokrot/cabta-llm.git
-cd cabta-llm
+git clone https://github.com/kanokrot/socpow.git
+cd socpow
 ```
 
 ### 2. Create Virtual Environment (Recommended)
@@ -94,7 +94,7 @@ The loader also accepts an alternate configuration path through the
 
 If `llm.provider` is `vllm`, set `llm.vllm_base_url` and `llm.vllm_model` to a
 separate running vLLM/OpenAI-compatible service. Do not point
-`vllm_base_url` at the CABTA Web UI port (`8080`). The template leaves this
+`vllm_base_url` at the SOCPOW Web UI port (`8080`). The template leaves this
 value empty when no vLLM service has been provisioned; use the endpoint and
 served model ID supplied by your deployment owner.
 
@@ -157,7 +157,7 @@ The template also includes the configured `network_tools`,
 `malwoverview_tools`, `forensics_tools`, `remnux_tools`, `threat_intel_tools`,
 `remote_tools`, and `vulnerability-tools` servers. Some servers require
 external tools, services, or credentials. MCP connections are discovered and
-managed by CABTA from this configuration; do not use the legacy `src.server`
+managed by SOCPOW from this configuration; do not use the legacy `src.server`
 entry for the current setup.
 
 ## Troubleshooting

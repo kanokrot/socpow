@@ -1,5 +1,5 @@
 /**
- * CABTA browser authentication helpers.
+ * SOCPOW browser authentication helpers.
  *
  * Browser authentication is cookie-only: the login response deliberately does
  * not expose the session token to JavaScript.  This module supplies CSRF
@@ -35,6 +35,14 @@
             if (cookie.indexOf(prefix) === 0) {
                 return decodeURIComponent(cookie.slice(prefix.length));
             }
+        }
+        return '';
+    }
+
+    function getCompatibleCookie(names) {
+        for (var i = 0; i < names.length; i += 1) {
+            var value = getCookie(names[i]);
+            if (value) return value;
         }
         return '';
     }
@@ -86,13 +94,13 @@
         if (isSameOrigin(url)) {
             options.credentials = options.credentials || 'include';
             if (UNSAFE_METHODS[method]) {
-                var csrf = getCookie('cabta_csrf');
+                var csrf = getCompatibleCookie(['socpow_csrf', 'cabta_csrf']);
                 if (csrf) headers.set('X-CSRF-Token', csrf);
             }
         }
         options.headers = headers;
 
-        return window.__cabtaNativeFetch(input, options).then(function (response) {
+        return window.__socpowNativeFetch(input, options).then(function (response) {
             if (response.status === 401 && !isAuthPage()) {
                 redirectToLogin();
             }
@@ -100,8 +108,8 @@
         });
     }
 
-    if (!window.__cabtaNativeFetch) {
-        window.__cabtaNativeFetch = window.fetch.bind(window);
+    if (!window.__socpowNativeFetch) {
+        window.__socpowNativeFetch = window.fetch.bind(window);
         window.fetch = fetchWithAuth;
     }
 
@@ -241,7 +249,7 @@
         if (logoutButton) bindLogoutButton(logoutButton);
     });
 
-    window.CABTAAuth = {
+    window.SOCPOWAuth = {
         fetch: fetchWithAuth,
         getCookie: getCookie,
         safeNext: safeNext,

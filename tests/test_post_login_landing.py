@@ -130,7 +130,7 @@ const document = {
     createElement: () => ({classList: {}, setAttribute() {}, appendChild() {}}),
 };
 const window = {
-    location: {origin: 'http://cabta.test', pathname: '/login', search: '', assign: (url) => redirects.push(url)},
+    location: {origin: 'http://socpow.test', pathname: '/login', search: '', assign: (url) => redirects.push(url)},
     fetch: () => Promise.resolve({status: 200, ok: true, json: () => Promise.resolve({default_redirect: '/dashboard'})}),
     setTimeout: () => 0,
 };

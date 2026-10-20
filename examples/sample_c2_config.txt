@@ -1,5 +1,5 @@
 # Sample C2 Configuration File - FOR TESTING ONLY
-# This is a synthetic test file for demonstrating CABTA's text analysis capabilities
+# This is a synthetic test file for demonstrating SOCPOW's text analysis capabilities
 # No real infrastructure is referenced
 
 [beacon_config]

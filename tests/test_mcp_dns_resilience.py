@@ -56,7 +56,7 @@ async def test_stdio_child_gets_dns_env_without_parent_secret(monkeypatch):
         async def start(self):
             return None
 
-    monkeypatch.setenv("CABTA_DNS_TIMEOUT", "5")
+    monkeypatch.setenv("SOCPOW_DNS_TIMEOUT", "5")
     monkeypatch.setenv("MCP_PARENT_SECRET", "must-not-reach-child")
     monkeypatch.setattr("mcp.client.stdio.StdioServerParameters", FakeParameters)
     monkeypatch.setattr(mcp_client_module, "_StdioSessionOwner", FakeOwner)
@@ -72,7 +72,7 @@ async def test_stdio_child_gets_dns_env_without_parent_secret(monkeypatch):
 
     await MCPClientManager()._connect_stdio(connection)
 
-    assert captured["env"]["CABTA_DNS_TIMEOUT"] == "5"
+    assert captured["env"]["SOCPOW_DNS_TIMEOUT"] == "5"
     assert captured["env"]["MCP_CONFIG_VALUE"] == "allowed"
     assert "MCP_PARENT_SECRET" not in captured["env"]
 
@@ -106,9 +106,9 @@ def test_fallback_chain_respects_total_deadline(monkeypatch):
             clock["value"] += lifetime
             raise dns.exception.Timeout()
 
-    monkeypatch.setenv("CABTA_DNS_TIMEOUT", "0.5")
-    monkeypatch.setenv("CABTA_DNS_TOTAL_TIMEOUT", "0.7")
-    monkeypatch.setenv("CABTA_DNS_FALLBACK_SERVERS", "1.1.1.1,8.8.8.8")
+    monkeypatch.setenv("SOCPOW_DNS_TIMEOUT", "0.5")
+    monkeypatch.setenv("SOCPOW_DNS_TOTAL_TIMEOUT", "0.7")
+    monkeypatch.setenv("SOCPOW_DNS_FALLBACK_SERVERS", "1.1.1.1,8.8.8.8")
     monkeypatch.setattr(_dns_helper.time, "monotonic", lambda: clock["value"])
     monkeypatch.setattr(_dns_helper.dns.resolver, "Resolver", Resolver)
     _dns_helper.reset_health_cache()
@@ -128,8 +128,8 @@ def test_fallback_error_labels_last_attempted_server(monkeypatch):
         dns.exception.Timeout(),
         dns.exception.Timeout(),
     )
-    monkeypatch.setenv("CABTA_DNS_FALLBACK_SERVERS", "1.1.1.1,8.8.8.8")
-    monkeypatch.setenv("CABTA_DNS_TOTAL_TIMEOUT", "6")
+    monkeypatch.setenv("SOCPOW_DNS_FALLBACK_SERVERS", "1.1.1.1,8.8.8.8")
+    monkeypatch.setenv("SOCPOW_DNS_TOTAL_TIMEOUT", "6")
 
     result = _dns_helper.resolve_record("example.com", "A")
 
@@ -180,7 +180,7 @@ def test_ptr_privacy_guard_blocks_private_fallback(monkeypatch):
 
 
 def test_fallback_can_be_disabled(monkeypatch):
-    monkeypatch.setenv("CABTA_DNS_FALLBACK", "0")
+    monkeypatch.setenv("SOCPOW_DNS_FALLBACK", "0")
     calls = _fake_resolver(monkeypatch, dns.exception.Timeout(), lambda *_: _answer())
     result = _dns_helper.resolve_record("example.com", "A")
     assert result.resolver == "system"

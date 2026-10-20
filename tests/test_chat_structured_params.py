@@ -37,7 +37,7 @@ def _post_playbook_message(message):
 
 def test_chat_parses_complete_multiline_structured_params():
     remote_key_path = (
-        r"D:\ai_cti_automate\test_keys\cabta_test_key"
+        r"D:\ai_cti_automate\test_keys\socpow_test_key"
     )
     message = "\n".join([
         "host_identifier: 192.168.73.5",
@@ -88,7 +88,7 @@ def test_chat_preserves_typo_in_structured_param_key():
     message = "\n".join([
         "host_identifer: 192.168.73.5",
         "remote_username: kali",
-        r"remote_key_path: D:\keys\cabta_test_key",
+        r"remote_key_path: D:\keys\socpow_test_key",
     ])
 
     input_data = _post_playbook_message(message)
@@ -97,7 +97,7 @@ def test_chat_preserves_typo_in_structured_param_key():
     assert "host_identifier" not in input_data
     assert input_data["remote_username"] == "kali"
     assert input_data["remote_key_path"] == (
-        r"D:\keys\cabta_test_key"
+        r"D:\keys\socpow_test_key"
     )
     assert input_data["query"] == message
     assert input_data["user_input"] == message

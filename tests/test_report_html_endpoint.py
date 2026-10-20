@@ -87,11 +87,11 @@ def test_report_detection_rules_offer_raw_and_markdown_copy(tmp_path):
     assert "sigma: 'yaml'" in response.text
 
 
-def test_print_css_hides_actual_cabta_navbar():
+def test_print_css_hides_actual_socpow_navbar():
     css_path = Path(__file__).resolve().parents[1] / "static" / "css" / "themes.css"
     css = css_path.read_text(encoding="utf-8")
     print_section = css.split("31. Print Styles", maxsplit=1)[1].split(
         "32. Dark Mode", maxsplit=1
     )[0]
 
-    assert ".cabta-navbar" in print_section
+    assert ".socpow-navbar" in print_section

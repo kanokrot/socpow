@@ -39,7 +39,7 @@ replace or override a deterministic analysis verdict.
 flowchart TB
     SOC["SOC Analyst / API client"] --> WEB["FastAPI Web App and API<br/>Authentication / RBAC / routes"]
     CLI["CLI / Python API"] --> A
-    MCP_SERVER["Standalone CABTA MCP server"] --> IOC
+    MCP_SERVER["Standalone SOCPOW MCP server"] --> IOC
     MCP_SERVER --> MALWARE
     MCP_SERVER --> EMAIL
     WEB --> A["Flow A: Direct analysis"]

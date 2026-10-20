@@ -3,7 +3,7 @@
 
 The frozen manifest is never modified.  This runner writes a separate result
 artifact and preserves fetched source responses under ``--raw-dir``.  It does
-not use CABTA's IOC cache and it does not use any target-source response as a
+not use SOCPOW's IOC cache and it does not use any target-source response as a
 label.
 """
 
@@ -172,7 +172,7 @@ async def collect(args: argparse.Namespace) -> dict:
     timeout = aiohttp.ClientTimeout(total=30)
     raw_sources: dict[str, dict] = {}
     static_data: dict[str, object] = {}
-    async with aiohttp.ClientSession(connector=connector, timeout=timeout, headers={"User-Agent": "cabta-independent-holdout/1.0"}) as session:
+    async with aiohttp.ClientSession(connector=connector, timeout=timeout, headers={"User-Agent": "socpow-independent-holdout/1.0"}) as session:
         static_urls = {
             "feodotracker": FEODO_URL,
             "tor_exit_nodes": TOR_URL,

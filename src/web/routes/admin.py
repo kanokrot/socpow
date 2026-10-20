@@ -92,7 +92,7 @@ def create_user_api_key(
             raise HTTPException(status_code=400, detail="User is inactive")
 
         prefix8 = secrets.token_hex(4)
-        key_prefix = f"cabta_live_{prefix8}"
+        key_prefix = f"socpow_live_{prefix8}"
         secret = secrets.token_urlsafe(32)
         raw_key = f"{key_prefix}_{secret}"
         expires_at = int(time.time()) + payload.expires_in_days * 86400

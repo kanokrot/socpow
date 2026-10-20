@@ -3,7 +3,7 @@
 scripts/adhoc/build_benchmark_dataset.py
 
 Builds a fixed benchmark/fixture dataset of IOCs with known-expected verdicts,
-for use in CABTA's pytest benchmark suite and thesis test report.
+for use in SOCPOW's pytest benchmark suite and thesis test report.
 
 Sources:
   - CIRCL MISP feed-osint (public feed, no auth) -> MALICIOUS IOCs
@@ -29,7 +29,7 @@ Usage:
 NOTE:
   - This script makes outbound HTTPS calls to circl.lu and threatfox-api.abuse.ch.
     Run it from a machine/network that allows those domains (it does NOT go
-    through CABTA's MCP tools, so it is unaffected by the circl_misp_feed_check
+    through SOCPOW's MCP tools, so it is unaffected by the circl_misp_feed_check
     / threatfox_ioc_lookup timeout bug currently tracked as an open issue).
   - This is a read-only, standalone script. It does not touch config.yaml,
     src/mcp_servers/, or mcp_client.py, and writes only to --output.
@@ -64,7 +64,7 @@ TOP_SITE_RANK_LIMIT = 1000
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CONFIG_YAML_PATH = os.path.join(REPO_ROOT, "config.yaml")
 
-USER_AGENT = "cabta-benchmark-builder/1.0"
+USER_AGENT = "socpow-benchmark-builder/1.0"
 
 # Known-good IOCs for false-positive testing (public DNS, well-known CDNs, etc.)
 # Deliberately boring/stable so the "clean" side of the benchmark doesn't churn.
@@ -137,7 +137,7 @@ def http_get_bytes(url, timeout=30):
 
 
 def classify_misp_attribute_type(misp_type):
-    """Map MISP attribute types to CABTA's simplified ioc_type."""
+    """Map MISP attribute types to SOCPOW's simplified ioc_type."""
     mapping = {
         "ip-dst": "ip",
         "ip-src": "ip",
@@ -397,7 +397,7 @@ def dedupe(records):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Build CABTA benchmark IOC dataset")
+    parser = argparse.ArgumentParser(description="Build SOCPOW benchmark IOC dataset")
     parser.add_argument("--output", default="data/benchmark/benchmark_iocs.json",
                          help="Output JSON path (default: data/benchmark/benchmark_iocs.json)")
     parser.add_argument("--malicious-count", type=int, default=20,

@@ -25,6 +25,12 @@ except ImportError:  # pragma: no cover - exercised by the fallback test
 
 
 DEFAULT_FALLBACK_SERVERS = ("1.1.1.1", "8.8.8.8")
+_LEGACY_DNS_SETTINGS = {
+    "SOCPOW_DNS_TIMEOUT": "CABTA_DNS_TIMEOUT",
+    "SOCPOW_DNS_TOTAL_TIMEOUT": "CABTA_DNS_TOTAL_TIMEOUT",
+    "SOCPOW_DNS_FALLBACK": "CABTA_DNS_FALLBACK",
+    "SOCPOW_DNS_FALLBACK_SERVERS": "CABTA_DNS_FALLBACK_SERVERS",
+}
 SYSTEM_UNHEALTHY_SECONDS = 60.0
 DEFAULT_TIMEOUT_SECONDS = 3.0
 DEFAULT_TOTAL_TIMEOUT_SECONDS = 6.0
@@ -50,8 +56,16 @@ def dns_available() -> bool:
     return DNSPYTHON_AVAILABLE
 
 
+def _setting(name: str, default: str) -> str:
+    value = os.getenv(name)
+    if value is not None:
+        return value
+    legacy_name = _LEGACY_DNS_SETTINGS.get(name)
+    return os.getenv(legacy_name, default) if legacy_name else default
+
+
 def _timeout_seconds() -> float:
-    raw = os.getenv("CABTA_DNS_TIMEOUT", str(DEFAULT_TIMEOUT_SECONDS))
+    raw = _setting("SOCPOW_DNS_TIMEOUT", str(DEFAULT_TIMEOUT_SECONDS))
     try:
         value = float(raw)
     except (TypeError, ValueError):
@@ -60,7 +74,7 @@ def _timeout_seconds() -> float:
 
 
 def _total_timeout_seconds() -> float:
-    raw = os.getenv("CABTA_DNS_TOTAL_TIMEOUT", str(DEFAULT_TOTAL_TIMEOUT_SECONDS))
+    raw = _setting("SOCPOW_DNS_TOTAL_TIMEOUT", str(DEFAULT_TOTAL_TIMEOUT_SECONDS))
     try:
         value = float(raw)
     except (TypeError, ValueError):
@@ -69,11 +83,11 @@ def _total_timeout_seconds() -> float:
 
 
 def _fallback_enabled() -> bool:
-    return os.getenv("CABTA_DNS_FALLBACK", "1").strip() != "0"
+    return _setting("SOCPOW_DNS_FALLBACK", "1").strip() != "0"
 
 
 def fallback_servers() -> list[str]:
-    raw = os.getenv("CABTA_DNS_FALLBACK_SERVERS", "")
+    raw = _setting("SOCPOW_DNS_FALLBACK_SERVERS", "")
     configured = [part.strip() for part in raw.split(",") if part.strip()]
     return configured or list(DEFAULT_FALLBACK_SERVERS)
 

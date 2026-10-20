@@ -1,7 +1,7 @@
 """
-Wazuh Severity Mapper - Blue Team Assistant (CABTA)
+Wazuh Severity Mapper - Blue Team Assistant (SOCPOW)
 
-แปลง threat_score / verdict ของ CABTA ให้เป็น Wazuh-style 4-level severity
+แปลง threat_score / verdict ของ SOCPOW ให้เป็น Wazuh-style 4-level severity
 (LOW / MEDIUM / HIGH / CRITICAL) สำหรับใช้ตอน integrate กับ Wazuh หรือ
 แสดงผลใน report โดยไม่แตะ verdict logic เดิมใน helpers.py หรือ
 severity logic เดิมใน correlation.py เลย
@@ -82,11 +82,11 @@ def correlation_to_wazuh_severity(correlation_severity: str) -> str:
 
 def wazuh_level_to_severity(rule_level: int) -> str:
     """
-    Wazuh rule.level (0-15) -> CABTA severity bucket.
+    Wazuh rule.level (0-15) -> SOCPOW severity bucket.
 
     Threshold ยึดตาม Wazuh's own default significance cutoff
     (ossec.conf: email_alert_level=12 คือจุดที่ Wazuh เองถือว่า
-    "significant enough to notify") ไม่ใช่ตัวเลขที่ CABTA คิดเอาเอง.
+    "significant enough to notify") ไม่ใช่ตัวเลขที่ SOCPOW คิดเอาเอง.
 
     Bucket:
       0-6   -> LOW      (informational / low-priority, ต่ำกว่า email threshold มาก)

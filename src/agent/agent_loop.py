@@ -113,7 +113,10 @@ def _validate_rag_reference(reference: Dict, now: Optional[datetime] = None):
         if not isinstance(metadata[field], str) or not metadata[field].strip():
             return False, f"{field} must be a non-empty string"
 
-    if metadata["schema_version"] != "cabta-rag-provenance/1":
+    if metadata["schema_version"] not in {
+        "socpow-rag-provenance/1",
+        "cabta-rag-provenance/1",
+    }:
         return False, "unsupported schema_version"
     if metadata["knowledge_type"] not in _RAG_KNOWLEDGE_TYPES:
         return False, "invalid knowledge_type"

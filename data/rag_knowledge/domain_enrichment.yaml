@@ -5,14 +5,14 @@
     - **Correlation with DGA:** หาก domain ที่เพิ่งจดทะเบียนใหม่มีลักษณะเป็น Domain Generation Algorithm (DGA) (เช่น entropy สูง, รูปแบบสุ่ม), ความเสี่ยงจะยิ่งสูงขึ้นมาก เพราะเป็นเทคนิคที่ botnet ส่วนใหญ่ใช้ในการติดต่อกับ C2 server.
     - **Enrichment Steps:** ควรตรวจสอบ domain age, ประวัติ WHOIS, passive DNS, และ certificate transparency logs. มองหาความผิดปกติเช่น การใช้ privacy guard, การจดทะเบียนผ่าน registrar ที่เป็นที่นิยมของผู้ไม่หวังดี, หรือการใช้ free SSL certificate.
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: playbook_newly_registered_domain
     knowledge_type: analytic_guidance
     category: playbook
     topic: domain_enrichment
     source: "Internal heuristic based on common threat intelligence practices"
-    source_name: "CABTA Internal Knowledge"
-    source_url: "https://github.com/kanokrot/cabta-llm/blob/27bc103c744adf931aacddb8595387ab596f950f/data/rag_knowledge/domain_enrichment.yaml"
+    source_name: "SOCPOW Internal Knowledge"
+    source_url: "https://github.com/kanokrot/socpow/blob/27bc103c744adf931aacddb8595387ab596f950f/data/rag_knowledge/domain_enrichment.yaml"
     source_version: "27bc103"
     confidence: 60
     tlp: "TLP:CLEAR"

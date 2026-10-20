@@ -21,7 +21,7 @@ class Headers {
 
 const window = {
     location: {
-        origin: 'http://cabta.test',
+        origin: 'http://socpow.test',
         pathname: '/dashboard',
         search: '',
         assign: (value) => redirects.push(value),
@@ -49,8 +49,8 @@ const context = {
 
 vm.runInNewContext(fs.readFileSync(process.argv[1], 'utf8'), context);
 
-window.CABTAAuth.fetch('401')
-    .then(() => window.CABTAAuth.fetch('403'))
+window.SOCPOWAuth.fetch('401')
+    .then(() => window.SOCPOWAuth.fetch('403'))
     .then(() => {
         if (redirects.length !== 1 || redirects[0] !== '/login?next=%2Fdashboard') {
             throw new Error(JSON.stringify(redirects));

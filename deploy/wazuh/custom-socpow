@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wazuh custom integration that submits one alert to CABTA Alert Triage."""
+"""Wazuh custom integration that submits one alert to SOCPOW Alert Triage."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from typing import Any
 def _load_severity_mapper():
     source_root = Path(
         os.environ.get(
-            "CABTA_SOURCE_ROOT",
+            "SOCPOW_SOURCE_ROOT",
             str(Path(__file__).resolve().parents[2]),
         )
     ).expanduser()
@@ -25,8 +25,8 @@ def _load_severity_mapper():
         from src.utils.wazuh_severity import wazuh_level_to_severity
     except ImportError as exc:
         raise RuntimeError(
-            "Cannot import src.utils.wazuh_severity; set CABTA_SOURCE_ROOT "
-            "to the CABTA checkout on this host"
+            "Cannot import src.utils.wazuh_severity; set SOCPOW_SOURCE_ROOT "
+            "to the SOCPOW checkout on this host"
         ) from exc
     return wazuh_level_to_severity
 
@@ -104,20 +104,20 @@ def build_request(alert: dict[str, Any]) -> dict[str, Any]:
 
 
 def _target_url() -> str:
-    # Wazuh passes hook_url as argv[2]. CABTA_API_URL is useful for manual
+    # Wazuh passes hook_url as argv[2]. SOCPOW_API_URL is useful for manual
     # invocation and takes precedence when explicitly configured.
-    url = os.environ.get("CABTA_API_URL")
+    url = os.environ.get("SOCPOW_API_URL")
     if not url and len(sys.argv) > 2:
         url = sys.argv[2]
     if not url:
-        raise RuntimeError("Set CABTA_API_URL or configure Wazuh hook_url")
+        raise RuntimeError("Set SOCPOW_API_URL or configure Wazuh hook_url")
     return url
 
 
 def submit(alert_path: str) -> int:
-    api_key = os.environ.get("CABTA_API_KEY")
+    api_key = os.environ.get("SOCPOW_API_KEY")
     if not api_key:
-        raise RuntimeError("CABTA_API_KEY is not set")
+        raise RuntimeError("SOCPOW_API_KEY is not set")
     with open(alert_path, "r", encoding="utf-8") as alert_file:
         alert = json.load(alert_file)
     if not isinstance(alert, dict):
@@ -149,24 +149,24 @@ def submit(alert_path: str) -> int:
                 else "throttled; retry later"
             )
         else:
-            message = "CABTA request failed"
-        print(f"custom-cabta: {message}", file=sys.stderr)
+            message = "SOCPOW request failed"
+        print(f"custom-socpow: {message}", file=sys.stderr)
         return 1
     except urllib.error.URLError:
-        print("custom-cabta: CABTA is unavailable", file=sys.stderr)
+        print("custom-socpow: SOCPOW is unavailable", file=sys.stderr)
         return 1
-    print("custom-cabta: submitted alert")
+    print("custom-socpow: submitted alert")
     return 0
 
 
 def main() -> int:
     if len(sys.argv) < 2:
-        print("Usage: custom-cabta <wazuh-alert-json> [hook-url]", file=sys.stderr)
+        print("Usage: custom-socpow <wazuh-alert-json> [hook-url]", file=sys.stderr)
         return 2
     try:
         return submit(sys.argv[1])
     except (OSError, ValueError, RuntimeError, json.JSONDecodeError, urllib.error.URLError) as exc:
-        print(f"custom-cabta: {exc}", file=sys.stderr)
+        print(f"custom-socpow: {exc}", file=sys.stderr)
         return 1
 
 

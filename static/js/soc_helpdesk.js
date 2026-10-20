@@ -214,10 +214,10 @@
         faqStatus.textContent = "Loading FAQ…";
         emptyState.hidden = true;
         try {
-            if (!window.CABTAAuth || typeof window.CABTAAuth.fetch !== "function") {
+            if (!window.SOCPOWAuth || typeof window.SOCPOWAuth.fetch !== "function") {
                 throw new Error("Authentication is unavailable. Refresh the page and try again.");
             }
-            const response = await window.CABTAAuth.fetch("/api/helpdesk/faq");
+            const response = await window.SOCPOWAuth.fetch("/api/helpdesk/faq");
             const data = await responseData(response);
             faqItems = Array.isArray(data.items) ? data.items : [];
             openFaqId = null;
@@ -271,10 +271,10 @@
         updateMessageCount();
         feedbackResult.textContent = "";
         try {
-            if (!window.CABTAAuth || typeof window.CABTAAuth.fetch !== "function") {
+            if (!window.SOCPOWAuth || typeof window.SOCPOWAuth.fetch !== "function") {
                 throw new Error("Authentication is unavailable. Refresh the page and try again.");
             }
-            const response = await window.CABTAAuth.fetch("/api/helpdesk/feedback", {
+            const response = await window.SOCPOWAuth.fetch("/api/helpdesk/feedback", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),

@@ -14,7 +14,7 @@
        - ระบุเงื่อนไขที่ชัดเจนในการยกระดับเป็น MALICIOUS (เช่น พบการดาวน์โหลดมัลแวร์, ยืนยันการเชื่อมต่อ C2)
        - หากไม่พบกิจกรรมน่าสงสัยเพิ่มเติมภายในเวลาที่กำหนด (เช่น 72 ชม.) ให้พิจารณาลดระดับเป็น BENIGN
   metadata:
-    schema_version: "cabta-rag-provenance/1"
+    schema_version: "socpow-rag-provenance/1"
     citation_id: playbook_suspicious_ioc_001
     knowledge_type: course_of_action
     category: playbook

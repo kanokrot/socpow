@@ -1,5 +1,5 @@
 """
-Author: CABTA
+Author: SOCPOW
 Text File Analyzer - Extracts malicious indicators (IOCs) from text files
 (txt, log, csv, conf, cfg, ini, json, xml, yaml) and detects C2 communication patterns.
 """

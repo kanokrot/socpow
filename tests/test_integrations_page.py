@@ -26,7 +26,7 @@ def _integrations_app() -> FastAPI:
 def _client_for_role(monkeypatch, tmp_path: Path, role: str) -> TestClient:
     token = _session_cookie_for_role(monkeypatch, tmp_path, role)
     client = TestClient(_integrations_app())
-    client.cookies.set("cabta_session", token)
+    client.cookies.set("socpow_session", token)
     return client
 
 
@@ -225,11 +225,11 @@ def test_wazuh_download_contains_expected_bundle_files(monkeypatch, tmp_path: Pa
     with zipfile.ZipFile(io.BytesIO(response.content)) as bundle:
         actual_names = set(bundle.namelist())
 
-    bundle_prefix = "cabta-wazuh-integration/"
+    bundle_prefix = "socpow-wazuh-integration/"
     bundle_root = ROOT / "deploy" / "wazuh"
     expected_names = {
         f"{bundle_prefix}{name}"
-        for name in ("README.md", "custom-cabta", "ossec.conf")
+        for name in ("README.md", "custom-socpow", "ossec.conf")
     }
     expected_names.update(
         f"{bundle_prefix}samples/{sample.name}"

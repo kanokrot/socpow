@@ -231,7 +231,7 @@ class MISPFeed:
                 async with aiohttp.ClientSession(
                     timeout=self.timeout,
                     connector=aiohttp.TCPConnector(ssl=_SSL_CONTEXT),
-                    headers={"User-Agent": "CABTA-MISPFeed/1.0"},
+                    headers={"User-Agent": "SOCPOW-MISPFeed/1.0"},
                 ) as session:
                     manifest = await self._refresh_manifest(session)
 

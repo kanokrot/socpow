@@ -39,8 +39,8 @@ import httpx
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-SESSION_COOKIE = "cabta_session"
-CSRF_COOKIE = "cabta_csrf"
+SESSION_COOKIE = "socpow_session"
+CSRF_COOKIE = "socpow_csrf"
 
 
 class SmokeFailure(RuntimeError):
@@ -105,13 +105,13 @@ def _assert_auth_cookies(
     session = cookies[SESSION_COOKIE]
     csrf = cookies[CSRF_COOKIE]
     if not bool(session["httponly"]):
-        raise SmokeFailure("cabta_session is not HttpOnly")
+        raise SmokeFailure("socpow_session is not HttpOnly")
     if bool(csrf["httponly"]):
-        raise SmokeFailure("cabta_csrf must remain readable by browser JavaScript")
+        raise SmokeFailure("socpow_csrf must remain readable by browser JavaScript")
     if session["samesite"].lower() != "strict":
-        raise SmokeFailure("cabta_session is not SameSite=Strict")
+        raise SmokeFailure("socpow_session is not SameSite=Strict")
     if csrf["samesite"].lower() != "strict":
-        raise SmokeFailure("cabta_csrf is not SameSite=Strict")
+        raise SmokeFailure("socpow_csrf is not SameSite=Strict")
     for name, morsel in ((SESSION_COOKIE, session), (CSRF_COOKIE, csrf)):
         if bool(morsel["secure"]) != expected_secure:
             raise SmokeFailure(
@@ -296,7 +296,7 @@ def run(args: argparse.Namespace) -> int:
             args.expect_secure if args.expect_secure is not None else os.getenv("AUTH_COOKIE_SECURE")
         )
     else:
-        temp_root = Path(tempfile.mkdtemp(prefix="cabta-auth-smoke-"))
+        temp_root = Path(tempfile.mkdtemp(prefix="socpow-auth-smoke-"))
         home = temp_root / "home"
         db_path = temp_root / "auth.db"
         config_path = temp_root / "config.yaml"

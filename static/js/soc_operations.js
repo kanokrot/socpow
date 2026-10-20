@@ -185,7 +185,7 @@
             tasks.push(loadImage(type, `${assetBase}/${path}`));
         }
         if (canvas.dataset.serverRackSrc) {
-            tasks.push(loadImage("CABTA_SERVER_RACK", canvas.dataset.serverRackSrc));
+            tasks.push(loadImage("SOCPOW_SERVER_RACK", canvas.dataset.serverRackSrc));
         }
 
         const layoutPromise = fetch(`${assetBase}/default-layout.json`, { cache: "no-store" })
@@ -494,7 +494,7 @@
 
         drawTiles(runtime.layout);
         drawScene(runtime.layout);
-        drawCabtaRack();
+        drawSocpowRack();
         drawCorrelationFlow();
         drawThreatAlert();
         drawVignette();
@@ -667,10 +667,10 @@
         ctx.fillText(symbol, Math.round(x), Math.round(y - 3));
     }
 
-    function drawCabtaRack() {
+    function drawSocpowRack() {
         const x = 12 * TILE;
         const y = 6 * TILE;
-        const rack = images.get("CABTA_SERVER_RACK");
+        const rack = images.get("SOCPOW_SERVER_RACK");
         if (rack) {
             ctx.drawImage(rack, x, y, 32, 64);
             return;

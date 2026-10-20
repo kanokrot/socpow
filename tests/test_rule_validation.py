@@ -18,7 +18,7 @@ detection:
 
 VALID_YARA = """rule Suspicious_File {
     strings:
-        $marker = "cabta-test"
+        $marker = "socpow-test"
     condition:
         $marker
 }
@@ -204,7 +204,7 @@ def test_yara_uses_yara_python_compiler():
 def test_network_rule_structural_validation(rule_type):
     valid_rule = (
         'alert tcp $HOME_NET any -> $EXTERNAL_NET 443 '
-        '(msg:"CABTA test"; sid:1000001; rev:1;)'
+        '(msg:"SOCPOW test"; sid:1000001; rev:1;)'
     )
     assert validate_rule(rule_type, valid_rule)['valid'] is True
 

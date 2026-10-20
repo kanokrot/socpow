@@ -36,7 +36,7 @@ async def test_websocket_authenticates_from_session_cookie_before_first_message(
             "role": "admin",
         },
     )
-    websocket = FakeWebSocket(cookies={"cabta_session": "cookie-token"})
+    websocket = FakeWebSocket(cookies={"socpow_session": "cookie-token"})
 
     user = await websocket_routes._authenticate_websocket(websocket, ["admin"])
 

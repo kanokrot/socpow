@@ -1,4 +1,4 @@
-/* CABTA SOC Operations — optional advanced visual layer.
+/* SOCPOW SOC Operations — optional advanced visual layer.
    Loaded after soc_operations.css and safe to remove independently. */
 
 .soc-room-shell {
@@ -101,7 +101,7 @@
 .soc-network-map[data-stage="queued"] .node-ioc rect,
 .soc-network-map[data-stage="enrichment"] .node-intel rect,
 .soc-network-map[data-stage="correlation"] .node-server rect,
-.soc-network-map[data-stage="scoring"] .node-cabta rect,
+.soc-network-map[data-stage="scoring"] .node-socpow rect,
 .soc-network-map[data-stage="reporting"] .node-server rect {
     fill: #0d3543;
     stroke: #22d3ee;

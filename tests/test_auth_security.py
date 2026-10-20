@@ -92,8 +92,8 @@ def test_failed_login_is_rate_limited_and_success_sets_strict_cookies(monkeypatc
     assert "access_token" not in response.json()
     assert "token_type" not in response.json()
     cookies = response.headers.get_list("set-cookie")
-    session_cookie = next(cookie for cookie in cookies if cookie.startswith("cabta_session="))
-    csrf_cookie = next(cookie for cookie in cookies if cookie.startswith("cabta_csrf="))
+    session_cookie = next(cookie for cookie in cookies if cookie.startswith("socpow_session="))
+    csrf_cookie = next(cookie for cookie in cookies if cookie.startswith("socpow_csrf="))
     assert "SameSite=strict" in session_cookie
     assert "SameSite=strict" in csrf_cookie
     assert "HttpOnly" in session_cookie
@@ -154,7 +154,7 @@ def test_cookie_authenticated_unsafe_request_requires_csrf_header(monkeypatch) -
         assert login_response.status_code == 200
         assert client.post("/protected").status_code == 403
 
-        csrf_token = client.cookies.get("cabta_csrf")
+        csrf_token = client.cookies.get("socpow_csrf")
         protected_response = client.post(
             "/protected",
             headers={"X-CSRF-Token": csrf_token},

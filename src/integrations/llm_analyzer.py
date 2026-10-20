@@ -9,7 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# [GUARDRAIL ADDITION] รายชื่อ Threat Intel source ทั้งหมดที่ CABTA เช็ค
+# [GUARDRAIL ADDITION] รายชื่อ Threat Intel source ทั้งหมดที่ SOCPOW เช็ค
 # ใช้สำหรับตรวจจับว่า LLM พูดถึง source ที่ไม่ได้อยู่ใน verified findings หรือไม่
 # (ป้องกัน hallucination ที่หลุดผ่าน prompt-level guardrail)
 # ---------------------------------------------------------------------------

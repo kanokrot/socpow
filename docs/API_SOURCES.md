@@ -2,8 +2,8 @@
 
 ## Overview
 
-CABTA (Cyan Agent Blue Team Assistant) integrates with multiple threat-intelligence
-and sandbox integrations. This document distinguishes active IOC integrations,
+SOCPOW integrates with multiple threat-intelligence and sandbox providers.
+This document distinguishes active IOC integrations,
 report-only sources, and sandbox paths.
 
 ## Current scoring policy

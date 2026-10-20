@@ -82,7 +82,7 @@ def test_agent_chat_page_uses_branded_agent_name(monkeypatch, tmp_path):
     _register_page_routes(app)
 
     with TestClient(app) as client:
-        client.cookies.set("cabta_session", "test-token")
+        client.cookies.set("socpow_session", "test-token")
         response = client.get("/")
 
     assert response.status_code == 200

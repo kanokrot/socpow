@@ -101,10 +101,31 @@ api_key_rate_limiter = LoginRateLimiter(
 )
 
 
-SESSION_COOKIE_NAME = "cabta_session"
-CSRF_COOKIE_NAME = "cabta_csrf"
+SESSION_COOKIE_NAME = "socpow_session"
+CSRF_COOKIE_NAME = "socpow_csrf"
 COOKIE_SAMESITE = "strict"
 UNSAFE_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+
+
+def _cookie_by_explicit_alias(cookies, name: str) -> str | None:
+    """Read the current cookie name, allowing only its explicitly named alias."""
+    legacy_names = {
+        SESSION_COOKIE_NAME: ("cabta_session",),
+        CSRF_COOKIE_NAME: ("cabta_csrf",),
+    }.get(name, ())
+    for cookie_name in (name, *legacy_names):
+        value = cookies.get(cookie_name)
+        if value:
+            return value
+    return None
+
+
+def session_cookie(cookies) -> str | None:
+    return _cookie_by_explicit_alias(cookies, SESSION_COOKIE_NAME)
+
+
+def csrf_cookie(cookies) -> str | None:
+    return _cookie_by_explicit_alias(cookies, CSRF_COOKIE_NAME)
 
 
 def cookie_secure() -> bool:

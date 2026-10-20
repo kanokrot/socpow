@@ -37,8 +37,8 @@
      * otherwise provides its own minimal implementation).
      */
     function showToast(message, type) {
-        if (window.CABTAAuth && typeof window.CABTAAuth.showToast === 'function') {
-            window.CABTAAuth.showToast(message, type);
+        if (window.SOCPOWAuth && typeof window.SOCPOWAuth.showToast === 'function') {
+            window.SOCPOWAuth.showToast(message, type);
             return;
         }
         if (window.BTADashboard && typeof window.BTADashboard.showToast === 'function') {

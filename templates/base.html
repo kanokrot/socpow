@@ -24,7 +24,7 @@
 
     <style>
         /* ── Top Navbar ─────────────────────────────────────────── */
-        .cabta-navbar {
+        .socpow-navbar {
             height: 56px;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
@@ -32,7 +32,7 @@
             z-index: 1040;
         }
 
-        .cabta-navbar .navbar-brand {
+        .socpow-navbar .navbar-brand {
             font-weight: 700;
             font-size: 1.1rem;
             letter-spacing: 0.02em;
@@ -45,7 +45,7 @@
         }
 
         /* Nav link pills */
-        .cabta-navbar .nav-link {
+        .socpow-navbar .nav-link {
             color: var(--text-secondary);
             font-size: 0.82rem;
             font-weight: 500;
@@ -55,24 +55,24 @@
             white-space: nowrap;
         }
 
-        .cabta-navbar .nav-link:hover,
-        .cabta-navbar .nav-link:focus {
+        .socpow-navbar .nav-link:hover,
+        .socpow-navbar .nav-link:focus {
             color: var(--text-primary);
             background: var(--bg-hover, rgba(255,255,255,0.06));
         }
 
-        .cabta-navbar .nav-link.active,
-        .cabta-navbar .nav-link.active-section {
+        .socpow-navbar .nav-link.active,
+        .socpow-navbar .nav-link.active-section {
             color: var(--accent, #3b82f6);
             background: rgba(59, 130, 246, 0.1);
         }
 
-        .cabta-navbar .nav-link i {
+        .socpow-navbar .nav-link i {
             font-size: 0.92rem;
         }
 
         /* Dropdown menus */
-        .cabta-navbar .dropdown-menu {
+        .socpow-navbar .dropdown-menu {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -81,7 +81,7 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.25);
         }
 
-        .cabta-navbar .dropdown-item {
+        .socpow-navbar .dropdown-item {
             color: var(--text-secondary);
             font-size: 0.82rem;
             padding: 0.45rem 0.75rem;
@@ -91,25 +91,25 @@
             gap: 0.5rem;
         }
 
-        .cabta-navbar .dropdown-item:hover,
-        .cabta-navbar .dropdown-item:focus {
+        .socpow-navbar .dropdown-item:hover,
+        .socpow-navbar .dropdown-item:focus {
             color: var(--text-primary);
             background: var(--bg-hover, rgba(255,255,255,0.06));
         }
 
-        .cabta-navbar .dropdown-item.active {
+        .socpow-navbar .dropdown-item.active {
             color: var(--accent, #3b82f6);
             background: rgba(59, 130, 246, 0.1);
         }
 
-        .cabta-navbar .dropdown-item i {
+        .socpow-navbar .dropdown-item i {
             width: 18px;
             text-align: center;
             font-size: 0.88rem;
             opacity: 0.7;
         }
 
-        .cabta-navbar .dropdown-header {
+        .socpow-navbar .dropdown-header {
             color: var(--text-muted);
         }
 
@@ -331,44 +331,44 @@
         }
 
         /* ── Navbar toggler override ───────────────────────────── */
-        .cabta-navbar .navbar-toggler {
+        .socpow-navbar .navbar-toggler {
             border: none;
             padding: 0.25rem 0.4rem;
             color: var(--text-secondary);
             font-size: 1.25rem;
         }
 
-        .cabta-navbar .navbar-toggler:focus {
+        .socpow-navbar .navbar-toggler:focus {
             box-shadow: none;
         }
 
         /* Offcanvas on mobile */
         @media (max-width: 991.98px) {
-            .cabta-offcanvas {
+            .socpow-offcanvas {
                 background: var(--bg-secondary) !important;
                 border-right: 1px solid var(--border-color) !important;
                 max-width: 280px;
             }
 
-            .cabta-offcanvas .offcanvas-header {
+            .socpow-offcanvas .offcanvas-header {
                 border-bottom: 1px solid var(--border-color);
                 padding: 0.75rem 1rem;
             }
 
-            .cabta-offcanvas .offcanvas-body .nav-link {
+            .socpow-offcanvas .offcanvas-body .nav-link {
                 padding: 0.5rem 0.75rem;
                 border-radius: 6px;
                 margin-bottom: 1px;
             }
 
-            .cabta-offcanvas .dropdown-menu {
+            .socpow-offcanvas .dropdown-menu {
                 box-shadow: none;
                 border: none;
                 padding-left: 0.5rem;
                 background: transparent;
             }
 
-            .cabta-offcanvas .nav-section-label {
+            .socpow-offcanvas .nav-section-label {
                 font-size: 0.65rem;
                 font-weight: 700;
                 letter-spacing: 0.1em;
@@ -401,7 +401,7 @@
 <body>
 
     <!-- ═══ Top Navbar ═══════════════════════════════════════════ -->
-    <nav class="navbar navbar-expand-lg cabta-navbar fixed-top">
+    <nav class="navbar navbar-expand-lg socpow-navbar fixed-top">
         {% set nav_role = request.state.user.role if request.state.user is defined else '' %}
         {% set logo_href = '/' if nav_role in ['Threat Hunter', 'admin'] else '/dashboard' %}
         <div class="container-fluid px-2 px-lg-3">
@@ -419,7 +419,7 @@
             </button>
 
             <!-- Nav body (offcanvas on mobile, inline on desktop) -->
-            <div class="offcanvas offcanvas-start cabta-offcanvas d-lg-flex"
+            <div class="offcanvas offcanvas-start socpow-offcanvas d-lg-flex"
                  tabindex="-1" id="navOffcanvas">
 
                 <!-- Offcanvas header (mobile only) -->

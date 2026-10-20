@@ -142,7 +142,7 @@ def check_source_hallucination(
     Args:
         llm_result: JSON response จาก LLM
         valid_sources: source names ที่ยืนยันแล้วจริง (status == '✓')
-        all_known_sources: source names ทั้งหมดที่ CABTA รู้จัก
+        all_known_sources: source names ทั้งหมดที่ SOCPOW รู้จัก
 
     Returns:
         llm_result พร้อม 'hallucination_warning' ถ้าเจอ source แปลกปลอม

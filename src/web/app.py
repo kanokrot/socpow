@@ -928,7 +928,7 @@ def _register_page_routes(app: FastAPI) -> None:
         bundle_root = PROJECT_ROOT / 'deploy' / 'wazuh'
         bundle_files = [
             bundle_root / 'README.md',
-            bundle_root / 'custom-cabta',
+            bundle_root / 'custom-socpow',
             bundle_root / 'ossec.conf',
             *sorted((bundle_root / 'samples').glob('*.json')),
         ]
@@ -937,12 +937,12 @@ def _register_page_routes(app: FastAPI) -> None:
             for bundle_file in bundle_files:
                 if not bundle_file.is_file():
                     continue
-                archive_name = Path('cabta-wazuh-integration') / bundle_file.relative_to(bundle_root)
+                archive_name = Path('socpow-wazuh-integration') / bundle_file.relative_to(bundle_root)
                 zip_file.write(bundle_file, archive_name.as_posix())
         return Response(
             content=archive.getvalue(),
             media_type='application/zip',
-            headers={'Content-Disposition': 'attachment; filename="cabta-wazuh-integration.zip"'},
+            headers={'Content-Disposition': 'attachment; filename="socpow-wazuh-integration.zip"'},
         )
 
     @app.get('/mcp/servers', response_class=HTMLResponse, include_in_schema=False)

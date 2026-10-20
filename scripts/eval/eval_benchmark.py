@@ -226,7 +226,7 @@ async def evaluate(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Evaluate CABTA scoring against benchmark dataset (stratified)")
+    parser = argparse.ArgumentParser(description="Evaluate SOCPOW scoring against benchmark dataset (stratified)")
     parser.add_argument("--malicious-limit", type=int, default=0,
                          help="จำนวน MALICIOUS ที่จะสุ่ม (default 0 = เอาทั้งหมด). "
                               "CLEAN จะถูกดึงมาทั้งหมดเสมอไม่ว่าจะตั้งค่านี้เป็นอะไร")

@@ -137,7 +137,7 @@ document.getElementById('team-member-invite-form').addEventListener('submit', fu
     var email = document.getElementById('team-member-email').value.trim();
     var role = document.getElementById('team-member-role').value;
     if (button) button.disabled = true;
-    CABTAAuth.fetch('/api/team-lead/users/invite', {
+    SOCPOWAuth.fetch('/api/team-lead/users/invite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, role: role })
@@ -152,9 +152,9 @@ document.getElementById('team-member-invite-form').addEventListener('submit', fu
         return response.json();
     }).then(function () {
         form.reset();
-        CABTAAuth.showToast('Invitation sent.', 'success');
+        SOCPOWAuth.showToast('Invitation sent.', 'success');
     }).catch(function (error) {
-        CABTAAuth.showToast(error.message || 'Invitation failed.', 'error');
+        SOCPOWAuth.showToast(error.message || 'Invitation failed.', 'error');
     }).finally(function () {
         if (button) button.disabled = false;
     });
@@ -173,7 +173,7 @@ var AccessRequests = (function () {
         if (action === 'reject' && !window.confirm('Reject this access request?')) return;
         button.disabled = true;
         var row = button.closest('tr');
-        CABTAAuth.fetch('/api/admin/access-requests/' + id + '/' + action, {
+        SOCPOWAuth.fetch('/api/admin/access-requests/' + id + '/' + action, {
             method: 'POST'
         }).then(function (response) {
             if (!response.ok) {
@@ -194,10 +194,10 @@ var AccessRequests = (function () {
                         '<i class="bi bi-inbox fs-2 d-block mb-2"></i>No pending access requests.</div>';
                 }
             }
-            CABTAAuth.showToast(action === 'approve' ? 'Invitation sent.' : 'Request rejected.', 'success');
+            SOCPOWAuth.showToast(action === 'approve' ? 'Invitation sent.' : 'Request rejected.', 'success');
         }).catch(function (error) {
             button.disabled = false;
-            CABTAAuth.showToast(error.message || 'Access request action failed.', 'error');
+            SOCPOWAuth.showToast(error.message || 'Access request action failed.', 'error');
         });
     }
 

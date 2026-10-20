@@ -1,4 +1,4 @@
-"""Report RAG seed coverage against CABTA's production vocabulary.
+"""Report RAG seed coverage against SOCPOW's production vocabulary.
 
 This tool intentionally parses the seed YAML directly. It does not import
 ``RAGKnowledgeBase`` or initialize ChromaDB.

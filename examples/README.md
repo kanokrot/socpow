@@ -1,6 +1,6 @@
 # Example Test Files
 
-This directory contains synthetic test files for demonstrating CABTA's analysis capabilities.
+This directory contains synthetic test files for demonstrating SOCPOW's analysis capabilities.
 
 **All data is synthetic** - no real infrastructure, credentials, or threat actors are referenced.
 

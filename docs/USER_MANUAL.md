@@ -29,7 +29,7 @@ The application defines these roles:
 
 Login accepts either a username or an email address, together with a
 password. A successful login creates an access token and sets the
-`cabta_session` session cookie and `cabta_csrf` CSRF cookie. Cookie-authenticated
+`socpow_session` session cookie and `socpow_csrf` CSRF cookie. Cookie-authenticated
 unsafe requests (`POST`, `PUT`, `PATCH`, and `DELETE`) must send an
 `X-CSRF-Token` header matching the CSRF cookie. The cookies use `SameSite=Strict`.
 Failed login attempts are rate-limited.

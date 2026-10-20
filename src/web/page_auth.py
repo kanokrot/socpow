@@ -7,7 +7,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse, RedirectResponse, Response
 
 from .auth import get_current_user
-from .security import SESSION_COOKIE_NAME, safe_relative_path
+from .security import safe_relative_path, session_cookie
 
 
 PUBLIC_PATHS = frozenset(
@@ -52,7 +52,7 @@ ROLE_DEFAULT_LANDING = {
 
 def page_auth_user(request: Request):
     """Return the authenticated user from the session cookie or Bearer header."""
-    token = request.cookies.get(SESSION_COOKIE_NAME)
+    token = session_cookie(request.cookies)
     if not token:
         authorization = request.headers.get("authorization", "")
         if authorization.lower().startswith("bearer "):

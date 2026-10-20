@@ -24,7 +24,7 @@ from src.utils.wazuh_severity import (
 
 
 # ====================================================================== #
-#  score_to_wazuh_severity() — CABTA score (0-100) -> Wazuh label
+#  score_to_wazuh_severity() — SOCPOW score (0-100) -> Wazuh label
 # ====================================================================== #
 
 class TestScoreToWazuhSeverity:
@@ -51,7 +51,7 @@ class TestScoreToWazuhSeverity:
 
 
 # ====================================================================== #
-#  verdict_to_wazuh_severity() — CABTA verdict string -> Wazuh label
+#  verdict_to_wazuh_severity() — SOCPOW verdict string -> Wazuh label
 # ====================================================================== #
 
 class TestVerdictToWazuhSeverity:
@@ -140,7 +140,7 @@ class TestWazuhLevelToSeverity:
         Wazuh's own default email_alert_level=12 ควร map เป็น HIGH
         (จุดที่ Wazuh เองถือว่า "significant enough to notify")
         นี่คือ sanity check ว่า threshold ยึดตาม Wazuh semantics จริง
-        ไม่ใช่ตัวเลขที่ CABTA เดาเอาเอง
+        ไม่ใช่ตัวเลขที่ SOCPOW เดาเอาเอง
         """
         assert wazuh_level_to_severity(12) == "HIGH"
 

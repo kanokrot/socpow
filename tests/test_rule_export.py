@@ -9,7 +9,7 @@ from src.web.analysis_manager import AnalysisManager
 from src.web.routes import reports
 
 
-SIGMA_RULE = """title: CABTA export test
+SIGMA_RULE = """title: SOCPOW export test
 logsource:
   category: process_creation
 detection:
@@ -18,9 +18,9 @@ detection:
   condition: selection
 """
 
-YARA_RULE = """rule CABTA_Export_Test {
+YARA_RULE = """rule SOCPOW_Export_Test {
     strings:
-        $marker = "cabta-export-test"
+        $marker = "socpow-export-test"
     condition:
         $marker
 }
@@ -28,7 +28,7 @@ YARA_RULE = """rule CABTA_Export_Test {
 
 SURICATA_RULE = (
     'alert tcp $HOME_NET any -> $EXTERNAL_NET 443 '
-    '(msg:"CABTA export test"; sid:1000001; rev:1;)'
+    '(msg:"SOCPOW export test"; sid:1000001; rev:1;)'
 )
 
 
